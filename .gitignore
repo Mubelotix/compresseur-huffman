@@ -787,4 +787,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+#JetBrains
+.idea/
+
 # End of https://www.toptal.com/developers/gitignore/api/latex,c,vs,linux,macos,windows
