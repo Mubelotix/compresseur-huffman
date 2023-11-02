@@ -1,5 +1,20 @@
-Nom: ArbreDeHuffman
-Utilise: 
-Opérations:
-Sémantiques:
-Préconditions:
+
+\subsubsection{ArbreDeHuffman}
+
+\begin{tad}
+  \tadNom{ArbreDeHuffman}
+  \tadDependances{Statistiques}
+  
+  \begin{tadOperations}{ArbreDeHuffman}
+    \tadOperation{ArbreDeHuffman}{Statistiques}{ArbreDeHuffman}
+    \tadOperation{getFilsDroit}{ArbreDeHuffman}{ArbreDeHuffman}
+    \tadOperation{getFilsGauche}{ArbreDeHuffman}{ArbreDeHuffman}
+  \end{tadOperations}
+
+  \begin{tadSemantiques}{creerArbreDeHuffman}
+    \tadSemantique{creerArbreDeHuffman(Statistiques)}{Crée un arbre de Huffman à partir des statistiques fournies.}
+    \tadSemantique{getFilsDroit(ArbreDeHuffman)}{Renvoie le fils droit de l'arbre.}
+    \tadSemantique{getFilsGauche(ArbreDeHuffman)}{Renvoie le fils gauche de l'arbre.}
+  \end{tadSemantiques}
+
+\end{tad}
