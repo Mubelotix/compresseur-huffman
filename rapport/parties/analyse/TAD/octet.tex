@@ -1,21 +1,18 @@
-\documentclass{article}
-\usepackage{algorithme}
+\subsubsection{TAD Octet}
 
-\begin{document}
-    \begin{tad}
-        \tadNom{Byte}
-        \tadDependances{Character}
-        \begin{tadOperations}{charToByte}
-            \tadOperationAvecPreconditions{charToByte}{\tadParams{Character}}{\tadParams{Byte}}
-            \tadOperationAvecPreconditions{byteToChar}{\tadParams{Byte}}{\tadParams{Character}}
-        \end{tadOperations}
-        \begin{tadAxiomes}
-            \tadAxiome{charToByte(byteToChar(b))=b}
-            \tadAxiome{byteToChar(charToByte(c))=c}
-        \end{tadAxiomes}
-        \begin{tadPreconditions}{charToByte(c)}
-            \tadPrecondition{charToByte(c)}{0 $\leq$ codeASCII(c) $\leq$ 127}
-            \tadPrecondition{byteToChar(b)}{b doit être une séquence binaire de 8 bits}
-            \end{tadPreconditions}
-    \end{tad}
-\end{document}
+\begin{tad}
+    \tadNom{Byte}
+    \tadDependances{Character}
+    \begin{tadOperations}{charToByte}
+        \tadOperationAvecPreconditions{charToByte}{\tadParams{Character}}{\tadParams{Byte}}
+        \tadOperationAvecPreconditions{byteToChar}{\tadParams{Byte}}{\tadParams{Character}}
+    \end{tadOperations}
+    \begin{tadAxiomes}
+        \tadAxiome{charToByte(byteToChar(b))=b}
+        \tadAxiome{byteToChar(charToByte(c))=c}
+    \end{tadAxiomes}
+    \begin{tadPreconditions}{charToByte(c)}
+        \tadPrecondition{charToByte(c)}{0 $\leq$ codeASCII(c) $\leq$ 127}
+        \tadPrecondition{byteToChar(b)}{b doit être une séquence binaire de 8 bits}
+        \end{tadPreconditions}
+\end{tad}
