@@ -3,18 +3,44 @@
 
 \begin{tad}
   \tadNom{ArbreDeHuffman}
-  \tadDependances{Statistiques}
+  \tadDependances{Statistiques, Octet}
   
   \begin{tadOperations}{ArbreDeHuffman}
     \tadOperation{ArbreDeHuffman}{Statistiques}{ArbreDeHuffman}
-    \tadOperation{getFilsDroit}{ArbreDeHuffman}{ArbreDeHuffman}
-    \tadOperation{getFilsGauche}{ArbreDeHuffman}{ArbreDeHuffman}
+    \tadOperationAvecPreconditions{getFilsDroit}{ArbreDeHuffman}{ArbreDeHuffman}
+    \tadOperationAvecPreconditions{getFilsGauche}{ArbreDeHuffman}{ArbreDeHuffman}
+    \tadOperationAvecPreconditions{obtenirOctet}{Arbre Huffman}{Octet}
+    \tadOperation{obtenirOccurence}{Arbre Huffman}{\entier}
+    \tadOperation{estUneFeuille}{Arbre Huffman}{\booleen}
+    \tadOperation{estVide}{Arbre Huffman}{\booleen}
   \end{tadOperations}
 
-  \begin{tadSemantiques}{creerArbreDeHuffman}
-    \tadSemantique{creerArbreDeHuffman(Statistiques)}{Crée un arbre de Huffman à partir des statistiques fournies.}
+  \begin{tadSemantiques}{obtenirOccurence(ArbreDeHuffman)}
+    \tadSemantique{ArbreDeHuffman(Statistiques)}{Crée un arbre de Huffman à partir des statistiques fournies.}
     \tadSemantique{getFilsDroit(ArbreDeHuffman)}{Renvoie le fils droit de l'arbre.}
     \tadSemantique{getFilsGauche(ArbreDeHuffman)}{Renvoie le fils gauche de l'arbre.}
+    \tadSemantique{obtenirOctet(ArbreDeHuffman)}{Renvoie l'octet de l'arbre.}
+    \tadSemantique{obtenirOccurence(ArbreDeHuffman)}{Renvoie l'occurence de l'octet de l'arbre.}
+    \tadSemantique{estUneFeuille(ArbreDeHuffman)}{Renvoie vrai si l'arbre est une feuille, faux sinon.}
+    \tadSemantique{estVide(ArbreDeHuffman)}{Renvoie vrai si l'arbre est vide, faux sinon.}
   \end{tadSemantiques}
 
+
+\begin{tadPreconditions}{obtenirFilsGauche(A)}
+  %\tadPrecondition{fusionner(A)}{estVide(A)}
+  \tadPrecondition{obtenirOctet(A)}{estUneFeuille(A)}
+  \tadPrecondition{obtenirFilsGauche(A)}{non estUneFeuille(A)}
+  \tadPrecondition{obtenirFilsDroit(A)}{non estUneFeuille(A)}
+\end{tadPreconditions}
+ 
+
 \end{tad}
+
+
+        
+  
+%\tadOperationAvecPreconditions{fusionner}{\tadDeuxParams{Arbre Huffman}{Arbre Huffman}}{Arbre Huffman}}
+
+
+
+
