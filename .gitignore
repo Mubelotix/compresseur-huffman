@@ -793,4 +793,6 @@ $RECYCLE.BIN/
 #VSCode
 .vscode/
 
+*.pdf
+
 # End of https://www.toptal.com/developers/gitignore/api/latex,c,vs,linux,macos,windows

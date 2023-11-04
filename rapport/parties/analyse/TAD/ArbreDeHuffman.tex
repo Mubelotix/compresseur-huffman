@@ -9,10 +9,10 @@
     \tadOperation{ArbreDeHuffman}{Statistiques}{ArbreDeHuffman}
     \tadOperationAvecPreconditions{getFilsDroit}{ArbreDeHuffman}{ArbreDeHuffman}
     \tadOperationAvecPreconditions{getFilsGauche}{ArbreDeHuffman}{ArbreDeHuffman}
-    \tadOperationAvecPreconditions{obtenirOctet}{Arbre Huffman}{Octet}
-    \tadOperation{obtenirOccurence}{Arbre Huffman}{\entier}
-    \tadOperation{estUneFeuille}{Arbre Huffman}{\booleen}
-    \tadOperation{estVide}{Arbre Huffman}{\booleen}
+    \tadOperationAvecPreconditions{obtenirOctet}{ArbreDeHuffman}{Octet}
+    \tadOperation{obtenirOccurence}{ArbreDeHuffman}{\entier}
+    \tadOperation{estUneFeuille}{ArbreDeHuffman}{\booleen}
+    \tadOperation{estVide}{ArbreDeHuffman}{\booleen}
   \end{tadOperations}
 
   \begin{tadSemantiques}{obtenirOccurence(ArbreDeHuffman)}
@@ -27,7 +27,6 @@
 
 
 \begin{tadPreconditions}{obtenirFilsGauche(A)}
-  %\tadPrecondition{fusionner(A)}{estVide(A)}
   \tadPrecondition{obtenirOctet(A)}{estUneFeuille(A)}
   \tadPrecondition{obtenirFilsGauche(A)}{non estUneFeuille(A)}
   \tadPrecondition{obtenirFilsDroit(A)}{non estUneFeuille(A)}
@@ -37,10 +36,7 @@
 \end{tad}
 
 
-        
-  
-%\tadOperationAvecPreconditions{fusionner}{\tadDeuxParams{Arbre Huffman}{Arbre Huffman}}{Arbre Huffman}}
-
+      
 
 
 
