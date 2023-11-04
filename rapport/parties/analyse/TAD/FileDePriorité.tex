@@ -1,0 +1,37 @@
+
+\subsubsection{FileDePriorité}
+
+\begin{tad}
+  \tadNom{FileDePriorité}
+  \tadDependances{ArbreDeHuffman, Naturel}
+  
+  \begin{tadOperations}{FileDePriorité}
+    \tadOperation{fileDePrioritéVide}{}{FileDePriorité}
+    \tadOperation{ajouterArbre}{ArbreDeHuffman X FileDePriorité}{FileDePriorité}
+    \tadOperationAvecPreconditions{défilerArbre}{FileDePriorité}{Arbre}
+    \tadOperation{tailleFile}{FileDePriorité}{Naturel}
+  \end{tadOperations}
+
+  \begin{tadSemantiques}
+    \tadSemantique{fileDePrioritéVide}{Crée une file de priorité vide.}
+    \tadSemantique{ajouterArbre}{Ajoute un arbre de Huffman à son emplacement respectif dans une file de priorité.}
+    \tadSemantique{défilerArbre}{Défile l'arbre en tête d'une file de priorité.}
+    \tadSemantique{tailleFile}{Renvoie le nombre d'arbre de Huffman présents dans une file de priorité.}
+  \end{tadSemantiques}
+
+\begin{tadAxiomes}
+        \tadAxiome{ajouterArbre(défilerArbre(f),f) = f}
+        \tadAxiome{tailleFile(fileDePrioritéVide()) = 0}
+	\tadAxiome{tailleFile(ajouterArbre(A,f)) = tailleFile(f) + 1}
+\end{tadAxiomes}
+
+\begin{tadPreconditions}
+  \tadPrecondition{défilerArbre(f)}{tailleFile(f) > 0}
+\end{tadPreconditions}
+ 
+
+\end{tad}
+
+
+
+
