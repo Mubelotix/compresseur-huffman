@@ -1,0 +1,33 @@
+\subsubsection{TAD Statistiques}
+
+\begin{tad}
+    \tadNom{Statistics}
+    \tadDependances{Element}
+    \begin{tadOperations}{Statistics}
+        \tadOperation{Statistics}{}{\tadParams{Statistics}}
+        \tadOperation{isEmpty}{\tadParams{Statistics} x \tadParams{Element}}{\tadParams{\booleen}}
+        \tadOperation{contains}{\tadParams{Statistics} x \tadParams{Element}}{\tadParams{\booleen}}
+        \tadOperation{getCount}{\tadParams{Statistics} x \tadParams{Element}}{\tadParams{\entier}}
+        \tadOperation{incCount}{\tadParams{Statistics} x \tadParams{Element}}{\tadParams{Statistics}}
+        \tadOperation{getCount}{\tadParams{Statistics} x \tadParams{Element}}{\tadParams{\entier}}
+        \tadOperation{getElementCount}{\tadParams{Statistics}}{\tadParams{\entier}}
+        \tadOperationAvecPreconditions{getElement}{\tadParams{Statistics} x \tadParams{\entier}}{\tadParams{Element}}
+    \end{tadOperations}
+    \begin{tadSemantiques}{Statistics}
+        \tadSemantique{Statistics}{Crée une structure de statistiques vide.}
+        \tadSemantique{isEmpty}{Renvoie vrai si la structure ne contient aucun élément.}
+        \tadSemantique{contains}{Renvoie vrai si l'élément donné est présent dans la structure.}
+        \tadSemantique{getCount}{Renvoie le nombre d'occurences de l'élément donné.}
+        \tadSemantique{incCount}{Incrémente le nombre d'occurences de l'élément donné.}
+        \tadSemantique{getElementCount}{Renvoie le nombre d'éléments différents dans la structure.}
+        \tadSemantique{getElement}{Renvoie l'élément à l'indice donné. La valeur de l'indice est abstraite et peut dépendre de l'implémentation.}
+    \end{tadSemantiques}
+    \begin{tadAxiomes}
+        \tadAxiome{contains(statistics, element) \Leftrightarrow getCount(statistics, element) > 0}
+        \tadAxiome{getElementCount(statistics) = 0 \Leftrightarrow isEmpty(statistics)}
+        \tadAxiome{getElementCount(incCount(stats, el), el) = getElementCount(stats, el) + 1}
+    \end{tadAxiomes}
+    \begin{tadPreconditions}{Statistics}
+        \tadPrecondition{getElement(statistics, i)}{i<getElementCount(statistics)}
+    \end{tadPreconditions}
+\end{tad}
