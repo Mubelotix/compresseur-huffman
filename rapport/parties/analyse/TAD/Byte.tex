@@ -1,4 +1,4 @@
-\subsubsection{TAD Octet}
+\subsubsection{TAD Byte}
 
 \begin{tad}
     \tadNom{Byte}
@@ -12,7 +12,7 @@
         \tadAxiome{byteToChar(charToByte(c))=c}
     \end{tadAxiomes}
     \begin{tadPreconditions}{charToByte(c)}
-        \tadPrecondition{charToByte(c)}{0 $\leq$ codeASCII(c) $\leq$ 127}
-        \tadPrecondition{byteToChar(b)}{b doit être une séquence binaire de 8 bits}
+        \tadPrecondition{charToByte(c)}{0 $\leq$ codeASCII(c) $\leq$ 127.}
+        \tadPrecondition{byteToChar(b)}{b doit être une séquence binaire de 8 bits.}
         \end{tadPreconditions}
 \end{tad}
