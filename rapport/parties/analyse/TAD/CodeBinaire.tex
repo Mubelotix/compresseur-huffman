@@ -2,16 +2,16 @@
 
 \begin{tad}
     \tadNom{CodeBinaire}
-    \tadDependances{Statistiques, Octet}
+    \tadDependances{Octet}
     \begin{tadOperations}{CodeBinaire}
-        \tadOperation{creerCodeBinaire}{Statistiques}{CodeBinaire}
+        \tadOperation{creerCodeBinaire}{Byte}{CodeBinaire}
         \tadOperation{ajouterBit}{CodeBinaire x Byte}{CodeBinaire}
         \tadOperation{obtenirLongueur}{CodeBinaire}{\naturel}
         \tadOperationAvecPreconditions{obtenirBit}{CodeBinaire x \naturel}{Byte}
         \tadOperation{concatener}{CodeBinaire x CodeBinaire}{CodeBinaire}
     \end{tadOperations}
     \begin{tadSemantiques}{CodeBinaire}
-        \tadSemantique{creerCodeBinaire}{Crée un code binaire à partir des statistiques fournies.}
+        \tadSemantique{creerCodeBinaire}{Crée un code binaire à partir d'un bit.}
         \tadSemantique{ajouterBit}{Ajoute un bit au code binaire.}
         \tadSemantique{obtenirLongueur}{Renvoie la longueur du code binaire (le nombre de bits).}
         \tadSemantique{obtenirBit}{Renvoie le bit à la position donnée dans le code binaire.}
