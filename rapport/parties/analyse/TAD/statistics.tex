@@ -27,7 +27,7 @@
         \tadAxiome{getElementCount(statistics) = 0 \Leftrightarrow isEmpty(statistics)}
         \tadAxiome{getElementCount(incCount(stats, el), el) = getElementCount(stats, el) + 1}
     \end{tadAxiomes}
-    \begin{tadPreconditions}{getElement(statistics, i)}{i<getElementCount(statistics)}
+    \begin{tadPreconditions}{getElement(statistics, i)}
         \tadPrecondition{getElement(statistics, i)}{i<getElementCount(statistics)}
     \end{tadPreconditions}
 \end{tad}
