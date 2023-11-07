@@ -1,0 +1,42 @@
+
+\subsubsection{HuffmanTree}
+
+\begin{tad}
+  \tadNom{HuffmanTree}
+  \tadDependances{Statistics, Byte}
+  
+  \begin{tadOperations}{HuffmanTree}
+    \tadOperation{HuffmanTree}{Statistics}{HuffmanTree}
+    \tadOperationAvecPreconditions{getRightChild}{HuffmanTree}{HuffmanTree}
+    \tadOperationAvecPreconditions{getLeftChild}{HuffmanTree}{HuffmanTree}
+    \tadOperationAvecPreconditions{getByte}{HuffmanTree}{Byte}
+    \tadOperation{getOccurence}{HuffmanTree}{\entier}
+    \tadOperation{isALeaf}{HuffmanTree}{\booleen}
+    \tadOperation{isEmpty}{HuffmanTree}{\booleen}
+  \end{tadOperations}
+
+  \begin{tadSemantiques}{getOccurence(HuffmanTree)}
+    \tadSemantique{HuffmanTree(Statistics)}{Crée un arbre de Huffman à partir des statistiques fournies.}
+    \tadSemantique{getRightChild(HuffmanTree)}{Renvoie le fils droit de l'arbre.}
+    \tadSemantique{getLeftChild(HuffmanTree)}{Renvoie le fils gauche de l'arbre.}
+    \tadSemantique{getByte(HuffmanTree)}{Renvoie l'octet de l'arbre.}
+    \tadSemantique{getOccurence(HuffmanTree)}{Renvoie l'occurence de l'octet de l'arbre.}
+    \tadSemantique{isALeaf(HuffmanTree)}{Renvoie vrai si l'arbre est une feuille, faux sinon.}
+    \tadSemantique{isEmpty(HuffmanTree)}{Renvoie vrai si l'arbre est vide, faux sinon.}
+  \end{tadSemantiques}
+
+
+\begin{tadPreconditions}{getLeftChild(A)}
+  \tadPrecondition{getByte(A)}{isALeaf(A)}
+  \tadPrecondition{getLeftChild(A)}{non isALeaf(A)}
+  \tadPrecondition{getRightChild(A)}{non isALeaf(A)}
+\end{tadPreconditions}
+ 
+
+\end{tad}
+
+
+      
+
+
+
