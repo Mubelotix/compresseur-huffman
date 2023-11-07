@@ -3,7 +3,7 @@
 \begin{tad}
     \tadNom{Statistics}
     \tadDependances{Element}
-    \begin{tadOperations}{Statistics}
+    \begin{tadOperations}{getElementCount}
         \tadOperation{Statistics}{}{\tadParams{Statistics}}
         \tadOperation{isEmpty}{\tadParams{Statistics} x \tadParams{Element}}{\tadParams{\booleen}}
         \tadOperation{contains}{\tadParams{Statistics} x \tadParams{Element}}{\tadParams{\booleen}}
@@ -13,7 +13,7 @@
         \tadOperation{getElementCount}{\tadParams{Statistics}}{\tadParams{\entier}}
         \tadOperationAvecPreconditions{getElement}{\tadParams{Statistics} x \tadParams{\entier}}{\tadParams{Element}}
     \end{tadOperations}
-    \begin{tadSemantiques}{Statistics}
+    \begin{tadSemantiques}{getElementCount}
         \tadSemantique{Statistics}{Crée une structure de statistiques vide.}
         \tadSemantique{isEmpty}{Renvoie vrai si la structure ne contient aucun élément.}
         \tadSemantique{contains}{Renvoie vrai si l'élément donné est présent dans la structure.}
@@ -27,7 +27,7 @@
         \tadAxiome{getElementCount(statistics) = 0 \Leftrightarrow isEmpty(statistics)}
         \tadAxiome{getElementCount(incCount(stats, el), el) = getElementCount(stats, el) + 1}
     \end{tadAxiomes}
-    \begin{tadPreconditions}{Statistics}
+    \begin{tadPreconditions}{getElement(statistics, i)}{i<getElementCount(statistics)}
         \tadPrecondition{getElement(statistics, i)}{i<getElementCount(statistics)}
     \end{tadPreconditions}
 \end{tad}
