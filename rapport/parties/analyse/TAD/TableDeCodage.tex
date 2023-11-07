@@ -5,28 +5,22 @@
   \tadNom{TableDeCodage}
   \tadDependances{ArbreDeHuffman, NaturelNonNul, Caractère, Binaire}
   
-  \begin{tadOperations}{TableDeCodage}
+  \begin{tadOperations}{obtenirCodeBinaire}
     \tadOperation{tableDeCodage}{ArbreDeHuffman}{TableDeCodage}
     \tadOperationAvecPreconditions{obtenirCodeBinaire}{Caractère X TableDeCodage}{Binaire}
     \tadOperationAvecPreconditions{obtenirCaractère}{Binaire X TableDeCodage}{Caractère}
     \tadOperation{tailleTable}{TableDeCodage}{NaturelNonNul}
   \end{tadOperations}
 
-  \begin{tadSemantiques}
+  \begin{tadSemantiques}{obtenirCodeBinaire}
     \tadSemantique{tableDeCodage}{Crée une table de codage à partir d'un arbre de Huffman.}
     \tadSemantique{obtenirCodeBinaire}{Renvoie le code binaire associé à un caractère dans une table de codage.}
     \tadSemantique{obtenirCaractère}{Renvoie le caractère associé à un code binaire dans une table de codage.}
     \tadSemantique{tailleTable}{Renvoie le nombre de caractères présents dans une table de codage.}
   \end{tadSemantiques}
 
-\begin{tadPreconditions}
-  \tadPrecondition{obtenirCodeBinaire(c, t) : c doit être dans t}
-  \tadPrecondition{obtenirCaractère(b, t) : b doit être dans t}
-\end{tadPreconditions}
- 
-
+  \begin{tadPreconditions}{obtenirCodeBinaire(c, t) : c doit être dans t}
+    \tadPrecondition{obtenirCodeBinaire(c, t) : c doit être dans t}
+    \tadPrecondition{obtenirCaractère(b, t) : b doit être dans t}
+  \end{tadPreconditions}
 \end{tad}
-
-
-
-
