@@ -1,37 +1,31 @@
 
-\subsubsection{FileDePriorité}
+\subsubsection{TAD File de priorité}
 
 \begin{tad}
-  \tadNom{FileDePriorité}
+  \tadNom{FileDePriorite}
   \tadDependances{ArbreDeHuffman, Naturel}
   
-  \begin{tadOperations}{FileDePriorité}
-    \tadOperation{fileDePrioritéVide}{}{FileDePriorité}
+  \begin{tadOperations}{fileDePrioriteVide}
+    \tadOperation{fileDePrioriteVide}{}{FileDePriorité}
     \tadOperation{ajouterArbre}{ArbreDeHuffman X FileDePriorité}{FileDePriorité}
-    \tadOperationAvecPreconditions{défilerArbre}{FileDePriorité}{Arbre}
+    \tadOperationAvecPreconditions{defilerArbre}{FileDePriorité}{Arbre}
     \tadOperation{tailleFile}{FileDePriorité}{Naturel}
   \end{tadOperations}
 
-  \begin{tadSemantiques}
-    \tadSemantique{fileDePrioritéVide}{Crée une file de priorité vide.}
+  \begin{tadSemantiques}{fileDePrioriteVide}
+    \tadSemantique{fileDePrioriteVide}{Crée une file de priorité vide.}
     \tadSemantique{ajouterArbre}{Ajoute un arbre de Huffman à son emplacement respectif dans une file de priorité.}
-    \tadSemantique{défilerArbre}{Défile l'arbre en tête d'une file de priorité.}
+    \tadSemantique{defilerArbre}{Défile l'arbre en tête d'une file de priorité.}
     \tadSemantique{tailleFile}{Renvoie le nombre d'arbre de Huffman présents dans une file de priorité.}
   \end{tadSemantiques}
 
-\begin{tadAxiomes}
-        \tadAxiome{ajouterArbre(défilerArbre(f),f) = f}
-        \tadAxiome{tailleFile(fileDePrioritéVide()) = 0}
-	\tadAxiome{tailleFile(ajouterArbre(A,f)) = tailleFile(f) + 1}
-\end{tadAxiomes}
+  \begin{tadAxiomes}
+    \tadAxiome{ajouterArbre(defilerArbre(f),f) = f}
+    \tadAxiome{tailleFile(fileDePrioriteVide()) = 0}
+	  \tadAxiome{tailleFile(ajouterArbre(A,f)) = tailleFile(f) + 1}
+  \end{tadAxiomes}
 
-\begin{tadPreconditions}
-  \tadPrecondition{défilerArbre(f)}{tailleFile(f) > 0}
-\end{tadPreconditions}
- 
-
+  \begin{tadPreconditions}{defilerArbre(f)}
+    \tadPrecondition{defilerArbre(f)}{tailleFile(f) > 0}
+  \end{tadPreconditions}
 \end{tad}
-
-
-
-
