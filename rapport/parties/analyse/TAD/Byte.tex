@@ -2,11 +2,11 @@
 
 \begin{tad}
     \tadNom{Byte}
-    \tadDependances{Natural, Bit}
+    \tadDependances{\naturel, Bit}
     \begin{tadOperations}{byteToNatural}
         \tadOperation{createByte}{\tadHuitParams{Bit}{Bit}{Bit}{Bit}{Bit}{Bit}{Bit}{Bit}}{\tadParams{Byte}}
-        \tadOperationAvecPreconditions{getBit}{\tadDeuxParams{Byte}{Natural}}{Bit}
-        \tadOperationAvecPreconditions{byteToNatural}{Byte}{Natural}
+        \tadOperationAvecPreconditions{getBit}{\tadDeuxParams{Byte}{\naturel}}{Bit}
+        \tadOperationAvecPreconditions{byteToNatural}{Byte}{\naturel}
     \end{tadOperations}
     \begin{tadSemantiques}{charToByte}
         \tadSemantique{getBit}{Renvoie le bit associé à la position entrée.}
