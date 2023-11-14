@@ -1,0 +1,26 @@
+
+\subsubsection{TAD CodingTable}
+
+\begin{tad}
+  \tadNom{CodingTable}
+  \tadDependances{HuffmanTree, NonNullInteger, Character, Binary}
+  
+  \begin{tadOperations}{getBinaryCode}
+    \tadOperation{codingTable}{HuffmanTree}{CodingTable}
+    \tadOperationAvecPreconditions{getBinaryCode}{Character X CodingTable}{Binary}
+    \tadOperationAvecPreconditions{getCharacter}{Binary X CodingTable}{Character}
+    \tadOperation{tableSize}{CodingTable}{NonNullInteger}
+  \end{tadOperations}
+
+  \begin{tadSemantiques}{getBinaryCode}
+    \tadSemantique{codingTable}{Crée une table de codage à partir d'un arbre de Huffman.}
+    \tadSemantique{getBinaryCode}{Renvoie le code binaire associé à un caractère dans une table de codage.}
+    \tadSemantique{getCharacter}{Renvoie le caractère associé à un code binaire dans une table de codage.}
+    \tadSemantique{tableSize}{Renvoie le nombre de caractères présents dans une table de codage.}
+  \end{tadSemantiques}
+
+  \begin{tadPreconditions}{getBinaryCode(c, t)}
+    \tadPrecondition{getBinaryCode(c, t)}{c doit être dans t.}
+    \tadPrecondition{getCharacter(b, t)}{b doit être dans t.}
+  \end{tadPreconditions}
+\end{tad}
