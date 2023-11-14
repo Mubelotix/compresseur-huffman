@@ -3,13 +3,13 @@
 
 \begin{tad}
   \tadNom{CodingTable}
-  \tadDependances{HuffmanTree, NonNullInteger, Character, Binary}
+  \tadDependances{HuffmanTree, \naturelNonNul, Character, Binary}
   
   \begin{tadOperations}{getBinaryCode}
     \tadOperation{codingTable}{HuffmanTree}{CodingTable}
-    \tadOperationAvecPreconditions{getBinaryCode}{Character X CodingTable}{Binary}
-    \tadOperationAvecPreconditions{getCharacter}{Binary X CodingTable}{Character}
-    \tadOperation{tableSize}{CodingTable}{NonNullInteger}
+    \tadOperationAvecPreconditions{getBinaryCode}{Character × CodingTable}{Binary}
+    \tadOperationAvecPreconditions{getCharacter}{Binary × CodingTable}{Character}
+    \tadOperation{tableSize}{CodingTable}{\naturelNonNul}
   \end{tadOperations}
 
   \begin{tadSemantiques}{getBinaryCode}
