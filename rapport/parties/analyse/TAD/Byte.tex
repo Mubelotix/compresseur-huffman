@@ -13,7 +13,7 @@
         \tadSemantique{byteToNatural}{Renvoie le naturel associé à l'octet entré.}
     \end{tadSemantiques}
     \begin{tadAxiomes}
-        \tadAxiome{\forall i \in [0, 7], iemeBit(createByte(bit_0,bit_1,bit_2,bit_3,bit_4,bit_5,bit_6,bit_7), i)=bit_i}
+        \tadAxiome{\forall i \in [0, 7], getBit(createByte(bit_0,bit_1,bit_2,bit_3,bit_4,bit_5,bit_6,bit_7), i)=bit_i}
     \end{tadAxiomes}
     \begin{tadPreconditions}{charToByte(c)}
         \tadPrecondition{getBit(byte,i)}{0 $\leq$ i $\leq$ 7}

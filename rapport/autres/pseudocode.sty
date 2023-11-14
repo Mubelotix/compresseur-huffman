@@ -45,7 +45,7 @@
 %%   \motclefTADPreconditions  et \tadPrecondition
 %% * Ajout de la commande \champ
 %% Modifications depuis la version 2.3.7
-%% * Ajout des types de base naturelNonNul, reelPositif, reelPositifNonNul (resp Negatif)
+%% * Ajout des types de base nonZeroNatural, reelPositif, reelPositifNonNul (resp Negatif)
 %% * Elimination d'accents dans les mots cles lies à l'algorithmique
 %% * ajout de la commande \commentaire
 %% Modification depuis la version 2.3.6
@@ -85,10 +85,10 @@
 \newcommand{\motclefAffectation}[0]{$\leftarrow$}
 \newcommand{\motclefAlgoDebut}[0]{debut}
 \newcommand{\motclefAlgoFin}[0]{fin}
-\newcommand{\motclefEntier}[0]{Entier}
+\newcommand{\motclefEntier}[0]{Integer}
 \newcommand{\motclefNaturel}[0]{Naturel}
-\newcommand{\motclefNaturelNonNul}[0]{NaturelNonNul}
-\newcommand{\motclefReel}[0]{Reel}
+\newcommand{\motclefNaturelNonNul}[0]{NonZeroNatural}
+\newcommand{\motclefReel}[0]{Real}
 \newcommand{\motclefReelPositif}[0]{ReelPositif}
 \newcommand{\motclefReelPositifNonNul}[0]{ReelPositifNonNul}
 \newcommand{\motclefReelNegatif}[0]{ReelNegatif}
@@ -276,10 +276,10 @@
 \newenvironment{algorithme}{\begin{algolist}{0cm}}{\end{algolist}}
 %% Les commandes |\nomDuType| servent à utiliser les différents types existants. Voici les types disponibles : \\
 %% Les types de bases
-\newcommand{\entier}{\textbf{\motclefEntier}}
+\newcommand{\integer}{\textbf{\motclefEntier}}
 \newcommand{\naturel}{\textbf{\motclefNaturel}}
-\newcommand{\naturelNonNul}{\textbf{\motclefNaturelNonNul}}
-\newcommand{\reel}{\textbf{\motclefReel}}
+\newcommand{\nonZeroNatural}{\textbf{\motclefNaturelNonNul}}
+\newcommand{\real}{\textbf{\motclefReel}}
 \newcommand{\reelPositif}{\textbf{\motclefReelPositif}}
 \newcommand{\reelPositifNonNul}{\textbf{\motclefReelPositifNonNul}}
 \newcommand{\reelNegatif}{\textbf{\motclefReelNegatif}}
