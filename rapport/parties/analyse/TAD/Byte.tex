@@ -4,12 +4,14 @@
     \tadNom{Byte}
     \tadDependances{\naturel, Bit}
     \begin{tadOperations}{byteToNatural}
-        \tadOperation{createByte}{\tadHuitParams{Bit}{Bit}{Bit}{Bit}{Bit}{Bit}{Bit}{Bit}}{\tadParams{Byte}}
+        \tadOperation{octet}{\tadHuitParams{Bit}{Bit}{Bit}{Bit}{Bit}{Bit}{Bit}{Bit}}{\tadParams{Byte}}
         \tadOperationAvecPreconditions{getBit}{\tadDeuxParams{Byte}{\naturel}}{Bit}
+        \tadOperationAvecPreconditions{setBit}{\tadTroisParams{Byte}{\naturel}{Bit}}{Byte}
         \tadOperationAvecPreconditions{byteToNatural}{Byte}{\naturel}
     \end{tadOperations}
     \begin{tadSemantiques}{charToByte}
-        \tadSemantique{getBit}{Renvoie le bit associé à la position entrée.}
+        \tadSemantique{getBit}{Renvoie le bit associé à la position donnée.}
+        \tadSemantique{setBit}{Fixe le bit associé à la position donnée.}
         \tadSemantique{byteToNatural}{Renvoie le naturel associé à l'octet entré.}
     \end{tadSemantiques}
     \begin{tadAxiomes}
@@ -18,5 +20,5 @@
     \begin{tadPreconditions}{charToByte(c)}
         \tadPrecondition{getBit(byte,i)}{0 $\leq$ i $\leq$ 7}
         \tadPrecondition{byteToNatural(b)}{0 $\leq$ b $\leq$ 255}
-        \end{tadPreconditions}
+    \end{tadPreconditions}
 \end{tad}
