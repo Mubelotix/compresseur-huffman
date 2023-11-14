@@ -1,4 +1,4 @@
-\subsection{CodingTable}
+\subsubsection{CodingTable}
 
 \begin{algorithme} 
     \signatureFonction{codingTable}{tree: HuffmanTree}{table: CodingTable}{} 
