@@ -1,0 +1,24 @@
+\subsection{CodingTable}
+
+\begin{algorithme} 
+    \signatureFonction{codingTable}{tree: HuffmanTree}{table: CodingTable}{} 
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureFonction{getBinaryCode}{table: CodingTable, char: \caractere}{Binary}{char $\in$ table}
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureFonction{getChar}{table: CodingTable, code: Binary}{\caractere}{code $\in$ table}
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureFonction{tableSize}{table: CodingTable}{\naturelNonNul}{}
+\end{algorithme}
+
+
+%\begin{algorithme}
+%    \signatureProcedure{addTree}{\paramEntree{ht: HuffmanTree} \paramEntreeSortie{pq: PriorityQueue}}{}
+%\end{algorithme}
+
+%symbole appartient à en LaTeX : \in 
