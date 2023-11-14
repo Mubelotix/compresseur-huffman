@@ -5,13 +5,13 @@
     \tadDependances{Element}
     \begin{tadOperations}{getElementCount}
         \tadOperation{Statistics}{}{\tadParams{Statistics}}
-        \tadOperation{isEmpty}{\tadParams{Statistics} x \tadParams{Element}}{\tadParams{\booleen}}
-        \tadOperation{contains}{\tadParams{Statistics} x \tadParams{Element}}{\tadParams{\booleen}}
-        \tadOperation{getCount}{\tadParams{Statistics} x \tadParams{Element}}{\tadParams{\integer}}
-        \tadOperation{incCount}{\tadParams{Statistics} x \tadParams{Element}}{\tadParams{Statistics}}
-        \tadOperation{getCount}{\tadParams{Statistics} x \tadParams{Element}}{\tadParams{\integer}}
+        \tadOperation{isEmpty}{\tadParams{Statistics} × \tadParams{Element}}{\tadParams{\booleen}}
+        \tadOperation{contains}{\tadParams{Statistics} × \tadParams{Element}}{\tadParams{\booleen}}
+        \tadOperation{getCount}{\tadParams{Statistics} × \tadParams{Element}}{\tadParams{\integer}}
+        \tadOperation{incCount}{\tadParams{Statistics} × \tadParams{Element}}{\tadParams{Statistics}}
+        \tadOperation{getCount}{\tadParams{Statistics} × \tadParams{Element}}{\tadParams{\integer}}
         \tadOperation{getElementCount}{\tadParams{Statistics}}{\tadParams{\integer}}
-        \tadOperationAvecPreconditions{getElement}{\tadParams{Statistics} x \tadParams{\integer}}{\tadParams{Element}}
+        \tadOperationAvecPreconditions{getElement}{\tadParams{Statistics} × \tadParams{\integer}}{\tadParams{Element}}
     \end{tadOperations}
     \begin{tadSemantiques}{getElementCount}
         \tadSemantique{Statistics}{Crée une structure de statistiques vide.}
