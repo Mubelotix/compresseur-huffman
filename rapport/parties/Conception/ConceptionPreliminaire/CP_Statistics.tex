@@ -1,0 +1,30 @@
+\subsubsection{Statistics}
+
+\begin{algorithme} 
+    \signatureFonction{statistics}{}{Statistics}{} 
+\end{algorithme}
+
+\begin{algorithme} 
+    \signatureFonction{isEmpty}{stats: Statistics, e: Element}{\booleen}{} 
+\end{algorithme}
+
+\begin{algorithme} 
+    \signatureFonction{contains}{stats: Statistics, e: Element}{\booleen}{} 
+\end{algorithme}
+
+\begin{algorithme} 
+    \signatureFonction{getCount}{stats: Statistics, e: Element}{\entier}{} 
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureProcedure{incCount}{\paramEntree{e: Element} \paramEntreeSortie{stats: Statistics}}{}
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureFonction{getElementCount}{stats: Statistics}{\entier}{}
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureFonction{getElement}{stats: Statistics, i: \entier}{Element}
+    {getElement(statistics, i): i<getElementCount(statistics)}
+\end{algorithme}
