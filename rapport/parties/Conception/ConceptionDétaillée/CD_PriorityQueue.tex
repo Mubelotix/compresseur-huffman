@@ -1,0 +1,23 @@
+\subsubsection{CodingTable}
+
+\constante{MAX}{100}
+\begin{enregistrement}
+    \champEnregistrement{elements}{\tableau{1..MAX}{de}{HuffmanTree}}
+    \champEnregistrement{nbElements}{\naturelNonNul}
+\end{enregistrement}
+
+\begin{algorithme} 
+    \signatureFonction{codingTable}{tree: HuffmanTree}{table: CodingTable}{} 
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureFonction{getBinaryCode}{table: CodingTable, char: \caractere}{Binary}{char $\in$ table}
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureFonction{getChar}{table: CodingTable, code: Binary}{\caractere}{code $\in$ table}
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureFonction{tableSize}{table: CodingTable}{\naturelNonNul}{}
+\end{algorithme}
