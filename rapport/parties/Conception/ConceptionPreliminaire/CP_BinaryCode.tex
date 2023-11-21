@@ -1,21 +1,21 @@
 \subsubsection{BinaryCode}
 
 \begin{algorithme}
-    \signatureFonction{createBinaryCode}{b : Byte}{BinaryCode}
+    \signatureFonction{createBinaryCode}{b : Byte}{BinaryCode}{}
 \end{algorithme}
 
 \begin{algorithme}
-    \signatureProcedure{addBit}{\paramEntreeSortie{bc : BinaryCode}, \paramEntree{b : Bit}}
+    \signatureProcedure{addBit}{\paramEntreeSortie{bc : BinaryCode}, \paramEntree{b : Bit}}{}
 \end{algorithme}
 
 \begin{algorithme}
-    \signatureFonction{getLength}{bc : BinaryCode}{\natural}
+    \signatureFonction{getLength}{bc : BinaryCode}{\naturel}{}
 \end{algorithme}
 
 \begin{algorithme}
-    \signatureFonction{getBit}{bc : BinaryCode, position : \natural}{Bit}{0 <= position < getLength(bc)}
+    \signatureFonction{getBit}{bc : BinaryCode, position : \naturel}{Bit}{0 <= position < getLength(bc)}
 \end{algorithme}
 
 \begin{algorithme}
-    \signatureProcedure{concatenate}{\paramEntreeSortie{bc1 : BinaryCode}, \paramEntree{bc2 : BinaryCode}}{BinaryCode}
+    \signatureProcedure{concatenate}{\paramEntreeSortie{bc1 : BinaryCode}, \paramEntree{bc2 : BinaryCode}}{}
 \end{algorithme}
