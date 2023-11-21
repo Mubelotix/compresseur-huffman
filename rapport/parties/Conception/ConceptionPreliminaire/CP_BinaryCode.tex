@@ -1,2 +1,21 @@
-\begin{algorithme} \signatureFonction{createBinaryCode}
-    {}{PriorityQueue}{} \end{algorithme}
+\subsubsection{BinaryCode}
+
+\begin{algorithme}
+    \signatureFonction{createBinaryCode}{b : Byte}{BinaryCode}
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureProcedure{addBit}{\paramEntreeSortie{bc : BinaryCode}, \paramEntree{b : Bit}}
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureFonction{getLength}{bc : BinaryCode}{\natural}
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureFonction{getBit}{bc : BinaryCode, position : \natural}{Bit}{0 <= position < getLength(bc)}
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureProcedure{concatenate}{\paramEntreeSortie{bc1 : BinaryCode}, \paramEntree{bc2 : BinaryCode}}{BinaryCode}
+\end{algorithme}
