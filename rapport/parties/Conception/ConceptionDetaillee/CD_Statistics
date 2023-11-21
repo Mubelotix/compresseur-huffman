@@ -1,0 +1,34 @@
+\subsubsection{Statistics}
+
+\begin{enregistrement}
+    \champEnregistrement{element}{\tableau{1..256}{de}{Byte}}
+    \champEnregistrement{nbElements}{\naturel}
+\end{enregistrement}
+
+\begin{algorithme} 
+    \signatureFonction{statistics}{}{s : Statistics}{}
+\end{algorithme}
+
+\begin{algorithme} 
+    \signatureFonction{isEmpty}{stats : Statistics, e : Element}{b : \booleen}{}
+\end{algorithme}
+
+\begin{algorithme} 
+    \signatureFonction{contains}{stats : Statistics, e : Element}{b : \booleen}{}
+\end{algorithme}
+
+\begin{algorithme} 
+    \signatureFonction{getCount}{stats : Statistics, e : Element}{i : \entier}{}
+\end{algorithme}
+
+\begin{algorithme} 
+    \signatureProcedure{incCount}{\paramEntree{e : Element} , \paramEntreeSortie{stats : Statistics}}
+\end{algorithme}
+
+\begin{algorithme} 
+    \signatureFonction{getElementCount}{stats : Statistics}{i : \entier}{}
+\end{algorithme}
+
+\begin{algorithme} 
+    \signatureFonction{getElement}{stats : Statistics, i : \entier}{e : Element}{i < getElementCount(statistics)}
+\end{algorithme}

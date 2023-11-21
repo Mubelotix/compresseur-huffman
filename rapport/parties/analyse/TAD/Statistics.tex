@@ -4,7 +4,7 @@
     \tadNom{Statistics}
     \tadDependances{Element}
     \begin{tadOperations}{getElementCount}
-        \tadOperation{Statistics}{}{\tadParams{Statistics}}
+        \tadOperation{statistics}{}{\tadParams{Statistics}}
         \tadOperation{isEmpty}{\tadParams{Statistics} × \tadParams{Element}}{\tadParams{\booleen}}
         \tadOperation{contains}{\tadParams{Statistics} × \tadParams{Element}}{\tadParams{\booleen}}
         \tadOperation{getCount}{\tadParams{Statistics} × \tadParams{Element}}{\tadParams{\entier}}
@@ -14,13 +14,13 @@
         \tadOperationAvecPreconditions{getElement}{\tadParams{Statistics} × \tadParams{\entier}}{\tadParams{Element}}
     \end{tadOperations}
     \begin{tadSemantiques}{getElementCount}
-        \tadSemantique{Statistics}{Crée une structure de statistiques vide.}
+        \tadSemantique{statistics}{Crée une structure de statistiques vide.}
         \tadSemantique{isEmpty}{Renvoie vrai si la structure ne contient aucun élément.}
         \tadSemantique{contains}{Renvoie vrai si l'élément donné est présent dans la structure.}
         \tadSemantique{getCount}{Renvoie le nombre d'occurences de l'élément donné.}
         \tadSemantique{incCount}{Incrémente le nombre d'occurences de l'élément donné.}
-        \tadSemantique{getElementCount}{Renvoie le nombre d'éléments différents dans la structure.}
-        \tadSemantique{getElement}{Renvoie l'élément à l'indice donné. La valeur de l'indice est abstraite et peut dépendre de l'implémentation.}
+        \tadSemantique{getElementCount}{Renvoie le nombre d'éléments différents dans la structure dont le compte est non nul.}
+        \tadSemantique{getElement}{Renvoie le ième élément présent. La valeur de l'indice est abstraite et peut dépendre de l'implémentation.}
     \end{tadSemantiques}
     \begin{tadAxiomes}
         \tadAxiome{contains(statistics, element) \Leftrightarrow getCount(statistics, element) > 0}

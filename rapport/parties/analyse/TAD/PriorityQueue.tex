@@ -5,15 +5,15 @@
   \tadNom{PriorityQueue}
   \tadDependances{HuffmanTree, \naturel}
   
-  \begin{tadOperations}{PriorityQueueEmpty}
-    \tadOperation{PriorityQueueEmpty}{}{PriorityQueue}
+  \begin{tadOperations}{priorityQueueEmpty}
+    \tadOperation{priorityQueueEmpty}{}{PriorityQueue}
     \tadOperation{addTree}{HuffmanTree × PriorityQueue}{PriorityQueue}
     \tadOperationAvecPreconditions{removeTree}{PriorityQueue}{Tree}
     \tadOperation{sizeQueue}{PriorityQueue}{\naturel}
   \end{tadOperations}
 
-  \begin{tadSemantiques}{PriorityQueueEmpty}
-    \tadSemantique{PriorityQueueEmpty}{Crée une file de priorité vide.}
+  \begin{tadSemantiques}{priorityQueueEmpty}
+    \tadSemantique{priorityQueueEmpty}{Crée une file de priorité vide.}
     \tadSemantique{addTree}{Ajoute un arbre de Huffman à son emplacement respectif dans une file de priorité.}
     \tadSemantique{removeTree}{Défile l'arbre en tête d'une file de priorité.}
     \tadSemantique{sizeQueue}{Renvoie le nombre d'arbres de Huffman présents dans une file de priorité.}
@@ -21,7 +21,7 @@
 
   \begin{tadAxiomes}
     \tadAxiome{addTree(removeTree(f),f) = f}
-    \tadAxiome{sizeQueue(PriorityQueueEmpty()) = 0}
+    \tadAxiome{sizeQueue(priorityQueueEmpty()) = 0}
 	  \tadAxiome{sizeQueue(addTree(A,f)) = sizeQueue(f) + 1}
   \end{tadAxiomes}
 

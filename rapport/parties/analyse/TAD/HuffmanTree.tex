@@ -6,7 +6,7 @@
   \tadDependances{Statistics, Byte}
   
   \begin{tadOperations}{HuffmanTree}
-    \tadOperation{HuffmanTree}{Statistics}{HuffmanTree}
+    \tadOperation{huffmanTree}{Statistics}{HuffmanTree}
     \tadOperationAvecPreconditions{getRightChild}{HuffmanTree}{HuffmanTree}
     \tadOperationAvecPreconditions{getLeftChild}{HuffmanTree}{HuffmanTree}
     \tadOperationAvecPreconditions{getByte}{HuffmanTree}{Byte}
@@ -16,7 +16,7 @@
   \end{tadOperations}
 
   \begin{tadSemantiques}{getOccurence(HuffmanTree)}
-    \tadSemantique{HuffmanTree(Statistics)}{Crée un arbre de Huffman à partir des statistiques fournies.}
+    \tadSemantique{huffmanTree(Statistics)}{Crée un arbre de Huffman à partir des statistiques fournies.}
     \tadSemantique{getRightChild(HuffmanTree)}{Renvoie le fils droit de l'arbre.}
     \tadSemantique{getLeftChild(HuffmanTree)}{Renvoie le fils gauche de l'arbre.}
     \tadSemantique{getByte(HuffmanTree)}{Renvoie l'octet de l'arbre.}
