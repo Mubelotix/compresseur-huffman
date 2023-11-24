@@ -1,23 +1,45 @@
-\subsubsection{CodingTable}
+\subsubsection{PriorityQueue}
 
-\constante{MAX}{100}
-\begin{enregistrement}
+\constante{MAX}{256}
+
+\begin{algorithme} 
+\begin{enregistrement}{PriorityQueue}
     \champEnregistrement{elements}{\tableau{1..MAX}{de}{HuffmanTree}}
     \champEnregistrement{nbElements}{\naturelNonNul}
 \end{enregistrement}
+\end{algorithme}
+\vspace*{0.5cm}
 
 \begin{algorithme} 
-    \signatureFonction{codingTable}{tree: HuffmanTree}{table: CodingTable}{} 
+    \fonction{PriorityQueueEmpty}{}{PriorityQueue}{} 
+    {result : PriorityQueue}
+        {\affecter{\champ{result}{nbElements}}{0}
+            \retourner{result}}
 \end{algorithme}
+\vspace*{0.5cm}
 
 \begin{algorithme}
-    \signatureFonction{getBinaryCode}{table: CodingTable, char: \caractere}{Binary}{char $\in$ table}
+    \procedure{addTree}{\paramEntree{tree: HuffmanTree} \paramEntreeSortie{queue: PriorityQueue}}{}
+    {i : \naturelNonNul}
+    {\affecter{i}{1}
+    \affecter{\champ{queue}{nbElements}}{\champ{queue}{nbElements}+1}
+    \tantque {\instruction{HuffmanTree.getOccurence(tree) < HuffmanTree.getOccurence(\champ{queue}{elements}[i])}}{
+        \affecter{i}{i+1}
+    }
+    \instruction{decalerVersLaDroite(\champ{queue}{elements}, i, \champ{queue}{nbElements})}
+    \affecter{\champ{queue}{elements}[i]}{tree}
+    }
 \end{algorithme}
+\vspace*{0.5cm}
 
 \begin{algorithme}
-    \signatureFonction{getChar}{table: CodingTable, code: Binary}{\caractere}{code $\in$ table}
+    \fonction{removeTree}{queue: PriorityQueue}{Tree}{sizeQueue(f) > 0}{}
+    {\affecter{\champ{queue}{nbElements}}{\champ{queue}{nbElements}-1}
+        \retourner{\champ{queue}{elements}[nbElements+1]}}
 \end{algorithme}
+\vspace*{0.5cm}
 
 \begin{algorithme}
-    \signatureFonction{tableSize}{table: CodingTable}{\naturelNonNul}{}
+    \fonction{sizeQueue}{queue: PriorityQueue}{\naturel}{}{}
+    {\retourner{\champ{queue}{nbElements}}}
 \end{algorithme}
