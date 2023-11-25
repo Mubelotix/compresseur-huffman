@@ -19,16 +19,14 @@
 \vspace*{0.5cm}
 
 \begin{algorithme}
-    \procedure{addTree}{\paramEntree{tree: HuffmanTree} \paramEntreeSortie{queue: PriorityQueue}}{}
+    \procedure{addTree}{\paramEntreeSortie{queue: PriorityQueue} \paramEntree{tree: HuffmanTree}}{}
     {i : \naturelNonNul}
     {\affecter{i}{1}
     \affecter{\champ{queue}{nbElements}}{\champ{queue}{nbElements}+1}
-    \tantque {\instruction{HuffmanTree.getOccurence(tree) < HuffmanTree.getOccurence(\champ{queue}{elements}[i])}}{
-        \affecter{i}{i+1}
-    }
+    \tantque {\instruction{HuffmanTree.getOccurence(tree) < HuffmanTree.getOccurence(\champ{queue}{elements}[i])}}
+    {\affecter{i}{i+1}}
     \instruction{decalerVersLaDroite(\champ{queue}{elements}, i, \champ{queue}{nbElements})}
-    \affecter{\champ{queue}{elements}[i]}{tree}
-    }
+    \affecter{\champ{queue}{elements}[i]}{tree}}
 \end{algorithme}
 \vspace*{0.5cm}
 

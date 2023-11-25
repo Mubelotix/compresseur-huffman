@@ -1,40 +1,55 @@
 \subsubsection{Codingtable}
+    
+\begin{algorithme} 
     \type{CodingTable}{Dictionnaire<Byte, BinaryCode>}
-\begin{algorithme} 
-
 \end{algorithme}
 \vspace*{0.5cm}
 
 \begin{algorithme} 
-    \fonction{PriorityQueueEmpty}{}{PriorityQueue}{} 
-    {result : PriorityQueue}
-        {\affecter{\champ{result}{nbElements}}{0}
-            \retourner{result}}
+    \fonction{isPresent}{table : CodingTable, b : Byte}{\booleen}{}{}
+            \retourner{estPresent(table,b)}
+\end{algorithme}
+\vspace*{0.5cm}
+
+\begin{algorithme} 
+    \fonction{codingTable}{}{CondingTable}{} 
+    {table : CodingTable}
+        {\affecter{table}{dictionnaire()}
+            \retourner{table}}
+\end{algorithme}
+\vspace*{0.5cm}
+
+\begin{algorithme} 
+    \fonction{getBinaryCode}{table : CodingTable, b : Byte}{BinaryCode}
+    {isPresent(table,b)}
+    {code : BinaryCode}
+        {\affecter{code}{obtenirValeur(table,b)}
+            \retourner{code}}
 \end{algorithme}
 \vspace*{0.5cm}
 
 \begin{algorithme}
-    \procedure{addTree}{\paramEntree{tree: HuffmanTree} \paramEntreeSortie{queue: PriorityQueue}}{}
-    {i : \naturelNonNul}
-    {\affecter{i}{1}
-    \affecter{\champ{queue}{nbElements}}{\champ{queue}{nbElements}+1}
-    \tantque {\instruction{HuffmanTree.getOccurence(tree) < HuffmanTree.getOccurence(\champ{queue}{elements}[i])}}{
-        \affecter{i}{i+1}
-    }
-    \instruction{decalerVersLaDroite(\champ{queue}{elements}, i, \champ{queue}{nbElements})}
-    \affecter{\champ{queue}{elements}[i]}{tree}
-    }
+    \procedure{add}{\paramEntreeSortie{table: CodingTable} \paramEntree{b: Byte, code : BinaryCode} }{}{}
+    {\instruction{ajouter(table,b,code)}}
 \end{algorithme}
 \vspace*{0.5cm}
 
 \begin{algorithme}
-    \fonction{removeTree}{queue: PriorityQueue}{Tree}{sizeQueue(f) > 0}{}
-    {\affecter{\champ{queue}{nbElements}}{\champ{queue}{nbElements}-1}
-        \retourner{\champ{queue}{elements}[nbElements+1]}}
+    \procedure{remove}{\paramEntreeSortie{table: CodingTable} \paramEntree{b: Byte}}{}{}
+    {\instruction{retirer(table,b)}}
 \end{algorithme}
 \vspace*{0.5cm}
 
-\begin{algorithme}
-    \fonction{sizeQueue}{queue: PriorityQueue}{\naturel}{}{}
-    {\retourner{\champ{queue}{nbElements}}}
+\begin{algorithme} 
+    \fonction{getByte}{table : CodingTable, code : BinaryCode}{Byte}
+    {isPresent(table,code)}
+    {b : Byte, keyList : Liste, key : Byte}
+        {\affecter{keyList}{obtenirCles(table)}
+        \pourChaque{key}{keyList}{
+            \sialors{obtenirValeur(table,key)=code}
+            {\retourner key}
+        }}
 \end{algorithme}
+\vspace*{0.5cm}
+
+
