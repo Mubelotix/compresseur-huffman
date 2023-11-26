@@ -1,0 +1,40 @@
+\subsubsection{Byte}
+
+\begin{algorithme} 
+\type{Byte}{\tableau{1..8}{de}{Bit}}
+\end{algorithme}
+\vspace*{0.5cm}
+
+\begin{algorithme} 
+    \fonction{octet}{b1,b2,b3,b4,b5,b6,b7,b8:Bit}{Byte}{} 
+    {res : Byte}
+        {\affecter{res}{[ ]}
+        \affecter{res[0]}{b1}
+        \affecter{res[1]}{b2}
+        \affecter{res[2]}{b3}
+        \affecter{res[3]}{b4}
+        \affecter{res[4]}{b5}
+        \affecter{res[5]}{b6}
+        \affecter{res[6]}{b7}
+        \affecter{res[7]}{b8}
+        \retourner{res}}
+\end{algorithme}
+\vspace*{0.5cm}
+
+\begin{algorithme}
+    \fonction{getBit}{byte: Byte, i: \naturel}{Bit}{i<8}{}
+        {\retourner{byte[i]}}
+\end{algorithme}
+\vspace*{0.5cm}
+
+\begin{algorithme}
+    \procedure{setBit}{\paramEntree{i: \naturel, bit: Bit} \paramEntreeSortie{byte: Byte}}{}{}
+    {\affecter{byte[i]}{bit}}
+\end{algorithme}
+\vspace*{0.5cm}
+
+%\begin{algorithme}
+%    \fonction{byteToNatural}{byte: Byte}{\naturel}{}{i,res: \naturel}
+%        {\affecter{res}{0}
+%            \retourner{byte[i]}}
+%\end{algorithme}
