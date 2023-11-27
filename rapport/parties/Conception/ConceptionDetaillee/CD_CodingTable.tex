@@ -1,54 +1,68 @@
 \subsubsection{Codingtable}
     
+\constante{MAX}{256}
+
 \begin{algorithme} 
-    \type{CodingTable}{Dictionnaire<Byte, BinaryCode>}
+\begin{enregistrement}{Coding}
+    \champEnregistrement{byte}{Byte}
+    \champEnregistrement{code}{BinaryCode}
+\end{enregistrement}
 \end{algorithme}
 \vspace*{0.5cm}
 
 \begin{algorithme} 
-    \fonction{isPresent}{table : CodingTable, b : Byte}{\booleen}{}{}
-            \retourner{estPresent(table,b)}
+\begin{enregistrement}{CodingTable}
+    \champEnregistrement{tab}{\tableau{1..MAX}{de}{Coding}}
+    \champEnregistrement{nbElements}{\naturel}
+\end{enregistrement}
 \end{algorithme}
 \vspace*{0.5cm}
 
 \begin{algorithme} 
-    \fonction{codingTable}{}{CondingTable}{} 
-    {table : CodingTable}
-        {\affecter{table}{dictionnaire()}
-            \retourner{table}}
+    \fonction{codingTable}{}{CodingTable}{}{table : CodingTable}
+            \retourner{\champ{table}{nbElements} = 0}
 \end{algorithme}
 \vspace*{0.5cm}
 
 \begin{algorithme} 
-    \fonction{getBinaryCode}{table : CodingTable, b : Byte}{BinaryCode}
-    {isPresent(table,b)}
-    {code : BinaryCode}
-        {\affecter{code}{obtenirValeur(table,b)}
-            \retourner{code}}
+    \fonction{isEmpty}{table : CodingTable}{\booleen}{}{}
+            \retourner{\champ{table}{nbElements} = 0}
+\end{algorithme}
+\vspace*{0.5cm}
+
+\begin{algorithme} 
+    \fonction{isPresent}{table : CodingTable, byte : Byte}{\booleen}{}{i : \naturelNonNul; present : \booleen}
+    {\affecter{i}{1}
+    \tantque{(i $\leq$ \champ{table}{nbElements}) et (\champ{table}{tab[i]}{.byte} $\neq$ byte)}
+        {\affecter{i}{i + 1} 
+        \affecter{present}{\champ{table}{tab[i]}{.byte}}}
+    \retourner{i $\leq$ \champ{table}{nbElements}}}
+\end{algorithme}
+\vspace*{0.5cm}
+
+\begin{algorithme} 
+    \fonction{getBinaryCode}{table : CodingTable, byte : Byte}{BinaryCode}{isPresent(table,byte)}{i : \naturelNonNul}
+    {\affecter{i}{1}
+    \tantque{(i $\leq$ \champ{table}{nbElements}) et (\champ{table}{tab[i]}{.byte} $\neq$ byte)}
+        {\affecter{i}{i + 1}}
+    \retourner{\champ{table}{tab[i]}{.code}}}   
 \end{algorithme}
 \vspace*{0.5cm}
 
 \begin{algorithme}
-    \procedure{add}{\paramEntreeSortie{table: CodingTable} \paramEntree{b: Byte, code : BinaryCode} }{}{}
-    {\instruction{ajouter(table,b,code)}}
-\end{algorithme}
-\vspace*{0.5cm}
-
-\begin{algorithme}
-    \procedure{remove}{\paramEntreeSortie{table: CodingTable} \paramEntree{b: Byte}}{}{}
-    {\instruction{retirer(table,b)}}
+    \procedure{add}{\paramEntreeSortie{table: CodingTable} \paramEntree{byte: Byte, code : BinaryCode} }{non isPresent(table,byte)}{}
+    {\affecter{\champ{table}{tab[\champ{table}{nbElements+1}]}{.byte}}{byte}
+    \affecter{\champ{table}{tab[\champ{table}{nbElements+1}+1]}{.code}}{code}}
 \end{algorithme}
 \vspace*{0.5cm}
 
 \begin{algorithme} 
-    \fonction{getByte}{table : CodingTable, code : BinaryCode}{Byte}
-    {isPresent(table,code)}
-    {b : Byte, keyList : Liste, key : Byte}
-        {\affecter{keyList}{obtenirCles(table)}
-        \pourChaque{key}{keyList}{
-            \sialors{obtenirValeur(table,key)=code}
-            {\retourner key}
-        }}
+    \fonction{getByte}{table : CodingTable, code : BinaryCode}{Byte}{i : \naturelNonNul}{}
+    {\affecter{i}{1}
+    \tantque{(i $\leq$ \champ{table}{nbElements}) et (\champ{table}{tab[i]}{.code} $\neq$ code)}
+        {\affecter{i}{i + 1} 
+        \affecter{present}{\champ{table}{tab[i]}{.byte}}}
+    \retourner{\champ{table}{tab[i]}{.byte}}}
 \end{algorithme}
 \vspace*{0.5cm}
 
