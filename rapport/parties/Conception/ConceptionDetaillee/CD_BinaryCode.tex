@@ -1,0 +1,47 @@
+\subsubsection{BinaryCode}
+
+\begin{algorithme}
+    \begin{enregistrement}{BinaryCode}
+        \champEnregistrement{bits}{\tableauUneDimension{0..MAX}{de}{ Bit}}
+        \champEnregistrement{length}{\naturel}
+    \end{enregistrement}
+\end{algorithme}
+
+\begin{algorithme}
+    \typeEnumere{Bit}{ZERO, ONE}
+\end{algorithme}
+
+\begin{algorithme}
+    \fonction{binaryCode}{}{BinaryCode}{}{bc : BinaryCode}{
+        \affecter{bc.length}{0}
+        \affecter{bc.bits}{\tableauUneDimension{0..MAX}{de}{ Bit}}
+        \retourner{bc}
+    }
+\end{algorithme}
+
+\begin{algorithme}
+    \procedure{addBit}{\paramEntreeSortie{bc : BinaryCode}, \paramEntree{b : Bit}}{}{}{
+        \affecter{bc.bits[bc.length]}{b}
+        \affecter{bc.length}{bc.length + 1}
+    }
+\end{algorithme}
+
+\begin{algorithme}
+    \fonction{getLength}{bc : BinaryCode}{\naturel}{}{}{
+        \retourner{bc.length}}
+
+\end{algorithme}
+
+\begin{algorithme}
+    \fonction{getBit}{bc : BinaryCode, position : \naturel}{Bit}{0 <= position < getLength(bc)}{}{
+        \retourner{bc.bits[position]}
+    }
+\end{algorithme}
+
+\begin{algorithme}
+    \procedure{concatenate}{\paramEntreeSortie{bc1 : BinaryCode}, \paramEntree{bc2 : BinaryCode}}{}{}{
+        \pour{i}{1}{getLength(bc2)}{}{
+            \instruction{addBit(bc1, getBit(bc2, i))}
+        }
+    }
+\end{algorithme}
