@@ -20,13 +20,19 @@
 
 \begin{algorithme} 
     \fonction{codingTable}{}{CodingTable}{}{table : CodingTable}
-            \retourner{\champ{table}{nbElements} = 0}
+    {\retourner{\champ{table}{nbElements} = 0}}
 \end{algorithme}
 \vspace*{0.5cm}
 
 \begin{algorithme} 
     \fonction{isEmpty}{table : CodingTable}{\booleen}{}{}
-            \retourner{\champ{table}{nbElements} = 0}
+    {\retourner{\champ{table}{nbElements} = 0}}
+\end{algorithme}
+\vspace*{0.5cm}
+
+\begin{algorithme}
+    \fonction{sizeTable}{table: CodingTable}{\naturel}{}{}
+    {\retourner{\champ{table}{nbElements}}}
 \end{algorithme}
 \vspace*{0.5cm}
 
@@ -64,6 +70,3 @@
         \affecter{present}{\champ{table}{tab[i]}{.byte}}}
     \retourner{\champ{table}{tab[i]}{.byte}}}
 \end{algorithme}
-\vspace*{0.5cm}
-
-
