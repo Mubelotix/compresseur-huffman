@@ -2,33 +2,43 @@
 
 \begin{algorithme}
     \begin{enregistrement}{HuffmanTree}
-        \champEnregistrement{occurence}{\entier}
-        \champEnregistrement{leftChild}{\pointeur{HuffmanTree}}
-        \champEnregistrement{rightChild}{\pointeur{HuffmanTree}}
+        \champEnregistrement{root}{\pointeur{HuffmanTreeNode}}
     \end{enregistrement}
     \vspace*{0.5cm}
 
-    \fonction{getRightChild}{ht: HuffmanTree}{HuffmanTree}{!isALeaf(ht)}{}{
+    \fonction{getRootNode}{ht: HuffmanTree}{\pointeur{HuffmanTreeNode}}{}{}{
+        \retourner{ht.root}
+    }
+    \vspace*{0.5cm}
+
+    \begin{enregistrement}{HuffmanTreeNode}
+        \champEnregistrement{occurence}{\entier}
+        \champEnregistrement{leftChild}{\pointeur{HuffmanTreeNode}}
+        \champEnregistrement{rightChild}{\pointeur{HuffmanTreeNode}}
+    \end{enregistrement}
+    \vspace*{0.5cm}
+
+    \fonction{getRightChild}{ht: \pointeur{HuffmanTreeNode}}{\pointeur{HuffmanTreeNode}}{!isALeaf(ht)}{}{
         \retourner{ht.rightChild}
     }
     \vspace*{0.5cm}
 
-    \fonction{getLeftChild}{ht: HuffmanTree}{HuffmanTree}{!isALeaf(ht)}{}{
+    \fonction{getLeftChild}{ht: \pointeur{HuffmanTreeNode}}{\pointeur{HuffmanTreeNode}}{!isALeaf(ht)}{}{
         \retourner{ht.leftChild}
     }
     \vspace*{0.5cm}
 
-    \fonction{getByte}{ht: HuffmanTree}{Byte}{isALeaf(ht)}{}{
+    \fonction{getByte}{ht: \pointeur{HuffmanTreeNode}}{Byte}{isALeaf(ht)}{}{
         \retourner{ht.occurence}
     }
     \vspace*{0.5cm}
 
-    \fonction{getOccurence}{ht: HuffmanTree}{\entier}{}{}{
+    \fonction{getOccurence}{ht: \pointeur{HuffmanTreeNode}}{\entier}{}{}{
         \retourner{ht.occurence}
     }
     \vspace*{0.5cm}
 
-    \fonction{isALeaf}{ht: HuffmanTree}{\booleen}{}{}{
+    \fonction{isALeaf}{ht: \pointeur{HuffmanTreeNode}}{\booleen}{}{}{
         \retourner{ht.leftChild = NIL and ht.rightChild = NIL}
     }
     \vspace*{0.5cm}
