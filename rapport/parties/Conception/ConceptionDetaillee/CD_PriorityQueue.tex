@@ -19,6 +19,12 @@
 \vspace*{0.5cm}
 
 \begin{algorithme}
+    \fonction{sizeQueue}{queue: PriorityQueue}{\naturel}{}{}
+    {\retourner{\champ{queue}{nbElements}}}
+\end{algorithme}
+\vspace*{0.5cm}
+
+\begin{algorithme}
     \procedure{addTree}{\paramEntreeSortie{queue: PriorityQueue} \paramEntree{tree: HuffmanTree}}{}
     {i : \naturelNonNul}
     {\affecter{i}{1}
@@ -35,9 +41,4 @@
     {\affecter{\champ{queue}{nbElements}}{\champ{queue}{nbElements}-1}
         \retourner{\champ{queue}{elements}[nbElements+1]}}
 \end{algorithme}
-\vspace*{0.5cm}
 
-\begin{algorithme}
-    \fonction{sizeQueue}{queue: PriorityQueue}{\naturel}{}{}
-    {\retourner{\champ{queue}{nbElements}}}
-\end{algorithme}
