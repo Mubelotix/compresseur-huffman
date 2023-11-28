@@ -3,42 +3,47 @@
 \constante{MAX}{256}
 
 \begin{algorithme} 
-\begin{enregistrement}{PriorityQueue}
-    \champEnregistrement{elements}{\tableau{1..MAX}{de}{HuffmanTree}}
-    \champEnregistrement{nbElements}{\naturelNonNul}
-\end{enregistrement}
-\end{algorithme}
-\vspace*{0.5cm}
+    \begin{enregistrement}{PriorityQueue}
+        \champEnregistrement{elements}{\tableau{1..MAX}{de}{HuffmanTree}}
+        \champEnregistrement{length}{\naturelNonNul}
+    \end{enregistrement}
+    \vspace*{0.5cm}
 
-\begin{algorithme} 
-    \fonction{PriorityQueueEmpty}{}{PriorityQueue}{} 
-    {result : PriorityQueue}
-        {\affecter{\champ{result}{nbElements}}{0}
-            \retourner{result}}
-\end{algorithme}
-\vspace*{0.5cm}
+    \fonction{newPriorityQueue}{}{PriorityQueue}{}{result : PriorityQueue}{
+        \affecter{\champ{result}{length}}{0}
+        \retourner{result}
+    }
+    \vspace*{0.5cm}
 
-\begin{algorithme}
-    \fonction{sizeQueue}{queue: PriorityQueue}{\naturel}{}{}
-    {\retourner{\champ{queue}{nbElements}}}
-\end{algorithme}
-\vspace*{0.5cm}
+    \fonction{getInsertionIndex}{\paramEntree{queue: PriorityQueue}, \paramEntree{ht: HuffmanTree}}{\naturel}{}{i : \naturelNonNul}{
+        \affecter{i}{1}
+        \tantque{getOccurrence(ht) > getOccurrence(\champ{queue}{elements}[i])}{
+            \affecter{i}{i+1}
+        }
+        \retourner{i}
+    }
+    \vspace*{0.5cm}
 
-\begin{algorithme}
-    \procedure{addTree}{\paramEntreeSortie{queue: PriorityQueue} \paramEntree{tree: HuffmanTree}}{}
-    {i : \naturelNonNul}
-    {\affecter{i}{1}
-    \affecter{\champ{queue}{nbElements}}{\champ{queue}{nbElements}+1}
-    \tantque {\instruction{HuffmanTree.getOccurence(tree) < HuffmanTree.getOccurence(\champ{queue}{elements}[i])}}
-    {\affecter{i}{i+1}}
-    \instruction{decalerVersLaDroite(\champ{queue}{elements}, i, \champ{queue}{nbElements})}
-    \affecter{\champ{queue}{elements}[i]}{tree}}
-\end{algorithme}
-\vspace*{0.5cm}
+    \procedure{shiftRight}{\paramEntreeSortie{queue: PriorityQueue}, \paramEntree{index: \naturel}}{index <= length(queue)}{i : \naturelNonNul}{
+        \affecter{\champ{queue}{length}}{\champ{queue}{length}+1}
+        \affecter{i}{\champ{queue}{length}}
+        \tantque{i > index}{
+            \affecter{\champ{queue}{elements}[i]}{\champ{queue}{elements}[i-1]}
+            \affecter{i}{i-1}
+        }
+    }
+    \vspace*{0.5cm}
 
-\begin{algorithme}
-    \fonction{removeTree}{queue: PriorityQueue}{Tree}{sizeQueue(f) > 0}{}
-    {\affecter{\champ{queue}{nbElements}}{\champ{queue}{nbElements}-1}
-        \retourner{\champ{queue}{elements}[nbElements+1]}}
+    \procedure{insertTree}{\paramEntreeSortie{queue: PriorityQueue}, \paramEntree{ht: HuffmanTree}}{}{i : \naturelNonNul}{
+        \affecter{i}{getInsertionIndex(queue, ht)}
+        \instruction{shiftRight(queue, i)}
+        \affecter{\champ{queue}{elements}[i]}{ht}
+    }
+    \vspace*{0.5cm}
+
+    \fonction{popTree}{\paramEntreeSortie{queue: PriorityQueue}}{HuffmanTree}{not(isEmpty(queue))}{}{
+        \affecter{\champ{queue}{length}}{\champ{queue}{length}-1}
+        \retourner{\champ{queue}{elements}[\champ{queue}{length}+1]}
+    }
 \end{algorithme}
 
