@@ -1,7 +1,13 @@
 #ifndef  __BINARYCODE__
 #define __BINARYCODE__
+#define MAX=256  
 
-typedef enumerate
+typedef enum{0,1} Bit;
+
+typedef struct{
+    Bit bits[MAX];
+    int length;
+}BinaryCode;
 
 BinaryCode binaryCode();
 void addBit(BinaryCode* bc, Bit b);
