@@ -1,0 +1,26 @@
+\subsubsection{decompress}
+
+\begin{algorithme}
+    \procedure{decompress}{\paramEntreeSortie{f: FichierBinaire}}{}{
+        {stats: Statistics;}
+        {ht: HuffmanTree;}
+    }
+    {\affecter{stats}{readStatistics}
+    \affecter{ht}{buildHuffmanTree(stats)}
+    \affecter{f}{decode(ht)}
+    }
+\end{algorithme}
+\vspace*{0.5cm}
+
+
+\begin{algorithme}
+    \fonction{readStatistics}{f: FichierBinaire}{Statistics}{}{}
+        {\retourner{}}
+\end{algorithme}
+\vspace*{0.5cm}
+
+\begin{algorithme}
+    \fonction{decode}{ht: HuffmanTree}{FichierBinaire}{}{}
+        {\retourner{}}
+\end{algorithme}
+\vspace*{0.5cm}
