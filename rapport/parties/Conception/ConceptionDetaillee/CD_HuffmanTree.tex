@@ -1,0 +1,35 @@
+\subsubsection{HuffmanTree}
+
+\begin{algorithme}
+    \begin{enregistrement}{HuffmanTree}
+        \champEnregistrement{occurence}{\entier}
+        \champEnregistrement{leftChild}{\pointeur{HuffmanTree}}
+        \champEnregistrement{rightChild}{\pointeur{HuffmanTree}}
+    \end{enregistrement}
+    \vspace*{0.5cm}
+
+    \fonction{getRightChild}{ht: HuffmanTree}{HuffmanTree}{!isALeaf(ht)}{}{
+        \retourner{ht.rightChild}
+    }
+    \vspace*{0.5cm}
+
+    \fonction{getLeftChild}{ht: HuffmanTree}{HuffmanTree}{!isALeaf(ht)}{}{
+        \retourner{ht.leftChild}
+    }
+    \vspace*{0.5cm}
+
+    \fonction{getByte}{ht: HuffmanTree}{Byte}{isALeaf(ht)}{}{
+        \retourner{ht.occurence}
+    }
+    \vspace*{0.5cm}
+
+    \fonction{getOccurence}{ht: HuffmanTree}{\entier}{}{}{
+        \retourner{ht.occurence}
+    }
+    \vspace*{0.5cm}
+
+    \fonction{isALeaf}{ht: HuffmanTree}{\booleen}{}{}{
+        \retourner{ht.leftChild = NIL and ht.rightChild = NIL}
+    }
+    \vspace*{0.5cm}
+\end{algorithme}
