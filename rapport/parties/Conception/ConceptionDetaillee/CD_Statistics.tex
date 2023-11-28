@@ -4,16 +4,15 @@
 
 \begin{algorithme} 
     \begin{enregistrement}{Statistics}
-        \champEnregistrement{element}{\tableauUneDimension{1..MAX}{de}{Byte}}
+        \champEnregistrement{element}{\tableauUneDimension{1..MAX}{de}{\naturel}}
         \champEnregistrement{nbElements}{\naturel}
     \end{enregistrement}
 \end{algorithme}
 
 \begin{algorithme} 
-    \fonction{statistics}{}{Statistics}{}{s : Statistics, b : Byte, i : \naturelNonNul}{
-    \affecter{b}{octet{0,0,0,0,0,0,0,0}}
+    \fonction{statistics}{}{Statistics}{}{s : Statistics, i : \naturelNonNul}{
     \pour{i}{1}{MAX}{}{
-            \instruction{\affecter{s[i]}{b}}
+            \instruction{\affecter{s[i]}{0}}
     }
     \retourner{s}}
 \end{algorithme}
@@ -32,7 +31,8 @@
 \end{algorithme}
 
 \begin{algorithme} 
-    \signatureFonction{contains}{stats : Statistics, e : Element}{\booleen}{}
+    \fonction{contains}{stats : Statistics, b : Byte}{\booleen}{}{}{
+    \retourner{getElement{stats, i} > 0}}
 \end{algorithme}
 
 \begin{algorithme} 
