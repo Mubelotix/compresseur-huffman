@@ -1,49 +1,42 @@
 \subsubsection{HuffmanTree}
 
 \begin{algorithme}
-    \begin{enregistrement}{HuffmanTree}
-        \champEnregistrement{root}{\pointeur{HuffmanTreeNode}}
-    \end{enregistrement}
-    \vspace*{0.5cm}
-
-    \fonction{getRootNode}{ht: HuffmanTree}{\pointeur{HuffmanTreeNode}}{}{}{
-        \retourner{ht.root}
-    }
+    \type{HuffmanTree}{\typePointeur{HuffmanTreeNode}}
     \vspace*{0.5cm}
 
     \begin{enregistrement}{HuffmanTreeNode}
         \champEnregistrement{occurence}{\entier}
-        \champEnregistrement{leftChild}{\pointeur{HuffmanTreeNode}}
-        \champEnregistrement{rightChild}{\pointeur{HuffmanTreeNode}}
+        \champEnregistrement{leftChild}{\typePointeur{HuffmanTreeNode}}
+        \champEnregistrement{rightChild}{\typePointeur{HuffmanTreeNode}}
     \end{enregistrement}
     \vspace*{0.5cm}
 
-    \fonction{getRightChild}{ht: \pointeur{HuffmanTreeNode}}{\pointeur{HuffmanTreeNode}}{!isALeaf(ht)}{}{
+    \fonction{getRightChild}{ht: \typePointeur{HuffmanTreeNode}}{\typePointeur{HuffmanTreeNode}}{!isALeaf(ht)}{}{
         \retourner{ht.rightChild}
     }
     \vspace*{0.5cm}
 
-    \fonction{getLeftChild}{ht: \pointeur{HuffmanTreeNode}}{\pointeur{HuffmanTreeNode}}{!isALeaf(ht)}{}{
+    \fonction{getLeftChild}{ht: \typePointeur{HuffmanTreeNode}}{\typePointeur{HuffmanTreeNode}}{!isALeaf(ht)}{}{
         \retourner{ht.leftChild}
     }
     \vspace*{0.5cm}
 
-    \fonction{getByte}{ht: \pointeur{HuffmanTreeNode}}{Byte}{isALeaf(ht)}{}{
+    \fonction{getByte}{ht: \typePointeur{HuffmanTreeNode}}{Byte}{isALeaf(ht)}{}{
         \retourner{ht.occurence}
     }
     \vspace*{0.5cm}
 
-    \fonction{getOccurence}{ht: \pointeur{HuffmanTreeNode}}{\entier}{}{}{
+    \fonction{getOccurence}{ht: \typePointeur{HuffmanTreeNode}}{\entier}{}{}{
         \retourner{ht.occurence}
     }
     \vspace*{0.5cm}
 
-    \fonction{isALeaf}{ht: \pointeur{HuffmanTreeNode}}{\booleen}{}{}{
+    \fonction{isALeaf}{ht: \typePointeur{HuffmanTreeNode}}{\booleen}{}{}{
         \retourner{ht.leftChild = NIL and ht.rightChild = NIL}
     }
     \vspace*{0.5cm}
 
-    \fonction{createLeaf}{occurence: \entier}{\pointeur{HuffmanTreeNode}}{}{}{
+    \fonction{createLeaf}{occurence: \entier}{\typePointeur{HuffmanTreeNode}}{}{}{
         \affecter{node}{\allouer{HuffmanTreeNode}}
         \affecter{node.occurence}{occurence}
         \affecter{node.leftChild}{NIL}
@@ -52,20 +45,26 @@
     }
     \vspace*{0.5cm}
 
-    \fonction{creerNoeud}{leftChild, rightChild: \pointeur{HuffmanTreeNode}}{\pointeur{HuffmanTreeNode}}{(leftChild $\neq$ NIL) ET (rightChild $\neq$ NIL)}{}{
+    \fonction{creerNoeud}{leftChild, rightChild: \typePointeur{HuffmanTreeNode}}{\typePointeur{HuffmanTreeNode}}{(leftChild $\neq$ NIL) ET (rightChild $\neq$ NIL)}{}{
         \affecter{node}{\allouer{HuffmanTreeNode}}
         \affecter{node.occurence}{leftChild.occurence + rightChild.occurence}
         \affecter{node.leftChild}{leftChild}
         \affecter{node.rightChild}{rightChild}
         \retourner{node}
     }
+    \vspace*{0.5cm}
 
-    \procedure{destroy}{ht: \pointeur{HuffmanTreeNode}}{}{}{
+    \procedure{destroy}{ht: \typePointeur{HuffmanTreeNode}}{}{}{
         \sialorssinon{ht $\neq$ NIL}
         {\instruction{destroy(ht.leftChild)}
         \instruction{destroy(ht.rightChild)}
         \instruction{free(ht)}}
         {}
+    }
+    \vspace*{0.5cm}
+
+    \fonction{createTree}{root: \typePointeur{HuffmanTreeNode}}{HuffmanTree}{root $\neq$ NIL}{}{
+        \retourner{root}
     }
     \vspace*{0.5cm}
 \end{algorithme}
