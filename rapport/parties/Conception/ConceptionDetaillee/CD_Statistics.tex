@@ -2,13 +2,15 @@
 
 \constante{MAX}{256}
 
-\begin{enregistrement}
-    \champEnregistrement{element}{\tableau{1..MAX}{de}{Byte}}
-    \champEnregistrement{nbElements}{\naturel}
-\end{enregistrement}
+\begin{algorithme} 
+    \begin{enregistrement}{Statistics}
+        \champEnregistrement{element}{\tableauUneDimension{1..MAX}{de}{Byte}}
+        \champEnregistrement{nbElements}{\naturel}
+    \end{enregistrement}
+\end{algorithme}
 
 \begin{algorithme} 
-    \fonction{statistics}{}{Statistics}{}{s : Statistics, b : Byte}{
+    \fonction{statistics}{}{Statistics}{}{s : Statistics, b : Byte, i : \naturelNonNul}{
     \affecter{b}{octet{0,0,0,0,0,0,0,0}}
     \pour{i}{1}{MAX}{}{
             \instruction{\affecter{s[i]}{b}}
@@ -17,7 +19,16 @@
 \end{algorithme}
 
 \begin{algorithme} 
-    \signatureFonction{isEmpty}{stats : Statistics, e : Element}{\booleen}{}
+    \fonction{isEmpty}{stats : Statistics, e : Element}{\booleen}{}{i : \naturel, flag : \booleen}{
+    \affecter{i}{0}
+    \affecter{flag}{False}
+    \tantque {\instruction{(i < MAX) and not(flag)}}
+        {\affecter{i}{i+1}
+        \instruction{\sialorssinon{s[i] > 0}
+        {\instruction{\affecter{flag}{True}}}
+        {}}
+    }
+    \retourner{flag}}
 \end{algorithme}
 
 \begin{algorithme} 
@@ -29,7 +40,7 @@
 \end{algorithme}
 
 \begin{algorithme} 
-    \signatureProcedure{incCount}{\paramEntree{e : Element} , \paramEntreeSortie{stats : Statistics}}
+    \signatureProcedure{incCount}{\paramEntree{e : Element} , \paramEntreeSortie{stats : Statistics}}{}
 \end{algorithme}
 
 \begin{algorithme} 

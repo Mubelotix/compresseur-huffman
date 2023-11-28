@@ -4,28 +4,42 @@
 \begin{tad}
   \tadNom{PriorityQueue}
   \tadDependances{HuffmanTree, \naturel}
-  
-  \begin{tadOperations}{priorityQueueEmpty}
-    \tadOperation{priorityQueueEmpty}{}{PriorityQueue}
-    \tadOperation{addTree}{HuffmanTree × PriorityQueue}{PriorityQueue}
-    \tadOperationAvecPreconditions{removeTree}{PriorityQueue}{Tree}
-    \tadOperation{sizeQueue}{PriorityQueue}{\naturel}
+ 
+  \begin{tadOperations}{newPriorityQueue}
+    \tadOperation{newPriorityQueue}{}{PriorityQueue}
+    \tadOperation{length}{PriorityQueue}{\naturel}
+    \tadOperation{isEmpty}{PriorityQueue}{\booleen}
+    \tadOperation{popTree}{PriorityQueue}{\tadDeuxParams{{PriorityQueue}{HuffmanTree}}}
+    \tadOperation{insertTree}{\tadDeuxParams{PriorityQueue}{HuffmanTree}}{PriorityQueue}
+    \tadOperation{destroy}{PriorityQueue}{}
+
+    
+    \tadOperation{getInsertionIndex}{\tadDeuxParams{PriorityQueue}{HuffmanTree}}{\naturel}
+    \tadOperation{shiftRight}{\tadDeuxParams{PriorityQueue}{\naturel}}{PriorityQueue}
   \end{tadOperations}
 
-  \begin{tadSemantiques}{priorityQueueEmpty}
-    \tadSemantique{priorityQueueEmpty}{Crée une file de priorité vide.}
-    \tadSemantique{addTree}{Ajoute un arbre de Huffman à son emplacement respectif dans une file de priorité.}
-    \tadSemantique{removeTree}{Défile l'arbre en tête d'une file de priorité.}
-    \tadSemantique{sizeQueue}{Renvoie le nombre d'arbres de Huffman présents dans une file de priorité.}
+  \begin{tadSemantiques}{newPriorityQueue}
+    \tadSemantique{newPriorityQueue}{Crée une file de priorité vide.}
+    \tadSemantique{lenght}{Renvoie le nombre d'arbres de Huffman présents dans une file de priorité.}
+    \tadSemantique{isEmpty}{Renvoie vrai si la file de priorité est vide, faux sinon.}
+    \tadSemantique{popTree}{Renvoie l'arbre de Huffman ayant la plus petite occurence et le retire de la file de priorité.}
+    \tadSemantique{insertTree}{Insère un arbre de Huffman dans la file de priorité.}
+    \tadSemantique{destroy}{Détruit une file de priorité.}
+    \tadSemantique{getInsertionIndex}{Renvoie l'index où un arbre de Huffman serait inséré.}
+    \tadSemantique{shiftRight}{Décale tous les éléments d'une file de priorité vers la droite à partir d'un index donné.}
   \end{tadSemantiques}
 
   \begin{tadAxiomes}
-    \tadAxiome{addTree(removeTree(f),f) = f}
-    \tadAxiome{sizeQueue(priorityQueueEmpty()) = 0}
-	  \tadAxiome{sizeQueue(addTree(A,f)) = sizeQueue(f) + 1}
+    \tadAxiome{lenght(newPriorityQueue()) = 0}
+    \tadAxiome{isEmpty(newPriorityQueue())}
+    \tadAxiome{isEmpty(q) <=> length(q) = 0}
+    \tadAxiome{popTree(insertTree(q,ht)) = ht}
+    \tadAxiome{lenght(insertTree(q, ht)) = lenght(q) + 1}
+    \tadAxiome{lenght(popTree(q)) = lenght(q) - 1}
   \end{tadAxiomes}
 
-  \begin{tadPreconditions}{removeTree(f)}
-    \tadPrecondition{removeTree(f)}{sizeQueue(f) > 0}
+  \begin{tadPreconditions}{popTree(q)}
+    \tadPrecondition{popTree(q)}{length(q) > 0}
   \end{tadPreconditions}
 \end{tad}
+
