@@ -1,0 +1,14 @@
+\subsubsection{compress}
+
+\begin{algorithme}
+    \fonction{compress}{f: FichierBinaire}{FichierBinaire}{}{
+        {statistics: Statistics;}
+        {ht: HuffmanTree;}
+        {ct: CodingTable;}
+    }{
+        \affecter{statistics}{computeStatistics(f)}
+        \affecter{ht}{buildHuffmanTree(statistics)}
+        \affecter{ct}{codingTable(ht)}
+        \retourner{encode(f,ct)}
+    }
+\end{algorithme}
