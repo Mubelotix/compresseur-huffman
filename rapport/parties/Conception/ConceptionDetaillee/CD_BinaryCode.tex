@@ -2,7 +2,7 @@
 
 \begin{algorithme}
     \begin{enregistrement}{BinaryCode}
-        \champEnregistrement{bits}{\tableauUneDimension{0..MAX}{de}{ Bit}}
+        \champEnregistrement{bits}{\tableauUneDimension{1..MAX}{de}{ Bit}}
         \champEnregistrement{length}{\naturel}
     \end{enregistrement}
 \end{algorithme}
@@ -14,7 +14,7 @@
 \begin{algorithme}
     \fonction{binaryCode}{}{BinaryCode}{}{bc : BinaryCode}{
         \affecter{bc.length}{0}
-        \affecter{bc.bits}{\tableauUneDimension{0..MAX}{de}{ Bit}}
+        \affecter{bc.bits}{\tableauUneDimension{1..MAX}{de}{ Bit}}
         \retourner{bc}
     }
 \end{algorithme}
@@ -39,7 +39,7 @@
 \end{algorithme}
 
 \begin{algorithme}
-    \procedure{concatenate}{\paramEntreeSortie{bc1 : BinaryCode}, \paramEntree{bc2 : BinaryCode}}{}{}{
+    \procedure{concatenate}{\paramEntreeSortie{bc1 : BinaryCode}, \paramEntree{bc2 : BinaryCode}}{}{i : \naturel}{
         \pour{i}{1}{getLength(bc2)}{}{
             \instruction{addBit(bc1, getBit(bc2, i))}
         }
