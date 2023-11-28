@@ -33,8 +33,10 @@
 \end{algorithme}
 \vspace*{0.5cm}
 
-%\begin{algorithme}
-%    \fonction{byteToNatural}{byte: Byte}{\naturel}{}{i,res: \naturel}
-%        {\affecter{res}{0}
-%            \retourner{byte[i]}}
-%\end{algorithme}
+\begin{algorithme}
+    \fonction{byteToNatural}{byte: Byte}{\naturel}{}{i,res: \naturel}
+        {\affecter{res}{0}
+        \pour{i}{0}{7}{}{
+            \affecter{res}{res + byte[i]*(2**(7-i))}}
+        \retourner{res}}
+\end{algorithme}
