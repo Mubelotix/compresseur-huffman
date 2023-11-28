@@ -1,18 +1,19 @@
 \subsubsection{PriorityQueue}
 
 \begin{algorithme} 
-    \signatureFonction{priorityQueueEmpty}{}{PriorityQueue}{} 
-\end{algorithme}
+    \signatureFonction{newPriorityQueue}{}{PriorityQueue}{}
 
-\begin{algorithme}
-    \signatureProcedure{addTree}{\paramEntree{tree: HuffmanTree} \paramEntreeSortie{queue: PriorityQueue}}{}
-\end{algorithme}
+    \signatureFonction{length}{\paramEntree{queue: PriorityQueue}}{\naturel}{}
 
-\begin{algorithme}
-    \signatureFonction{removeTree}{queue: PriorityQueue}{Tree}
-    {sizeQueue(f) > 0}
-\end{algorithme}
+    \signatureFonction{isEmpty}{\paramEntree{queue: PriorityQueue}}{\naturel}{}
 
-\begin{algorithme}
-    \signatureFonction{sizeQueue}{queue: PriorityQueue}{\naturel}{}
+    \signatureFonction{popTree}{\paramEntreeSortie{queue: PriorityQueue}}{Tree}{not(isEmpty(queue))}
+
+    \signatureProcedure{insertTree}{\paramEntreeSortie{queue: PriorityQueue}, \paramEntree{ht: HuffmanTree}}{}
+
+    \signatureProcedure{destroy}{\paramEntreeSortie{queue: PriorityQueue}}{}
+
+    \signatureFonction{getInsertionIndex}{\paramEntree{queue: PriorityQueue}, \paramEntree{ht: HuffmanTree}}{\naturel}{}
+
+    \signatureProcedure{shiftRight}{\paramEntreeSortie{queue: PriorityQueue}, \paramEntree{index: \naturel}}{}
 \end{algorithme}
