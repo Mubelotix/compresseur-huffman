@@ -42,7 +42,9 @@
 \end{algorithme}
 
 \begin{algorithme} 
-    \signatureProcedure{incCount}{\paramEntree{i : \naturel} , \paramEntreeSortie{stats : Statistics}}{}
+    \procedure{incCount}{\paramEntree{i : \naturel} , \paramEntreeSortie{stats : Statistics}}{}{}{
+        \affecter{stats[i]}{stats[i] + 1}
+    }
 \end{algorithme}
 
 \begin{algorithme} 
