@@ -32,15 +32,17 @@
 
 \begin{algorithme} 
     \fonction{contains}{stats : Statistics, b : Byte}{\booleen}{}{}{
-    \retourner{getElement{stats, i} > 0}}
+    \retourner{getCount{stats, i} > 0}}
 \end{algorithme}
 
 \begin{algorithme} 
-    \signatureFonction{getCount}{stats : Statistics, e : Element}{\entier}{}
+    \fonction{getCount}{stats : Statistics, i : \naturel}{\naturel}{}{}{
+    \retourner{stats[i]}
+    }
 \end{algorithme}
 
 \begin{algorithme} 
-    \signatureProcedure{incCount}{\paramEntree{e : Element} , \paramEntreeSortie{stats : Statistics}}{}
+    \signatureProcedure{incCount}{\paramEntree{i : \naturel} , \paramEntreeSortie{stats : Statistics}}{}
 \end{algorithme}
 
 \begin{algorithme} 
@@ -48,5 +50,5 @@
 \end{algorithme}
 
 \begin{algorithme} 
-    \signatureFonction{getElement}{stats : Statistics, i : \entier}{Element}{i < getElementCount(statistics)}
+    \signatureFonction{getElement}{stats : Statistics, i : \entier}{\naturel}{i < getElementCount(statistics)}
 \end{algorithme}
