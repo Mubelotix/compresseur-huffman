@@ -48,9 +48,19 @@
 \end{algorithme}
 
 \begin{algorithme} 
-    \signatureFonction{getElementCount}{stats : Statistics}{\entier}{}
+    \signatureFonction{getElementCount}{stats : Statistics}{\entier}{}{i, compteur : \naturel}{
+        \affecter{compteur}{0}
+        \pour{i}{1}{MAX}{}{
+                \instruction{\sialorssinon{s[i] > 0}
+                {\instruction{\affecter{compteur}{compteur + 1}}}
+                {}}
+        }
+        \retourner{compteur}
+    }
 \end{algorithme}
 
 \begin{algorithme} 
-    \signatureFonction{getElement}{stats : Statistics, i : \entier}{\naturel}{i < getElementCount(statistics)}
+    \signatureFonction{getElement}{stats : Statistics, i : \entier}{\naturel}{i < getElementCount(statistics)}{}{}{
+        \retourner{naturalToByte(i)}
+    }
 \end{algorithme}
