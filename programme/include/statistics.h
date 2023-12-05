@@ -1,6 +1,8 @@
 #ifndef STATISTICS_H
 #define STATISTICS_H
 
+#include "byte.h"
+
 #define MAX 256
 
 /**
