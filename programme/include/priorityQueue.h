@@ -1,5 +1,5 @@
-#ifndef STATISTICS_H
-#define STATISTICS_H
+#ifndef PRIORITY_QUEUE_H
+#define PRIORITY_QUEUE_H
 
 #include "huffmanTree.h"
 
