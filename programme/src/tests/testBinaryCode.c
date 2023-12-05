@@ -1,5 +1,6 @@
 #include "binaryCode.h"
 #include <CUnit/CUnit.h>
+#include "errno.h"
 
 void BC_testLength() {
     BinaryCode bc = BC_binaryCode();
@@ -66,4 +67,27 @@ void BC_testConcat() {
     CU_ASSERT_EQUAL(BC_getBit(&bc2, 0), 0);
     CU_ASSERT_EQUAL(BC_getBit(&bc2, 1), 1);
     CU_ASSERT_EQUAL(BC_getBit(&bc2, 2), 0);
+}
+
+void BC_testOutOfBounds() {
+    BinaryCode bc = BC_binaryCode();
+
+    // Len is 0 but index is 0
+    getBit(&bc, 0);
+    CU_ASSERT_EQUAL(errno, EDOM);
+}
+
+void BC_testBufferOverflow() {
+    BinaryCode bc = BC_binaryCode();
+
+    // Fill the buffer
+    for (int i = 0; i < 256; i++) {
+        BC_addBit(&bc, 1);
+    }
+    CU_ASSERT_EQUAL(BC_getLength(&bc), 256);
+
+    // Attempt overflow
+    BC_addBit(&bc, 1);
+    CU_ASSERT_EQUAL(errno, EOVERFLOW);
+    CU_ASSERT_EQUAL(BC_getLength(&bc), 256); // the length is unchanged
 }
