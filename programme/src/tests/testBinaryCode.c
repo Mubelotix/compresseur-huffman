@@ -1,7 +1,7 @@
 #include "binaryCode.h"
 #include <CUnit/CUnit.h>
 
-void BC_testLenght() {
+void BC_testLength() {
     BinaryCode bc = BC_binaryCode();
     CU_ASSERT_EQUAL(BC_getLength(&bc), 0);
 
