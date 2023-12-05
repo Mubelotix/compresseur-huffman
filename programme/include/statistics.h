@@ -41,7 +41,7 @@ bool S_contains(Statictics stats, Byte element);
  * @param element : Byte
  * @return the number of occurences of element in stats
 */
-int S_getCount(S_Statictics stats, Byte element);
+int S_getCount(Statictics stats, Byte element);
 
 /**
  * @brief S_incCount
