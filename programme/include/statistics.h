@@ -7,57 +7,57 @@
 
 /**
  * @brief S_Statictics
- * @param element : Byte
+ * @param element : B_Byte
  * @param nbOfElements : int
 */
 typedef struct{
-    Byte element[MAX];
+    B_Byte element[MAX];
     int nbOfElements;
-}Statictics;
+}S_Statictics;
 
 
 /**
  * @brief S_statistics constructor
  * @return S_Statictics 
 */
-Statictics S_statistics();
+S_Statictics S_statistics();
 
 /**
  * @brief S_isEmpty
  * @param stats
  * @return true if stats is empty
 */
-bool S_isEmpty(Statictics stats);
+bool S_isEmpty(S_Statictics stats);
 
 /**
  * @brief S_contains
  * @param stats : S_Statictics
- * @param element : Byte 
+ * @param element : B_Byte 
  * @return true if stats contains element
 */
-bool S_contains(Statictics stats, Byte element);
+bool S_contains(S_Statictics stats, B_Byte element);
 
 /**
  * @brief S_getCount
  * @param stats : S_Statictics
- * @param element : Byte
+ * @param element : B_Byte
  * @return the number of occurences of element in stats
 */
-int S_getCount(Statictics stats, Byte element);
+int S_getCount(S_Statictics stats, B_Byte element);
 
 /**
  * @brief S_incCount
  * @param stats : S_Statictics
- * @param element : Byte
+ * @param element : B_Byte
 */
-void S_incCount(Statictics* stats, Byte element);
+void S_incCount(S_Statictics* stats, B_Byte element);
 
 /**
  * @brief S_length
  * @param stats : S_Statictics
  * @return the number of elements in stats
 */
-int S_length(Statictics* stats);
+int S_length(S_Statictics* stats);
 
 /**
  * @brief S_getElement
@@ -65,6 +65,6 @@ int S_length(Statictics* stats);
  * @param pos : int
  * @return the element at position pos in stats
 */
-Byte S_getElement(Statictics stats, int pos);
+B_Byte S_getElement(S_Statictics stats, int pos);
 
 #endif
