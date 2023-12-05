@@ -4,7 +4,8 @@
 
 BinaryCode BC_binaryCode(){
     BinaryCode bc;
-    return bc.length = 0;
+    bc.length = 0;
+    return bc
 };
 
 void BC_addBit(BinaryCode* bc, Bit b){
@@ -12,7 +13,7 @@ void BC_addBit(BinaryCode* bc, Bit b){
 };
 
 int BC_getLength(BinaryCode bc){
-    return bc.length
+    return bc.length;
 };
 
 Bit BC_getBit(BinaryCode bc, int pos){
@@ -22,3 +23,8 @@ Bit BC_getBit(BinaryCode bc, int pos){
 void BC_concatenate(BinaryCode* bc1, BinaryCode bc2){
 
 };
+
+int main(){
+    BinaryCode bc = BC_binaryCode();
+    printf("longueur de %d", BC_getLength(bc));
+}
