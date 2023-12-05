@@ -45,7 +45,7 @@
     }
     \vspace*{0.5cm}
 
-    \fonction{creerNoeud}{leftChild, rightChild: \typePointeur{HuffmanTreeNode}}{\typePointeur{HuffmanTreeNode}}{(leftChild $\neq$ NIL) ET (rightChild $\neq$ NIL)}{}{
+    \fonction{newNode}{leftChild, rightChild: \typePointeur{HuffmanTreeNode}}{\typePointeur{HuffmanTreeNode}}{(leftChild $\neq$ NIL) ET (rightChild $\neq$ NIL)}{}{
         \affecter{node}{\allouer{HuffmanTreeNode}}
         \affecter{node.occurence}{leftChild.occurence + rightChild.occurence}
         \affecter{node.leftChild}{leftChild}
