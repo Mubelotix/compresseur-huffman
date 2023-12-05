@@ -28,3 +28,5 @@ HT_HuffmanTreeNode* HT_createNode(HT_HuffmanTreeNode* leftChild,HT_HuffmanTreeNo
 void HT_destroy(HT_HuffmanTreeNode* ht);
 
 HT_HuffmanTree HT_createTree(HT_HuffmanTreeNode* root)
+
+#endif
