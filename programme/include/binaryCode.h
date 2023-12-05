@@ -1,5 +1,5 @@
-#ifndef  __BINARYCODE__
-#define __BINARYCODE__
+#ifndef BINARYCODE_H
+#define BINARYCODE_H
 #define MAX=256  
 
 typedef enum{0,1} Bit;
@@ -9,10 +9,10 @@ typedef struct{
     int length;
 }BinaryCode;
 
-BinaryCode binaryCode();
-void addBit(BinaryCode* bc, Bit b);
-int getLength(BinaryCode bc);
-Bit getBit(BinaryCode bc, int pos);
-void concatenate(BinaryCode* bc1, BinaryCode bc2);
+BinaryCode BC_binaryCode();
+void BC_addBit(BinaryCode* bc, Bit b);
+int BC_getLength(BinaryCode bc);
+Bit BC_getBit(BinaryCode bc, int pos);
+void BC_concatenate(BinaryCode* bc1, BinaryCode bc2);
 
 #endif
