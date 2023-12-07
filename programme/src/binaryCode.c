@@ -1,30 +1,36 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 #include "binaryCode.h"
 
-BinaryCode BC_binaryCode(){
-    BinaryCode bc;
-    bc.length = 0;
-    return bc;
-};
+BC_BinaryCode BC_binaryCode(){
+    BC_BinaryCode* pbc;
+    pbc->length = 0;
+    return pbc
+}
 
-void BC_addBit(BinaryCode* bc, Bit b){
+void BC_addBit(BC_BinaryCode* pbc, BC_Bit b){
+    if (pbc->length < MAX){
+        pbc->bits[pbc->length] = b;
+        pbc->length++;
+    }
+    else{
+        printf("Error : BinaryCode length exceeds maximum allowed length. \n");
+    }
+}
 
-};
+int BC_getLength(BC_BinaryCode* pbc){
+    return pbc->length;
+}
 
-int BC_getLength(BinaryCode* bc){
-    return bc.length;
-};
+Bit BC_getBit(BC_BinaryCode* pbc, unsigned int pos){
+    assert(pos < pbc->length)
+    return pbc->bits[pos]
+}
 
-Bit BC_getBit(BinaryCode* bc, int pos){
-
-};
-
-void BC_concatenate(BinaryCode* bc1, BinaryCode* bc2){
-
-};
-
-int main(){
-    BinaryCode* pbc = BC_binaryCode();
-    printf("longueur de %d", BC_getLength(pbc));
+void BC_concatenate(BC_BinaryCode* pbc1, BC_BinaryCode* pbc2){
+    unsigned int i;
+    for (i=0; i < BC_getLength(pbc2); i++){
+        BC_addBit(pc1, BC_getBit(pcb2,i));
+    }
 }
