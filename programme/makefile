@@ -33,7 +33,7 @@ $(TESTDIR)/%.o : $(TESTDIR)/%.c
 	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDEDIR)
 
 clean :
-	rm -rf./$(BINDIR)/*
+	rm -rf ./$(BINDIR)/*
 	rm -rf ./$(TESTBINDIR)/*
 	rm -rf ./$(LIBDIR)/*
 	rm -rf ./$(SRCDIR)/*.o
