@@ -20,6 +20,44 @@
 \vspace*{0.5cm}
 
 \begin{algorithme}
+    \fonction{buildHuffmanTree}{st: Statistics}{HuffmanTree}{}{
+        {queue: PriorityQueue;}
+        {b1,b2,b3,b4,b5,b6,b7,b8: Bit}
+        {oct: Byte}
+        {occurrence: \entier}
+        {ht: HuffmanTree}
+        {st: Statistics}
+    }
+        {
+            \affecter{queue}{newPriorityQueue ()}
+            % Il faut parcourir tous les octets possibles
+            % Il faut qu'on modifie l'oper octet du TAD byte pour qu'elle prenne un char en entree et pas 8 bits 
+            \pourChaque{(b1,b2,b3,b4,b5,b6,b7,b8)}{(0,1)x(0,1)x(0,1)x(0,1)x(0,1)x(0,1)x(0,1)x(0,1)}{
+                \affecter{oct}{octet(b1,b2,b3,b4,b5,b6,b7,b8)}
+                \sialorssinon{contains(st,oct)}
+                %!! contains et getCount devrait plutot prendre un Byte en entree et pas un naturel??
+                {
+                    \affecter{occurrence}{getCount(st, oct)}
+                    \affecter{ht}{createLeaf(occurrence)}
+                    \instruction{insertTree(queue, ht)}
+                }{}
+             }
+             \tantque{length(queue) $\geq$ 1}{
+                \affecter{ht}{popTree(queue)} 
+                %popTree devrait pouvoir renvoyer plusieurs arbres si mm ocuurence
+                %et donc logiquement les renvoie en 1 arbre qu'il construit
+                \instruction{insertTree(queue,ht)}
+                \sialorssinon{length(queue)==1}
+                {
+                    \affecter{ht}{popTree(queue)}
+                }{}
+            }
+            \retourner{ht}
+        }
+\end{algorithme}
+\vspace*{0.5cm}
+
+\begin{algorithme}
     \fonction{decode}{ht: HuffmanTree}{FichierBinaire}{}{}
         {\retourner{}}
 \end{algorithme}
