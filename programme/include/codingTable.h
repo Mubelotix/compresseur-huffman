@@ -19,9 +19,9 @@ typedef struct {
 CodingTable CT_new();
 bool CT_isEmpty(CodingTable table);
 unsigned int CT_length(CodingTable table);
-bool CT_contains(CodingTable table, Byte byte);
-void CT_add(CodingTable *table, Byte byte, BinaryCode code);
-BinaryCode CT_getBinaryCode(CodingTable table, Byte byte);
-Byte CT_getByte(CodingTable table, BinaryCode code);
+bool CT_contains(CodingTable table, B_Byte byte);
+void CT_add(CodingTable *table, B_Byte byte, BC_BinaryCode code);
+BC_BinaryCode CT_getBinaryCode(CodingTable table, B_Byte byte);
+B_Byte CT_getByte(CodingTable table, BC_BinaryCode code);
 
 #endif
