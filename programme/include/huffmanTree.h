@@ -1,6 +1,9 @@
 #ifndef HUFFMANTREE_H
 #define HUFFMANTREE_H
+#include "byte.h"
+#define bool int
 
+//check liste chainee struct pour corriger l'erreur de compil
 
 typedef struct{
     int occurence;
