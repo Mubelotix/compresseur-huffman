@@ -6,17 +6,17 @@
 
 #define MAX 256
 
-struct Coding {
+typedef struct {
     unsigned char Byte;
     unsigned char BinaryCode;
-}
+} Coding;
 
-struct CodingTable {
+typedef struct {
     Coding tab[MAX];
     unsigned int length;
-};
+} CodingTable;
 
-CodingTable newCodingTable();
+CodingTable CT_new();
 bool CT_isEmpty(CodingTable table);
 unsigned int CT_length(CodingTable table);
 bool CT_contains(CodingTable table, Byte byte);
