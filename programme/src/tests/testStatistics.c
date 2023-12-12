@@ -1,12 +1,13 @@
-#include <CUnit/CUnit.h>
+#include<CUnit/Basic.h>
 #include "statistics.h"
+#include "byte.h"
 
 // Test de l'axiome: contains(statistics, element)
 void S_testContains(void) {
-    Statistics stats = S_statistics();
-    int element = 42;
+    S_Statistics stats = S_statistics();
+    B_Byte element = B_byte(0,0,0,0,0,0,0,1);
 
-    S_incCount(stats, element);
+    S_incCount(&stats, element);
 
     CU_ASSERT_TRUE(S_contains(stats, element));
 }
@@ -50,6 +51,13 @@ void S_testContains(void) {
 //     CU_ASSERT_EQUAL(countAfter, countBefore + 1);
 // }
 
+int init_suite_success(void) { 
+  return 0; 
+}
+
+int clean_suite_success(void) { 
+  return 0; 
+}
 
 int main(int argc, char** argv){
   CU_pSuite pSuite = NULL;
