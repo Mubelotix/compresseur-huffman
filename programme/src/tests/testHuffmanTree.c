@@ -1,5 +1,6 @@
 #include <CUnit/Basic.h>
 #include "huffmanTree.h"
+#include "byte.h"
 
 void test_getRightChild() {
     // TO DO
@@ -10,7 +11,9 @@ void test_getLeftChild() {
 }
 
 void test_getByte() {
-    // TO DO
+    byte = B_byte(BC_Bit 0, BC_Bit 1, BC_Bit 1, BC_Bit 1, BC_Bit 0, BC_Bit 0, BC_Bit 0, BC_Bit 1)
+    leaf = createLeaf(byte)
+    CU_ASSERT_EQUAL(getByte(leaf), byte);
 }
 
 void test_createLeaf() {
