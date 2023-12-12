@@ -1,17 +1,16 @@
 #ifndef BYTE_H
 #define BYTE_H
-
-typedef enum{0,1} Bit_Bit;
+#include "binaryCode.h"
 
 typedef struct{
-    Bit_Bit array[8];
+    BC_Bit array[8];
 }B_Byte;
 
-B_Byte B_byte(Bit_Bit b1, Bit_Bit b2, Bit_Bit b3, Bit_Bit b4, Bit_Bit b5, Bit_Bit b6, Bit_Bit b7, Bit_Bit b8);
+B_Byte B_byte(BC_Bit b1, BC_Bit b2, BC_Bit b3, BC_Bit b4, BC_Bit b5, BC_Bit b6, BC_Bit b7, BC_Bit b8);
 
-Bit_Bit B_getBit(B_Byte byte, unsigned int i);
+BC_Bit B_getBit(B_Byte byte, unsigned int i);
 
-void B_setBit(B_Byte* byte, unsigned int i, Bit_Bit bit);
+void B_setBit(B_Byte* byte, unsigned int i, BC_Bit bit);
 
 unsigned int B_byteToNatural(B_Byte byte);
 

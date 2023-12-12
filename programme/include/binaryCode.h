@@ -1,6 +1,6 @@
 #ifndef BINARYCODE_H
 #define BINARYCODE_H
-#define MAX 8
+#define BC_MAX 8
 #define ZERO 0
 #define ONE 1
 
@@ -10,7 +10,7 @@ typedef enum {
 } BC_Bit;
 
 typedef struct{
-    BC_Bit bits[MAX];
+    BC_Bit bits[BC_MAX];
     unsigned int length;
 }BC_BinaryCode;
 

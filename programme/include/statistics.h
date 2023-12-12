@@ -4,6 +4,7 @@
 #include "byte.h"
 
 #define MAX 256
+#define bool int
 
 /**
  * @brief S_Statictics
