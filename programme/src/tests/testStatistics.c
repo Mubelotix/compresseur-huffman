@@ -11,7 +11,7 @@ void S_testContains(void) {
     CU_ASSERT_TRUE(contains(stats, element));
 }
 
-// Test de l'axiome: isEmpty(
+// Test de l'axiome: isEmpty()
 void S_testIsEmpty(void) {
     Statistics emptyStats = statistics();
     Statistics nonEmptyStats = statistics();
