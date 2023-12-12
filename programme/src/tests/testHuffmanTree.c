@@ -11,7 +11,19 @@ void test_getLeftChild() {
 }
 
 void test_getByte() {
-    byte = B_byte(BC_Bit 0, BC_Bit 1, BC_Bit 1, BC_Bit 1, BC_Bit 0, BC_Bit 0, BC_Bit 0, BC_Bit 1)
+    byte = B_byte( 0, 1, 1, 1, 0, 0, 0, 1)
+    leaf = createLeaf(byte)
+    CU_ASSERT_EQUAL(getByte(leaf), byte);
+
+    byte = B_byte(1, 1, 1, 0, 0, 1, 1, 1)
+    leaf = createLeaf(byte)
+    CU_ASSERT_EQUAL(getByte(leaf), byte);
+
+    byte = B_byte(0, 0, 0, 0, 0, 0, 0, 0)
+    leaf = createLeaf(byte)
+    CU_ASSERT_EQUAL(getByte(leaf), byte);
+
+    byte = B_byte(1, 1, 1, 1, 1, 1, 1, 1)
     leaf = createLeaf(byte)
     CU_ASSERT_EQUAL(getByte(leaf), byte);
 }
