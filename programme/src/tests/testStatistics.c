@@ -3,12 +3,12 @@
 
 // Test de l'axiome: contains(statistics, element)
 void S_testContains(void) {
-    Statistics stats = statistics();
+    Statistics stats = S_statistics();
     int element = 42;
 
-    incCount(stats, element);
+    S_incCount(stats, element);
 
-    CU_ASSERT_TRUE(contains(stats, element));
+    CU_ASSERT_TRUE(S_contains(stats, element));
 }
 
 // // Test de l'axiome: isEmpty()
