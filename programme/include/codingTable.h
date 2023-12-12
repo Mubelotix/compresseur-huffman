@@ -10,8 +10,8 @@
 
 /// @brief An association between a byte and its binary code.
 typedef struct {
-    unsigned char Byte;
-    unsigned char BinaryCode;
+    B_Byte byte;
+    BC_BinaryCode binary_code;
 } CT_Coding;
 
 /// @brief A table associating bytes and their binary codes.
