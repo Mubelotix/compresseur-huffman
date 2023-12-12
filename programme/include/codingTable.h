@@ -6,38 +6,39 @@
 
 /// @brief The maximum number of bytes in a coding table.
 #define MAX 256
+#define bool int
 
 /// @brief An association between a byte and its binary code.
 typedef struct {
-    unsigned char Byte;
-    unsigned char BinaryCode;
-} Coding;
+    B_Byte byte;
+    BC_BinaryCode binary_code;
+} CT_Coding;
 
 /// @brief A table associating bytes and their binary codes.
 typedef struct {
-    Coding tab[MAX];
+    CT_Coding tab[MAX];
     unsigned int length;
-} CodingTable;
+} CT_CodingTable;
 
 /**
  * @brief Creates a new coding table.
  * @return A new coding table.
 */
-CodingTable CT_new();
+CT_CodingTable CT_new();
 
 /**
  * @brief Checks if a coding table is empty.
  * @param table The coding table to check.
  * @return True if the coding table is empty, false otherwise.
 */
-bool CT_isEmpty(CodingTable table);
+bool CT_isEmpty(CT_CodingTable table);
 
 /**
  * @brief Gets the length of a coding table.
  * @param table The coding table to get the length of.
  * @return The length of the coding table.
 */
-unsigned int CT_length(CodingTable table);
+unsigned int CT_length(CT_CodingTable table);
 
 /**
  * @brief Checks if a coding table contains a byte.
@@ -45,7 +46,7 @@ unsigned int CT_length(CodingTable table);
  * @param byte The byte to check.
  * @return True if the coding table contains the byte, false otherwise.
 */
-bool CT_contains(CodingTable table, B_Byte byte);
+bool CT_contains(CT_CodingTable table, B_Byte byte);
 
 /**
  * @brief Adds a byte and its binary code to a coding table.
@@ -53,7 +54,7 @@ bool CT_contains(CodingTable table, B_Byte byte);
  * @param byte The byte to add.
  * @param code The binary code to add.
 */
-void CT_add(CodingTable *table, B_Byte byte, BC_BinaryCode code);
+void CT_add(CT_CodingTable *table, B_Byte byte, BC_BinaryCode code);
 
 /**
  * @brief Gets the binary code of a byte in a coding table.
@@ -61,7 +62,7 @@ void CT_add(CodingTable *table, B_Byte byte, BC_BinaryCode code);
  * @param byte The byte to get the binary code of.
  * @return The binary code of the byte.
 */
-BC_BinaryCode CT_getBinaryCode(CodingTable table, B_Byte byte);
+BC_BinaryCode CT_getBinaryCode(CT_CodingTable table, B_Byte byte);
 
 /**
  * @brief Gets the byte of a binary code in a coding table.
@@ -69,6 +70,6 @@ BC_BinaryCode CT_getBinaryCode(CodingTable table, B_Byte byte);
  * @param code The binary code to get the byte of.
  * @return The byte of the binary code.
 */
-B_Byte CT_getByte(CodingTable table, BC_BinaryCode code);
+B_Byte CT_getByte(CT_CodingTable table, BC_BinaryCode code);
 
 #endif
