@@ -32,14 +32,14 @@ void S_testGetCount(void) {
 }
 
 // Test de l'axiome: getElementCount(statistics) = 0
-void S_testGetElementCountAxiom(void) {
+void S_testGetElementCount(void) {
     Statistics stats = statistics();
 
     CU_ASSERT_TRUE(getElementCount(stats) = 0);
 }
 
 // Test de l'axiome: getElementCount(incCount(stats, el), el) = getElementCount(stats, el) + 1
-void S_testIncCountAxiom(void) {
+void S_testIncCount(void) {
     Statistics stats = statistics();
     int element = 42;
 
