@@ -2,16 +2,16 @@
 
 \begin{tad}
     \tadNom{Statistics}
-    \tadDependances{\naturel, \booleen, \entier}
+    \tadDependances{Element}
     \begin{tadOperations}{getElementCount}
         \tadOperation{statistics}{}{\tadParams{Statistics}}
         \tadOperation{isEmpty}{\tadParams{Statistics}}{\tadParams{\booleen}}
-        \tadOperation{contains}{\tadParams{Statistics} × \tadParams{\naturel}}{\tadParams{\booleen}}
-        \tadOperation{getCount}{\tadParams{Statistics} × \tadParams{\naturel}}{\tadParams{\entier}}
-        \tadOperation{incCount}{\tadParams{Statistics} × \tadParams{\naturel}}{\tadParams{Statistics}}
-        \tadOperation{getCount}{\tadParams{Statistics} × \tadParams{\naturel}}{\tadParams{\entier}}
+        \tadOperation{contains}{\tadParams{Statistics} × \tadParams{Element}}{\tadParams{\booleen}}
+        \tadOperation{getCount}{\tadParams{Statistics} × \tadParams{Element}}{\tadParams{\entier}}
+        \tadOperation{incCount}{\tadParams{Statistics} × \tadParams{Element}}{\tadParams{Statistics}}
+        \tadOperation{getCount}{\tadParams{Statistics} × \tadParams{Element}}{\tadParams{\entier}}
         \tadOperation{getElementCount}{\tadParams{Statistics}}{\tadParams{\entier}}
-        \tadOperationAvecPreconditions{getElement}{\tadParams{Statistics} × \tadParams{\entier}}{\tadParams{\naturel}}
+        \tadOperationAvecPreconditions{getElement}{\tadParams{Statistics} × \tadParams{\entier}}{\tadParams{Element}}
     \end{tadOperations}
     \begin{tadSemantiques}{getElementCount}
         \tadSemantique{statistics}{Crée une structure de statistiques vide.}
