@@ -1,4 +1,4 @@
-//#include <CUnit/CUnit.h>
+#include <CUnit/CUnit.h>
 #include "priorityQueue.h"
 #include "huffmanTree.h"
 
@@ -6,14 +6,14 @@
 void S_testNewPriorityQueue(void) {
     PQ_PriorityQueue queue = PQ_new();
 
-    //CU_ASSERT_TRUE(lenght(queue) = 0);
+    CU_ASSERT_TRUE(lenght(queue) = 0);
 }
 
 //test axiome : isEmpty(newPriorityQueue())
 void S_testIsEmpty(void) {
     PQ_PriorityQueue queue = PQ_new();
 
-    //CU_ASSERT_TRUE(isEmpty(newPriorityQueue()));
+    CU_ASSERT_TRUE(isEmpty(newPriorityQueue()));
 }
 
 //test axiome : lenght(insertTree(q, ht)) = lenght(q) + 1
@@ -23,7 +23,7 @@ void S_insertTree(void) {
     HT_HuffmanTree ht = HT_createTree(HT_createLeaf(occurence));
     PQ_insertTree(&queue, ht);
 
-    //CU_ASSERT_TRUE(lenght(queue) = 1);
+    CU_ASSERT_TRUE(lenght(queue) = 1);
 }
 
 //test axiome : lenght(popTree(q)) = lenght(q) − 1  &  popTree(insertTree(q, ht)) = ht
@@ -34,5 +34,5 @@ void S_testPopTree(void) {
     PQ_insertTree(&queue, ht);
     HT_HuffmanTree pop_ht = PQ_popTree(&queue);
 
-    //CU_ASSERT_TRUE((lenght(queue) = 0) && (ht = pop_ht));
+    CU_ASSERT_TRUE((lenght(queue) = 0) && (ht = pop_ht));
 }
