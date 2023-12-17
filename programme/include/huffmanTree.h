@@ -3,33 +3,33 @@
 #include "byte.h"
 #define bool int
 
-//check liste chainee struct pour corriger l'erreur de compil
 
-typedef struct{
+
+struct HT_HuffmanTreeNode {
     int occurence;
-    HT_HuffmanTreeNode* leftChild;
-    HT_HuffmanTreeNode* rightChild;
-}HT_HuffmanTreeNode;
+    struct HT_HuffmanTreeNode* leftChild;
+    struct HT_HuffmanTreeNode* rightChild;
+};
 
-typedef HT_HuffmanTreeNode* HT_HuffmanTree;
+typedef struct HT_HuffmanTreeNode* HT_HuffmanTree;
 
 
-HT_HuffmanTreeNode* HT_getRightChild(HT_HuffmanTreeNode* ht);
+struct HT_HuffmanTreeNode* HT_getRightChild(struct HT_HuffmanTreeNode* ht);
 
-HT_HuffmanTreeNode* HT_getLeftChild(HT_HuffmanTreeNode* ht);
+struct HT_HuffmanTreeNode* HT_getLeftChild(struct HT_HuffmanTreeNode* ht);
 
-B_Byte HT_getByte(HT_HuffmanTreeNode* ht);
+B_Byte HT_getByte(struct HT_HuffmanTreeNode* ht);
 
-int HT_getOccurence(HT_HuffmanTreeNode* ht);
+int HT_getOccurence(struct HT_HuffmanTreeNode* ht);
 
-bool HT_isALeaf(HT_HuffmanTreeNode* ht);
+bool HT_isALeaf(struct HT_HuffmanTreeNode* ht);
 
-HT_HuffmanTreeNode* HT_createLeaf(int occurence);
+struct HT_HuffmanTreeNode* HT_createLeaf(int occurence);
 
-HT_HuffmanTreeNode* HT_createNode(HT_HuffmanTreeNode* leftChild,HT_HuffmanTreeNode* rightChild)
+struct HT_HuffmanTreeNode* HT_createNode(struct HT_HuffmanTreeNode* leftChild,struct HT_HuffmanTreeNode* rightChild);
 
-void HT_destroy(HT_HuffmanTreeNode* ht);
+void HT_destroy(struct HT_HuffmanTreeNode* ht);
 
-HT_HuffmanTree HT_createTree(HT_HuffmanTreeNode* root)
+HT_HuffmanTree HT_createTree(struct HT_HuffmanTreeNode* root);
 
 #endif
