@@ -3,21 +3,21 @@
 #include "huffmanTree.h"
 
 //test axiome : lenght(newPriorityQueue()) = 0
-void S_testNewPriorityQueue(void) {
+void PQ_testNewPriorityQueue(void) {
     PQ_PriorityQueue queue = PQ_new();
 
     CU_ASSERT_TRUE(lenght(queue) = 0);
 }
 
 //test axiome : isEmpty(newPriorityQueue())
-void S_testIsEmpty(void) {
+void PQ_testIsEmpty(void) {
     PQ_PriorityQueue queue = PQ_new();
 
     CU_ASSERT_TRUE(isEmpty(newPriorityQueue()));
 }
 
 //test axiome : lenght(insertTree(q, ht)) = lenght(q) + 1
-void S_insertTree(void) {
+void PQ_insertTree(void) {
     PQ_PriorityQueue queue = PQ_new();
     int occurence = 42;
     HT_HuffmanTree ht = HT_createTree(HT_createLeaf(occurence));
@@ -27,7 +27,7 @@ void S_insertTree(void) {
 }
 
 //test axiome : lenght(popTree(q)) = lenght(q) − 1  &  popTree(insertTree(q, ht)) = ht
-void S_testPopTree(void) {
+void PQ_testPopTree(void) {
     PQ_PriorityQueue queue = PQ_new();
     int occurence = 42;
     HT_HuffmanTree ht = HT_createTree(HT_createLeaf(occurence));
