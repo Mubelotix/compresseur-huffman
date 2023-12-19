@@ -3,11 +3,23 @@
 #include "byte.h"
 
 void test_getRightChild() {
-    // TO DO
+    ht = HT_createTree(HT_createNode(HT_createLeaf(0), HT_createLeaf(0)))
+    rc = HT_getRightChild(ht);
+    CU_ASSERT_EQUAL(ht.rightChild, b);
+
+    ht = HT_createTree(HT_createNode(HT_createLeaf(0), HT_createLeaf(42)))
+    rc = HT_getRightChild(ht);
+    CU_ASSERT_EQUAL(ht.rightChild, b);
 }
 
 void test_getLeftChild() {
-    // TO DO
+    ht = HT_createTree(HT_createNode(HT_createLeaf(0), HT_createLeaf(0)))
+    rc = HT_getLeftChild(ht);
+    CU_ASSERT_EQUAL(ht.leftChild, b);
+
+    ht = HT_createTree(HT_createNode(HT_createLeaf(0), HT_createLeaf(42)))
+    rc = HT_getLeftChild(ht);
+    CU_ASSERT_EQUAL(ht.leftChild, b);
 }
 
 void test_getByte() {
