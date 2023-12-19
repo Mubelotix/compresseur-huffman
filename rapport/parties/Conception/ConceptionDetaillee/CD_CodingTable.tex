@@ -63,7 +63,7 @@
 \vspace*{0.5cm}
 
 \begin{algorithme} 
-    \fonction{getByte}{table : CodingTable, code : BinaryCode}{Byte}{i : \naturelNonNul}{}
+    \fonction{getByte}{table : CodingTable, code : BinaryCode}{Byte}{}{i : \naturelNonNul}
     {\affecter{i}{1}
     \tantque{(i $\leq$ \champ{table}{length}) et (\champ{table}{tab[i]}{.code} $\neq$ code)}
         {\affecter{i}{i + 1} 
