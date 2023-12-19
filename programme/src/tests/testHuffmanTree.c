@@ -48,12 +48,11 @@ void test_createLeaf() {
     CU_ASSERT_EQUAL(HT_getOccurence(leaf), 42);
 }
 
-void test_destroy() {
-    // TO DO
-}
-
 void test_createTree() {
-    // TO DO
+    ht = HT_createTree(HT_createNode(HT_createLeaf(0), HT_createLeaf(42)))
+    CU_ASSERT_EQUAL(ht.occurence, HT_getOccurence(ht));
+    CU_ASSERT_EQUAL(ht.leftChild, HT_getLeftChild(ht));
+    CU_ASSERT_EQUAL(ht.rightChild, HT_getRightChild(ht));
 }
 
 void test_isALeaf() {
@@ -65,11 +64,13 @@ void test_isALeaf() {
 }
 
 void test_getOccurence() {
-    // hay un problemo de concepcion si si senor
+    ht = HT_createNode(HT_createLeaf(42), HT_createLeaf(42));
+    res = 42 + 42;
+    CU_ASSERT_EQUAL(res, HT_getOccurence(ht));
 }
 
 void test_createNode() {
-    leaf1 = HT_createLeaf(0);
+    leaf1 = HT_createLeaf(2);
     leaf2 = HT_createLeaf(42);
     node = HT_createNode(leaf1, leaf2);
     CU_ASSERT_EQUAL(leaf1, HT_getLeftChild(node));
@@ -94,7 +95,6 @@ int main() {
         (CU_add_test(suite, "test_getByte", test_getByte) == NULL) ||
         (CU_add_test(suite, "test_createLeaf", test_createLeaf) == NULL)) ||
         (CU_add_test(suite, "test_createNode", test_createNode) == NULL)||
-        (CU_add_test(suite, "test_destroy", test_destroy) == NULL)||
         (CU_add_test(suite, "test_getOccurence", test_getOccurence) == NULL)||
         (CU_add_test(suite, "test_isALeaf", test_isALeaf) == NULL){
         CU_cleanup_registry();
