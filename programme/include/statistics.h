@@ -1,4 +1,4 @@
-∏∏#ifndef STATISTICS_H
+#ifndef STATISTICS_H
 #define STATISTICS_H
 
 #include "byte.h"
@@ -6,12 +6,12 @@
 #define S_MAX 256
 #define bool int
 
-    /**
-     * @brief S_Statistics
-     * @param element : B_Byte
-     * @param nbOfElements : int
-     */
-    typedef struct
+/**
+ * @brief S_Statistics
+ * @param element : B_Byte
+ * @param nbOfElements : int
+ */
+typedef struct
 {
     int element[S_MAX];
     int nbOfElements;
