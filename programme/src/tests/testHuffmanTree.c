@@ -1,10 +1,10 @@
 #include <CUnit/Basic.h>
 #include "huffmanTree.h"
 #include "byte.h"
-
+// grosse galère grosse galère j'ai confondu noeud et arbre
 void test_getRightChild() {
-    ht = HT_createNode(HT_createLeaf(0), HT_createLeaf(0));
-    rc = HT_getRightChild(ht);
+    HT_HuffmanTreeNode ht = HT_createNode(HT_createLeaf(0), HT_createLeaf(0));
+    HT_HuffmanTreeNode rc = HT_getRightChild(ht);
     CU_ASSERT_EQUAL(ht.rightChild, b);
 
     ht = HT_createNode(HT_createLeaf(0), HT_createLeaf(42));
@@ -13,8 +13,8 @@ void test_getRightChild() {
 }
 
 void test_getLeftChild() {
-    ht = HT_createNode(HT_createLeaf(0), HT_createLeaf(0));
-    rc = HT_getLeftChild(ht);
+    HT_HuffmanTreeNode ht = HT_createNode(HT_createLeaf(0), HT_createLeaf(0));
+    HT_HuffmanTreeNode rc = HT_getLeftChild(ht);
     CU_ASSERT_EQUAL(ht.leftChild, b);
 
     ht = HT_createNode(HT_createLeaf(0), HT_createLeaf(42));
@@ -23,8 +23,8 @@ void test_getLeftChild() {
 }
 
 void test_getByte() {
-    byte = B_byte( 0, 1, 1, 1, 0, 0, 0, 1);
-    leaf = HT_createLeaf(byte);
+    Byte byte = B_byte( 0, 1, 1, 1, 0, 0, 0, 1);
+    HT_HuffmanTreeNode leaf = HT_createLeaf(byte);
     CU_ASSERT_EQUAL(getByte(leaf), byte);
 
     byte = B_byte(1, 1, 1, 0, 0, 1, 1, 1);
@@ -41,7 +41,7 @@ void test_getByte() {
 }
 
 void test_createLeaf() {
-    leaf = HT_createLeaf(0);
+    HT_HuffmanTreeNode leaf = HT_createLeaf(0);
     CU_ASSERT_EQUAL(HT_getOccurence(leaf), 0);
 
     leaf = HT_createLeaf(42);
@@ -49,14 +49,14 @@ void test_createLeaf() {
 }
 
 void test_createTree() {
-    ht = HT_createTree(HT_createNode(HT_createLeaf(0), HT_createLeaf(42)))
+    HT_HuffmanTreeNode* ht = HT_createTree(HT_createNode(HT_createLeaf(0), HT_createLeaf(42)));
     CU_ASSERT_EQUAL(ht.occurence, HT_getOccurence(ht));
     CU_ASSERT_EQUAL(ht.leftChild, HT_getLeftChild(ht));
     CU_ASSERT_EQUAL(ht.rightChild, HT_getRightChild(ht));
 }
 
 void test_isALeaf() {
-    ht = HT_createNode(HT_createLeaf(0), HT_createLeaf(0));
+    HT_HuffmanTreeNode ht = HT_createNode(HT_createLeaf(0), HT_createLeaf(0));
     CU_ASSERT_EQUAL(HT_isALeaf(ht), 0);
 
     ht = HT_createLeaf(0);
@@ -64,14 +64,14 @@ void test_isALeaf() {
 }
 
 void test_getOccurence() {
-    ht = HT_createNode(HT_createLeaf(42), HT_createLeaf(42));
-    res = 42 + 42;
+    HT_HuffmanTreeNode ht = HT_createNode(HT_createLeaf(42), HT_createLeaf(42));
+    int res = 42 + 42;
     CU_ASSERT_EQUAL(res, HT_getOccurence(ht));
 }
 
 void test_createNode() {
-    leaf1 = HT_createLeaf(2);
-    leaf2 = HT_createLeaf(42);
+    HT_HuffmanTreeNode leaf1 = HT_createLeaf(2);
+    HT_HuffmanTreeNode leaf2 = HT_createLeaf(42);
     node = HT_createNode(leaf1, leaf2);
     CU_ASSERT_EQUAL(leaf1, HT_getLeftChild(node));
     CU_ASSERT_EQUAL(leaf2, HT_getLeftChild(node));
