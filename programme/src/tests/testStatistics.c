@@ -1,4 +1,5 @@
 #include<CUnit/Basic.h>
+
 #include "statistics.h"
 #include "byte.h"
 
@@ -12,44 +13,44 @@ void S_testContains(void) {
     CU_ASSERT_TRUE(S_contains(stats, element));
 }
 
-// // Test de l'axiome: isEmpty()
-// void S_testIsEmpty(void) {
-//     Statistics emptyStats = statistics();
-//     Statistics nonEmptyStats = statistics();
-//     incCount(nonEmptyStats, 42);  
+// Test de l'axiome: isEmpty()
+void S_testIsEmpty(void) {
+    S_Statistics emptyStats = S_statistics();
+    S_Statistics nonEmptyStats = S_statistics();
+    S_incCount(&nonEmptyStats, B_byte(0,0,0,0,0,0,0,1));
 
-//     CU_ASSERT_TRUE(isEmpty(emptyStats));     //doit retourner vrai
-//     CU_ASSERT_FALSE(isEmpty(nonEmptyStats));  // doit retourner faux
-// }
+    CU_ASSERT_TRUE(S_isEmpty(emptyStats));     //doit retourner vrai
+    CU_ASSERT_FALSE(S_isEmpty(nonEmptyStats));  // doit retourner faux
+}
 
-// // Test de l'axiome: getCount(statistics, element) >= 0
-// void S_testGetCount(void) {
-//     Statistics stats = statistics();
-//     int element = 42;
-//     statsInc = incCount(stats, element);
+// Test de l'axiome: getCount(S_statistics, element) >= 0
+void S_testGetCount(void) {
+    S_Statistics stats = S_statistics();
+    B_Byte b = B_byte(0,0,0,0,0,0,0,1);
+    CU_ASSERT_TRUE(S_getCount(stats, b) == 0);
 
-//     CU_ASSERT_TRUE(getCount(stats, element) = 0);
-//     CU_ASSERT_TRUE(getCount(statsInc, element) > 0);
-// }
+    S_incCount(&stats, b);
+    CU_ASSERT_TRUE(S_getCount(stats, b) > 0);
+}
 
-// // Test de l'axiome: getElementCount(statistics) = 0
-// void S_testGetElementCount(void) {
-//     Statistics stats = statistics();
+// Test de l'axiome: getElementCount(S_statistics) = 0
+void S_testGetElementCount(void) {
+    S_Statistics stats = S_statistics();
 
-//     CU_ASSERT_TRUE(getElementCount(stats) = 0);
-// }
+    CU_ASSERT_TRUE(S_length(&stats) == 0);
+}
 
-// // Test de l'axiome: getElementCount(incCount(stats, el), el) = getElementCount(stats, el) + 1
-// void S_testIncCount(void) {
-//     Statistics stats = statistics();
-//     int element = 42;
+// Test de l'axiome: getElementCount(incCount(stats, el), el) = getElementCount(stats, el) + 1
+void S_testIncCount(void) {
+    S_Statistics stats = S_statistics();
+    B_Byte b = B_byte(0,0,0,0,0,0,0,1);
 
-//     int countBefore = getElementCount(stats);
-//     incCount(stats, element);
-//     int countAfter = getElementCount(stats);
+    int countBefore = S_length(&stats);
+    S_incCount(&stats, b);
+    int countAfter = S_length(&stats);
 
-//     CU_ASSERT_EQUAL(countAfter, countBefore + 1);
-// }
+    CU_ASSERT_EQUAL(countAfter, countBefore + 1);
+}
 
 int init_suite_success(void) { 
   return 0; 
@@ -75,10 +76,10 @@ int main(int argc, char** argv){
 
   /* Ajout des tests à la suite de tests boite noire */
   if ((NULL == CU_add_test(pSuite, "Test contains", S_testContains ))
-    //   || (NULL == CU_add_test(pSuite, "Test getCount", S_testGetCount))
-    //   || (NULL == CU_add_test(pSuite, "Test getElementCount", S_testGetElementCount)) 
-    //   || (NULL == CU_add_test(pSuite, "Test incCount", S_testIncCount))
-    //   || (NULL == CU_add_test(pSuite, "Test isEmpty", S_testIsEmpty))
+    || (NULL == CU_add_test(pSuite, "Test getCount", S_testGetCount))
+    || (NULL == CU_add_test(pSuite, "Test getElementCount", S_testGetElementCount)) 
+    || (NULL == CU_add_test(pSuite, "Test incCount", S_testIncCount))
+    || (NULL == CU_add_test(pSuite, "Test S_isEmpty", S_testIsEmpty))
       ) 
     {
       CU_cleanup_registry();

@@ -3,46 +3,36 @@
 #include "huffmanTree.h"
 
 //test axiome : lenght(newPriorityQueue()) = 0
-void S_testNewPriorityQueue(void) {
-    PQ_PriorityQueue queue = newPriorityQueue();
+void PQ_testNewPriorityQueue(void) {
+    PQ_PriorityQueue queue = PQ_new();
 
     CU_ASSERT_TRUE(lenght(queue) = 0);
 }
 
 //test axiome : isEmpty(newPriorityQueue())
-void S_testIsEmpty(void) {
-    PQ_PriorityQueue queue = newPriorityQueue();
+void PQ_testIsEmpty(void) {
+    PQ_PriorityQueue queue = PQ_new();
 
     CU_ASSERT_TRUE(isEmpty(newPriorityQueue()));
 }
 
 //test axiome : lenght(insertTree(q, ht)) = lenght(q) + 1
-void S_testPopTree(void) {
-    PQ_PriorityQueue queue = newPriorityQueue();
+void PQ_insertTree(void) {
+    PQ_PriorityQueue queue = PQ_new();
     int occurence = 42;
     HT_HuffmanTree ht = HT_createTree(HT_createLeaf(occurence));
-    insertTree(queue, ht);
+    PQ_insertTree(&queue, ht);
 
     CU_ASSERT_TRUE(lenght(queue) = 1);
 }
 
-//test axiome : lenght(popTree(q)) = lenght(q) − 1
-void S_testPopTree(void) {
-    PQ_PriorityQueue queue = newPriorityQueue();
+//test axiome : lenght(popTree(q)) = lenght(q) − 1  &  popTree(insertTree(q, ht)) = ht
+void PQ_testPopTree(void) {
+    PQ_PriorityQueue queue = PQ_new();
     int occurence = 42;
     HT_HuffmanTree ht = HT_createTree(HT_createLeaf(occurence));
-    insertTree(queue, ht);
-    ht = popTree(queue);
+    PQ_insertTree(&queue, ht);
+    HT_HuffmanTree pop_ht = PQ_popTree(&queue);
 
-    CU_ASSERT_TRUE(lenght(queue) = 0);
-}
-
-//test axiome : popTree(insertTree(q, ht)) = ht
-void S_testPopTree(void) {
-    PQ_PriorityQueue queue = newPriorityQueue();
-    int occurence = 42;
-    HT_HuffmanTree ht = HT_createTree(HT_createLeaf(occurence));
-    insertTree(queue, ht);
-
-    CU_ASSERT_TRUE(popTree(queue) = ht);
+    CU_ASSERT_TRUE((lenght(queue) = 0) && (ht = pop_ht));
 }

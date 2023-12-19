@@ -37,3 +37,5 @@ clean :
 	rm -rf ./$(TESTBINDIR)/*
 	rm -rf ./$(LIBDIR)/*
 	rm -rf ./$(SRCDIR)/*.o
+
+# gcc -o tests/testStatistics src/tests/testStatistics.c -Iinclude -lcunit -Wall -pedantic
