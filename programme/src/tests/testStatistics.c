@@ -1,4 +1,5 @@
 #include<CUnit/Basic.h>
+
 #include "statistics.h"
 #include "byte.h"
 
@@ -16,7 +17,7 @@ void S_testContains(void) {
 void S_testIsEmpty(void) {
     S_Statistics emptyStats = S_statistics();
     S_Statistics nonEmptyStats = S_statistics();
-    S_incCount(&nonEmptyStats, B_byte(0,0,0,0,0,0,0,1));  
+    S_incCount(&nonEmptyStats, B_byte(0,0,0,0,0,0,0,1));
 
     CU_ASSERT_TRUE(S_isEmpty(emptyStats));     //doit retourner vrai
     CU_ASSERT_FALSE(S_isEmpty(nonEmptyStats));  // doit retourner faux
