@@ -70,28 +70,3 @@ void CT_testGetByte() {
 
     CU_ASSERT_EQUAL(CT_getByte(table,code),byte);
 }
-/*
-
-
-void testGetBinaryCode() {
-    CodingTable table = codingTable();
-    Byte byteToAdd = 65;
-    BinaryCode codeToAdd = "0101";
-
-    add(&table, byteToAdd, codeToAdd);
-
-    assert(getBinaryCode(table, byteToAdd) == codeToAdd);
-}
-
-void testGetByte() {
-    CodingTable table = codingTable();
-    Byte byteToAdd = 65;
-    BinaryCode codeToAdd = "0101";
-
-    add(&table, byteToAdd, codeToAdd);
-
-    assert(getByte(table, codeToAdd) == byteToAdd);
-}
-
-
-*/
