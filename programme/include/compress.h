@@ -1,6 +1,6 @@
 #ifndef COMPRESS_H
 #define COMPRESS_H
 
-FILE* C_compress(FILE* f);
+void C_compressFile(char* nameSourceFile);
 
 #endif
