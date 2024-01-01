@@ -13,13 +13,27 @@
 
 
     //2. Type HuffmanTreeNode : Faut faire en sorte de stocker l'octet aux feuilles de l'abres
-    // soit on met un int valeur qui prend le nb d'occurences et si c une feuille il contient l'octet
-    // sinn bah on rajoute un int octet qui prend -1 si c pas une feuille
+    // on rajoute un int octet qui prend -1 si c pas une feuille
 //struct HT_HuffmanTreeNode {
 //    int valeur;
+//    int octet;       //prend -1 si c un noeud et l'octet si feuille
 //    struct HT_HuffmanTreeNode* leftChild;
 //    struct HT_HuffmanTreeNode* rightChild;
 //};
+// Et du coup rajouter un getOctet dans HT
+
+// 3. Modifier HT_createLeaf de sorte qu'il initialise la valeur de l'octet
+
+// 4. Modifier HT_createNode de sorte qu'il calcule la valeur (node.valeur = leftChild.valeur+rightChild.valeur)
+//                                      et met node.otet à -1
+
+// 5.  Changer structure CT_CodingTable
+// typedef struct {
+//    BC_BinaryCode table[256]; // Table de codage pour chaque octet
+// } CT_CodingTable;
+//Il sera don plus necessaire de passer par CT_coding pour faire l'association entre l'octet et son code binaire 
+
+
 
 S_Statistics C_computeStatistics(FILE* file) {
     S_Statistics stats;
@@ -27,8 +41,8 @@ S_Statistics C_computeStatistics(FILE* file) {
     stats = S_statistics();
 
     B_Byte byte;
-    while ((byte = fgetc(file)) != EOF) {
-        stats->frequencies[byte]++;              // A modifier : fichier d'octet?
+    while ((byte = fgetc(file)) != EOF) {       // si c un fichier d'octet faut trouver l'equivalent de fgetc
+        stats->frequencies[byte]++;              // A modifier : fichier d'octet et freaquencies prend un [int] ?
     }
 
     return stats;
@@ -36,12 +50,12 @@ S_Statistics C_computeStatistics(FILE* file) {
 
 
 HT_HuffmanTree C_buildHuffmanTree(S_Statistics stats) {
-    HT_HuffmanTree leaves[256];
+    HT_HuffmanTree nodes[256];
     for (int i = 0; i < 256; ++i) {
         if (stats->frequencies[i] > 0) {
-            leaves[i] = HT_createLeaf(stats->frequencies[i]);
+            nodes[i] = HT_createLeaf(stats->frequencies[i]);     
         } else {
-            leaves[i] = NULL;
+            nodes[i] = NULL;
         }
     }
 
@@ -49,8 +63,8 @@ HT_HuffmanTree C_buildHuffmanTree(S_Statistics stats) {
         // Trouver les deux nœuds avec les fréquences les plus basses
         int min1 = -1, min2 = -1;
         for (int i = 0; i < 256; ++i) {
-            if (leaves[i] != NULL) {
-                if (min1 == -1 || leaves[i]->valeur < nodes[min1]->valeur) {
+            if (nodes[i] != NULL) {
+                if (min1 == -1 || nodes[i]->valeur < nodes[min1]->valeur) {
                     min2 = min1;
                     min1 = i;
                 } else if (min2 == -1 || nodes[i]->valeur < nodes[min2]->valeur) {
@@ -61,33 +75,50 @@ HT_HuffmanTree C_buildHuffmanTree(S_Statistics stats) {
 
         // Si un seul nœud restant, c'est l'arbre de Huffman complet
         if (min2 == -1) {
-            return leaves[min1];
-        }
-
-        // Créer un nouveau nœud avec la somme des fréquences
-        //A noter : pour les 
-        HuffmanTree* newNode = createNode(nodes[min1]->valeur + nodes[min2]->valeur);
-        newNode->gauche = nodes[min1];
-        newNode->droit = nodes[min2];
-
-        // Si un seul nœud restant, c'est l'arbre de Huffman complet
-        if (min2 == -1) {
             return nodes[min1];
         }
 
         // Créer un nouveau nœud avec la somme des fréquences
-        HT_HuffmanTree newNode = createNode(nodes[min1]->occurence + nodes[min2]->occurence);
-        newNode->leftChild = nodes[min1];
-        newNode->rightChild = nodes[min2];
+        HuffmanTree newNode = createNode(nodes[min1], nodes[min2]);
 
-        // Marquer les deux nœuds comme fusionnés
+        // Fusionner les 2 noeuds
         nodes[min1] = newNode;
         nodes[min2] = NULL;
     }
 }
 
+void browseTree(HuffmanTree* noeud, BC_BinaryCode code, CT_CodingTable* codingTable) {
+    
+    if (noeud != NULL) {
+        // Si le nœud est une feuille, enregistrez le code binaire dans la table
+        if (HT_isALeaf(noeud)) {
+            codingTable->table[noeud->octet] = code;  //rajouter un getOctet dans HT et modifier CT_add pour l'utiliser ici
+        }
+
+        // Parcourir récursivement le sous-arbre gauche avec l'ajout de BC_ZERO au code binaire
+        BC_BinaryCode leftCode = code;
+        BC_addBit(&leftCode,BC_ZERO);
+        browseTree(HT_getLeftChild(noeud), leftCode, codingTable);
+
+        // Parcourir récursivement le sous-arbre droit avec l'ajout de BC_ONE au code binaire
+        BC_BinaryCode rightCode = code;
+        BC_addBit(&rightCode,BC_ONE);
+        browseTree(HT_getRightChild(noeud), codeDroite, codingTable);
+    }
+}
+
 CT_CodingTable C_buildCodingTable(HT_HuffmanTree* tree) {
-    return;
+    CT_CodingTable codingTable;
+    for (int i = 0; i < 256; ++i) {
+        // Initialiser chaque BC_BinaryCode à zéro bits
+        codingTable.table[i] = BC_binaryCode();
+    }
+
+    BC_BinaryCode emptyCode = BC_binaryCode();
+    
+    browseTree(tree, emptyCode, &codingTable);
+
+    return codingTable;
 }
 
 void writeStatistics(FILE* file,  S_Statistics* stats) {
