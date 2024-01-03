@@ -32,8 +32,9 @@ int HT_isALeaf(HT_HuffmanTree ht) {
     return ((ht->leftChild == NULL) && (ht->rightChild == NULL));
 }
 
-HT_HuffmanTree HT_createLeaf(int occurence) {
+HT_HuffmanTree HT_createLeaf(int occurence, int octet) {
     HT_HuffmanTree node = (HT_HuffmanTree)malloc(sizeof(struct HT_HuffmanTreeNode));
+    node->octet = octet;
     node->occurence = occurence;
     node->leftChild = NULL;
     node->rightChild = NULL;
@@ -44,6 +45,7 @@ HT_HuffmanTree HT_createNode(HT_HuffmanTree leftChild, HT_HuffmanTree rightChild
     // Précondition: leftChild et rightChild ne sont pas nuls
     if ((leftChild != NULL) && (rightChild != NULL)) {
         HT_HuffmanTree node = (HT_HuffmanTree)malloc(sizeof(struct HT_HuffmanTreeNode));
+        node->octet = -1;
         node->occurence = leftChild->occurence + rightChild->occurence;
         node->leftChild = leftChild;
         node->rightChild = rightChild;
