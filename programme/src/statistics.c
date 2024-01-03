@@ -31,12 +31,13 @@ bool S_isEmpty(S_Statistics stats)
 
 bool S_contains(S_Statistics stats, B_Byte element)
 {
-    return S_getCount(stats, B_byteToNatural(element));
+    return S_getCount(stats, element) > 0;
 }
 
-int S_getCount(S_Statistics stats, int element)
+int S_getCount(S_Statistics stats, B_Byte element)
 {
-    return stats.element[element];
+    unsigned int index = B_byteToNatural(element);
+    return stats.element[index];
 }
 
 void S_incCount(S_Statistics *stats, B_Byte element)

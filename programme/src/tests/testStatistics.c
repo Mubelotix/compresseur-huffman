@@ -27,10 +27,10 @@ void S_testIsEmpty(void) {
 void S_testGetCount(void) {
     S_Statistics stats = S_statistics();
     B_Byte b = B_byte(0,0,0,0,0,0,0,1);
-    CU_ASSERT_TRUE(S_getCount(stats, b) == 0);
+    CU_ASSERT_EQUAL(S_getCount(stats, b), 0);
 
     S_incCount(&stats, b);
-    CU_ASSERT_TRUE(S_getCount(stats, b) > 0);
+    CU_ASSERT(S_getCount(stats, b) > 0);
 }
 
 // Test de l'axiome: getElementCount(S_statistics) = 0
