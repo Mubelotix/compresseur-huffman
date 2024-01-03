@@ -91,7 +91,7 @@ void browseTree(HT_HuffmanTree* noeud, BC_BinaryCode code, CT_CodingTable* codin
     if (noeud != NULL) {
         // Si le nœud est une feuille, enregistrez le code binaire dans la table
         if (HT_isALeaf(*noeud)) {
-            CT_add(codingTable,HT_getOctet(noeud));  //rajouter un getOctet dans HT et modifier CT_add pour l'utiliser ici
+            CT_add(codingTable,HT_getOctet(*noeud),code);  //rajouter un getOctet dans HT et modifier CT_add pour l'utiliser ici
         }
 
         // Parcourir récursivement le sous-arbre gauche avec l'ajout de BC_ZERO au code binaire
