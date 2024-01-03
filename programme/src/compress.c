@@ -12,7 +12,7 @@
 //  } S_Statistics;
 
 
-    //2. Type HuffmanTreeNode : Faut faire en sorte de stocker l'octet aux feuilles de l'abres
+    //(FAIT ✅)//2. Type HuffmanTreeNode : Faut faire en sorte de stocker l'octet aux feuilles de l'abres
     // on rajoute un int octet qui prend -1 si c pas une feuille
 //struct HT_HuffmanTreeNode {
 //    int valeur;
@@ -20,12 +20,12 @@
 //    struct HT_HuffmanTreeNode* leftChild;
 //    struct HT_HuffmanTreeNode* rightChild;
 //};
-// Et du coup rajouter un getOctet dans HT
+// Et du coup rajouter un getOctet dans HT (FAIT ✅)
 
-// 3. Modifier HT_createLeaf de sorte qu'il initialise la valeur de l'octet
+// 3. Modifier HT_createLeaf de sorte qu'il initialise la valeur de l'octet (FAIT ✅)
 
 // 4. Modifier HT_createNode de sorte qu'il calcule la valeur (node.valeur = leftChild.valeur+rightChild.valeur)
-//                                      et met node.otet à -1
+//                                      et met node.otet à -1(FAIT ✅)
 
 // 5.  Changer structure CT_CodingTable (FAIT ✅)
 // typedef struct {
@@ -52,7 +52,7 @@ HT_HuffmanTree C_buildHuffmanTree(S_Statistics stats) {
     HT_HuffmanTree nodes[256];
     for (int i = 0; i < 256; ++i) {
         if (stats->frequencies[i] > 0) {
-            nodes[i] = HT_createLeaf(stats->frequencies[i]);     
+            nodes[i] = HT_createLeaf(stats->frequencies[i],i);     
         } else {
             nodes[i] = NULL;
         }
