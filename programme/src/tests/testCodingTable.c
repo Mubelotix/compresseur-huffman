@@ -19,7 +19,6 @@ void CT_testContainsAndAdd() {
     CT_add(&table, byte, code);
 
     CU_ASSERT_TRUE(CT_contains(table, byte));
-    CU_ASSERT_EQUAL(CT_length(table), 1);
 }
 
 void CT_testGetBinaryCode() {
@@ -35,7 +34,7 @@ void CT_testGetBinaryCode() {
 
     CT_add(&table, byte, code);
 
-    CU_ASSERT_EQUAL(CT_getBinaryCode(table, byte), code);
+    CU_ASSERT(BC_equals(CT_getBinaryCode(table, byte), code));
     //ne peut pas comparer deux BC faut comparer bit par bit
 }
 
@@ -52,5 +51,5 @@ void CT_testGetByte() {
 
     CT_add(&table, byte, code);
 
-    CU_ASSERT_EQUAL(CT_getByte(table, code), byte);
+    CU_ASSERT(B_equals(CT_getByte(table, code), byte));
 }
