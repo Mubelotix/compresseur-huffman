@@ -41,13 +41,11 @@ S_Statistics C_computeStatistics(FILE* file) {
 
     B_Byte byte;
     unsigned int byteNat;
-    //while ((byte = fgetc(file)) != EOF) 
-    while (fread(&byte, 1, 1, file) == 1){       // si c un fichier d'octet faut trouver l'equivalent de fgetc
+    while (fread(&byte, 1, 1, file) == 1){ 
         byteNat = B_byteToNatural(byte);
         S_incCount(&stats,byteNat);
-    //    stats.element[byte]++;              // A modifier : fichier d'octet et freaquencies prend un [int] ?
     }
-    // Faut pouvoir recuperer les octets du fichier et les transformer en int
+
     return stats;
 }
 
