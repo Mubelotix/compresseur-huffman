@@ -76,5 +76,3 @@ void test_PQ_shiftRight() {
         CU_ASSERT_EQUAL(queue.elements[i], initElements[i - 1]);
     }
 }
-
-
