@@ -27,13 +27,11 @@ $(LIBDIR)/libhuffman.a : $(OBJ_FILES)
 $(SRCDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDEDIR)
 
-# Compile each test file separately
 TEST_SRC_FILES := $(wildcard $(TESTDIR)/*.c)
 TEST_OBJ_FILES := $(patsubst $(TESTDIR)/%.c, $(TESTDIR)/%.o, $(TEST_SRC_FILES))
 $(TESTDIR)/%.o : $(TESTDIR)/%.c
 	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDEDIR)
 
-# Link all test object files to create the test executable
 $(TESTBINDIR)/$(TESTEXEC) : $(TEST_OBJ_FILES) $(LIBDIR)/libhuffman.a
 	$(CC) $(LDFLAGS) -o $@ $^ -lhuffman -Llib -lcunit
 
