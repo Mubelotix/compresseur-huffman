@@ -11,10 +11,8 @@
  * @param element : B_Byte
  * @param nbOfElements : int
  */
-typedef struct
-{
-    int element[S_MAX];
-    int nbOfElements;
+typedef struct {
+    unsigned int element[S_MAX];
 } S_Statistics;
 
 /**
@@ -58,7 +56,7 @@ void S_incCount(S_Statistics *stats, B_Byte element);
  * @param stats : S_Statistics
  * @return the number of elements in stats
  */
-int S_length(S_Statistics *stats);
+unsigned int S_length(S_Statistics stats);
 
 /**
  * @brief S_getElement

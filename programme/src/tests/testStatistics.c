@@ -6,7 +6,7 @@
 // Test de l'axiome: contains(statistics, element)
 void S_testContains(void) {
     S_Statistics stats = S_statistics();
-    B_Byte element = B_byte(0,0,0,0,0,0,0,1);
+    B_Byte element = B_byte(0, 0, 0, 0, 0, 0, 0, 1);
 
     S_incCount(&stats, element);
 
@@ -17,7 +17,7 @@ void S_testContains(void) {
 void S_testIsEmpty(void) {
     S_Statistics emptyStats = S_statistics();
     S_Statistics nonEmptyStats = S_statistics();
-    S_incCount(&nonEmptyStats, B_byte(0,0,0,0,0,0,0,1));
+    S_incCount(&nonEmptyStats, B_byte(0, 0, 0, 0, 0, 0, 0, 1));
 
     CU_ASSERT_TRUE(S_isEmpty(emptyStats));     //doit retourner vrai
     CU_ASSERT_FALSE(S_isEmpty(nonEmptyStats));  // doit retourner faux
@@ -26,7 +26,7 @@ void S_testIsEmpty(void) {
 // Test de l'axiome: getCount(S_statistics, element) >= 0
 void S_testGetCount(void) {
     S_Statistics stats = S_statistics();
-    B_Byte b = B_byte(0,0,0,0,0,0,0,1);
+    B_Byte b = B_byte(0, 0, 0, 0, 0, 0, 0, 1);
     CU_ASSERT_EQUAL(S_getCount(stats, b), 0);
 
     S_incCount(&stats, b);
@@ -37,17 +37,17 @@ void S_testGetCount(void) {
 void S_testGetElementCount(void) {
     S_Statistics stats = S_statistics();
 
-    CU_ASSERT_TRUE(S_length(&stats) == 0);
+    CU_ASSERT_EQUAL(S_length(stats), 0);
 }
 
 // Test de l'axiome: getElementCount(incCount(stats, el), el) = getElementCount(stats, el) + 1
 void S_testIncCount(void) {
     S_Statistics stats = S_statistics();
-    B_Byte b = B_byte(0,0,0,0,0,0,0,1);
+    B_Byte b = B_byte(0, 0, 0, 0, 0, 0, 0, 1);
 
-    int countBefore = S_length(&stats);
+    int countBefore = S_length(stats);
     S_incCount(&stats, b);
-    int countAfter = S_length(&stats);
+    int countAfter = S_length(stats);
 
     CU_ASSERT_EQUAL(countAfter, countBefore + 1);
 }

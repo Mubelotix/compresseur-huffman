@@ -3,7 +3,6 @@
 S_Statistics S_statistics()
 {
     S_Statistics stats;
-    stats.nbOfElements = 0;
     for (int i = 0; i < S_MAX; i++)
     {
         stats.element[i] = 0;
@@ -14,19 +13,7 @@ S_Statistics S_statistics()
 
 bool S_isEmpty(S_Statistics stats)
 {
-    int i = 0;
-    bool flag = 0;
-
-    while (i < S_MAX && !flag)
-    {
-        if (stats.element[i] > 0)
-        {
-            flag = 1;
-        }
-        i++;
-    }
-
-    return flag;
+    return S_length(stats) == 0;
 }
 
 bool S_contains(S_Statistics stats, B_Byte element)
@@ -45,9 +32,17 @@ void S_incCount(S_Statistics *stats, B_Byte element)
     stats->element[B_byteToNatural(element)]++;
 }
 
-int S_length(S_Statistics *stats)
+unsigned int S_length(S_Statistics stats)
 {
-    return stats->nbOfElements;
+    unsigned int length = 0;
+    for (int i = 0; i < S_MAX; i++)
+    {
+        if (stats.element[i] > 0)
+        {
+            length++;
+        }
+    }
+    return length;
 }
 
 int S_getElement(S_Statistics stats, int pos)
