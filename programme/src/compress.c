@@ -104,7 +104,7 @@ void browseTree(HT_HuffmanTree* noeud, BC_BinaryCode code, CT_CodingTable* codin
         BC_BinaryCode rightCode = code;
         BC_addBit(&rightCode,BC_ONE);
         HT_HuffmanTree rightChild = HT_getRightChild(*noeud);
-        browseTree(&rightChild, codeDroite, codingTable);
+        browseTree(&rightChild, rightCode, codingTable);
     }
 }
 
