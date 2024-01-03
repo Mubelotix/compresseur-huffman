@@ -63,10 +63,10 @@ HT_HuffmanTree C_buildHuffmanTree(S_Statistics stats) {
         int min1 = -1, min2 = -1;
         for (int i = 0; i < 256; ++i) {
             if (nodes[i] != NULL) {
-                if (min1 == -1 || nodes[i]->occurence < nodes[min1]->occurence) {
+                if (min1 == -1 || HT_getOccurence(nodes[i]) < HT_getOccurence(nodes[min1])) {
                     min2 = min1;
                     min1 = i;
-                } else if (min2 == -1 || nodes[i]->occurence < nodes[min2]->occurence) {
+                } else if (min2 == -1 || HT_getOccurence(nodes[i]) < HT_getOccurence(nodes[min2])) {
                     min2 = i;
                 }
             }
