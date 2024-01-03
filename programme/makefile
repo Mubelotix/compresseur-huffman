@@ -1,13 +1,15 @@
 SRCDIR=src
-LIBDIR=lib
-LIB_NAME = libhuffman.a
-BINDIR=bin
 TESTDIR=$(SRCDIR)/tests
-TESTBINDIR=tests
 INCLUDEDIR=include
+
+LIBDIR=lib
+BINDIR=bin
+TESTBINDIR=tests
+
+LIB_NAME = libhuffman.a
 CC=gcc
 AR=ar
-CFLAGS=-Wall -pedantic -g -std=gnu99 -I include
+CFLAGS=-Wall -pedantic -g -std=gnu99 -I $(INCLUDEDIR)
 LDFLAGS=-L. -L$(LIBDIR) -lhuffman -lcunit
 
 SRCS = $(wildcard $(SRCDIR)/*.c)
@@ -23,7 +25,10 @@ TESTEXEC=testHuffman
 
 all: $(BINDIR)/$(EXEC)
 
-tests: $(TESTBINDIR)/$(TESTEXEC)
+create_directories:
+	mkdir -p $(BINDIR) $(LIBDIR) $(TESTBINDIR)
+
+tests: create_directories $(TESTBINDIR)/$(TESTEXEC)
 	./$(TESTBINDIR)/$(TESTEXEC)
 
 $(BINDIR)/%.o: $(SRCDIR)/%.c
@@ -43,7 +48,6 @@ $(TESTBINDIR)/$(TESTEXEC): runner.o $(LIBDIR)/$(LIB_NAME)
 
 clean :
 	rm -rf ./$(BINDIR)/*
-	rm -rf ./$(TESTBINDIR)/*
 	rm -rf ./$(LIBDIR)/*
 	rm -rf ./$(SRCDIR)/*.o
 
