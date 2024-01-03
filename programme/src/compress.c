@@ -108,10 +108,7 @@ void browseTree(HT_HuffmanTree* noeud, BC_BinaryCode code, CT_CodingTable* codin
 
 CT_CodingTable C_buildCodingTable(HT_HuffmanTree* tree) {
     CT_CodingTable codingTable;
-    for (int i = 0; i < 256; ++i) {
-        // Initialiser chaque BC_BinaryCode à zéro bits
-        codingTable.tab[i] = BC_binaryCode();
-    }
+    codingTable = CT_new();
 
     BC_BinaryCode emptyCode = BC_binaryCode();
     
