@@ -21,9 +21,11 @@ HT_HuffmanTree HT_getLeftChild(HT_HuffmanTree ht);
 
 int HT_getByte(HT_HuffmanTree ht);
 
+int HT_getOctet(HT_HuffmanTree ht);
+
 int HT_getOccurence(HT_HuffmanTree ht);
 
-bool HT_isALeaf(HT_HuffmanTree ht);
+int HT_isALeaf(HT_HuffmanTree ht);
 
 HT_HuffmanTree HT_createLeaf(int occurence);
 

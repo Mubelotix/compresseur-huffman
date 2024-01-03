@@ -19,16 +19,16 @@ HT_HuffmanTree HT_getLeftChild(HT_HuffmanTree ht) {
     return NULL;
 }
 
-int HT_getByte(HT_HuffmanTree ht) {
-    // Précondition: ht est une feuille
-        return ht->occurence;
-}
-
 int HT_getOccurence(HT_HuffmanTree ht) {
     return ht->occurence;
 }
 
-bool HT_isALeaf(HT_HuffmanTree ht) {
+int HT_getOctet(HT_HuffmanTree ht){
+    // Précondition: ht est une feuille
+        return ht->octet;
+}
+
+int HT_isALeaf(HT_HuffmanTree ht) {
     return ((ht->leftChild == NULL) && (ht->rightChild == NULL));
 }
 
