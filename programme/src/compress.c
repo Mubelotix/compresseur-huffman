@@ -149,7 +149,7 @@ void C_compressFile(char* nameSourceFile) {
 
     HT_HuffmanTree huffmanTree = C_buildHuffmanTree(stats);
 
-    CT_CodingTable table = C_buildCodingTable(huffmanTree);
+    CT_CodingTable table = C_buildCodingTable(&huffmanTree);
 
 
     //Remplir le fichier destination
