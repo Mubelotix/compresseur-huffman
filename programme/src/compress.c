@@ -39,7 +39,7 @@ S_Statistics C_computeStatistics(FILE* file) {
 
     stats = S_statistics();
 
-    int byte;
+    B_Byte byte;
     //while ((byte = fgetc(file)) != EOF) {       // si c un fichier d'octet faut trouver l'equivalent de fgetc
     //    stats.element[byte]++;              // A modifier : fichier d'octet et freaquencies prend un [int] ?
     //}
@@ -51,8 +51,8 @@ S_Statistics C_computeStatistics(FILE* file) {
 HT_HuffmanTree C_buildHuffmanTree(S_Statistics stats) {
     HT_HuffmanTree nodes[256];
     for (int i = 0; i < 256; ++i) {
-        if (stats.element[i] > 0) {
-            nodes[i] = HT_createLeaf(stats.element[i],i);     
+        if (S_contains(stats,i)) {
+            nodes[i] = HT_createLeaf(S_getCount(stats,i),i);     
         } else {
             nodes[i] = NULL;
         }
@@ -91,7 +91,7 @@ void browseTree(HT_HuffmanTree* noeud, BC_BinaryCode code, CT_CodingTable* codin
     if (noeud != NULL) {
         // Si le nœud est une feuille, enregistrez le code binaire dans la table
         if (HT_isALeaf(*noeud)) {
-            codingTable->tab[noeud->octet] = code;  //rajouter un getOctet dans HT et modifier CT_add pour l'utiliser ici
+            codingTable->tab[HT_getOctet(noeud)] = code;  //rajouter un getOctet dans HT et modifier CT_add pour l'utiliser ici
         }
 
         // Parcourir récursivement le sous-arbre gauche avec l'ajout de BC_ZERO au code binaire
