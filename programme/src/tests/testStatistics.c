@@ -52,7 +52,7 @@ void S_testIncCount(void) {
     CU_ASSERT_EQUAL(countAfter, countBefore + 1);
 }
 
-CU_ErrorCode S_createTestSuite() {
+CU_ErrorCode S_createStatisticsTestSuite() {
     // Create the suite
     CU_pSuite pSuite = CU_add_suite("Tests boite noire : statistics", NULL, NULL);
     if (NULL == pSuite) {

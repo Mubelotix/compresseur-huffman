@@ -22,7 +22,7 @@ BC_Bit B_getBit(B_Byte byte, int i) {
 }
 
 // Procédure setBit
-void setBit(int i, BC_Bit bit, B_Byte *byte) {
+void B_setBit(B_Byte* byte, int i, BC_Bit bit) {
     byte->array[i] = bit;
 }
 

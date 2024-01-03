@@ -1,5 +1,6 @@
 #include <CUnit/Basic.h>
 #include "testStatistics.c"
+#include "testByte.c"
 
 int main(int argc, char** argv) {
     /* initialisation du registre de tests */
@@ -8,7 +9,8 @@ int main(int argc, char** argv) {
     
     // Initializing test suites
     // There should be one per test file, feel free to add your own
-    S_createTestSuite();
+    S_createStatisticsTestSuite();
+    B_createByteTestSuite();
 
     /* Lancement des tests */
     CU_basic_set_mode(CU_BRM_VERBOSE);
