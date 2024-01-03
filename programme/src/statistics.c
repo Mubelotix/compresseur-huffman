@@ -16,21 +16,19 @@ bool S_isEmpty(S_Statistics stats)
     return S_length(stats) == 0;
 }
 
-bool S_contains(S_Statistics stats, B_Byte element)
+bool S_contains(S_Statistics stats, unsigned int octet)
 {
-    return S_getCount(stats, element) > 0;
+    return S_getCount(stats, octet) > 0;
 }
 
-unsigned int S_getCount(S_Statistics stats, B_Byte element)
+unsigned int S_getCount(S_Statistics stats, unsigned int octet)
 {
-    unsigned int index = B_byteToNatural(element);
-    return stats.element[index];
+    return stats.element[octet];
 }
 
-void S_incCount(S_Statistics *stats, B_Byte element)
+void S_incCount(S_Statistics *stats, unsigned int octet)
 {
-    unsigned int index = B_byteToNatural(element);
-    stats->element[index]++;
+    stats->element[octet]++;
 }
 
 unsigned int S_length(S_Statistics stats)
