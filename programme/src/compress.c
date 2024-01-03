@@ -6,7 +6,7 @@
 #include "statistics.h"
 #include "codingTable.h"
 
-    // 1. Changer type S_Statistics? : tableau d'occurence pour les 256 octets possible
+    // 1. Changer type S_Statistics? : tableau d'occurence pour les 256 octets possible (FAIT ✅)
 //  typedef struct {
 //      int frequencies[256];  
 //  } S_Statistics;
