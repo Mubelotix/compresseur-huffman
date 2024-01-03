@@ -38,7 +38,7 @@ bool CT_isEmpty(CT_CodingTable table);
  * @param byte The byte to check.
  * @return True if the coding table contains the byte, false otherwise.
 */
-bool CT_contains(CT_CodingTable table, B_Byte byte);
+bool CT_contains(CT_CodingTable table, unsigned int octet);
 
 /**
  * @brief Adds a byte and its binary code to a coding table.
@@ -47,7 +47,7 @@ bool CT_contains(CT_CodingTable table, B_Byte byte);
  * @param code The binary code to add.
  * @exception EEXIST The byte is already in the coding table.
 */
-void CT_add(CT_CodingTable *table, B_Byte byte, BC_BinaryCode code);
+void CT_add(CT_CodingTable *table, unsigned int octet, BC_BinaryCode code);
 
 /**
  * @brief Gets the binary code of a byte in a coding table.
@@ -56,7 +56,7 @@ void CT_add(CT_CodingTable *table, B_Byte byte, BC_BinaryCode code);
  * @return The binary code of the byte.
  * @exception ENOENT The byte is not in the coding table.
 */
-BC_BinaryCode CT_getBinaryCode(CT_CodingTable table, B_Byte byte);
+BC_BinaryCode CT_getBinaryCode(CT_CodingTable table, unsigned int octet);
 
 /**
  * @brief Gets the byte of a binary code in a coding table.
