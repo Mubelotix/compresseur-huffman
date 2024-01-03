@@ -1,0 +1,41 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{analyseDescendante}
+
+\RequirePackage{tikz}
+
+\newenvironment{analyseDescendante}{
+    \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+}{
+    \end{tikzpicture}
+}
+
+\newcommand{\boite}[5]{
+    \newcount\numin
+    \newcount\numout
+    \foreach \value in {#2} {\global\advance\numin by 1}
+    \foreach \value in {#3} {\global\advance\numout by 1}
+    \pgfmathsetmacro\boxheight{max(\numin,\numout)*0.5}
+    \pgfmathsetmacro\boxwidth{width("#1") + 1cm}
+    
+        \node[draw, rectangle, minimum width=\boxwidth, minimum height=\boxheight cm, align=center] at (#4,#5) (#1) {#1};
+
+        \pgfmathsetmacro\step{\boxheight / (\numin + 1)}
+        \foreach \value [count=\i] in {#2} {
+            \pgfmathsetmacro\pos{\i * \step - 0.5 * \boxheight}
+            \draw[-] ([xshift=-0.5cm,yshift=\pos cm]#1.west) -- ([yshift=\pos cm]#1.west) node[pos=0,left] {\value};
+            
+        }
+
+        \pgfmathsetmacro\step{\boxheight / (\numout + 1)}
+        \foreach \value [count=\i] in {#3} {
+            \pgfmathsetmacro\pos{\i * \step - 0.5 * \boxheight}
+            \draw[<-] ([xshift=0.5cm,yshift=\pos cm]#1.east) -- ([yshift=\pos cm]#1.east) node[pos=0,right] {\value};
+        }
+
+}
+
+\newcommand{\utilise}[2]{
+    \draw[->] (#1.south) -- (#2.north);
+}
+
+\endinput
