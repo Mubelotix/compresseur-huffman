@@ -9,6 +9,7 @@ int main(int argc, char** argv) {
     
     // Initializing test suites
     // There should be one per test file, feel free to add your own
+    // Do not forget to import the test file at the top of this file
     S_createStatisticsTestSuite();
     B_createByteTestSuite();
 
