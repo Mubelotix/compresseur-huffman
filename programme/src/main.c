@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "decompress.h"
+#include "compress.h"
+
 int main(int argc, char* argv[]) {
     if (argc != 3) {
         printf("Error, lack of arguments");
