@@ -52,29 +52,15 @@ void S_testIncCount(void) {
     CU_ASSERT_EQUAL(countAfter, countBefore + 1);
 }
 
-int init_suite_success(void) { 
-    return 0; 
-}
-
-int clean_suite_success(void) { 
-    return 0; 
-}
-
 CU_ErrorCode S_createTestSuite() {
-    CU_pSuite pSuite = NULL;
-
-    /* initialisation du registre de tests */
-    if (CUE_SUCCESS != CU_initialize_registry())
-        return CU_get_error();
-
-    /* ajout d'une suite de test */
-    pSuite = CU_add_suite("Tests boite noire : statistics", init_suite_success, clean_suite_success);
+    // Create the suite
+    CU_pSuite pSuite = CU_add_suite("Tests boite noire : statistics", NULL, NULL);
     if (NULL == pSuite) {
         CU_cleanup_registry();
         return CU_get_error();
     }
 
-    /* Ajout des tests à la suite de tests boite noire */
+    // Add the tests to the suite
     if ((NULL == CU_add_test(pSuite, "Test contains", S_testContains ))
         || (NULL == CU_add_test(pSuite, "Test getCount", S_testGetCount))
         || (NULL == CU_add_test(pSuite, "Test getElementCount", S_testGetElementCount)) 

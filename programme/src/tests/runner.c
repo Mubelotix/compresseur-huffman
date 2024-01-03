@@ -1,16 +1,13 @@
 #include <CUnit/Basic.h>
 #include "testStatistics.c"
 
-// Compile by hand:
-// gcc -c src/tests/runner.c src/statistics.c src/byte.c -I include && gcc -o testrunner runner.o statistics.o byte.o -lcunit
-// TODO remove lines above
-
-// Better approach
-// gcc -c src/byte.c src/statistics.c src/tests/runner.c -I include
-// ar rcs libhuffman.a statistics.o byte.o
-// gcc -o runner runner.o -L. -lhuffman -lcunit
-
 int main(int argc, char** argv) {
+    /* initialisation du registre de tests */
+    if (CUE_SUCCESS != CU_initialize_registry())
+        return CU_get_error();
+    
+    // Initializing test suites
+    // There should be one per test file, feel free to add your own
     S_createTestSuite();
 
     /* Lancement des tests */
