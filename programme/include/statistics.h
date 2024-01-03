@@ -30,7 +30,7 @@ bool S_isEmpty(S_Statistics stats);
  * @param element The element to check
  * @return true if stats contains element
  */
-bool S_contains(S_Statistics stats, B_Byte element);
+bool S_contains(S_Statistics stats, unsigned int octet);
 
 /**
  * @brief Gets the number of occurences of an element in a document
@@ -38,14 +38,14 @@ bool S_contains(S_Statistics stats, B_Byte element);
  * @param element The element to check
  * @return the number of occurences of element in stats
  */
-unsigned int S_getCount(S_Statistics stats, B_Byte element);
+unsigned int S_getCount(S_Statistics stats, unsigned int octet);
 
 /**
  * @brief Adds an occurence of an element to a document
  * @param stats The statistics for the document
  * @param element The element to add
  */
-void S_incCount(S_Statistics *stats, B_Byte element);
+void S_incCount(S_Statistics *stats, unsigned int octet);
 
 /**
  * @brief Gets the number of different elements in a document
