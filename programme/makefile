@@ -10,11 +10,10 @@ CFLAGS=-Wall -pedantic -g -std=gnu99
 LDFLAGS=
 
 EXEC=huffman
-TESTEXEC=testHuffman
 
 all : $(BINDIR)/$(EXEC)
 
-tests: $(TESTBINDIR)/$(TESTEXEC)
+tests: $(TEST_EXECUTABLES)
 
 $(BINDIR)/$(EXEC) : $(SRCDIR)/main.o $(LIBDIR)/libhuffman.a
 	$(CC) $(LDFLAGS) -o $@ $< -lhuffman -Llib
@@ -28,11 +27,11 @@ $(SRCDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDEDIR)
 
 TEST_SRC_FILES := $(wildcard $(TESTDIR)/*.c)
-TEST_OBJ_FILES := $(patsubst $(TESTDIR)/%.c, $(TESTDIR)/%.o, $(TEST_SRC_FILES))
+TEST_EXECUTABLES := $(patsubst $(TESTDIR)/%.c, $(TESTDIR)/%.o, $(TEST_SRC_FILES))
 $(TESTDIR)/%.o : $(TESTDIR)/%.c
 	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDEDIR)
 
-$(TESTBINDIR)/$(TESTEXEC) : $(TEST_OBJ_FILES) $(LIBDIR)/libhuffman.a
+$(TESTBINDIR)/$(TESTEXEC) : $(TEST_EXECUTABLES) $(LIBDIR)/libhuffman.a
 	$(CC) $(LDFLAGS) -o $@ $^ -lhuffman -Llib -lcunit
 
 clean :
