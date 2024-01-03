@@ -45,7 +45,7 @@ BC_BinaryCode CT_getBinaryCode(CT_CodingTable table, B_Byte byte) {
 B_Byte CT_getByte(CT_CodingTable table, BC_BinaryCode code) {
     for (unsigned int i = 0; i < MAX; i++) {
         if (table.tab[i].present && BC_equals(table.tab[i].binary_code, code)) {
-            return B_byte(i & 0b10000000, i & 0b01000000, i & 0b00100000, i & 0b00010000, i & 0b00001000, i & 0b00000100, i & 0b00000010, i & 0b00000001);
+            return B_byte(i & 0x80, i & 0x40, i & 0x20, i & 0x10, i & 0x08, i & 0x04, i & 0x02, i & 0x01);
         }
     }
     errno = ENOENT;

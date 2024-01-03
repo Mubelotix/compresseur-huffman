@@ -8,6 +8,10 @@ PQ_PriorityQueue PQ_new() {
     return result;
 }
 
+unsigned int PQ_lenght(PQ_PriorityQueue queue) {
+    return queue.length;
+}
+
 int PQ_getInsertionIndex(PQ_PriorityQueue *queue, HT_HuffmanTree ht) {
     // TODO: having binary search here would be nice
     int i = 0;
