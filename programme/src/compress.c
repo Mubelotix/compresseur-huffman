@@ -103,7 +103,8 @@ void browseTree(HT_HuffmanTree* noeud, BC_BinaryCode code, CT_CodingTable* codin
         // Parcourir récursivement le sous-arbre droit avec l'ajout de BC_ONE au code binaire
         BC_BinaryCode rightCode = code;
         BC_addBit(&rightCode,BC_ONE);
-        browseTree(&HT_getRightChild(*noeud), codeDroite, codingTable);
+        HT_HuffmanTree rightChild = HT_getRightChild(*noeud);
+        browseTree(&rightChild, codeDroite, codingTable);
     }
 }
 
