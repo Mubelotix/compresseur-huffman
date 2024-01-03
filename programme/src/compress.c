@@ -27,12 +27,11 @@
 // 4. Modifier HT_createNode de sorte qu'il calcule la valeur (node.valeur = leftChild.valeur+rightChild.valeur)
 //                                      et met node.otet à -1
 
-// 5.  Changer structure CT_CodingTable
+// 5.  Changer structure CT_CodingTable (FAIT ✅)
 // typedef struct {
 //    BC_BinaryCode table[256]; // Table de codage pour chaque octet
 // } CT_CodingTable;
 //Il sera don plus necessaire de passer par CT_coding pour faire l'association entre l'octet et son code binaire 
-
 
 
 S_Statistics C_computeStatistics(FILE* file) {
