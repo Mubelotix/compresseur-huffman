@@ -6,6 +6,7 @@
 
 
 struct HT_HuffmanTreeNode {
+    int octet;  //prend -1 si c un noeud et l'octet si feuille
     int occurence;
     struct HT_HuffmanTreeNode* leftChild;
     struct HT_HuffmanTreeNode* rightChild;
@@ -14,22 +15,22 @@ struct HT_HuffmanTreeNode {
 typedef struct HT_HuffmanTreeNode* HT_HuffmanTree;
 
 
-struct HT_HuffmanTreeNode* HT_getRightChild(struct HT_HuffmanTreeNode* ht);
+HT_HuffmanTree HT_getRightChild(HT_HuffmanTree ht);
 
-struct HT_HuffmanTreeNode* HT_getLeftChild(struct HT_HuffmanTreeNode* ht);
+HT_HuffmanTree HT_getLeftChild(HT_HuffmanTree ht);
 
-B_Byte HT_getByte(struct HT_HuffmanTreeNode* ht);
+int HT_getByte(HT_HuffmanTree ht);
 
-int HT_getOccurence(struct HT_HuffmanTreeNode* ht);
+int HT_getOccurence(HT_HuffmanTree ht);
 
-bool HT_isALeaf(struct HT_HuffmanTreeNode* ht);
+bool HT_isALeaf(HT_HuffmanTree ht);
 
-struct HT_HuffmanTreeNode* HT_createLeaf(int occurence);
+HT_HuffmanTree HT_createLeaf(int occurence);
 
-struct HT_HuffmanTreeNode* HT_createNode(struct HT_HuffmanTreeNode* leftChild,struct HT_HuffmanTreeNode* rightChild);
+HT_HuffmanTree HT_createNode(HT_HuffmanTree leftChild,HT_HuffmanTree rightChild);
 
-void HT_destroy(struct HT_HuffmanTreeNode* ht);
+void HT_destroy(HT_HuffmanTree ht);
 
-HT_HuffmanTree HT_createTree(struct HT_HuffmanTreeNode* root);
+HT_HuffmanTree HT_createTree(HT_HuffmanTree root);
 
 #endif
