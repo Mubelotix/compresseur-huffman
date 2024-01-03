@@ -1,5 +1,6 @@
 SRCDIR=src
 LIBDIR=lib
+LIB_NAME = libhuffman.a
 BINDIR=bin
 TESTDIR=$(SRCDIR)/tests
 TESTBINDIR=tests
@@ -15,25 +16,16 @@ TESTEXEC=testHuffman
 all: $(BINDIR)/$(EXEC)
 
 tests: $(TESTBINDIR)/$(TESTEXEC)
+	./$(TESTBINDIR)/$(TESTEXEC)
 
-$(BINDIR)/$(EXEC): $(SRCDIR)/main.o $(LIBDIR)/libhuffman.a
-	$(CC) $(LDFLAGS) -o $@ $< -lhuffman -Llib
+byte.o statistics.o runner.o: src/byte.c src/statistics.c src/tests/runner.c
+	gcc -c src/byte.c src/statistics.c src/tests/runner.c -I include
 
-SRC_FILES := $(wildcard $(SRCDIR)/*.c)
-OBJ_FILES := $(patsubst $(SRCDIR)/%.c, $(SRCDIR)/%.o, $(SRC_FILES))
-$(LIBDIR)/libhuffman.a: $(OBJ_FILES)
-	$(AR) -r $@ $^
+libhuffman.a: byte.o statistics.o
+	ar rcs libhuffman.a byte.o statistics.o
 
-$(SRCDIR)/%.o: $(SRCDIR)/%.c
-	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDEDIR)
-
-TEST_SRC_FILES := $(wildcard $(TESTDIR)/*.c)
-TEST_OBJ_FILES := $(patsubst $(TESTDIR)/%.c, $(TESTBINDIR)/%.o, $(TEST_SRC_FILES))
-$(TESTBINDIR)/%.o: $(TESTDIR)/%.c
-	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDEDIR)
-
-$(TESTBINDIR)/$(TESTEXEC): $(TEST_OBJ_FILES) $(LIBDIR)/libhuffman.a
-	$(CC) $(LDFLAGS) -o $@ $^ -lhuffman -Llib -lcunit
+$(TESTBINDIR)/$(TESTEXEC): runner.o libhuffman.a
+	gcc -o $@ byte.o statistics.o runner.o -L. -lhuffman -lcunit
 
 clean :
 	rm -rf ./$(BINDIR)/*
