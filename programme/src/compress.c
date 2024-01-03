@@ -50,7 +50,7 @@ S_Statistics C_computeStatistics(FILE* file) {
 
 HT_HuffmanTree C_buildHuffmanTree(S_Statistics stats) {
     HT_HuffmanTree nodes[256];
-    for (int i = 0; i < 256; ++i) {
+    for (unsigned int i = 0; i < 256; ++i) {
         if (S_contains(stats,i)) {
             nodes[i] = HT_createLeaf(S_getCount(stats,i),i);     
         } else {
@@ -61,7 +61,7 @@ HT_HuffmanTree C_buildHuffmanTree(S_Statistics stats) {
     while (1) {
         // Trouver les deux nœuds avec les fréquences les plus basses
         int min1 = -1, min2 = -1;
-        for (int i = 0; i < 256; ++i) {
+        for (unsigned int i = 0; i < 256; ++i) {
             if (nodes[i] != NULL) {
                 if (min1 == -1 || HT_getOccurence(nodes[i]) < HT_getOccurence(nodes[min1])) {
                     min2 = min1;

@@ -18,9 +18,8 @@ bool CT_isEmpty(CT_CodingTable table) {
     return 1;
 }
 
-bool CT_contains(CT_CodingTable table, B_Byte byte) {
-    unsigned int converted_byte = B_byteToNatural(byte);
-    return table.tab[converted_byte].present;
+bool CT_contains(CT_CodingTable table, unsigned int octet) {
+    return table.tab[octet].present;
 }
 
 void CT_add(CT_CodingTable *table, B_Byte byte, BC_BinaryCode code) {
