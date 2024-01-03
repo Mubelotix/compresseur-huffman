@@ -73,7 +73,7 @@ void BC_testOutOfBounds() {
     BC_BinaryCode bc = BC_binaryCode();
 
     // Len is 0 but index is 0
-    getBit(&bc, 0);
+    BC_getBit(bc, 0);
     CU_ASSERT_EQUAL(errno, EDOM);
 }
 
