@@ -3,49 +3,51 @@
 
 CT_CodingTable CT_new() {
     CT_CodingTable table;
-    table.length = 0;
+    for (unsigned int i = 0; i < MAX; i++) {
+        table.tab[i].present = 0;
+    }
     return table;
 }
 
 bool CT_isEmpty(CT_CodingTable table) {
-    return table.length == 0;
-}
-
-unsigned int CT_length(CT_CodingTable table) {
-    return table.length;
+    for (unsigned int i = 0; i < MAX; i++) {
+        if (table.tab[i].present) {
+            return 0;
+        }
+    }
+    return 1;
 }
 
 bool CT_contains(CT_CodingTable table, B_Byte byte) {
     unsigned int converted_byte = B_byteToNatural(byte);
-    for (unsigned int i = 0; i < table.length; i++) {
-        if (B_byteToNatural(table.tab[i].byte) == converted_byte) {
-            return 1;
-        }
-    }
-    return 0;
+    return table.tab[converted_byte].present;
 }
 
-// \begin{algorithme} 
-//     \fonction{getBinaryCode}{table : CodingTable, byte : Byte}{BinaryCode}{contains(table,byte)}{i : \naturelNonNul}
-//     {\affecter{i}{1}
-//     \tantque{(i $\leq$ \champ{table}{length}) et (\champ{table}{tab[i]}{.byte} $\neq$ byte)}
-//         {\affecter{i}{i + 1}}
-//     \retourner{\champ{table}{tab[i]}{.code}}}   
-// \end{algorithme}
-// \vspace*{0.5cm}
+void CT_add(CT_CodingTable *table, B_Byte byte, BC_BinaryCode code) {
+    unsigned int converted_byte = B_byteToNatural(byte);
+    if (table->tab[converted_byte].present) {
+        errno = EEXIST;
+        return;
+    }
+    table->tab[converted_byte].present = 1;
+    table->tab[converted_byte].binary_code = code;
+}
 
-// \begin{algorithme}
-//     \procedure{add}{\paramEntreeSortie{table: CodingTable} \paramEntree{byte: Byte, code : BinaryCode} }{non contains(table,byte)}{}
-//     {\affecter{\champ{table}{tab[\champ{table}{length+1}]}{.byte}}{byte}
-//     \affecter{\champ{table}{tab[\champ{table}{length+1}+1]}{.code}}{code}}
-// \end{algorithme}
-// \vspace*{0.5cm}
+BC_BinaryCode CT_getBinaryCode(CT_CodingTable table, B_Byte byte) {
+    unsigned int converted_byte = B_byteToNatural(byte);
+    if (!table.tab[converted_byte].present) {
+        errno = ENOENT;
+        return BC_binaryCode();
+    }
+    return table.tab[converted_byte].binary_code;
+}
 
-// \begin{algorithme} 
-//     \fonction{getByte}{table : CodingTable, code : BinaryCode}{Byte}{i : \naturelNonNul}{}
-//     {\affecter{i}{1}
-//     \tantque{(i $\leq$ \champ{table}{length}) et (\champ{table}{tab[i]}{.code} $\neq$ code)}
-//         {\affecter{i}{i + 1} 
-//         \affecter{present}{\champ{table}{tab[i]}{.byte}}}
-//     \retourner{\champ{table}{tab[i]}{.byte}}}
-// \end{algorithme}
+B_Byte CT_getByte(CT_CodingTable table, BC_BinaryCode code) {
+    for (unsigned int i = 0; i < MAX; i++) {
+        if (table.tab[i].present && BC_equals(table.tab[i].binary_code, code)) {
+            return B_byte(i & 0b10000000, i & 0b01000000, i & 0b00100000, i & 0b00010000, i & 0b00001000, i & 0b00000100, i & 0b00000010, i & 0b00000001);
+        }
+    }
+    errno = ENOENT;
+    return B_byte(0, 0, 0, 0, 0, 0, 0, 0);
+}
