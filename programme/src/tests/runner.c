@@ -1,6 +1,7 @@
 #include <CUnit/Basic.h>
 #include "testStatistics.c"
 #include "testByte.c"
+#include "testBinaryCode.c"
 
 int main(int argc, char** argv) {
     /* initialisation du registre de tests */
@@ -12,6 +13,7 @@ int main(int argc, char** argv) {
     // Do not forget to import the test file at the top of this file
     S_createStatisticsTestSuite();
     B_createByteTestSuite();
+    BC_createBinaryCodeTestSuite();
 
     /* Lancement des tests */
     CU_basic_set_mode(CU_BRM_VERBOSE);
