@@ -123,7 +123,7 @@ CT_CodingTable C_buildCodingTable(HT_HuffmanTree* tree) {
 }
 
 void writeStatistics(FILE* file,  S_Statistics* stats) {
-    size_t written = fwrite(stats, sizeof(S_Statistics), 1, fichier);
+    size_t written = fwrite(stats, sizeof(S_Statistics), 1, file);
 
     // Vérifier si l'écriture a réussi
     if (written != 1) {
