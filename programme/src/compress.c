@@ -9,7 +9,7 @@
     // 1. Changer type S_Statistics? : tableau d'occurence pour les 256 octets possible (FAIT ✅)
 //  typedef struct {
 //      int element[256];  
-//  } S_Statistics;
+//  } S_Statistics; //(FAIT ✅)
 
 
     //(FAIT ✅)//2. Type HuffmanTreeNode : Faut faire en sorte de stocker l'octet aux feuilles de l'abres
