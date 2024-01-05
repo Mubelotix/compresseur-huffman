@@ -131,7 +131,7 @@ void writeStatistics(FILE* file,  S_Statistics* stats) {
     }
 }
 
-void writeData(FILE* s_file, FILE* d_file, CT_CodingTable* table) {
+void writeData(FILE* soureFile, FILE* destFile, CT_CodingTable* table) {
     
 }
 
