@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 #include "compress.h"
 #include "huffmanTree.h"
 #include "statistics.h"
@@ -122,7 +123,12 @@ CT_CodingTable C_buildCodingTable(HT_HuffmanTree* tree) {
 }
 
 void writeStatistics(FILE* file,  S_Statistics* stats) {
-    
+    size_t written = fwrite(stats, sizeof(S_Statistics), 1, fichier);
+
+    // Vérifier si l'écriture a réussi
+    if (written != 1) {
+        errno = ENOENT; // Erreur d'écriture
+    }
 }
 
 void writeData(FILE* s_file, FILE* d_file, CT_CodingTable* table) {
