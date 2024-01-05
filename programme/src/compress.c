@@ -23,9 +23,9 @@
 //};
 // Et du coup rajouter un getOctet dans HT (FAIT ✅)
 
-// 3. Modifier HT_createLeaf de sorte qu'il initialise la occurence de l'octet (FAIT ✅)
+// 3. Modifier HT_createLeaf de sorte qu'il initialise loccurence de l'octet (FAIT ✅)
 
-// 4. Modifier HT_createNode de sorte qu'il calcule la occurence (node.occurence = leftChild.occurence+rightChild.occurence)
+// 4. Modifier HT_createNode de sorte qu'il calcule l'occurence (node.occurence = leftChild.occurence+rightChild.occurence)
 //                                      et met node.otet à -1(FAIT ✅)
 
 // 5.  Changer structure CT_CodingTable (FAIT ✅)
