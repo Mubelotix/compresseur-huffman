@@ -94,7 +94,7 @@ void BC_testBufferOverflow() {
 
 CU_ErrorCode BC_createBinaryCodeTestSuite() {
     // Create the suite
-    CU_pSuite pSuite = CU_add_suite("Tests boite noire : statistics", NULL, NULL);
+    CU_pSuite pSuite = CU_add_suite("Tests boite noire : binary code", NULL, NULL);
     if (NULL == pSuite) {
         CU_cleanup_registry();
         return CU_get_error();
