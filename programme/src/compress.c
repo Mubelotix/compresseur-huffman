@@ -138,7 +138,7 @@ void writeData(FILE* soureFile, FILE* destFile, CT_CodingTable* table) {
 
 void C_compressFile(char* nameSourceFile) {
 
-    //charger fichier source et destination
+    //Charger fichier source et destination
     FILE* sourceFile = fopen(nameSourceFile, "rb");
     if (sourceFile == NULL) {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier source.\n");
