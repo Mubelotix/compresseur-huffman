@@ -14,6 +14,7 @@ int main(int argc, char* argv[]) {
 
     switch (option) {
         case 'c':
+        print('in')
             C_compressFile(filename);
             break;
         //case 'd':
