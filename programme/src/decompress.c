@@ -85,3 +85,37 @@ DecompressResult decompressData(FILE *input, FILE *output, const HuffmanTree tre
 
     return DECOMPRESS_RESULT_OK;
 }
+
+DecompressResult decompress(FILE *input, FILE *output)
+{
+    assert(input != NULL);
+    assert(output != NULL);
+
+    if (ferror(input) || ferror(output))
+        return DECOMPRESS_RESULT_ERROR_FILE;
+
+    if (feof(input))
+        return DECOMPRESS_RESULT_ERROR_PREMATURE_END_OF_FILE;
+
+    DecompressResult result = DECOMPRESS_RESULT_OK;
+    FileSize size;
+    Statistics statistics;
+    statistics = S_statistics();
+    result = readHeader(input, &statistics, &size);
+
+    if (result != DECOMPRESS_RESULT_OK)
+        return result;
+
+    HuffmanTree *tree = huffman_tree_from_statistic(&statistics); // il me faut cette fonction aussi
+
+    assert(tree != NULL);
+
+    if (feof(input) != 0)
+        return DECOMPRESS_RESULT_ERROR_PREMATURE_END_OF_FILE;
+
+    result = decompressData(input, output, *tree, &size);
+
+    HT_destroy(*tree);
+
+    return result;
+}
