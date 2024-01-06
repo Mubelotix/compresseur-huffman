@@ -52,4 +52,5 @@ unsigned int B_byteToNatural(B_Byte byte);
 */
 bool B_equals(B_Byte byte1, B_Byte byte2);
 
+B_Byte B_charToByte(char inputChar);
 #endif

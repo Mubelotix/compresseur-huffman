@@ -44,3 +44,18 @@ int B_equals(B_Byte byte1, B_Byte byte2) {
     }
     return 1;
 }
+
+B_Byte B_charToByte(char inputChar) {
+    B_Byte resultByte;
+
+    // Remplissage des bits de l'octet à partir du caractère
+    for (int i = 0; i < 8; i++) {
+        // Obtention du i-ème bit du caractère
+        BC_Bit currentBit = (inputChar >> i) & 1;
+
+        // Attribution du bit à l'élément correspondant de l'octet
+        resultByte.array[i] = currentBit;
+    }
+
+    return resultByte;
+}

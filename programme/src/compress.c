@@ -42,7 +42,9 @@ S_Statistics C_computeStatistics(FILE* file) {
 
     B_Byte byte;
     unsigned int byteNat;
-    while (fread(&byte, 1, 1, file) == 1){ 
+    char inputChar;
+    while (fread(&inputChar, 1, 1, file) == 1){ 
+        byte = B_charToByte(inputChar);
         byteNat = B_byteToNatural(byte);
         S_incCount(&stats,byteNat);
     }
