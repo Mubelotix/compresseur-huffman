@@ -3,9 +3,9 @@
 #include "decompress.h"
 #include "compress.h"
 
-int main() {
-    // int argc, char* argv[]
-    /*
+int main(int argc, char* argv[]) {
+
+
     if (argc != 3) {
         printf("Error, lack of arguments");
         return EXIT_FAILURE;
@@ -16,7 +16,6 @@ int main() {
 
     switch (option) {
         case 'c':
-            print('in');
             C_compressFile(filename);
             break;
         //case 'd':
@@ -26,7 +25,6 @@ int main() {
             printf("Error, character c or d not found");
             return EXIT_FAILURE;
     }
-    */
-    C_compressFile("file.txt");
+    
     return EXIT_SUCCESS;
 }
