@@ -44,3 +44,44 @@ DecompressResult readHeader(FILE *input, Statistics *statistics, FileSize *size)
 
     return DECOMPRESS_RESULT_OK;
 } 
+
+DecompressResult decompressData(FILE *input, FILE *output, const HuffmanTree tree, FileSize *decompressedSize)
+{
+    unsigned char bitReadPosition = 0;
+    HuffmanTree currentTree = tree;
+    Byte sourceByte = B_byte(0);
+    decompressedSize = 0;
+
+    while (feof(input) == 0)
+    {
+        if (bitReadPosition > 7)
+        {
+            unsigned char bitsRead;
+            if (fread(&bitsRead, sizeof(bitsRead), 1, input) != 1)
+                return DECOMPRESS_RESULT_ERROR_PREMATURE_END_OF_FILE; 
+            sourceByte = B_byte(bitsRead);                    
+            bitReadPosition = 0;
+        }
+
+        if (HT_isALeaf(currentTree))
+        {                                                      
+            Bit bit = B_getBit(sourceByte, bitReadPosition); 
+            if (bit == 0)
+                currentTree = currentTree->leftChild;
+            else
+                currentTree = currentTree->rightChild;
+            bitReadPosition++;
+        }
+        else
+        {
+            Byte destinationByte = HT_getByte(currentTree);          
+            unsigned char naturalToWrite = B_byteToNatural(destinationByte);      
+            if (fwrite(&naturalToWrite, sizeof(naturalToWrite), 1, output) != 1) 
+                return DECOMPRESS_RESULT_ERROR_FAILED_TO_WRITE_OUTPUT_FILE;
+            currentTree = tree; 
+            *decompressedSize++;
+        }
+    }
+
+    return DECOMPRESS_RESULT_OK;
+}
