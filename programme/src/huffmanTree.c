@@ -32,6 +32,10 @@ int HT_isALeaf(HT_HuffmanTree ht) {
     return ((ht->leftChild == NULL) && (ht->rightChild == NULL));
 }
 
+int HT_bytePresent(HT_HuffmanTree ht) {
+    return (ht->octet != 1);
+}
+
 HT_HuffmanTree HT_createLeaf(int occurence, int octet) {
     HT_HuffmanTree node = (HT_HuffmanTree)malloc(sizeof(struct HT_HuffmanTreeNode));
     node->octet = octet;

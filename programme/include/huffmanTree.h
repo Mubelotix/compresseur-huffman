@@ -27,6 +27,8 @@ int HT_getOccurence(HT_HuffmanTree ht);
 
 int HT_isALeaf(HT_HuffmanTree ht);
 
+int HT_bytePresent(HT_HuffmanTree ht);
+
 HT_HuffmanTree HT_createLeaf(int occurence, int octet);
 
 HT_HuffmanTree HT_createNode(HT_HuffmanTree leftChild,HT_HuffmanTree rightChild);
