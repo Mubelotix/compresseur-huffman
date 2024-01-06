@@ -139,7 +139,22 @@ void writeStatistics(FILE* file,  S_Statistics* stats) {
 }
 
 void writeData(FILE* soureFile, FILE* destFile, CT_CodingTable* table) {
-    
+    B_Byte byte;
+    unsigned int byteNat;
+    char inputChar;
+    while (fread(&inputChar, 1, 1, soureFile) == 1){ 
+        byte = B_charToByte(inputChar);
+        byteNat = B_byteToNatural(byte);
+        BC_BinaryCode code = CT_getBinaryCode(*table,byteNat);
+        
+        size_t writtenByte = fwrite(&code, sizeof(BC_BinaryCode), 1, destFile);
+
+        // Vérifier si l'écriture a réussi
+        if (writtenByte != 1) {
+            fprintf(stderr, "Erreur lors de l'écriture des données compressées\n");
+            return;
+        }
+    }
 }
 
 
