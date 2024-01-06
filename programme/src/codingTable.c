@@ -22,13 +22,13 @@ bool CT_contains(CT_CodingTable table, unsigned int octet) {
     return table.tab[octet].present;
 }
 
-void CT_add(CT_CodingTable *table, unsigned int octet, BC_BinaryCode code) {
+void CT_add(CT_CodingTable* table, unsigned int octet, BC_BinaryCode code) {
     if (table->tab[octet].present) {
         errno = EEXIST;
         return;
     }
-    table->tab[octet].present = 1;
     table->tab[octet].binary_code = code;
+    table->tab[octet].present = 1;
 }
 
 BC_BinaryCode CT_getBinaryCode(CT_CodingTable table, unsigned int octet) {

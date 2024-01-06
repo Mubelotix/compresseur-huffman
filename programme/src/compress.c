@@ -91,29 +91,34 @@ HT_HuffmanTree C_buildHuffmanTree(S_Statistics stats) {
     }
 }
 
-void browseTree(HT_HuffmanTree* noeud, BC_BinaryCode code, CT_CodingTable* codingTable) {
+void browseTree(HT_HuffmanTree noeud, BC_BinaryCode code, CT_CodingTable* codingTable) {
     
     if (noeud != NULL) {
         // Si le nœud est une feuille, enregistrez le code binaire dans la table
-        if (HT_bytePresent(*noeud)) {
-            CT_add(codingTable,HT_getOctet(*noeud),code);
+        if (HT_bytePresent(noeud)) {
+            int byte = HT_getOctet(noeud);
+            printf("----%d\n",byte);
+            //CT_add(codingTable,byte,code);
+            codingTable->tab[byte].binary_code=code;
+            codingTable->tab[byte].present=1;
+
         }
 
         // Parcourir récursivement le sous-arbre gauche avec l'ajout de BC_ZERO au code binaire
         BC_BinaryCode leftCode = code;
         BC_addBit(&leftCode,BC_ZERO);
-        HT_HuffmanTree leftChild = HT_getLeftChild(*noeud);
-        browseTree(&leftChild, leftCode, codingTable);
+        HT_HuffmanTree leftChild = HT_getLeftChild(noeud);
+        browseTree(leftChild, leftCode, codingTable);
 
         // Parcourir récursivement le sous-arbre droit avec l'ajout de BC_ONE au code binaire
         BC_BinaryCode rightCode = code;
         BC_addBit(&rightCode,BC_ONE);
-        HT_HuffmanTree rightChild = HT_getRightChild(*noeud);
-        browseTree(&rightChild, rightCode, codingTable);
+        HT_HuffmanTree rightChild = HT_getRightChild(noeud);
+        browseTree(rightChild, rightCode, codingTable);
     }
 }
 
-CT_CodingTable C_buildCodingTable(HT_HuffmanTree* tree) {
+CT_CodingTable C_buildCodingTable(HT_HuffmanTree tree) {
     CT_CodingTable codingTable;
     codingTable = CT_new();
 
@@ -159,7 +164,7 @@ void C_compressFile(char* nameSourceFile) {
 
     HT_HuffmanTree huffmanTree = C_buildHuffmanTree(stats);
 
-    CT_CodingTable table = C_buildCodingTable(&huffmanTree);
+    CT_CodingTable table = C_buildCodingTable(huffmanTree);
 
 
     //Remplir le fichier destination

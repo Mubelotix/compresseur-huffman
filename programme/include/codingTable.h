@@ -47,7 +47,7 @@ bool CT_contains(CT_CodingTable table, unsigned int byte);
  * @param code The binary code to add.
  * @exception EEXIST The byte is already in the coding table.
 */
-void CT_add(CT_CodingTable *table, unsigned int byte, BC_BinaryCode code);
+void CT_add(CT_CodingTable* table, unsigned int byte, BC_BinaryCode code);
 
 /**
  * @brief Gets the binary code of a byte in a coding table.
