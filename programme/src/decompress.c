@@ -119,3 +119,32 @@ DecompressResult decompress(FILE *input, FILE *output)
 
     return result;
 }
+
+DecompressResult decompressErrorToString(DecompressResult error, char *buffer, FileSize buffer_size)
+{
+    switch (error)
+    {
+    case DECOMPRESS_RESULT_OK:
+        strncpy(buffer, "No error", buffer_size);
+        break;
+    case DECOMPRESS_RESULT_ERROR_FILE:
+        strncpy(buffer, "File error", buffer_size);
+        break;
+    case DECOMPRESS_RESULT_ERROR_PREMATURE_END_OF_FILE:
+        strncpy(buffer, "Premature end of file", buffer_size);
+        break;
+    case DECOMPRESS_RESULT_ERROR_INVALID_HEADER:
+        strncpy(buffer, "Invalid header", buffer_size);
+        break;
+    case DECOMPRESS_RESULT_ERROR_FAILED_TO_WRITE_OUTPUT_FILE:
+        strncpy(buffer, "Failed to write output file", buffer_size);
+        break;
+    case DECOMPRESS_RESULT_INCONSISTENT_DECOMPRESSED_FILE:
+        strncpy(buffer, "Inconsistent decompressed file", buffer_size);
+        break;
+    default:
+        strncpy(buffer, "Unknown error", buffer_size);
+        break;
+    }
+    return error;
+}
