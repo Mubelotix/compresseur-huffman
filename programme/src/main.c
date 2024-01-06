@@ -10,15 +10,15 @@ int main(int argc, char* argv[]) {
     }
 
     char option = argv[1][0];
-    const char* filename = argv[2];
+    char* filename = argv[2];
 
     switch (option) {
         case 'c':
             C_compressFile(filename);
             break;
-        case 'd':
-            C_decompressFile(filename);
-            break;
+        //case 'd':
+        //    C_decompressFile(filename);
+        //    break;
         default:
             printf("Error, character c or d not found");
             return EXIT_FAILURE;
