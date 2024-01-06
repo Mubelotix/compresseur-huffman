@@ -15,7 +15,6 @@
     \foreach \value in {#2} {\global\advance\numin by 1}
     \foreach \value in {#3} {\global\advance\numout by 1}
     \pgfmathsetmacro\boxheight{max(\numin,\numout)*0.5}
-    %boxwidth must be in size of the text in #1 (the name of the box)
     \pgfmathsetmacro\boxwidth{width("#1") + 1cm}
     
         \node[draw, rectangle, minimum width=\boxwidth, minimum height=\boxheight cm, align=center] at (#4,#5) (#1) {#1};

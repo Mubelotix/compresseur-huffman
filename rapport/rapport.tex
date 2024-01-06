@@ -1,14 +1,14 @@
 \documentclass[12pt]{article}
 
-\usepackage{autres/imports}
-\usepackage{autres/pseudocode}
-\usepackage{autres/renews}
-\usepackage{autres/analyseDescendante}
+\usepackage{packages/imports}
+\usepackage{packages/pseudocode}
+\usepackage{packages/renews}
+\usepackage{packages/analyseDescendante}
 
 \begin{document}
 
 %page de garde
-\include{autres/titlepage}
+\include{parties/titlepage}
 
 \newpage
 
@@ -24,36 +24,91 @@
 
 \subsection{TADs}
 \input{parties/analyse/TAD/BinaryCode}
-\input{parties/analyse/TAD/Byte}
-\input{parties/analyse/TAD/CodingTable}
-\input{parties/analyse/TAD/HuffmanTree}
-\input{parties/analyse/TAD/PriorityQueue}
-\input{parties/analyse/TAD/Statistics}
+\include{parties/analyse/TAD/Byte}
+\include{parties/analyse/TAD/CodingTable}
+\include{parties/analyse/TAD/HuffmanTree}
+\include{parties/analyse/TAD/PriorityQueue}
+\include{parties/analyse/TAD/Statistics}
 
 \subsection{Analyse Descendante}
 
-\input{parties/analyse/Analyse descendante/analyseDescendante}
+\input{parties/analyse/analyseDescendante/analyseDescendante}
 
+\newpage
 \section{Conception}
 
 \subsection{Conception Préliminaire}
-
-\input{parties/Conception/ConceptionPreliminaire/CP_BinaryCode}
-\input{parties/Conception/ConceptionPreliminaire/CP_Byte}
-\input{parties/Conception/ConceptionPreliminaire/CP_CodingTable}
-\input{parties/Conception/ConceptionPreliminaire/CP_HuffmanTree}
-\input{parties/Conception/ConceptionPreliminaire/CP_PriorityQueue}
-\input{parties/Conception/ConceptionPreliminaire/CP_Statistics}
-\input{parties/Conception/ConceptionPreliminaire/CP_compress}
+\input{parties/conception/conceptionPreliminaire/CP_BinaryCode}
+\include{parties/conception/conceptionPreliminaire/CP_Byte}
+\include{parties/conception/conceptionPreliminaire/CP_CodingTable}
+\include{parties/conception/conceptionPreliminaire/CP_HuffmanTree}
+\include{parties/conception/conceptionPreliminaire/CP_PriorityQueue}
+\include{parties/conception/conceptionPreliminaire/CP_Statistics}
+\include{parties/conception/conceptionPreliminaire/CP_compress}
 
 \subsection{Conception Détaillée}
-\input{parties/Conception/ConceptionDetaillee/CD_BinaryCode}
-\input{parties/Conception/ConceptionDetaillee/CD_Byte}
-\input{parties/Conception/ConceptionDetaillee/CD_CodingTable}
-\input{parties/Conception/ConceptionDetaillee/CD_HuffmanTree}
-\input{parties/Conception/ConceptionDetaillee/CD_PriorityQueue}
-\input{parties/Conception/ConceptionDetaillee/CD_Statistics}
-\input{parties/Conception/ConceptionDetaillee/CD_compress}
-\input{parties/Conception/ConceptionDetaillee/CD_decompress}
+\input{parties/conception/conceptionDetaillee/CD_BinaryCode}
+\include{parties/conception/conceptionDetaillee/CD_Byte}
+\include{parties/conception/conceptionDetaillee/CD_CodingTable}
+\include{parties/conception/conceptionDetaillee/CD_HuffmanTree}
+\include{parties/conception/conceptionDetaillee/CD_PriorityQueue}
+\include{parties/conception/conceptionDetaillee/CD_Statistics}
+\include{parties/conception/conceptionDetaillee/CD_compress}
+\include{parties/conception/conceptionDetaillee/CD_decompress}
 
+\section{Implémentation}
+
+\input{parties/developpement/developpement}
+
+\section{Conclusion}
+
+\subsection{Matrice de répartition des tâches}
+
+\begin{table}[]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+ &  & B. Quentin & B. Angelo & G. Simon & L. Houssam & T. Florent \\ \hline
+\multirow{6}{*}{TADs} & HuffmanTree & x &  &  &  &  \\ \cline{2-7} 
+ & Byte &  & X &  &  &  \\ \cline{2-7} 
+ & Statistics &  &  & X &  &  \\ \cline{2-7} 
+ & BinaryCode &  &  &  & X &  \\ \cline{2-7} 
+ & PriorityQueue &  &  &  &  & X \\ \cline{2-7} 
+ & CodingTable &  &  &  &  & X \\ \hline
+\multirow{8}{*}{Conception préliminaire} & HuffmanTree &  & X &  &  &  \\ \cline{2-7} 
+ & Byte &  &  & X &  &  \\ \cline{2-7} 
+ & Statistics &  &  &  & X &  \\ \cline{2-7} 
+ & BinaryCode &  &  &  &  & X \\ \cline{2-7} 
+ & PriorityQueue & X &  &  &  &  \\ \cline{2-7} 
+ & CodingTable & X &  &  &  &  \\ \cline{2-7} 
+ & Compress &  & X &  &  &  \\ \cline{2-7} 
+ & Decompress &  &  & X &  &  \\ \hline
+\multirow{8}{*}{Conception détaillée} & HuffmanTree &  &  & X &  &  \\ \cline{2-7} 
+ & Byte &  &  &  & X &  \\ \cline{2-7} 
+ & Statistics &  &  &  &  & X \\ \cline{2-7} 
+ & BinaryCode & X &  &  &  &  \\ \cline{2-7} 
+ & PriorityQueue &  & X &  &  &  \\ \cline{2-7} 
+ & CodingTable &  & X &  &  &  \\ \cline{2-7} 
+ & Compress &  &  & X &  &  \\ \cline{2-7} 
+ & Decompress &  &  &  & X &  \\ \hline
+\multirow{8}{*}{Developpement} & HuffmanTree &  &  &  & X &  \\ \cline{2-7} 
+ & Byte &  &  &  &  & X \\ \cline{2-7} 
+ & Statistics & X &  &  &  &  \\ \cline{2-7} 
+ & BinaryCode &  & X &  &  &  \\ \cline{2-7} 
+ & PriorityQueue &  &  & X &  &  \\ \cline{2-7} 
+ & CodingTable &  &  & X &  &  \\ \cline{2-7} 
+ & Compress &  &  &  & X &  \\ \cline{2-7} 
+ & Decompress &  &  &  &  & X \\ \hline
+\multirow{8}{*}{Tests Unitaires} & HuffmanTree &  &  &  &  & X \\ \cline{2-7} 
+ & Byte & X &  &  &  &  \\ \cline{2-7} 
+ & Statistics &  & X &  &  &  \\ \cline{2-7} 
+ & BinaryCode &  &  & X &  &  \\ \cline{2-7} 
+ & PriorityQueue &  &  &  & X &  \\ \cline{2-7} 
+ & CodingTable &  &  &  & X &  \\ \hline
+\end{tabular}%
+}
+\caption{Tableau de répartiton des tâches}
+\label{tab:my-table}
+\end{table}
 \end{document}

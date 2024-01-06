@@ -1,31 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 #include "compress.h"
 #include "huffmanTree.h"
 #include "statistics.h"
 #include "codingTable.h"
 
-    // 1. Changer type S_Statistics? : tableau d'occurence pour les 256 octets possible
+    // 1. Changer type S_Statistics? : tableau d'occurence pour les 256 octets possible (FAIT ✅)
 //  typedef struct {
-//      int frequencies[256];  
-//  } S_Statistics;
+//      int element[256];  
+//  } S_Statistics; //(FAIT ✅)
 
 
-    //2. Type HuffmanTreeNode : Faut faire en sorte de stocker l'octet aux feuilles de l'abres
+    //(FAIT ✅)//2. Type HuffmanTreeNode : Faut faire en sorte de stocker l'octet aux feuilles de l'abres
     // on rajoute un int octet qui prend -1 si c pas une feuille
 //struct HT_HuffmanTreeNode {
-//    int valeur;
+//    int occurence;
 //    int octet;       //prend -1 si c un noeud et l'octet si feuille
 //    struct HT_HuffmanTreeNode* leftChild;
 //    struct HT_HuffmanTreeNode* rightChild;
 //};
-// Et du coup rajouter un getOctet dans HT
+// Et du coup rajouter un getOctet dans HT (FAIT ✅)
 
-// 3. Modifier HT_createLeaf de sorte qu'il initialise la valeur de l'octet
+// 3. Modifier HT_createLeaf de sorte qu'il initialise l'occurence de l'octet (FAIT ✅)
 
-// 4. Modifier HT_createNode de sorte qu'il calcule la valeur (node.valeur = leftChild.valeur+rightChild.valeur)
-//                                      et met node.otet à -1
+// 4. Modifier HT_createNode de sorte qu'il calcule l'occurence (node.occurence = leftChild.occurence+rightChild.occurence)
+//                                      et met node.otet à -1(FAIT ✅)
 
 // 5.  Changer structure CT_CodingTable (FAIT ✅)
 // typedef struct {
@@ -40,8 +41,10 @@ S_Statistics C_computeStatistics(FILE* file) {
     stats = S_statistics();
 
     B_Byte byte;
-    while ((byte = fgetc(file)) != EOF) {       // si c un fichier d'octet faut trouver l'equivalent de fgetc
-        stats->frequencies[byte]++;              // A modifier : fichier d'octet et freaquencies prend un [int] ?
+    unsigned int byteNat;
+    while (fread(&byte, 1, 1, file) == 1){ 
+        byteNat = B_byteToNatural(byte);
+        S_incCount(&stats,byteNat);
     }
 
     return stats;
@@ -50,9 +53,9 @@ S_Statistics C_computeStatistics(FILE* file) {
 
 HT_HuffmanTree C_buildHuffmanTree(S_Statistics stats) {
     HT_HuffmanTree nodes[256];
-    for (int i = 0; i < 256; ++i) {
-        if (stats->frequencies[i] > 0) {
-            nodes[i] = HT_createLeaf(stats->frequencies[i]);     
+    for (unsigned int i = 0; i < 256; ++i) {
+        if (S_contains(stats,i)) {
+            nodes[i] = HT_createLeaf(S_getCount(stats,i),i);     
         } else {
             nodes[i] = NULL;
         }
@@ -61,12 +64,12 @@ HT_HuffmanTree C_buildHuffmanTree(S_Statistics stats) {
     while (1) {
         // Trouver les deux nœuds avec les fréquences les plus basses
         int min1 = -1, min2 = -1;
-        for (int i = 0; i < 256; ++i) {
+        for (unsigned int i = 0; i < 256; ++i) {
             if (nodes[i] != NULL) {
-                if (min1 == -1 || nodes[i]->valeur < nodes[min1]->valeur) {
+                if (min1 == -1 || HT_getOccurence(nodes[i]) < HT_getOccurence(nodes[min1])) {
                     min2 = min1;
                     min1 = i;
-                } else if (min2 == -1 || nodes[i]->valeur < nodes[min2]->valeur) {
+                } else if (min2 == -1 || HT_getOccurence(nodes[i]) < HT_getOccurence(nodes[min2])) {
                     min2 = i;
                 }
             }
@@ -78,7 +81,7 @@ HT_HuffmanTree C_buildHuffmanTree(S_Statistics stats) {
         }
 
         // Créer un nouveau nœud avec la somme des fréquences
-        HuffmanTree newNode = createNode(nodes[min1], nodes[min2]);
+        HT_HuffmanTree newNode = HT_createNode(nodes[min1], nodes[min2]);
 
         // Fusionner les 2 noeuds
         nodes[min1] = newNode;
@@ -86,32 +89,31 @@ HT_HuffmanTree C_buildHuffmanTree(S_Statistics stats) {
     }
 }
 
-void browseTree(HuffmanTree* noeud, BC_BinaryCode code, CT_CodingTable* codingTable) {
+void browseTree(HT_HuffmanTree* noeud, BC_BinaryCode code, CT_CodingTable* codingTable) {
     
     if (noeud != NULL) {
         // Si le nœud est une feuille, enregistrez le code binaire dans la table
-        if (HT_isALeaf(noeud)) {
-            codingTable->table[noeud->octet] = code;  //rajouter un getOctet dans HT et modifier CT_add pour l'utiliser ici
+        if (HT_isALeaf(*noeud)) {
+            CT_add(codingTable,HT_getOctet(*noeud),code);
         }
 
         // Parcourir récursivement le sous-arbre gauche avec l'ajout de BC_ZERO au code binaire
         BC_BinaryCode leftCode = code;
         BC_addBit(&leftCode,BC_ZERO);
-        browseTree(HT_getLeftChild(noeud), leftCode, codingTable);
+        HT_HuffmanTree leftChild = HT_getLeftChild(*noeud);
+        browseTree(&leftChild, leftCode, codingTable);
 
         // Parcourir récursivement le sous-arbre droit avec l'ajout de BC_ONE au code binaire
         BC_BinaryCode rightCode = code;
         BC_addBit(&rightCode,BC_ONE);
-        browseTree(HT_getRightChild(noeud), codeDroite, codingTable);
+        HT_HuffmanTree rightChild = HT_getRightChild(*noeud);
+        browseTree(&rightChild, rightCode, codingTable);
     }
 }
 
 CT_CodingTable C_buildCodingTable(HT_HuffmanTree* tree) {
     CT_CodingTable codingTable;
-    for (int i = 0; i < 256; ++i) {
-        // Initialiser chaque BC_BinaryCode à zéro bits
-        codingTable.table[i] = BC_binaryCode();
-    }
+    codingTable = CT_new();
 
     BC_BinaryCode emptyCode = BC_binaryCode();
     
@@ -121,17 +123,22 @@ CT_CodingTable C_buildCodingTable(HT_HuffmanTree* tree) {
 }
 
 void writeStatistics(FILE* file,  S_Statistics* stats) {
-    
+    size_t written = fwrite(stats, sizeof(S_Statistics), 1, file);
+
+    // Vérifier si l'écriture a réussi
+    if (written != 1) {
+        errno = ENOENT; // Erreur d'écriture
+    }
 }
 
-void writeData(FILE* s_file, FILE* d_file, CT_CodingTable* table) {
+void writeData(FILE* soureFile, FILE* destFile, CT_CodingTable* table) {
     
 }
 
 
 void C_compressFile(char* nameSourceFile) {
 
-    //charger fichier source et destination
+    //Charger fichier source et destination
     FILE* sourceFile = fopen(nameSourceFile, "rb");
     if (sourceFile == NULL) {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier source.\n");
@@ -148,9 +155,9 @@ void C_compressFile(char* nameSourceFile) {
     // Calcul de la table de codage
     S_Statistics stats = C_computeStatistics(sourceFile);
 
-    HT_HuffmanTree* huffmanTree = C_buildHuffmanTree(stats);
+    HT_HuffmanTree huffmanTree = C_buildHuffmanTree(stats);
 
-    CT_CodingTable table = C_buildCodingTable(huffmanTree);
+    CT_CodingTable table = C_buildCodingTable(&huffmanTree);
 
 
     //Remplir le fichier destination

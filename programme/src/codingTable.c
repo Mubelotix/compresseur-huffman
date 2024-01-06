@@ -18,28 +18,25 @@ bool CT_isEmpty(CT_CodingTable table) {
     return 1;
 }
 
-bool CT_contains(CT_CodingTable table, B_Byte byte) {
-    unsigned int converted_byte = B_byteToNatural(byte);
-    return table.tab[converted_byte].present;
+bool CT_contains(CT_CodingTable table, unsigned int octet) {
+    return table.tab[octet].present;
 }
 
-void CT_add(CT_CodingTable *table, B_Byte byte, BC_BinaryCode code) {
-    unsigned int converted_byte = B_byteToNatural(byte);
-    if (table->tab[converted_byte].present) {
+void CT_add(CT_CodingTable *table, unsigned int octet, BC_BinaryCode code) {
+    if (table->tab[octet].present) {
         errno = EEXIST;
         return;
     }
-    table->tab[converted_byte].present = 1;
-    table->tab[converted_byte].binary_code = code;
+    table->tab[octet].present = 1;
+    table->tab[octet].binary_code = code;
 }
 
-BC_BinaryCode CT_getBinaryCode(CT_CodingTable table, B_Byte byte) {
-    unsigned int converted_byte = B_byteToNatural(byte);
-    if (!table.tab[converted_byte].present) {
+BC_BinaryCode CT_getBinaryCode(CT_CodingTable table, unsigned int octet) {
+    if (!table.tab[octet].present) {
         errno = ENOENT;
         return BC_binaryCode();
     }
-    return table.tab[converted_byte].binary_code;
+    return table.tab[octet].binary_code;
 }
 
 B_Byte CT_getByte(CT_CodingTable table, BC_BinaryCode code) {

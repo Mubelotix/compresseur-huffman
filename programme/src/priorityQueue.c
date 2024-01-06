@@ -43,6 +43,7 @@ void PQ_insertTree(PQ_PriorityQueue *queue, HT_HuffmanTree ht) {
     queue->elements[i] = ht;
 }
 
+/*
 HT_HuffmanTree PQ_popTree(PQ_PriorityQueue *queue) {
     if (queue->length == 0) {
         errno = EOVERFLOW;
@@ -51,3 +52,4 @@ HT_HuffmanTree PQ_popTree(PQ_PriorityQueue *queue) {
     queue->length--;
     return queue->elements[queue->length];
 }
+*/

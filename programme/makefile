@@ -1,44 +1,66 @@
 SRCDIR=src
+TESTDIR=$(SRCDIR)/tests
+INCLUDEDIR=include
+
 LIBDIR=lib
 BINDIR=bin
-TESTDIR=$(SRCDIR)/tests
 TESTBINDIR=tests
-INCLUDEDIR=include
-CC = gcc
-AR = ar
-CFLAGS=-Wall -pedantic -g -std=gnu99
-LDFLAGS=
+
+LATEXDIR=rapport
+
+LIB_NAME = libhuffman.a
+CC=gcc
+AR=ar
+CFLAGS=-Wall -pedantic -g -std=gnu99 -I $(INCLUDEDIR)
+LDFLAGS=-L. -L$(LIBDIR) -lhuffman -lcunit
+
+SRCS = $(wildcard $(SRCDIR)/*.c)
+# Ajoutez les fichiers pétés dans la liste pour qu'ils soient ignorés
+# C'est temporaire!
+EXCLUDE_SRCS = compress.c main.c # Temporary
+SRCS = $(filter-out $(addprefix $(SRCDIR)/, $(EXCLUDE_SRCS)), $(wildcard $(SRCDIR)/*.c)) # Temporary
+OBJS = $(patsubst $(SRCDIR)/%.c, $(BINDIR)/%.o, $(SRCS))
+
 
 EXEC=huffman
 TESTEXEC=testHuffman
 
-all : $(BINDIR)/$(EXEC)
+all: $(BINDIR)/$(EXEC)
 
-tests: $(TESTBINDIR)/$(TESTEXEC)
+create_directories:
+	mkdir -p $(BINDIR) $(LIBDIR) $(TESTBINDIR)
 
-$(BINDIR)/$(EXEC) : $(SRCDIR)/main.o $(LIBDIR)/libhuffman.a
-	$(CC) $(LDFLAGS) -o $@ $< -lhuffman -Llib
+tests: create_directories $(TESTBINDIR)/$(TESTEXEC)
+	./$(TESTBINDIR)/$(TESTEXEC)
 
-SRC_FILES := $(wildcard $(SRCDIR)/*.c)
-OBJ_FILES := $(patsubst $(SRCDIR)/%.c, $(SRCDIR)/%.o, $(SRC_FILES))
-$(LIBDIR)/libhuffman.a : $(OBJ_FILES)
-	$(AR) -r $@ $^
+$(BINDIR)/%.o: $(SRCDIR)/%.c
+	$(CC) -c $(CFLAGS) $< -o $@
 
-$(SRCDIR)/%.o : $(SRCDIR)/%.c
-	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDEDIR)
+$(BINDIR)/%.o: $(TESTDIR)/%.c
+	$(CC) -c $(CFLAGS) $< -o $@
 
-TEST_SRC_FILES := $(wildcard $(TESTDIR)/*.c)
-TEST_OBJ_FILES := $(patsubst $(TESTDIR)/%.c, $(TESTDIR)/%.o, $(TEST_SRC_FILES))
-$(TESTDIR)/%.o : $(TESTDIR)/%.c
-	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDEDIR)
+runner.o: src/tests/runner.c
+	$(CC) -c src/tests/runner.c $(CFLAGS)
 
-$(TESTBINDIR)/$(TESTEXEC) : $(TEST_OBJ_FILES) $(LIBDIR)/libhuffman.a
-	$(CC) $(LDFLAGS) -o $@ $^ -lhuffman -Llib -lcunit
+$(LIBDIR)/$(LIB_NAME): $(OBJS)
+	$(AR) rcs $@ $^
+
+$(TESTBINDIR)/$(TESTEXEC): runner.o $(LIBDIR)/$(LIB_NAME)
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+pdf: ../$(LATEXDIR)/rapport.tex
+	cd ../$(LATEXDIR) && pdflatex --shell-escape rapport.tex
+	rm -f ../$(LATEXDIR)/*.fls ../$(LATEXDIR)/*.fdb_latexmk ../$(LATEXDIR)/*.aux ../$(LATEXDIR)/*.log ../$(LATEXDIR)/*.lof ../$(LATEXDIR)/*.out ../$(LATEXDIR)/*.synctex.gz ../$(LATEXDIR)/*.toc
+	rm -rf ../$(LATEXDIR)/_minted-rapport
 
 clean :
 	rm -rf ./$(BINDIR)/*
-	rm -rf ./$(TESTBINDIR)/*
 	rm -rf ./$(LIBDIR)/*
 	rm -rf ./$(SRCDIR)/*.o
 
 # gcc -o tests/testStatistics src/tests/testStatistics.c -Iinclude -lcunit -Wall -pedantic
+
+
+# Print variables for debugging
+print-%:
+	@echo $* = $($*)

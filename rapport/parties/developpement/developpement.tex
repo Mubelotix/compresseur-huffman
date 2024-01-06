@@ -1,0 +1,49 @@
+\subsection{Developpement}
+
+\lstdefinestyle{customc}{
+    belowcaptionskip=1\baselineskip,
+    breaklines=true,
+    frame=L,
+    xleftmargin=\parindent,
+    language=C,
+    showstringspaces=false,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\bfseries\color{green!40!black},
+    commentstyle=\itshape\color{purple!40!black},
+    identifierstyle=\color{blue},
+    stringstyle=\color{orange},
+    captionpos=t,
+    caption=\lstname
+}
+
+\lstset{style=customc,
+        inputencoding=utf8/latin1}
+
+\subsubsection{.h}
+
+\lstinputlisting{../programme/include/binaryCode.h}
+\lstinputlisting{../programme/include/byte.h}
+\lstinputlisting{../programme/include/codingTable.h}
+\lstinputlisting{../programme/include/huffmanTree.h}
+\lstinputlisting{../programme/include/priorityQueue.h}
+\lstinputlisting{../programme/include/statistics.h}
+
+\subsubsection{.c}
+
+\lstinputlisting{../programme/src/binaryCode.c}
+\lstinputlisting{../programme/src/byte.c}
+\lstinputlisting{../programme/src/codingTable.c}
+\lstinputlisting{../programme/src/huffmanTree.c}
+\lstinputlisting{../programme/src/priorityQueue.c}
+\lstinputlisting{../programme/src/statistics.c}
+\lstinputlisting{../programme/src/compress.c}
+%\lstinputlisting{../programme/src/decompress.c}
+
+\subsection{Tests unitaires}
+
+\lstinputlisting{../programme/src/tests/testBinaryCode.c}
+\lstinputlisting{../programme/src/tests/testByte.c}
+\lstinputlisting{../programme/src/tests/testCodingTable.c}
+\lstinputlisting{../programme/src/tests/testHuffmanTree.c}
+\lstinputlisting{../programme/src/tests/testPriorityQueue.c}
+\lstinputlisting{../programme/src/tests/testStatistics.c}

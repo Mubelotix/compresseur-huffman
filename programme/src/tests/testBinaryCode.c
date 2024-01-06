@@ -91,3 +91,26 @@ void BC_testBufferOverflow() {
     CU_ASSERT_EQUAL(errno, EOVERFLOW);
     CU_ASSERT_EQUAL(BC_getLength(bc), 256); // the length is unchanged
 }
+
+CU_ErrorCode BC_createBinaryCodeTestSuite() {
+    // Create the suite
+    CU_pSuite pSuite = CU_add_suite("Tests boite noire : binary code", NULL, NULL);
+    if (NULL == pSuite) {
+        CU_cleanup_registry();
+        return CU_get_error();
+    }
+
+    // Add the tests to the suite
+    if ((NULL == CU_add_test(pSuite, "Test length", BC_testLength ))
+        || (NULL == CU_add_test(pSuite, "Test values", BC_testValues))
+        || (NULL == CU_add_test(pSuite, "Test concatenate", BC_testConcat)) 
+        || (NULL == CU_add_test(pSuite, "Test out of bound", BC_testOutOfBounds))
+        || (NULL == CU_add_test(pSuite, "Test buffer over flow", BC_testBufferOverflow))
+        ) 
+    {
+        CU_cleanup_registry();
+        return CU_get_error();
+    }
+
+    return CUE_SUCCESS;
+}
