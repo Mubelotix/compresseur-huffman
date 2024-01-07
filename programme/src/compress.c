@@ -145,6 +145,7 @@ void C_compressFile(char* nameSourceFile) {
     printf("\nWriting data...\n");
     C_saveStatistics(stats, outputFile);
     C_writeData(sourceFile, outputFile, &codingTable);
+    printf("\nDone!");
 
     // Close files and free memory
     fclose(sourceFile);

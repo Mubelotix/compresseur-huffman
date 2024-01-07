@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <errno.h>
 
-/// Read a single byte from a file
+/// @brief Read a single byte from a file
 char readByte(FILE* file) {
     char byte;
     size_t read = fread(&byte, sizeof(char), 1, file);
@@ -25,6 +25,7 @@ char readByte(FILE* file) {
     return byte;
 }
 
+/// @brief Reads statistics from a file. Those are stored as a sequence of VarInts.
 S_Statistics D_restoreStatistics(FILE* file) {
     S_Statistics stats;
     for (int i = 0; i < S_MAX; i++)
@@ -49,50 +50,55 @@ S_Statistics D_restoreStatistics(FILE* file) {
     return stats;
 }
 
-void D_writeData(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable, unsigned int expectedSize) {
-    B_Byte byte;
-    unsigned int byteNat;
-    unsigned char inputChar;
-    unsigned int currentSize = 0;
-
+/// @brief Decompress the file on the fly
+void D_streamDecompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable, unsigned int expectedSize) {
     if (expectedSize == 0) {
         return;
     }
 
-    BC_BinaryCode unsavedBits = BC_binaryCode();
+    unsigned char inputChar;
+    unsigned int currentSize = 0;
+    BC_BinaryCode buffer = BC_binaryCode();
     while (fread(&inputChar, 1, 1, sourceFile) == 1) {
-        byte = B_fromNatural(inputChar);
-        BC_appendByte(&unsavedBits, byte);
+        BC_appendByte(&buffer, B_fromNatural(inputChar));
         
-        for (unsigned int length = 1; length <= BC_getLength(unsavedBits); length++) {
-            BC_BinaryCode prefix = BC_prefix(unsavedBits, length);
+        // Split the binary code into multiple candidates and test them
+        for (unsigned int length = 1; length <= BC_getLength(buffer); length++) {
+            BC_BinaryCode codeCandidate = BC_prefix(buffer, length);
+
+            // Attempt to get the byte corresponding to the code candidate
+            // If it succeeds, the candidate is valid
             errno = 0;
-            B_Byte byte = CT_getByte(*codingTable, prefix);
+            B_Byte byte = CT_getByte(*codingTable, codeCandidate);
             if (errno == ENOENT) {
                 continue;
             }
-            unsavedBits = BC_suffix(unsavedBits, length);
 
-            char c = B_byteToNatural(byte);
+            // Remove the code from the buffer
+            buffer = BC_suffix(buffer, length);
 
-
-            BC_debug(prefix);
+            // Log the code
+            BC_debug(codeCandidate);
             printf(" ");
+
+            // Write the byte to the output file
+            char c = B_byteToNatural(byte);
             size_t result = fwrite(&c, sizeof(char), 1, outputFile);
             if (result != 1) {
                 fprintf(stderr, "Erreur lors de l'écriture des données decompressées\n");
                 return;
             }
             currentSize++;
+
+            // Check if we have reached the end of the file (there is padding to ignore at the end)
             if (currentSize == expectedSize) {
                 return;
             }
 
+            // The buffer has been shortened, so we need to restart the loop
             length = 1;
         }
     }
-    
-    printf("\n");
 }
 
 void D_decompressFile(char* nameSourceFile) {
@@ -145,5 +151,11 @@ void D_decompressFile(char* nameSourceFile) {
     CT_debug(codingTable);
 
     printf("\nWriting data...\n");
-    D_writeData(sourceFile, outputFile, &codingTable, S_length(stats));
+    D_streamDecompress(sourceFile, outputFile, &codingTable, S_length(stats));
+    printf("\nDone!");
+
+    // Close files and free memory
+    fclose(sourceFile);
+    fclose(outputFile);
+    HT_destroy(huffmanTree);
 }
