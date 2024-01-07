@@ -6,7 +6,7 @@
 // Test de l'axiome: contains(statistics, element)
 void S_testContains(void) {
     S_Statistics stats = S_statistics();
-    unsigned int element = 1;
+    B_Byte element = B_byte(0,0,0,0,0,0,0,1);
 
     S_incCount(&stats, element);
 
@@ -16,7 +16,7 @@ void S_testContains(void) {
 // Test de l'axiome: getCount(S_statistics, element) >= 0
 void S_testGetCount(void) {
     S_Statistics stats = S_statistics();
-    unsigned int element = 1;
+    B_Byte element = B_byte(0,0,0,0,0,0,0,1);
     CU_ASSERT_EQUAL(S_getCount(stats, element), 0);
 
     S_incCount(&stats, element);
@@ -33,7 +33,7 @@ void S_testLength(void) {
 // Test de l'axiome: getElementCount(incCount(stats, el), el) = getElementCount(stats, el) + 1
 void S_testIncCount(void) {
     S_Statistics stats = S_statistics();
-    unsigned int element = 1;
+    B_Byte element = B_byte(0,0,0,0,0,0,0,1);
 
     int countBefore = S_length(stats);
     S_incCount(&stats, element);
