@@ -26,7 +26,7 @@ B_Byte B_fromNatural(unsigned int natural) {
         return B_byte(0, 0, 0, 0, 0, 0, 0, 0);
     }
     B_Byte res;
-    res.value = (char) natural;
+    res.value = (unsigned char) natural;
     return res;
 }
 

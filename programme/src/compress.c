@@ -17,7 +17,7 @@ S_Statistics C_computeStatistics(FILE* file) {
     S_Statistics stats = S_statistics();
     B_Byte byte;
     unsigned int byteNat;
-    char inputChar;
+    unsigned char inputChar;
 
     while (fread(&inputChar, 1, 1, file) == 1) {
         byte = B_fromNatural((unsigned int)inputChar);
@@ -40,17 +40,17 @@ void C_saveStatistics(S_Statistics stats, FILE* file) {
     for (int i = 0; i < S_MAX; i++) {
         // Write a VarInt
         unsigned int count = stats.element[i];
-        unsigned int fist_byte = count & (0x7F << 14); // bits -21 to -14
-        unsigned int second_byte = count & (0x7F << 7); // bits -14 to -7
-        unsigned int third_byte = count & 0x7F; // last 7 bits
-        if (fist_byte != 0) {
-            fist_byte += 0x80; // first bit
-            second_byte += 0x80; // first bit
-            writeByte(file, fist_byte);
+        unsigned int first_byte = (count >> 14) & 0x7F; // bits -21 to -14
+        unsigned int second_byte = (count >> 7) & 0x7F;  // bits -14 to -7
+        unsigned int third_byte = count & 0x7F;  // last 7 bits
+        if (first_byte != 0) {
+            first_byte += 0x80; // set first bit
+            second_byte += 0x80; // set first bit
+            writeByte(file, first_byte);
             writeByte(file, second_byte);
             writeByte(file, third_byte);
         } else if (second_byte != 0) {
-            second_byte += 0x80; // first bit
+            second_byte += 0x80; // set first bit
             writeByte(file, second_byte);
             writeByte(file, third_byte);
         } else {
@@ -63,7 +63,7 @@ void C_saveStatistics(S_Statistics stats, FILE* file) {
 void C_streamCompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable) {
     B_Byte byte;
     unsigned int byteNat;
-    char inputChar;
+    unsigned char inputChar;
 
     BC_BinaryCode unsavedBits = BC_binaryCode();
     fseek(sourceFile, 0, SEEK_SET);

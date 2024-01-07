@@ -58,10 +58,9 @@ void S_debug(S_Statistics stats) {
     unsigned long total = 0;
     for (int i = 0; i < 256; i++) {
         B_Byte byte = B_fromNatural(i);
-        if (S_contains(stats, byte) && i != 10) {
+        if (S_contains(stats, byte)) {
             total += S_getCount(stats, byte);
-            char associated_char = i;
-            printf("\t%d: %d\n", associated_char, S_getCount(stats, byte));
+            printf("\t%d: %d\n", i, S_getCount(stats, byte));
         }
     }
     printf("\tTotal: %lu\n", total);

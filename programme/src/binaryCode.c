@@ -52,7 +52,7 @@ B_Byte BC_removeFirstByte(BC_BinaryCode* pbc) {
 }
 
 void BC_appendByte(BC_BinaryCode* pbc, B_Byte byte) {
-    char byteNat = B_byteToNatural(byte);
+    unsigned char byteNat = B_byteToNatural(byte);
     for (unsigned int i=0; i < 8; i++) {
         BC_addBit(pbc, (byteNat >> (7-i)) & 1);
     }

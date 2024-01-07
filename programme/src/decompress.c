@@ -16,8 +16,8 @@
 #define CLI_NORMAL "\033[0m"
 
 /// @brief Read a single byte from a file
-char readByte(FILE* file) {
-    char byte;
+unsigned char readByte(FILE* file) {
+    unsigned char byte;
     size_t read = fread(&byte, sizeof(char), 1, file);
 
     // Vérifier si la lecture a réussi
@@ -33,14 +33,14 @@ S_Statistics D_restoreStatistics(FILE* file) {
     S_Statistics stats;
     for (int i = 0; i < S_MAX; i++) {
         // Read a VarInt
-        char first_byte = readByte(file);
+        unsigned char first_byte = readByte(file);
         unsigned int count = first_byte & 0x7F;
         if (first_byte & 0x80) {
-            char second_byte = readByte(file);
+            unsigned char second_byte = readByte(file);
             count <<= 7;
             count += second_byte & 0x7F;
             if (second_byte & 0x80) {
-                char third_byte = readByte(file);
+                unsigned char third_byte = readByte(file);
                 count <<= 7;
                 count += third_byte & 0x7F;
             }
