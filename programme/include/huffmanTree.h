@@ -54,4 +54,7 @@ void HT_destroy(HT_HuffmanTree ht);
 
 HT_HuffmanTree HT_createTree(HT_HuffmanTreeNode* root);
 
+void HT_debug(HT_HuffmanTree ht);
+void HT_debug_inner(HT_HuffmanTree ht, unsigned int depth, bool last);
+
 #endif

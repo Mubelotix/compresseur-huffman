@@ -68,3 +68,29 @@ void HT_destroy(HT_HuffmanTree ht) {
 HT_HuffmanTree HT_createTree(HT_HuffmanTreeNode* root) {
     return root;
 }
+
+void HT_debug(HT_HuffmanTree ht) {
+    HT_debug_inner(ht, 0, 0);
+}
+
+void HT_debug_inner(HT_HuffmanTree ht, unsigned int depth, bool last) {
+    if (depth > 0) {
+        for (unsigned int i = 0; i < depth-1; i++) {
+            printf("│  ");
+        }
+        if (last) {
+            printf("└──");
+        } else {
+            printf("├──");
+        }
+    }
+    if (HT_isALeaf(ht)) {
+        B_Byte byte = HT_getByte(ht);
+        unsigned int byteNat = B_byteToNatural(byte);
+        printf("Leaf: %d (%d)\n", byteNat, HT_getOccurence(ht));
+    } else {
+        printf("Node: (%d)\n", HT_getOccurence(ht));
+        HT_debug_inner(HT_getLeftChild(ht), depth + 1, 0);
+        HT_debug_inner(HT_getRightChild(ht), depth + 1, 1);
+    }
+}

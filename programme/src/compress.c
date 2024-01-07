@@ -140,16 +140,19 @@ void C_compressFile(char* nameSourceFile) {
     }
     
     // Count characters
-    printf("Counting characters...\n");
+    printf("\nCounting characters...\n");
     S_Statistics stats = C_computeStatistics(sourceFile);
     S_debug(stats);
 
     // Order characters by frequency
-    printf("Building priority queue...\n");
+    printf("\nBuilding priority queue...\n");
     PQ_PriorityQueue queue = PQ_fromStatistics(stats);
     PQ_debug(queue);
 
+    // Build Huffman tree
+    printf("\nBuilding Huffman tree...\n");
     HT_HuffmanTree huffmanTree = PQ_intoHuffmanTree(queue);
+    HT_debug(huffmanTree);
 
     CT_CodingTable table = C_buildCodingTable(huffmanTree);
 

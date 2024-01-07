@@ -797,3 +797,5 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/latex,c,vs,linux,macos,windows
 programme/tests/testHuffman
+programme/temp.huff
+programme/test.txt
