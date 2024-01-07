@@ -23,6 +23,9 @@ BC_Bit BC_getBit(BC_BinaryCode bc, unsigned int pos);
 void BC_concatenate(BC_BinaryCode* pbc1, BC_BinaryCode* pbc2);
 bool BC_equals(BC_BinaryCode bc1, BC_BinaryCode bc2);
 B_Byte BC_removeFirstByte(BC_BinaryCode* pbc);
+void BC_appendByte(BC_BinaryCode* pbc, B_Byte byte);
+BC_BinaryCode BC_prefix(BC_BinaryCode bc, unsigned int length);
+BC_BinaryCode BC_suffix(BC_BinaryCode bc, unsigned int start);
 
 void BC_debug(BC_BinaryCode bc);
 

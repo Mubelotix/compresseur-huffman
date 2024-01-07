@@ -26,10 +26,8 @@ S_Statistics C_computeStatistics(FILE* file) {
 /// Write a single byte to a file
 void writeByte(FILE* file, char byte) {
     size_t written = fwrite(&byte, sizeof(char), 1, file);
-
-    // Vérifier si l'écriture a réussi
     if (written != 1) {
-        errno = ENOENT; // Erreur d'écriture
+        errno = ENOENT;
     }
 }
 
@@ -57,7 +55,7 @@ void C_saveStatistics(S_Statistics stats, FILE* file) {
     }
 }
 
-void writeData(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable) {
+void C_writeData(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable) {
     B_Byte byte;
     unsigned int byteNat;
     char inputChar;
@@ -132,7 +130,7 @@ void C_compressFile(char* nameSourceFile) {
     // Save statistics
     printf("\nWriting data...\n");
     C_saveStatistics(stats, outputFile);
-    writeData(sourceFile, outputFile, &codingTable);
+    C_writeData(sourceFile, outputFile, &codingTable);
 
     // Close files and free memory
     fclose(sourceFile);

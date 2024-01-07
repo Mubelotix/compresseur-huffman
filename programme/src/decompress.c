@@ -192,6 +192,43 @@ DecompressResult decompressErrorToString(DecompressResult error, char *buffer, F
     return error;
 }
 
+void D_writeData(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable) {
+    B_Byte byte;
+    unsigned int byteNat;
+    unsigned char inputChar;
+
+    BC_BinaryCode unsavedBits = BC_binaryCode();
+    while (fread(&inputChar, 1, 1, sourceFile) == 1) {
+        byte = B_fromNatural(inputChar);
+        BC_appendByte(&unsavedBits, byte);
+        
+        for (unsigned int length = 1; length <= BC_getLength(unsavedBits); length++) {
+            BC_BinaryCode prefix = BC_prefix(unsavedBits, length);
+            errno = 0;
+            B_Byte byte = CT_getByte(*codingTable, prefix);
+            if (errno == ENOENT) {
+                continue;
+            }
+            unsavedBits = BC_suffix(unsavedBits, length);
+
+            char c = B_byteToNatural(byte);
+
+
+            BC_debug(prefix);
+            printf(" ");
+            size_t result = fwrite(&c, sizeof(char), 1, outputFile);
+            if (result != 1) {
+                fprintf(stderr, "Erreur lors de l'écriture des données decompressées\n");
+                return;
+            }
+
+            length = 1;
+        }
+    }
+    // TODO last bits
+    printf("\n");
+}
+
 void D_decompressFile(char* nameSourceFile) {
     printf("Démpression du fichier %s...\n", nameSourceFile);
 
@@ -240,4 +277,7 @@ void D_decompressFile(char* nameSourceFile) {
     printf("\nBuilding coding table...\n");
     CT_CodingTable codingTable = CT_fromHuffmanTree(huffmanTree);
     CT_debug(codingTable);
+
+    printf("\nWriting data...\n");
+    D_writeData(sourceFile, outputFile, &codingTable);
 }

@@ -51,6 +51,29 @@ B_Byte BC_removeFirstByte(BC_BinaryCode* pbc) {
     return res;
 }
 
+void BC_appendByte(BC_BinaryCode* pbc, B_Byte byte) {
+    char byteNat = B_byteToNatural(byte);
+    for (unsigned int i=0; i < 8; i++) {
+        BC_addBit(pbc, (byteNat >> (7-i)) & 1);
+    }
+}
+
+BC_BinaryCode BC_prefix(BC_BinaryCode bc, unsigned int length) {
+    BC_BinaryCode res = BC_binaryCode();
+    for (unsigned int i=0; i < length; i++) {
+        BC_addBit(&res, BC_getBit(bc, i));
+    }
+    return res;
+}
+
+BC_BinaryCode BC_suffix(BC_BinaryCode bc, unsigned int start) {
+    BC_BinaryCode res = BC_binaryCode();
+    for (unsigned int i=start; i < BC_getLength(bc); i++) {
+        BC_addBit(&res, BC_getBit(bc, i));
+    }
+    return res;
+}
+
 bool BC_equals(BC_BinaryCode bc1, BC_BinaryCode bc2) {
     if (bc1.length != bc2.length) {
         return 0;

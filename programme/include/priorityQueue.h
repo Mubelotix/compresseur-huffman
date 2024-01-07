@@ -31,7 +31,7 @@ PQ_PriorityQueue PQ_fromStatistics(S_Statistics stats);
  * @param queue The priority queue.
  * @return The length of the given priority queue.
  */
-unsigned int PQ_lenght(PQ_PriorityQueue queue);
+unsigned int PQ_length(PQ_PriorityQueue queue);
 
 /** 
  * @brief Gets the index where the given huffman tree should be inserted.

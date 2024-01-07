@@ -20,7 +20,7 @@
 
   \begin{tadSemantiques}{newPriorityQueue}
     \tadSemantique{newPriorityQueue}{Crée une file de priorité vide.}
-    \tadSemantique{lenght}{Renvoie le nombre d'arbres de Huffman présents dans une file de priorité.}
+    \tadSemantique{length}{Renvoie le nombre d'arbres de Huffman présents dans une file de priorité.}
     \tadSemantique{isEmpty}{Renvoie vrai si la file de priorité est vide, faux sinon.}
     \tadSemantique{popTree}{Renvoie l'arbre de Huffman ayant la plus petite occurence et le retire de la file de priorité.}
     \tadSemantique{insertTree}{Insère un arbre de Huffman dans la file de priorité.}
@@ -30,12 +30,12 @@
   \end{tadSemantiques}
 
   \begin{tadAxiomes}
-    \tadAxiome{lenght(newPriorityQueue()) = 0}
+    \tadAxiome{length(newPriorityQueue()) = 0}
     \tadAxiome{isEmpty(newPriorityQueue())}
     \tadAxiome{isEmpty(q) <=> length(q) = 0}
     \tadAxiome{popTree(insertTree(q,ht)) = ht}
-    \tadAxiome{lenght(insertTree(q, ht)) = lenght(q) + 1}
-    \tadAxiome{lenght(popTree(q)) = lenght(q) - 1}
+    \tadAxiome{length(insertTree(q, ht)) = length(q) + 1}
+    \tadAxiome{length(popTree(q)) = length(q) - 1}
   \end{tadAxiomes}
 
   \begin{tadPreconditions}{popTree(q)}

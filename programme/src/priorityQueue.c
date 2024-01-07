@@ -21,7 +21,7 @@ PQ_PriorityQueue PQ_fromStatistics(S_Statistics stats) {
     return result;
 }
 
-unsigned int PQ_lenght(PQ_PriorityQueue queue) {
+unsigned int PQ_length(PQ_PriorityQueue queue) {
     return queue.length;
 }
 
@@ -66,7 +66,7 @@ HT_HuffmanTree PQ_popTree(PQ_PriorityQueue *queue) {
 }
 
 HT_HuffmanTree PQ_intoHuffmanTree(PQ_PriorityQueue priority_queue) {
-    while (PQ_lenght(priority_queue) > 1) {
+    while (PQ_length(priority_queue) > 1) {
         HT_HuffmanTree leftChild = PQ_popTree(&priority_queue);
         HT_HuffmanTree rightChild = PQ_popTree(&priority_queue);
         HT_HuffmanTree node = HT_createNode(leftChild, rightChild);
