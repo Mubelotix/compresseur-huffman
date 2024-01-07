@@ -61,26 +61,18 @@ void C_saveStatistics(S_Statistics stats, FILE* file) {
 
 /// @brief Compress the file on the fly
 void C_streamCompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable, int verbosity) {
-    B_Byte byte;
-    unsigned int byteNat;
     unsigned char inputChar;
-
-    BC_BinaryCode unsavedBits = BC_binaryCode();
+    BC_BinaryCode buffer = BC_binaryCode();
     fseek(sourceFile, 0, SEEK_SET);
     while (fread(&inputChar, 1, 1, sourceFile) == 1) {
-        byte = B_fromNatural(inputChar);
-        BC_BinaryCode newBits = CT_getBinaryCode(*codingTable, byte);
+        BC_BinaryCode newBits = CT_getBinaryCode(*codingTable, B_fromNatural(inputChar));
         if (verbosity >= 3) BC_debug(newBits);
         if (verbosity >= 3) printf(" ");
-
-        BC_concatenate(&unsavedBits, &newBits);
+        BC_concatenate(&buffer, &newBits);
         
-        while (BC_getLength(unsavedBits) >= 8) {
-            B_Byte code = BC_removeFirstByte(&unsavedBits);
-            unsigned int codeNat = B_byteToNatural(code);
-            // print binary
+        while (BC_getLength(buffer) >= 8) {
+            unsigned char codeNat = B_byteToNatural(BC_removeFirstByte(&buffer));
             size_t result = fwrite(&codeNat, sizeof(char), 1, outputFile);
-
             if (result != 1) {
                 fprintf(stderr, "Erreur lors de l'écriture des données compressées\n");
                 return;
@@ -89,12 +81,12 @@ void C_streamCompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* coding
     }
     
     // Add padding for last byte and save it
-    if (BC_getLength(unsavedBits) > 0) {
-        while (BC_getLength(unsavedBits) < 8) {
-            BC_addBit(&unsavedBits, 0);
+    if (BC_getLength(buffer) > 0) {
+        while (BC_getLength(buffer) < 8) {
+            BC_addBit(&buffer, 0);
         }
-        B_Byte code = BC_removeFirstByte(&unsavedBits);
-        unsigned int codeNat = B_byteToNatural(code);
+        B_Byte code = BC_removeFirstByte(&buffer);
+        unsigned char codeNat = B_byteToNatural(code);
         size_t result = fwrite(&codeNat, sizeof(char), 1, outputFile);
         if (result != 1) {
             fprintf(stderr, "Erreur lors de l'écriture des données compressées\n");
