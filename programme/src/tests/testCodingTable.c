@@ -53,3 +53,23 @@ void CT_testGetByte() {
 
     CU_ASSERT(B_equals(CT_getByte(table, code), byte));
 }
+
+CU_ErrorCode CT_createCodingTableTestSuite() {
+
+    CU_pSuite pSuite = CU_add_suite("Tests boite noire : coding table", NULL, NULL);
+    if (pSuite == NULL) {
+        CU_cleanup_registry();
+        return CU_get_error();
+    }
+
+    if ((CU_add_test(pSuite, "Test containsAndAdd", CT_testContainsAndAdd) == NULL) ||
+        (CU_add_test(pSuite, "Test getBinaryCode", CT_testGetBinaryCode) == NULL) ||
+        (CU_add_test(pSuite, "Test getByte", CT_testGetByte) == NULL)
+        )
+    {
+        CU_cleanup_registry();
+        return CU_get_error();
+    }
+    
+    return CUE_SUCCESS;
+}

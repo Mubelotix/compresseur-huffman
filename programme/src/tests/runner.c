@@ -3,6 +3,7 @@
 #include "testByte.c"
 #include "testBinaryCode.c"
 #include "testHuffmanTree.c"
+#include "testCodingTable.c"
 
 int main(int argc, char** argv) {
     /* initialisation du registre de tests */
@@ -16,6 +17,7 @@ int main(int argc, char** argv) {
     B_createByteTestSuite();
     BC_createBinaryCodeTestSuite();
     HT_createHuffmanTreeTestSuite();
+    CT_createCodingTableTestSuite();
 
     /* Lancement des tests */
     CU_basic_set_mode(CU_BRM_VERBOSE);
