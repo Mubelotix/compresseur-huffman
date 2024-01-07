@@ -25,8 +25,6 @@ void HT_testGetRightChild() {
     CU_ASSERT_EQUAL(HT_getOccurence(rightChild), 3);
 
     HT_destroy(node);
-    HT_destroy(leaf1);
-    HT_destroy(leaf2);
 }
 
 void HT_testGetLeftChild() {
@@ -40,8 +38,6 @@ void HT_testGetLeftChild() {
     CU_ASSERT_EQUAL(HT_getOccurence(leftChild), 5);
 
     HT_destroy(node);
-    HT_destroy(leaf1);
-    HT_destroy(leaf2);
 }
 
 void HT_testGetByte() {
@@ -67,8 +63,6 @@ void HT_testIsALeaf() {
     CU_ASSERT_TRUE(!HT_isALeaf(node));
 
     HT_destroy(node);
-    HT_destroy(leaf1);
-    HT_destroy(leaf2);
 }
 
 
