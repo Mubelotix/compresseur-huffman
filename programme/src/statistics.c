@@ -11,11 +11,6 @@ S_Statistics S_statistics() {
     return stats;
 }
 
-bool S_isEmpty(S_Statistics stats)
-{
-    return S_length(stats) == 0;
-}
-
 bool S_contains(S_Statistics stats, B_Byte byte)
 {
     if (B_byteToNatural(byte) >= S_MAX)

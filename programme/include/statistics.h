@@ -19,13 +19,6 @@ typedef struct {
 S_Statistics S_statistics();
 
 /**
- * @brief Checks if all bytes have a count of 0
- * @param stats The statistics to check
- * @return true if stats is empty
- */
-bool S_isEmpty(S_Statistics stats);
-
-/**
  * @brief Checks that an element appears at least once in a document
  * @param stats The statistics for the document
  * @param element The element to check
