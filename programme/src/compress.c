@@ -9,6 +9,10 @@
 #include "binaryCode.h"
 #include "priorityQueue.h"
 
+#define CLI_GREEN "\033[1;32m"
+#define CLI_NORMAL "\033[0m"
+
+/// @brief Count the number of occurences of each byte in a file
 S_Statistics C_computeStatistics(FILE* file) {
     S_Statistics stats = S_statistics();
     B_Byte byte;
@@ -23,7 +27,7 @@ S_Statistics C_computeStatistics(FILE* file) {
     return stats;
 }
 
-/// Write a single byte to a file
+/// @brief Write a single byte to a file
 void writeByte(FILE* file, char byte) {
     size_t written = fwrite(&byte, sizeof(char), 1, file);
     if (written != 1) {
@@ -31,22 +35,22 @@ void writeByte(FILE* file, char byte) {
     }
 }
 
+/// @brief Save statistics to a file. Those are stored as a sequence of VarInts.
 void C_saveStatistics(S_Statistics stats, FILE* file) {
-    for (int i = 0; i < S_MAX; i++)
-    {
+    for (int i = 0; i < S_MAX; i++) {
         // Write a VarInt
         unsigned int count = stats.element[i];
-        unsigned int fist_byte = count & (0x7F << 14); // 0b01111111
-        unsigned int second_byte = count & (0x7F << 7); // 0b01111111
-        unsigned int third_byte = count & 0x7F; // 0b01111111
+        unsigned int fist_byte = count & (0x7F << 14); // bits -21 to -14
+        unsigned int second_byte = count & (0x7F << 7); // bits -14 to -7
+        unsigned int third_byte = count & 0x7F; // last 7 bits
         if (fist_byte != 0) {
-            fist_byte += 0x80; // 0b10000000
-            second_byte += 0x80; // 0b10000000
+            fist_byte += 0x80; // first bit
+            second_byte += 0x80; // first bit
             writeByte(file, fist_byte);
             writeByte(file, second_byte);
             writeByte(file, third_byte);
         } else if (second_byte != 0) {
-            second_byte += 0x80; // 0b10000000
+            second_byte += 0x80; // first bit
             writeByte(file, second_byte);
             writeByte(file, third_byte);
         } else {
@@ -55,7 +59,8 @@ void C_saveStatistics(S_Statistics stats, FILE* file) {
     }
 }
 
-void C_writeData(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable) {
+/// @brief Compress the file on the fly
+void C_streamCompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable) {
     B_Byte byte;
     unsigned int byteNat;
     char inputChar;
@@ -96,8 +101,6 @@ void C_writeData(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable
             return;
         }
     }
-
-    printf("\n");
 }
 
 void C_compressFile(char* nameSourceFile) {
@@ -144,8 +147,8 @@ void C_compressFile(char* nameSourceFile) {
     // Save statistics
     printf("\nWriting data...\n");
     C_saveStatistics(stats, outputFile);
-    C_writeData(sourceFile, outputFile, &codingTable);
-    printf("\nDone!");
+    C_streamCompress(sourceFile, outputFile, &codingTable);
+    printf("\n%sDone! ✅%s\n", CLI_GREEN, CLI_NORMAL);
 
     // Close files and free memory
     fclose(sourceFile);

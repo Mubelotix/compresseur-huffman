@@ -12,6 +12,9 @@
 #include <stdio.h>
 #include <errno.h>
 
+#define CLI_GREEN "\033[1;32m"
+#define CLI_NORMAL "\033[0m"
+
 /// @brief Read a single byte from a file
 char readByte(FILE* file) {
     char byte;
@@ -28,8 +31,7 @@ char readByte(FILE* file) {
 /// @brief Reads statistics from a file. Those are stored as a sequence of VarInts.
 S_Statistics D_restoreStatistics(FILE* file) {
     S_Statistics stats;
-    for (int i = 0; i < S_MAX; i++)
-    {
+    for (int i = 0; i < S_MAX; i++) {
         // Read a VarInt
         char first_byte = readByte(file);
         unsigned int count = first_byte & 0x7F;
@@ -152,7 +154,7 @@ void D_decompressFile(char* nameSourceFile) {
 
     printf("\nWriting data...\n");
     D_streamDecompress(sourceFile, outputFile, &codingTable, S_length(stats));
-    printf("\nDone!");
+    printf("\n%sDone! ✅%s\n", CLI_GREEN, CLI_NORMAL);
 
     // Close files and free memory
     fclose(sourceFile);
