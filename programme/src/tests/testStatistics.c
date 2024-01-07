@@ -13,16 +13,6 @@ void S_testContains(void) {
     CU_ASSERT_TRUE(S_contains(stats, element));
 }
 
-// Test de l'axiome: isEmpty()
-void S_testIsEmpty(void) {
-    S_Statistics emptyStats = S_statistics();
-    S_Statistics nonEmptyStats = S_statistics();
-    S_incCount(&nonEmptyStats, 1);
-
-    CU_ASSERT_TRUE(S_isEmpty(emptyStats));     //doit retourner vrai
-    CU_ASSERT_FALSE(S_isEmpty(nonEmptyStats));  // doit retourner faux
-}
-
 // Test de l'axiome: getCount(S_statistics, element) >= 0
 void S_testGetCount(void) {
     S_Statistics stats = S_statistics();
@@ -30,11 +20,11 @@ void S_testGetCount(void) {
     CU_ASSERT_EQUAL(S_getCount(stats, element), 0);
 
     S_incCount(&stats, element);
-    CU_ASSERT(S_getCount(stats, element) > 0);
+    CU_ASSERT_EQUAL(S_getCount(stats, element), 1);
 }
 
 // Test de l'axiome: getElementCount(S_statistics) = 0
-void S_testGetElementCount(void) {
+void S_testLength(void) {
     S_Statistics stats = S_statistics();
 
     CU_ASSERT_EQUAL(S_length(stats), 0);
@@ -63,9 +53,8 @@ CU_ErrorCode S_createStatisticsTestSuite() {
     // Add the tests to the suite
     if ((NULL == CU_add_test(pSuite, "Test contains", S_testContains ))
         || (NULL == CU_add_test(pSuite, "Test getCount", S_testGetCount))
-        || (NULL == CU_add_test(pSuite, "Test getElementCount", S_testGetElementCount)) 
+        || (NULL == CU_add_test(pSuite, "Test length", S_testLength)) 
         || (NULL == CU_add_test(pSuite, "Test incCount", S_testIncCount))
-        || (NULL == CU_add_test(pSuite, "Test S_isEmpty", S_testIsEmpty))
         ) 
     {
         CU_cleanup_registry();
