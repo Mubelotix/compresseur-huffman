@@ -13,7 +13,8 @@ void PQ_testNewPriorityQueue() {
 void PQ_testInsertTree() {
     PQ_PriorityQueue queue = PQ_new();
     int occurence = 42;
-    HT_HuffmanTree ht = HT_createTree(HT_createLeaf(occurence));
+    B_Byte byte = B_fromNatural(5);
+    HT_HuffmanTree ht = HT_createLeaf(occurence,byte);
     PQ_insertTree(&queue, ht);
 
     CU_ASSERT_EQUAL(PQ_length(queue) , 1);
@@ -23,7 +24,8 @@ void PQ_testInsertTree() {
 void PQ_testPopTree() {
     PQ_PriorityQueue queue = PQ_new();
     int occurence = 42;
-    HT_HuffmanTree ht = HT_createTree(HT_createLeaf(occurence));
+    B_Byte byte = B_fromNatural(5);
+    HT_HuffmanTree ht = HT_createLeaf(occurence,byte);
     PQ_insertTree(&queue, ht);
     HT_HuffmanTree pop_ht = PQ_popTree(&queue);
 
@@ -34,9 +36,9 @@ void PQ_testPopTree() {
 void PQ_testGetInsertionIndex(){
     PQ_PriorityQueue queue = PQ_new();
     HT_HuffmanTree ht1, ht2, ht3;
-    ht1 = HT_createLeaf(1);
-    ht2 = HT_createLeaf(5);
-    ht3 = HT_createLeaf(3);
+    ht1 = HT_createLeaf(1,B_fromNatural(10));
+    ht2 = HT_createLeaf(5,B_fromNatural(15));
+    ht3 = HT_createLeaf(3,B_fromNatural(19));
 
     PQ_insertTree(&queue, ht1);
     PQ_insertTree(&queue, ht2);
@@ -49,9 +51,9 @@ void PQ_testGetInsertionIndex(){
 void test_PQ_shiftRight() {
     PQ_PriorityQueue queue = PQ_new();
     HT_HuffmanTree ht1, ht2, ht3;
-    ht1 = HT_createLeaf(1);
-    ht2 = HT_createLeaf(5);
-    ht3 = HT_createLeaf(3);
+    ht1 = HT_createLeaf(1,B_fromNatural(10));
+    ht2 = HT_createLeaf(5,B_fromNatural(15));
+    ht3 = HT_createLeaf(3,B_fromNatural(19));
 
     PQ_insertTree(&queue, ht1);
     PQ_insertTree(&queue, ht2);
