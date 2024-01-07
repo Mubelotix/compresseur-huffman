@@ -1,0 +1,285 @@
+\hypertarget{huffmanTree_8h}{}\doxysection{include/huffman\+Tree.h File Reference}
+\label{huffmanTree_8h}\index{include/huffmanTree.h@{include/huffmanTree.h}}
+{\ttfamily \#include \char`\"{}byte.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structHT__HuffmanTreeNode}{HT\+\_\+\+Huffman\+Tree\+Node}}
+\begin{DoxyCompactList}\small\item\em Represents a node in the Huffman tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{huffmanTree_8h_abb452686968e48b67397da5f97445f5b}{bool}}~int
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{structHT__HuffmanTreeNode}{HT\+\_\+\+Huffman\+Tree\+Node}} $\ast$ \mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}}
+\begin{DoxyCompactList}\small\item\em Represents a pointer to a Huffman tree node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} \mbox{\hyperlink{huffmanTree_8h_a9e316a6278145efb463c3cbcdd659b1a}{HT\+\_\+get\+Right\+Child}} (\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} ht)
+\begin{DoxyCompactList}\small\item\em Returns the right child of the Huffman tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} \mbox{\hyperlink{huffmanTree_8h_af5b743805cf72f9bfdca9ad6a6d09290}{HT\+\_\+get\+Left\+Child}} (\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} ht)
+\begin{DoxyCompactList}\small\item\em Returns the left child of the Huffman tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}} \mbox{\hyperlink{huffmanTree_8h_a570423ea0a4e2c38aaaec9ae5a357f07}{HT\+\_\+get\+Byte}} (\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} ht)
+\begin{DoxyCompactList}\small\item\em Returns the byte of the Huffman tree if it is a leaf. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{huffmanTree_8h_a93fc5c68c27c94906843ea7ced5b6d6b}{HT\+\_\+get\+Occurence}} (\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} ht)
+\begin{DoxyCompactList}\small\item\em Returns the occurrence of the Huffman tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{statistics_8h_abb452686968e48b67397da5f97445f5b}{bool}} \mbox{\hyperlink{huffmanTree_8h_a2f94bd0664496ac5561f2aa99ccaa437}{HT\+\_\+is\+ALeaf}} (\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} ht)
+\begin{DoxyCompactList}\small\item\em Checks whether the Huffman tree is a leaf. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} \mbox{\hyperlink{huffmanTree_8h_a78092b886785c6bcedf76ed67353968d}{HT\+\_\+create\+Leaf}} (int occurence, \mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}} byte)
+\begin{DoxyCompactList}\small\item\em Creates a leaf node for the Huffman tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} \mbox{\hyperlink{huffmanTree_8h_a53caff1b1bda9ae88b07e1d92e13f9d5}{HT\+\_\+create\+Node}} (\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} left\+Child, \mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} right\+Child)
+\begin{DoxyCompactList}\small\item\em Creates an internal node for the Huffman tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{huffmanTree_8h_a5cc39c575616cecbc6c1c77653c21bdf}{HT\+\_\+destroy}} (\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} ht)
+\begin{DoxyCompactList}\small\item\em Destroys a Huffman tree, including its children. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} \mbox{\hyperlink{huffmanTree_8h_ad4984130eea7f66486a6863909a82fcd}{HT\+\_\+create\+Tree}} (\mbox{\hyperlink{structHT__HuffmanTreeNode}{HT\+\_\+\+Huffman\+Tree\+Node}} $\ast$root)
+\begin{DoxyCompactList}\small\item\em Creates a Huffman tree from a given root node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{huffmanTree_8h_ac8d744b2a539eedca68cf0583c322bf9}{HT\+\_\+debug}} (\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} ht)
+\begin{DoxyCompactList}\small\item\em Outputs debugging information for the Huffman tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{huffmanTree_8h_aefccc8a7b491a045af26c92e7a045824}{HT\+\_\+debug\+\_\+inner}} (\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} ht, unsigned int depth, \mbox{\hyperlink{statistics_8h_abb452686968e48b67397da5f97445f5b}{bool}} last)
+\begin{DoxyCompactList}\small\item\em Outputs debugging information for the Huffman tree (internal function). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{huffmanTree_8h_abb452686968e48b67397da5f97445f5b}\label{huffmanTree_8h_abb452686968e48b67397da5f97445f5b}} 
+\index{huffmanTree.h@{huffmanTree.h}!bool@{bool}}
+\index{bool@{bool}!huffmanTree.h@{huffmanTree.h}}
+\doxysubsubsection{\texorpdfstring{bool}{bool}}
+{\footnotesize\ttfamily \#define bool~int}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}\label{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}} 
+\index{huffmanTree.h@{huffmanTree.h}!HT\_HuffmanTree@{HT\_HuffmanTree}}
+\index{HT\_HuffmanTree@{HT\_HuffmanTree}!huffmanTree.h@{huffmanTree.h}}
+\doxysubsubsection{\texorpdfstring{HT\_HuffmanTree}{HT\_HuffmanTree}}
+{\footnotesize\ttfamily \mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}}}
+
+
+
+Represents a pointer to a Huffman tree node. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{huffmanTree_8h_a78092b886785c6bcedf76ed67353968d}\label{huffmanTree_8h_a78092b886785c6bcedf76ed67353968d}} 
+\index{huffmanTree.h@{huffmanTree.h}!HT\_createLeaf@{HT\_createLeaf}}
+\index{HT\_createLeaf@{HT\_createLeaf}!huffmanTree.h@{huffmanTree.h}}
+\doxysubsubsection{\texorpdfstring{HT\_createLeaf()}{HT\_createLeaf()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} HT\+\_\+create\+Leaf (\begin{DoxyParamCaption}\item[{int}]{occurence,  }\item[{\mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}}}]{byte }\end{DoxyParamCaption})}
+
+
+
+Creates a leaf node for the Huffman tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em occurence} & The number of times the byte appears in the document. \\
+\hline
+{\em byte} & Value of the byte for the leaf node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created leaf node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffmanTree_8h_a53caff1b1bda9ae88b07e1d92e13f9d5}\label{huffmanTree_8h_a53caff1b1bda9ae88b07e1d92e13f9d5}} 
+\index{huffmanTree.h@{huffmanTree.h}!HT\_createNode@{HT\_createNode}}
+\index{HT\_createNode@{HT\_createNode}!huffmanTree.h@{huffmanTree.h}}
+\doxysubsubsection{\texorpdfstring{HT\_createNode()}{HT\_createNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} HT\+\_\+create\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}}}]{left\+Child,  }\item[{\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}}}]{right\+Child }\end{DoxyParamCaption})}
+
+
+
+Creates an internal node for the Huffman tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left\+Child} & The left child of the internal node. \\
+\hline
+{\em right\+Child} & The right child of the internal node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created internal node. Remember to destroy it when done. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em ENOENT} & if one of the children is NULL. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{huffmanTree_8h_ad4984130eea7f66486a6863909a82fcd}\label{huffmanTree_8h_ad4984130eea7f66486a6863909a82fcd}} 
+\index{huffmanTree.h@{huffmanTree.h}!HT\_createTree@{HT\_createTree}}
+\index{HT\_createTree@{HT\_createTree}!huffmanTree.h@{huffmanTree.h}}
+\doxysubsubsection{\texorpdfstring{HT\_createTree()}{HT\_createTree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} HT\+\_\+create\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structHT__HuffmanTreeNode}{HT\+\_\+\+Huffman\+Tree\+Node}} $\ast$}]{root }\end{DoxyParamCaption})}
+
+
+
+Creates a Huffman tree from a given root node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & The root node of the Huffman tree. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created Huffman tree. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffmanTree_8h_ac8d744b2a539eedca68cf0583c322bf9}\label{huffmanTree_8h_ac8d744b2a539eedca68cf0583c322bf9}} 
+\index{huffmanTree.h@{huffmanTree.h}!HT\_debug@{HT\_debug}}
+\index{HT\_debug@{HT\_debug}!huffmanTree.h@{huffmanTree.h}}
+\doxysubsubsection{\texorpdfstring{HT\_debug()}{HT\_debug()}}
+{\footnotesize\ttfamily void HT\+\_\+debug (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}}}]{ht }\end{DoxyParamCaption})}
+
+
+
+Outputs debugging information for the Huffman tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ht} & The Huffman tree to debug. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{huffmanTree_8h_aefccc8a7b491a045af26c92e7a045824}\label{huffmanTree_8h_aefccc8a7b491a045af26c92e7a045824}} 
+\index{huffmanTree.h@{huffmanTree.h}!HT\_debug\_inner@{HT\_debug\_inner}}
+\index{HT\_debug\_inner@{HT\_debug\_inner}!huffmanTree.h@{huffmanTree.h}}
+\doxysubsubsection{\texorpdfstring{HT\_debug\_inner()}{HT\_debug\_inner()}}
+{\footnotesize\ttfamily void HT\+\_\+debug\+\_\+inner (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}}}]{ht,  }\item[{unsigned int}]{depth,  }\item[{\mbox{\hyperlink{statistics_8h_abb452686968e48b67397da5f97445f5b}{bool}}}]{last }\end{DoxyParamCaption})}
+
+
+
+Outputs debugging information for the Huffman tree (internal function). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ht} & The Huffman tree to debug. \\
+\hline
+{\em depth} & The current depth in the tree. \\
+\hline
+{\em last} & True if the current node is the last child of its parent. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{huffmanTree_8h_a5cc39c575616cecbc6c1c77653c21bdf}\label{huffmanTree_8h_a5cc39c575616cecbc6c1c77653c21bdf}} 
+\index{huffmanTree.h@{huffmanTree.h}!HT\_destroy@{HT\_destroy}}
+\index{HT\_destroy@{HT\_destroy}!huffmanTree.h@{huffmanTree.h}}
+\doxysubsubsection{\texorpdfstring{HT\_destroy()}{HT\_destroy()}}
+{\footnotesize\ttfamily void HT\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}}}]{ht }\end{DoxyParamCaption})}
+
+
+
+Destroys a Huffman tree, including its children. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ht} & The root of the Huffman tree to destroy. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{huffmanTree_8h_a570423ea0a4e2c38aaaec9ae5a357f07}\label{huffmanTree_8h_a570423ea0a4e2c38aaaec9ae5a357f07}} 
+\index{huffmanTree.h@{huffmanTree.h}!HT\_getByte@{HT\_getByte}}
+\index{HT\_getByte@{HT\_getByte}!huffmanTree.h@{huffmanTree.h}}
+\doxysubsubsection{\texorpdfstring{HT\_getByte()}{HT\_getByte()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}} HT\+\_\+get\+Byte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}}}]{ht }\end{DoxyParamCaption})}
+
+
+
+Returns the byte of the Huffman tree if it is a leaf. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ht} & The Huffman tree node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The byte of the Huffman tree if it is a leaf. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em ENOENT} & if the Huffman tree is not a leaf. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{huffmanTree_8h_af5b743805cf72f9bfdca9ad6a6d09290}\label{huffmanTree_8h_af5b743805cf72f9bfdca9ad6a6d09290}} 
+\index{huffmanTree.h@{huffmanTree.h}!HT\_getLeftChild@{HT\_getLeftChild}}
+\index{HT\_getLeftChild@{HT\_getLeftChild}!huffmanTree.h@{huffmanTree.h}}
+\doxysubsubsection{\texorpdfstring{HT\_getLeftChild()}{HT\_getLeftChild()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} HT\+\_\+get\+Left\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}}}]{ht }\end{DoxyParamCaption})}
+
+
+
+Returns the left child of the Huffman tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ht} & The Huffman tree node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The left child of the Huffman tree. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em ENOENT} & if the Huffman tree is a leaf. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{huffmanTree_8h_a93fc5c68c27c94906843ea7ced5b6d6b}\label{huffmanTree_8h_a93fc5c68c27c94906843ea7ced5b6d6b}} 
+\index{huffmanTree.h@{huffmanTree.h}!HT\_getOccurence@{HT\_getOccurence}}
+\index{HT\_getOccurence@{HT\_getOccurence}!huffmanTree.h@{huffmanTree.h}}
+\doxysubsubsection{\texorpdfstring{HT\_getOccurence()}{HT\_getOccurence()}}
+{\footnotesize\ttfamily int HT\+\_\+get\+Occurence (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}}}]{ht }\end{DoxyParamCaption})}
+
+
+
+Returns the occurrence of the Huffman tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ht} & The Huffman tree node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The occurrence of the Huffman tree. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffmanTree_8h_a9e316a6278145efb463c3cbcdd659b1a}\label{huffmanTree_8h_a9e316a6278145efb463c3cbcdd659b1a}} 
+\index{huffmanTree.h@{huffmanTree.h}!HT\_getRightChild@{HT\_getRightChild}}
+\index{HT\_getRightChild@{HT\_getRightChild}!huffmanTree.h@{huffmanTree.h}}
+\doxysubsubsection{\texorpdfstring{HT\_getRightChild()}{HT\_getRightChild()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} HT\+\_\+get\+Right\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}}}]{ht }\end{DoxyParamCaption})}
+
+
+
+Returns the right child of the Huffman tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ht} & The Huffman tree node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The right child of the Huffman tree. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em ENOENT} & if the Huffman tree is a leaf. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{huffmanTree_8h_a2f94bd0664496ac5561f2aa99ccaa437}\label{huffmanTree_8h_a2f94bd0664496ac5561f2aa99ccaa437}} 
+\index{huffmanTree.h@{huffmanTree.h}!HT\_isALeaf@{HT\_isALeaf}}
+\index{HT\_isALeaf@{HT\_isALeaf}!huffmanTree.h@{huffmanTree.h}}
+\doxysubsubsection{\texorpdfstring{HT\_isALeaf()}{HT\_isALeaf()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{statistics_8h_abb452686968e48b67397da5f97445f5b}{bool}} HT\+\_\+is\+ALeaf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}}}]{ht }\end{DoxyParamCaption})}
+
+
+
+Checks whether the Huffman tree is a leaf. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ht} & The Huffman tree node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the Huffman tree is a leaf. 
+\end{DoxyReturn}

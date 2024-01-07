@@ -1,0 +1,220 @@
+\hypertarget{priorityQueue_8h}{}\doxysection{include/priority\+Queue.h File Reference}
+\label{priorityQueue_8h}\index{include/priorityQueue.h@{include/priorityQueue.h}}
+{\ttfamily \#include \char`\"{}huffmantree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}statistics.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}}
+\begin{DoxyCompactList}\small\item\em Represents a priority queue of Huffman trees. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{priorityQueue_8h_a392fb874e547e582e9c66a08a1f23326}{MAX}}~256
+\begin{DoxyCompactList}\small\item\em Maximum number of Huffman trees in the priority queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}} \mbox{\hyperlink{priorityQueue_8h_a8d5a2b3fdd4980c99e71bd99d313e864}{PQ\+\_\+new}} ()
+\begin{DoxyCompactList}\small\item\em Creates a brand new, empty priority queue. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}} \mbox{\hyperlink{priorityQueue_8h_ac39945e8b699a968bc7f00f20cd9615d}{PQ\+\_\+from\+Statistics}} (\mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}} stats)
+\begin{DoxyCompactList}\small\item\em Creates a priority queue from statistics. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{priorityQueue_8h_af7dbf4cf292d48acec9d05fa99af4c23}{PQ\+\_\+length}} (\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}} queue)
+\begin{DoxyCompactList}\small\item\em Gets the length of the given priority queue. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{priorityQueue_8h_a5e77b09703b55c43ca1fbe843addca22}{PQ\+\_\+get\+Insertion\+Index}} (\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}} $\ast$queue, \mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} ht)
+\begin{DoxyCompactList}\small\item\em Gets the index where the given Huffman tree should be inserted. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{priorityQueue_8h_ac10cc06990276684924a42693fa715d0}{PQ\+\_\+shift\+Right}} (\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}} $\ast$queue, int index)
+\begin{DoxyCompactList}\small\item\em Shifts all elements from the given index to the right. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{priorityQueue_8h_a1c90d49f3ce7757840650e0d2c3c1e90}{PQ\+\_\+insert\+Tree}} (\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}} $\ast$queue, \mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} ht)
+\begin{DoxyCompactList}\small\item\em Inserts the given Huffman tree into the priority queue. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} \mbox{\hyperlink{priorityQueue_8h_a9d71ef23825ed129d17c22ab905dd33a}{PQ\+\_\+pop\+Tree}} (\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Pops the last element of the priority queue. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} \mbox{\hyperlink{priorityQueue_8h_ac95eee6a4d130ff3d7008904161cca72}{PQ\+\_\+into\+Huffman\+Tree}} (\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}} priority\+\_\+queue)
+\begin{DoxyCompactList}\small\item\em Builds a Huffman tree from the priority queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{priorityQueue_8h_a33f4bfc2cb7551abcacdb73e764d5a72}{PQ\+\_\+debug}} (\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}} queue)
+\begin{DoxyCompactList}\small\item\em Outputs debugging information for the priority queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{priorityQueue_8h_a392fb874e547e582e9c66a08a1f23326}\label{priorityQueue_8h_a392fb874e547e582e9c66a08a1f23326}} 
+\index{priorityQueue.h@{priorityQueue.h}!MAX@{MAX}}
+\index{MAX@{MAX}!priorityQueue.h@{priorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{MAX}{MAX}}
+{\footnotesize\ttfamily \#define MAX~256}
+
+
+
+Maximum number of Huffman trees in the priority queue. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{priorityQueue_8h_a33f4bfc2cb7551abcacdb73e764d5a72}\label{priorityQueue_8h_a33f4bfc2cb7551abcacdb73e764d5a72}} 
+\index{priorityQueue.h@{priorityQueue.h}!PQ\_debug@{PQ\_debug}}
+\index{PQ\_debug@{PQ\_debug}!priorityQueue.h@{priorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{PQ\_debug()}{PQ\_debug()}}
+{\footnotesize\ttfamily void PQ\+\_\+debug (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}}}]{queue }\end{DoxyParamCaption})}
+
+
+
+Outputs debugging information for the priority queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & The priority queue to debug. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{priorityQueue_8h_ac39945e8b699a968bc7f00f20cd9615d}\label{priorityQueue_8h_ac39945e8b699a968bc7f00f20cd9615d}} 
+\index{priorityQueue.h@{priorityQueue.h}!PQ\_fromStatistics@{PQ\_fromStatistics}}
+\index{PQ\_fromStatistics@{PQ\_fromStatistics}!priorityQueue.h@{priorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{PQ\_fromStatistics()}{PQ\_fromStatistics()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}} PQ\+\_\+from\+Statistics (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}}}]{stats }\end{DoxyParamCaption})}
+
+
+
+Creates a priority queue from statistics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stats} & The statistics of the document. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A priority queue containing all the bytes of the document. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{priorityQueue_8h_a5e77b09703b55c43ca1fbe843addca22}\label{priorityQueue_8h_a5e77b09703b55c43ca1fbe843addca22}} 
+\index{priorityQueue.h@{priorityQueue.h}!PQ\_getInsertionIndex@{PQ\_getInsertionIndex}}
+\index{PQ\_getInsertionIndex@{PQ\_getInsertionIndex}!priorityQueue.h@{priorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{PQ\_getInsertionIndex()}{PQ\_getInsertionIndex()}}
+{\footnotesize\ttfamily int PQ\+\_\+get\+Insertion\+Index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}} $\ast$}]{queue,  }\item[{\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}}}]{ht }\end{DoxyParamCaption})}
+
+
+
+Gets the index where the given Huffman tree should be inserted. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & The priority queue. \\
+\hline
+{\em ht} & The Huffman tree about to be inserted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index where the given Huffman tree should be inserted. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{priorityQueue_8h_a1c90d49f3ce7757840650e0d2c3c1e90}\label{priorityQueue_8h_a1c90d49f3ce7757840650e0d2c3c1e90}} 
+\index{priorityQueue.h@{priorityQueue.h}!PQ\_insertTree@{PQ\_insertTree}}
+\index{PQ\_insertTree@{PQ\_insertTree}!priorityQueue.h@{priorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{PQ\_insertTree()}{PQ\_insertTree()}}
+{\footnotesize\ttfamily void PQ\+\_\+insert\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}} $\ast$}]{queue,  }\item[{\mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}}}]{ht }\end{DoxyParamCaption})}
+
+
+
+Inserts the given Huffman tree into the priority queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & The priority queue. \\
+\hline
+{\em ht} & The Huffman tree to insert. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em EOVERFLOW} & If the priority queue is full. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{priorityQueue_8h_ac95eee6a4d130ff3d7008904161cca72}\label{priorityQueue_8h_ac95eee6a4d130ff3d7008904161cca72}} 
+\index{priorityQueue.h@{priorityQueue.h}!PQ\_intoHuffmanTree@{PQ\_intoHuffmanTree}}
+\index{PQ\_intoHuffmanTree@{PQ\_intoHuffmanTree}!priorityQueue.h@{priorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{PQ\_intoHuffmanTree()}{PQ\_intoHuffmanTree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} PQ\+\_\+into\+Huffman\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}}}]{priority\+\_\+queue }\end{DoxyParamCaption})}
+
+
+
+Builds a Huffman tree from the priority queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em priority\+\_\+queue} & The priority queue. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Huffman tree. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{priorityQueue_8h_af7dbf4cf292d48acec9d05fa99af4c23}\label{priorityQueue_8h_af7dbf4cf292d48acec9d05fa99af4c23}} 
+\index{priorityQueue.h@{priorityQueue.h}!PQ\_length@{PQ\_length}}
+\index{PQ\_length@{PQ\_length}!priorityQueue.h@{priorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{PQ\_length()}{PQ\_length()}}
+{\footnotesize\ttfamily unsigned int PQ\+\_\+length (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}}}]{queue }\end{DoxyParamCaption})}
+
+
+
+Gets the length of the given priority queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & The priority queue. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The length of the given priority queue. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{priorityQueue_8h_a8d5a2b3fdd4980c99e71bd99d313e864}\label{priorityQueue_8h_a8d5a2b3fdd4980c99e71bd99d313e864}} 
+\index{priorityQueue.h@{priorityQueue.h}!PQ\_new@{PQ\_new}}
+\index{PQ\_new@{PQ\_new}!priorityQueue.h@{priorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{PQ\_new()}{PQ\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}} PQ\+\_\+new (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates a brand new, empty priority queue. 
+
+\begin{DoxyReturn}{Returns}
+A new priority queue. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{priorityQueue_8h_a9d71ef23825ed129d17c22ab905dd33a}\label{priorityQueue_8h_a9d71ef23825ed129d17c22ab905dd33a}} 
+\index{priorityQueue.h@{priorityQueue.h}!PQ\_popTree@{PQ\_popTree}}
+\index{PQ\_popTree@{PQ\_popTree}!priorityQueue.h@{priorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{PQ\_popTree()}{PQ\_popTree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{huffmanTree_8h_a2816faf0046aa9a1b8014ce56561c6bc}{HT\+\_\+\+Huffman\+Tree}} PQ\+\_\+pop\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+
+
+Pops the last element of the priority queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & The priority queue. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The last element of the priority queue. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em EOVERFLOW} & If the priority queue is empty. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{priorityQueue_8h_ac10cc06990276684924a42693fa715d0}\label{priorityQueue_8h_ac10cc06990276684924a42693fa715d0}} 
+\index{priorityQueue.h@{priorityQueue.h}!PQ\_shiftRight@{PQ\_shiftRight}}
+\index{PQ\_shiftRight@{PQ\_shiftRight}!priorityQueue.h@{priorityQueue.h}}
+\doxysubsubsection{\texorpdfstring{PQ\_shiftRight()}{PQ\_shiftRight()}}
+{\footnotesize\ttfamily void PQ\+\_\+shift\+Right (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPQ__PriorityQueue}{PQ\+\_\+\+Priority\+Queue}} $\ast$}]{queue,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Shifts all elements from the given index to the right. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & The priority queue. \\
+\hline
+{\em index} & The index where the shift should start. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em EOVERFLOW} & If the priority queue is full. \\
+\hline
+\end{DoxyExceptions}

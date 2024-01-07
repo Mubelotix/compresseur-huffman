@@ -1,0 +1,160 @@
+\hypertarget{statistics_8h}{}\doxysection{include/statistics.h File Reference}
+\label{statistics_8h}\index{include/statistics.h@{include/statistics.h}}
+{\ttfamily \#include \char`\"{}byte.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}}
+\begin{DoxyCompactList}\small\item\em Represents a structure holding, for each byte, its number of occurrences in a document. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{statistics_8h_a4e0f0f0ff3852a9e62c7f907fc309dea}{S\+\_\+\+MAX}}~256
+\begin{DoxyCompactList}\small\item\em Maximum number of possible byte values. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{statistics_8h_abb452686968e48b67397da5f97445f5b}{bool}}~int
+\begin{DoxyCompactList}\small\item\em Redefinition of bool to int for compatibility. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}} \mbox{\hyperlink{statistics_8h_af0bd4b0c1b42214582ef06fe90489949}{S\+\_\+statistics}} ()
+\begin{DoxyCompactList}\small\item\em Creates an empty \mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{statistics_8h_abb452686968e48b67397da5f97445f5b}{bool}} \mbox{\hyperlink{statistics_8h_aaf46fcfe02b3fd3b5e1b15d81be1e5de}{S\+\_\+contains}} (\mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}} stats, \mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}} byte)
+\begin{DoxyCompactList}\small\item\em Checks if a byte appears at least once in a document. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{statistics_8h_ad21a226d47afc1bb15dbb1f5d6eb3483}{S\+\_\+get\+Count}} (\mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}} stats, \mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}} byte)
+\begin{DoxyCompactList}\small\item\em Gets the number of occurrences of a byte in a document. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{statistics_8h_ac8589860544a24d9d2b167217c2e8fcd}{S\+\_\+inc\+Count}} (\mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}} $\ast$stats, \mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}} byte)
+\begin{DoxyCompactList}\small\item\em Adds an occurrence of a byte to the document\textquotesingle{}s statistics. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{statistics_8h_ac487f0ad2302f70690229ac1f4af9b36}{S\+\_\+length}} (\mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}} stats)
+\begin{DoxyCompactList}\small\item\em Gets the total number of bytes in the document. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{statistics_8h_ad6de90c44d9873308702819b790855f1}{S\+\_\+debug}} (\mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}} stats)
+\begin{DoxyCompactList}\small\item\em Outputs debugging information for the statistics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{statistics_8h_abb452686968e48b67397da5f97445f5b}\label{statistics_8h_abb452686968e48b67397da5f97445f5b}} 
+\index{statistics.h@{statistics.h}!bool@{bool}}
+\index{bool@{bool}!statistics.h@{statistics.h}}
+\doxysubsubsection{\texorpdfstring{bool}{bool}}
+{\footnotesize\ttfamily \#define bool~int}
+
+
+
+Redefinition of bool to int for compatibility. 
+
+\mbox{\Hypertarget{statistics_8h_a4e0f0f0ff3852a9e62c7f907fc309dea}\label{statistics_8h_a4e0f0f0ff3852a9e62c7f907fc309dea}} 
+\index{statistics.h@{statistics.h}!S\_MAX@{S\_MAX}}
+\index{S\_MAX@{S\_MAX}!statistics.h@{statistics.h}}
+\doxysubsubsection{\texorpdfstring{S\_MAX}{S\_MAX}}
+{\footnotesize\ttfamily \#define S\+\_\+\+MAX~256}
+
+
+
+Maximum number of possible byte values. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{statistics_8h_aaf46fcfe02b3fd3b5e1b15d81be1e5de}\label{statistics_8h_aaf46fcfe02b3fd3b5e1b15d81be1e5de}} 
+\index{statistics.h@{statistics.h}!S\_contains@{S\_contains}}
+\index{S\_contains@{S\_contains}!statistics.h@{statistics.h}}
+\doxysubsubsection{\texorpdfstring{S\_contains()}{S\_contains()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{statistics_8h_abb452686968e48b67397da5f97445f5b}{bool}} S\+\_\+contains (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}}}]{stats,  }\item[{\mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}}}]{byte }\end{DoxyParamCaption})}
+
+
+
+Checks if a byte appears at least once in a document. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stats} & The statistics for the document. \\
+\hline
+{\em byte} & The byte to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if stats contains the byte. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{statistics_8h_ad6de90c44d9873308702819b790855f1}\label{statistics_8h_ad6de90c44d9873308702819b790855f1}} 
+\index{statistics.h@{statistics.h}!S\_debug@{S\_debug}}
+\index{S\_debug@{S\_debug}!statistics.h@{statistics.h}}
+\doxysubsubsection{\texorpdfstring{S\_debug()}{S\_debug()}}
+{\footnotesize\ttfamily void S\+\_\+debug (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}}}]{stats }\end{DoxyParamCaption})}
+
+
+
+Outputs debugging information for the statistics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stats} & The statistics to debug. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{statistics_8h_ad21a226d47afc1bb15dbb1f5d6eb3483}\label{statistics_8h_ad21a226d47afc1bb15dbb1f5d6eb3483}} 
+\index{statistics.h@{statistics.h}!S\_getCount@{S\_getCount}}
+\index{S\_getCount@{S\_getCount}!statistics.h@{statistics.h}}
+\doxysubsubsection{\texorpdfstring{S\_getCount()}{S\_getCount()}}
+{\footnotesize\ttfamily unsigned int S\+\_\+get\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}}}]{stats,  }\item[{\mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}}}]{byte }\end{DoxyParamCaption})}
+
+
+
+Gets the number of occurrences of a byte in a document. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stats} & The statistics for the document. \\
+\hline
+{\em byte} & The byte to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of occurrences of the byte in stats. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{statistics_8h_ac8589860544a24d9d2b167217c2e8fcd}\label{statistics_8h_ac8589860544a24d9d2b167217c2e8fcd}} 
+\index{statistics.h@{statistics.h}!S\_incCount@{S\_incCount}}
+\index{S\_incCount@{S\_incCount}!statistics.h@{statistics.h}}
+\doxysubsubsection{\texorpdfstring{S\_incCount()}{S\_incCount()}}
+{\footnotesize\ttfamily void S\+\_\+inc\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}} $\ast$}]{stats,  }\item[{\mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}}}]{byte }\end{DoxyParamCaption})}
+
+
+
+Adds an occurrence of a byte to the document\textquotesingle{}s statistics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stats} & The statistics for the document. \\
+\hline
+{\em byte} & The byte to add. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{statistics_8h_ac487f0ad2302f70690229ac1f4af9b36}\label{statistics_8h_ac487f0ad2302f70690229ac1f4af9b36}} 
+\index{statistics.h@{statistics.h}!S\_length@{S\_length}}
+\index{S\_length@{S\_length}!statistics.h@{statistics.h}}
+\doxysubsubsection{\texorpdfstring{S\_length()}{S\_length()}}
+{\footnotesize\ttfamily unsigned int S\+\_\+length (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}}}]{stats }\end{DoxyParamCaption})}
+
+
+
+Gets the total number of bytes in the document. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stats} & The statistics for the document. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total number of bytes. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{statistics_8h_af0bd4b0c1b42214582ef06fe90489949}\label{statistics_8h_af0bd4b0c1b42214582ef06fe90489949}} 
+\index{statistics.h@{statistics.h}!S\_statistics@{S\_statistics}}
+\index{S\_statistics@{S\_statistics}!statistics.h@{statistics.h}}
+\doxysubsubsection{\texorpdfstring{S\_statistics()}{S\_statistics()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}} S\+\_\+statistics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates an empty \mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}}. 
+
+\begin{DoxyReturn}{Returns}
+An empty \mbox{\hyperlink{structS__Statistics}{S\+\_\+\+Statistics}}. 
+\end{DoxyReturn}

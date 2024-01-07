@@ -1,0 +1,162 @@
+\hypertarget{byte_8h}{}\doxysection{include/byte.h File Reference}
+\label{byte_8h}\index{include/byte.h@{include/byte.h}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}}
+\begin{DoxyCompactList}\small\item\em Represents a byte composed of 8 bits. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{byte_8h_abb452686968e48b67397da5f97445f5b}{bool}}~int
+\begin{DoxyCompactList}\small\item\em Redefinition of bool to int for compatibility. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}} \{ \mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fba3e036e6f0ff377b2264b919c6bc6934d}{B\+\_\+\+ZERO}} = 0
+, \mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fba9d324d0d05fd74af6d91ae49de1daaf4}{B\+\_\+\+ONE}} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em Represents the two possible values of a bit\+: 0 or 1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}} \mbox{\hyperlink{byte_8h_ae5584d8a968659b44c5845fb0623590d}{B\+\_\+byte}} (\mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}} b1, \mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}} b2, \mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}} b3, \mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}} b4, \mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}} b5, \mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}} b6, \mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}} b7, \mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}} b8)
+\begin{DoxyCompactList}\small\item\em Constructs a byte from 8 bits. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{byte_8h_a5a827eb9d66214646612b4dfdbedbb83}{B\+\_\+byte\+To\+Natural}} (\mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}} byte)
+\begin{DoxyCompactList}\small\item\em Converts a byte to a natural number. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}} \mbox{\hyperlink{byte_8h_ad958afbf92432e3ebc8a6dac13f34753}{B\+\_\+from\+Natural}} (unsigned int natural)
+\begin{DoxyCompactList}\small\item\em Converts a natural number to a byte. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{statistics_8h_abb452686968e48b67397da5f97445f5b}{bool}} \mbox{\hyperlink{byte_8h_ab2013424974749aa311a52556d112163}{B\+\_\+equals}} (\mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}} byte1, \mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}} byte2)
+\begin{DoxyCompactList}\small\item\em Checks for equality between two bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{byte_8h_abb452686968e48b67397da5f97445f5b}\label{byte_8h_abb452686968e48b67397da5f97445f5b}} 
+\index{byte.h@{byte.h}!bool@{bool}}
+\index{bool@{bool}!byte.h@{byte.h}}
+\doxysubsubsection{\texorpdfstring{bool}{bool}}
+{\footnotesize\ttfamily \#define bool~int}
+
+
+
+Redefinition of bool to int for compatibility. 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}\label{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}} 
+\index{byte.h@{byte.h}!B\_Bit@{B\_Bit}}
+\index{B\_Bit@{B\_Bit}!byte.h@{byte.h}}
+\doxysubsubsection{\texorpdfstring{B\_Bit}{B\_Bit}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}}}
+
+
+
+Represents the two possible values of a bit\+: 0 or 1. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{B\_ZERO@{B\_ZERO}!byte.h@{byte.h}}\index{byte.h@{byte.h}!B\_ZERO@{B\_ZERO}}}\mbox{\Hypertarget{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fba3e036e6f0ff377b2264b919c6bc6934d}\label{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fba3e036e6f0ff377b2264b919c6bc6934d}} 
+B\+\_\+\+ZERO&Represents the value 0. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{B\_ONE@{B\_ONE}!byte.h@{byte.h}}\index{byte.h@{byte.h}!B\_ONE@{B\_ONE}}}\mbox{\Hypertarget{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fba9d324d0d05fd74af6d91ae49de1daaf4}\label{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fba9d324d0d05fd74af6d91ae49de1daaf4}} 
+B\+\_\+\+ONE&Represents the value 1. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{byte_8h_ae5584d8a968659b44c5845fb0623590d}\label{byte_8h_ae5584d8a968659b44c5845fb0623590d}} 
+\index{byte.h@{byte.h}!B\_byte@{B\_byte}}
+\index{B\_byte@{B\_byte}!byte.h@{byte.h}}
+\doxysubsubsection{\texorpdfstring{B\_byte()}{B\_byte()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}} B\+\_\+byte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}}}]{b1,  }\item[{\mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}}}]{b2,  }\item[{\mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}}}]{b3,  }\item[{\mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}}}]{b4,  }\item[{\mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}}}]{b5,  }\item[{\mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}}}]{b6,  }\item[{\mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}}}]{b7,  }\item[{\mbox{\hyperlink{byte_8h_a15a0bc6564ae5b70af1d0f3230d2e9fb}{B\+\_\+\+Bit}}}]{b8 }\end{DoxyParamCaption})}
+
+
+
+Constructs a byte from 8 bits. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b1} & First bit. \\
+\hline
+{\em b2} & Second bit. \\
+\hline
+{\em b3} & Third bit. \\
+\hline
+{\em b4} & Fourth bit. \\
+\hline
+{\em b5} & Fifth bit. \\
+\hline
+{\em b6} & Sixth bit. \\
+\hline
+{\em b7} & Seventh bit. \\
+\hline
+{\em b8} & Eighth bit. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The constructed byte composed of the 8 bits. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{byte_8h_a5a827eb9d66214646612b4dfdbedbb83}\label{byte_8h_a5a827eb9d66214646612b4dfdbedbb83}} 
+\index{byte.h@{byte.h}!B\_byteToNatural@{B\_byteToNatural}}
+\index{B\_byteToNatural@{B\_byteToNatural}!byte.h@{byte.h}}
+\doxysubsubsection{\texorpdfstring{B\_byteToNatural()}{B\_byteToNatural()}}
+{\footnotesize\ttfamily unsigned int B\+\_\+byte\+To\+Natural (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}}}]{byte }\end{DoxyParamCaption})}
+
+
+
+Converts a byte to a natural number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em byte} & The byte to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The natural number corresponding to the byte. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{byte_8h_ab2013424974749aa311a52556d112163}\label{byte_8h_ab2013424974749aa311a52556d112163}} 
+\index{byte.h@{byte.h}!B\_equals@{B\_equals}}
+\index{B\_equals@{B\_equals}!byte.h@{byte.h}}
+\doxysubsubsection{\texorpdfstring{B\_equals()}{B\_equals()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{statistics_8h_abb452686968e48b67397da5f97445f5b}{bool}} B\+\_\+equals (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}}}]{byte1,  }\item[{\mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}}}]{byte2 }\end{DoxyParamCaption})}
+
+
+
+Checks for equality between two bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em byte1} & The first byte. \\
+\hline
+{\em byte2} & The second byte. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the bytes are equal, 0 otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{byte_8h_ad958afbf92432e3ebc8a6dac13f34753}\label{byte_8h_ad958afbf92432e3ebc8a6dac13f34753}} 
+\index{byte.h@{byte.h}!B\_fromNatural@{B\_fromNatural}}
+\index{B\_fromNatural@{B\_fromNatural}!byte.h@{byte.h}}
+\doxysubsubsection{\texorpdfstring{B\_fromNatural()}{B\_fromNatural()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structB__Byte}{B\+\_\+\+Byte}} B\+\_\+from\+Natural (\begin{DoxyParamCaption}\item[{unsigned int}]{natural }\end{DoxyParamCaption})}
+
+
+
+Converts a natural number to a byte. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em natural} & The natural number to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The byte corresponding to the natural number. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em ERANGE} & if the natural number is greater than 255. \\
+\hline
+\end{DoxyExceptions}
