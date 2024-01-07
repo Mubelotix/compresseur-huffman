@@ -57,36 +57,6 @@ void C_saveStatistics(S_Statistics stats, FILE* file) {
     }
 }
 
-void browseTree(HT_HuffmanTree noeud, BC_BinaryCode code, CT_CodingTable* codingTable) {
-    if (noeud == NULL) {
-        return;
-    }
-
-    // Leaves are saved in the coding table using the current code
-    if (HT_isALeaf(noeud)) {
-        B_Byte byte = HT_getByte(noeud);
-        CT_add(codingTable, byte, code);
-    }
-
-    // Parcourir récursivement le sous-arbre gauche avec l'ajout de BC_ZERO au code binaire
-    BC_BinaryCode leftCode = code;
-    BC_addBit(&leftCode,BC_ZERO);
-    HT_HuffmanTree leftChild = HT_getLeftChild(noeud);
-    browseTree(leftChild, leftCode, codingTable);
-
-    // Parcourir récursivement le sous-arbre droit avec l'ajout de BC_ONE au code binaire
-    BC_BinaryCode rightCode = code;
-    BC_addBit(&rightCode,BC_ONE);
-    HT_HuffmanTree rightChild = HT_getRightChild(noeud);
-    browseTree(rightChild, rightCode, codingTable);
-}
-
-CT_CodingTable C_buildCodingTable(HT_HuffmanTree tree) {
-    CT_CodingTable codingTable = CT_new();
-    browseTree(tree, BC_binaryCode(), &codingTable);
-    return codingTable;
-}
-
 void writeData(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable) {
     B_Byte byte;
     unsigned int byteNat;
@@ -152,7 +122,7 @@ void C_compressFile(char* nameSourceFile) {
 
     // Build coding table
     printf("\nBuilding coding table...\n");
-    CT_CodingTable codingTable = C_buildCodingTable(huffmanTree);
+    CT_CodingTable codingTable = CT_fromHuffmanTree(huffmanTree);
     CT_debug(codingTable);
 
     // Write magic number

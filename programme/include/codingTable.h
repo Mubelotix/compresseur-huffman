@@ -3,6 +3,8 @@
 
 #include "binaryCode.h"
 #include "byte.h"
+#include "huffmanTree.h"
+#include <stdio.h>
 
 /// @brief Number of combinations of 8 bits.
 #define MAX 256
@@ -66,6 +68,8 @@ BC_BinaryCode CT_getBinaryCode(CT_CodingTable table, B_Byte byte);
  * @exception ENOENT The binary code is not in the coding table.
 */
 B_Byte CT_getByte(CT_CodingTable table, BC_BinaryCode code);
+
+CT_CodingTable CT_fromHuffmanTree(HT_HuffmanTree tree);
 
 void CT_debug(CT_CodingTable table);
 

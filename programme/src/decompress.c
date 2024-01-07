@@ -2,6 +2,7 @@
 #include "huffmanTree.h"
 #include "binaryCode.h"
 #include "priorityQueue.h"
+#include "codingTable.h"
 #include <string.h>
 #include <stddef.h>
 #include <stdlib.h>
@@ -225,5 +226,18 @@ void D_decompressFile(char* nameSourceFile) {
     S_Statistics stats = D_restoreStatistics(sourceFile);
     S_debug(stats);
 
+    // Order characters by frequency
+    printf("\nBuilding priority queue...\n");
+    PQ_PriorityQueue queue = PQ_fromStatistics(stats);
+    PQ_debug(queue);
 
+    // Build Huffman tree
+    printf("\nBuilding Huffman tree...\n");
+    HT_HuffmanTree huffmanTree = PQ_intoHuffmanTree(queue);
+    HT_debug(huffmanTree);
+
+    // Build coding table
+    printf("\nBuilding coding table...\n");
+    CT_CodingTable codingTable = CT_fromHuffmanTree(huffmanTree);
+    CT_debug(codingTable);
 }

@@ -49,6 +49,36 @@ B_Byte CT_getByte(CT_CodingTable table, BC_BinaryCode code) {
     return B_byte(0, 0, 0, 0, 0, 0, 0, 0);
 }
 
+void browseTree(HT_HuffmanTree noeud, BC_BinaryCode code, CT_CodingTable* codingTable) {
+    if (noeud == NULL) {
+        return;
+    }
+
+    // Leaves are saved in the coding table using the current code
+    if (HT_isALeaf(noeud)) {
+        B_Byte byte = HT_getByte(noeud);
+        CT_add(codingTable, byte, code);
+    }
+
+    // Parcourir récursivement le sous-arbre gauche avec l'ajout de BC_ZERO au code binaire
+    BC_BinaryCode leftCode = code;
+    BC_addBit(&leftCode,BC_ZERO);
+    HT_HuffmanTree leftChild = HT_getLeftChild(noeud);
+    browseTree(leftChild, leftCode, codingTable);
+
+    // Parcourir récursivement le sous-arbre droit avec l'ajout de BC_ONE au code binaire
+    BC_BinaryCode rightCode = code;
+    BC_addBit(&rightCode,BC_ONE);
+    HT_HuffmanTree rightChild = HT_getRightChild(noeud);
+    browseTree(rightChild, rightCode, codingTable);
+}
+
+CT_CodingTable CT_fromHuffmanTree(HT_HuffmanTree tree) {
+    CT_CodingTable codingTable = CT_new();
+    browseTree(tree, BC_binaryCode(), &codingTable);
+    return codingTable;
+}
+
 void CT_debug(CT_CodingTable table) {
     printf("Coding table:\n");
     for (unsigned int i = 0; i < MAX; i++) {
