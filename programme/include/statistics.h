@@ -64,4 +64,6 @@ void S_incCount(S_Statistics *stats, B_Byte byte);
  */
 unsigned int S_length(S_Statistics stats);
 
+void S_debug(S_Statistics stats);
+
 #endif

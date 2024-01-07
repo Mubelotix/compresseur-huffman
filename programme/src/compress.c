@@ -142,18 +142,12 @@ void C_compressFile(char* nameSourceFile) {
     // Count characters
     printf("Counting characters...\n");
     S_Statistics stats = C_computeStatistics(sourceFile);
-    unsigned long total = 0;
-    for (int i = 0; i < 256; i++) {
-        B_Byte byte = B_fromNatural(i);
-        if (S_contains(stats, byte) && i != 10) {
-            total += S_getCount(stats, byte);
-            char associated_char = i;
-            printf("\t%c: %d\n", associated_char, S_getCount(stats, byte));
-        }
-    }
-    printf("Total: %lu\n", total);
+    S_debug(stats);
 
+    // Order characters by frequency
+    printf("Building priority queue...\n");
     PQ_PriorityQueue queue = PQ_fromStatistics(stats);
+    PQ_debug(queue);
 
     HT_HuffmanTree huffmanTree = PQ_intoHuffmanTree(queue);
 

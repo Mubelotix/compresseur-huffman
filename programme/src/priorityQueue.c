@@ -74,3 +74,15 @@ HT_HuffmanTree PQ_intoHuffmanTree(PQ_PriorityQueue priority_queue) {
     }
     return PQ_popTree(&priority_queue);
 }
+
+void PQ_debug(PQ_PriorityQueue queue) {
+    printf("Priority queue:");
+    for (int i = 0; i < queue.length; i++) {
+        if (HT_isALeaf(queue.elements[i])) {
+            printf("\t%d: %d\n", B_byteToNatural(HT_getByte(queue.elements[i])), HT_getOccurence(queue.elements[i]));
+        } else {
+            printf("\t%d\n", HT_getOccurence(queue.elements[i]));
+        }
+    }
+    printf("\tLength: %d\n", queue.length);
+}

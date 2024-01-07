@@ -107,3 +107,17 @@ unsigned int S_length(S_Statistics stats)
     }
     return length;
 }
+
+void S_debug(S_Statistics stats) {
+    printf("Statistics:\n");
+    unsigned long total = 0;
+    for (int i = 0; i < 256; i++) {
+        B_Byte byte = B_fromNatural(i);
+        if (S_contains(stats, byte) && i != 10) {
+            total += S_getCount(stats, byte);
+            char associated_char = i;
+            printf("\t%d: %d\n", associated_char, S_getCount(stats, byte));
+        }
+    }
+    printf("\tTotal: %lu\n", total);
+}

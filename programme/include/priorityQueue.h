@@ -70,4 +70,6 @@ HT_HuffmanTree PQ_popTree(PQ_PriorityQueue *queue);
 /// @return The Huffman tree
 HT_HuffmanTree PQ_intoHuffmanTree(PQ_PriorityQueue priority_queue);
 
+void PQ_debug(PQ_PriorityQueue queue);
+
 #endif
