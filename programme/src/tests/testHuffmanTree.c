@@ -3,7 +3,9 @@
 #include "byte.h"
 // grosse galère grosse galère j'ai confondu noeud et arbre
 void test_getRightChild() {
-    HT_HuffmanTreeNode ht = HT_createNode(HT_createLeaf(0), HT_createLeaf(0));
+    B_Byte byte1 = B_byte(0,0,0,0,0,0,0,1);
+    B_Byte byte2 = B_byte(0,0,0,0,0,0,1,0);
+    HT_HuffmanTree ht = HT_createNode(HT_createLeaf(0,byte1), HT_createLeaf(0,byte2));
     HT_HuffmanTreeNode rc = HT_getRightChild(ht);
     CU_ASSERT_EQUAL(ht.rightChild, b);
 
@@ -77,31 +79,26 @@ void test_createNode() {
     CU_ASSERT_EQUAL(leaf2, HT_getLeftChild(node));
 }
 
-int main() {
+CU_ErrorCode HT_createHuffmanTreeTestSuite() {
 
-    if (CU_initialize_registry() != CUE_SUCCESS) {
-        return CU_get_error();
-    }
-
-    CU_pSuite suite = CU_add_suite("HuffmanTree_test", NULL, NULL);
-    if (suite == NULL) {
+    CU_pSuite pSuite = CU_add_suite("Tests boite noire : huffman tree", NULL, NULL);
+    if (pSuite == NULL) {
         CU_cleanup_registry();
         return CU_get_error();
     }
 
-    if ((CU_add_test(suite, "test_createTree", test_createTree) == NULL) ||
-        (CU_add_test(suite, "test_getRightChild", test_getRightChild) == NULL) ||
-        (CU_add_test(suite, "test_getLeftChild", test_getLeftChild) == NULL) ||
-        (CU_add_test(suite, "test_getByte", test_getByte) == NULL) ||
-        (CU_add_test(suite, "test_createLeaf", test_createLeaf) == NULL)) ||
-        (CU_add_test(suite, "test_createNode", test_createNode) == NULL)||
-        (CU_add_test(suite, "test_getOccurence", test_getOccurence) == NULL)||
-        (CU_add_test(suite, "test_isALeaf", test_isALeaf) == NULL){
+    if ((CU_add_test(pSuite, "Test createTree", test_createTree) == NULL) ||
+        (CU_add_test(pSuite, "Test getRightChild", test_getRightChild) == NULL) ||
+        (CU_add_test(pSuite, "Test getLeftChild", test_getLeftChild) == NULL) ||
+        (CU_add_test(pSuite, "Test getByte", test_getByte) == NULL) ||
+        (CU_add_test(pSuite, "Test createLeaf", test_createLeaf) == NULL)) ||
+        (CU_add_test(pSuite, "Test createNode", test_createNode) == NULL)||
+        (CU_add_test(pSuite, "Test getOccurence", test_getOccurence) == NULL)||
+        (CU_add_test(pSuite, "Test isALeaf", test_isALeaf) == NULL)
+    {
         CU_cleanup_registry();
         return CU_get_error();
     }
-    CU_basic_run_tests();
-
-    CU_cleanup_registry();
-    return CU_get_error();
+    
+    return CUE_SUCCESS;
 }

@@ -2,6 +2,7 @@
 #include "testStatistics.c"
 #include "testByte.c"
 #include "testBinaryCode.c"
+#include "testHuffmanTree.c"
 
 int main(int argc, char** argv) {
     /* initialisation du registre de tests */
@@ -14,6 +15,7 @@ int main(int argc, char** argv) {
     S_createStatisticsTestSuite();
     B_createByteTestSuite();
     BC_createBinaryCodeTestSuite();
+    HT_createHuffmanTreeTestSuite();
 
     /* Lancement des tests */
     CU_basic_set_mode(CU_BRM_VERBOSE);
