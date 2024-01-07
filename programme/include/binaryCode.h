@@ -3,7 +3,6 @@
 
 #include "byte.h"
 
-
 /**
  * @brief Represents a binary bit.
  */

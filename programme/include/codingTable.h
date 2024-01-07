@@ -1,24 +1,38 @@
 #ifndef CODING_TABLE_H
 #define CODING_TABLE_H
 
-#include "binaryCode.h"
+#include "binarycode.h"
 #include "byte.h"
-#include "huffmanTree.h"
+#include "huffmantree.h"
 #include <stdio.h>
 
-/// @brief Number of combinations of 8 bits.
+/**
+ * @def MAX
+ * @brief Number of combinations of 8 bits.
+ */
 #define MAX 256
+
+/**
+ * @def bool
+ * @brief Redefinition of bool to int for compatibility.
+ */
 #define bool int
 
-/// @brief An association between a byte and its binary code.
+/**
+ * @struct CT_OptionalBinaryCode
+ * @brief An association between a byte and its binary code.
+ */
 typedef struct {
-    bool present;
-    BC_BinaryCode binary_code;
+    bool present;              ///< Indicates if the binary code is present.
+    BC_BinaryCode binary_code; ///< The binary code associated with the byte.
 } CT_OptionalBinaryCode;
 
-/// @brief A table associating bytes and their binary codes.
+/**
+ * @struct CT_CodingTable
+ * @brief A table associating bytes and their binary codes.
+ */
 typedef struct {
-    CT_OptionalBinaryCode tab[MAX];
+    CT_OptionalBinaryCode tab[MAX]; ///< Array of optional binary codes.
 } CT_CodingTable;
 
 /**
@@ -69,8 +83,17 @@ BC_BinaryCode CT_getBinaryCode(CT_CodingTable table, B_Byte byte);
 */
 B_Byte CT_getByte(CT_CodingTable table, BC_BinaryCode code);
 
+/**
+ * @brief Creates a coding table from a Huffman tree.
+ * @param tree The Huffman tree to create the coding table from.
+ * @return The created coding table.
+ */
 CT_CodingTable CT_fromHuffmanTree(HT_HuffmanTree tree);
 
+/**
+ * @brief Outputs debugging information for the coding table.
+ * @param table The coding table to debug.
+ */
 void CT_debug(CT_CodingTable table);
 
 #endif
