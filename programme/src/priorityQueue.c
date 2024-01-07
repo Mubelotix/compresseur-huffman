@@ -39,8 +39,8 @@ void PQ_shiftRight(PQ_PriorityQueue *queue, int index) {
         errno = EOVERFLOW;
         return;
     }
-    queue->length++;
     int i = queue->length;
+    queue->length++;
     while (i > index) {
         queue->elements[i] = queue->elements[i-1];
         i--;
