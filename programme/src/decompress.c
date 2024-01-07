@@ -41,7 +41,7 @@ DecompressResult readHeader(FILE *input, S_Statistics *statistics, FileSize *siz
     unsigned char buffer[sizeof(statistics)];
     if (fread(buffer, sizeof(unsigned char), sizeof(buffer), input) != sizeof(buffer))
         return DECOMPRESS_RESULT_ERROR_INVALID_HEADER;
-    *statistics = S_deserialize(buffer);
+    *statistics = S_statistics(); // S_deserialize(buffer);
 
     return DECOMPRESS_RESULT_OK;
 } 

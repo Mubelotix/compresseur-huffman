@@ -2,6 +2,7 @@
 #define STATISTICS_H
 
 #include "byte.h"
+#include <stdio.h>
 
 #define S_MAX 256
 #define bool int
@@ -18,14 +19,14 @@ typedef struct {
 S_Statistics S_statistics();
 
 /**
- * @brief Serializes a S_Statistics into a buffer. Stored as a list of VarInt
+ * @brief Saves the statistics to a file.
 */
-void S_serialize(S_Statistics stats, unsigned char* buffer);
+void S_save(S_Statistics stats, FILE* file);
 
 /**
- * @brief Deserializes a S_Statistics from a buffer. Stored as a list of VarInt
+ * @brief Restores the statistics from a file.
 */
-S_Statistics S_deserialize(unsigned char* buffer);
+S_Statistics S_restore(FILE* file);
 
 /**
  * @brief Checks if all bytes have a count of 0

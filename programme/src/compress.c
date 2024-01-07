@@ -64,9 +64,6 @@ void browseTree(HT_HuffmanTree noeud, BC_BinaryCode code, CT_CodingTable* coding
         B_Byte byte = HT_getByte(noeud);
         unsigned int byte2 = B_byteToNatural(byte);
         CT_add(codingTable,byte,code);
-        //codingTable->tab[byte2].binary_code=code;
-        //codingTable->tab[byte2].present=1;
-
     }
 
     // Parcourir récursivement le sous-arbre gauche avec l'ajout de BC_ZERO au code binaire
@@ -86,15 +83,6 @@ CT_CodingTable C_buildCodingTable(HT_HuffmanTree tree) {
     CT_CodingTable codingTable = CT_new();
     browseTree(tree, BC_binaryCode(), &codingTable);
     return codingTable;
-}
-
-void writeStatistics(FILE* file,  S_Statistics* stats) {
-    size_t written = fwrite(stats, sizeof(S_Statistics), 1, file);
-
-    // Vérifier si l'écriture a réussi
-    if (written != 1) {
-        errno = ENOENT; // Erreur d'écriture
-    }
 }
 
 void writeData(FILE* soureFile, FILE* destFile, CT_CodingTable* table) {
@@ -153,17 +141,12 @@ void C_compressFile(char* nameSourceFile) {
     CT_CodingTable table = C_buildCodingTable(huffmanTree);
     CT_debug(table);
 
-    //Remplir le fichier destination
-    char* id = "HUFFMAN";  //ecrire l'identifiant ?
+    // Write magic number
+    char* id = "HUFFMAN";
     fwrite(id, sizeof(char), strlen(id), tempFile);
 
-    fseek(sourceFile, 0, SEEK_END); //remet le curseur au deb du fichier
-    unsigned long lenghtSourecfile = ftell(sourceFile);  // unsigned ou pas
-    rewind(sourceFile);
-
-    fwrite(&lenghtSourecfile, sizeof(unsigned long), 1, tempFile); //ecrire la taille
-
-    writeStatistics(tempFile, &stats); //ecrire les stats
+    // Save statistics
+    S_save(stats, tempFile);
 
     fseek(sourceFile, 0, SEEK_SET);
 
@@ -173,8 +156,5 @@ void C_compressFile(char* nameSourceFile) {
     fclose(sourceFile);
     fclose(tempFile);
     
-    //libererArbreHuffman(huffmanTree);
-    //libererTableDeCodage(&table);
-
-    
+    HT_destroy(huffmanTree);
 }
