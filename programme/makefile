@@ -51,7 +51,7 @@ $(TESTBINDIR)/$(TESTEXEC): runner.o $(LIBDIR)/$(LIB_NAME)
 program: create_directories $(BINDIR)/$(EXEC)
 
 $(BINDIR)/$(EXEC): $(OBJS)
-	$(CC) -o $@ $^ $(LDFLAGS)
+	$(CC) -o $@ $^
 
 pdf: ../$(LATEXDIR)/rapport.tex
 	cd ../$(LATEXDIR) && pdflatex --shell-escape rapport.tex

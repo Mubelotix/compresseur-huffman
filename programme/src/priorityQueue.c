@@ -12,8 +12,9 @@ PQ_PriorityQueue PQ_new() {
 PQ_PriorityQueue PQ_fromStatistics(S_Statistics stats) {
     PQ_PriorityQueue result = PQ_new();
     for (int i = 0; i < S_MAX; i++) {
-        if (S_getCount(stats, i) > 0) {
-            HT_HuffmanTree ht = HT_createLeaf(S_getCount(stats, i), B_fromNatural(i));
+        B_Byte byte = B_fromNatural(i);
+        if (S_getCount(stats, byte) > 0) {
+            HT_HuffmanTree ht = HT_createLeaf(S_getCount(stats, byte), B_fromNatural(i));
             PQ_insertTree(&result, ht);
         }
     }

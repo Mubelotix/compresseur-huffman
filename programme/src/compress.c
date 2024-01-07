@@ -6,6 +6,8 @@
 #include "huffmanTree.h"
 #include "statistics.h"
 #include "codingTable.h"
+#include "binaryCode.h"
+#include "priorityQueue.h"
 
     // 1. Changer type S_Statistics? : tableau d'occurence pour les 256 octets possible (FAIT ✅)
 //  typedef struct {
@@ -43,52 +45,13 @@ S_Statistics C_computeStatistics(FILE* file) {
     B_Byte byte;
     unsigned int byteNat;
     char inputChar;
-    while (fread(&inputChar, 1, 1, file) == 1){ 
-        byte = B_charToByte(inputChar);
-        byteNat = B_byteToNatural(byte);
-        S_incCount(&stats,byteNat);
+    while (fread(&inputChar, 1, 1, file) == 1) {
+        byteNat = (unsigned int)inputChar;
+        byte = B_fromNatural(byteNat);
+        S_incCount(&stats, byte);
     }
 
     return stats;
-}
-
-
-HT_HuffmanTree C_buildHuffmanTree(S_Statistics stats) {
-    HT_HuffmanTree nodes[256];
-    for (unsigned int i = 0; i < 256; ++i) {
-        if (S_contains(stats,i)) {
-            nodes[i] = HT_createLeaf(S_getCount(stats,i), B_fromNatural(i));     
-        } else {
-            nodes[i] = NULL;
-        }
-    }
-
-    while (1) {
-        // Trouver les deux nœuds avec les fréquences les plus basses
-        int min1 = -1, min2 = -1;
-        for (unsigned int i = 0; i < 256; ++i) {
-            if (nodes[i] != NULL) {
-                if (min1 == -1 || HT_getOccurence(nodes[i]) < HT_getOccurence(nodes[min1])) {
-                    min2 = min1;
-                    min1 = i;
-                } else if (min2 == -1 || HT_getOccurence(nodes[i]) < HT_getOccurence(nodes[min2])) {
-                    min2 = i;
-                }
-            }
-        }
-
-        // Si un seul nœud restant, c'est l'arbre de Huffman complet
-        if (min2 == -1) {
-            return nodes[min1];
-        }
-
-        // Créer un nouveau nœud avec la somme des fréquences
-        HT_HuffmanTree newNode = HT_createNode(nodes[min1], nodes[min2]);
-
-        // Fusionner les 2 noeuds
-        nodes[min1] = newNode;
-        nodes[min2] = NULL;
-    }
 }
 
 void browseTree(HT_HuffmanTree noeud, BC_BinaryCode code, CT_CodingTable* codingTable) {
@@ -144,7 +107,7 @@ void writeData(FILE* soureFile, FILE* destFile, CT_CodingTable* table) {
     unsigned int byteNat;
     char inputChar;
     while (fread(&inputChar, 1, 1, soureFile) == 1){ 
-        byte = B_charToByte(inputChar);
+        byte = B_fromNatural(inputChar);
         byteNat = B_byteToNatural(byte);
         BC_BinaryCode code = CT_getBinaryCode(*table,byteNat);
         
@@ -160,6 +123,7 @@ void writeData(FILE* soureFile, FILE* destFile, CT_CodingTable* table) {
 
 
 void C_compressFile(char* nameSourceFile) {
+    printf("Compression du fichier %s...\n", nameSourceFile);
 
     //Charger fichier source et destination
     FILE* sourceFile = fopen(nameSourceFile, "rb");
@@ -175,10 +139,23 @@ void C_compressFile(char* nameSourceFile) {
         exit(EXIT_FAILURE);
     }
     
-    // Calcul de la table de codage
+    // Count characters
+    printf("Counting characters...\n");
     S_Statistics stats = C_computeStatistics(sourceFile);
+    unsigned long total = 0;
+    for (int i = 0; i < 256; i++) {
+        B_Byte byte = B_fromNatural(i);
+        if (S_contains(stats, byte) && i != 10) {
+            total += S_getCount(stats, byte);
+            char associated_char = i;
+            printf("\t%c: %d\n", associated_char, S_getCount(stats, byte));
+        }
+    }
+    printf("Total: %lu\n", total);
 
-    HT_HuffmanTree huffmanTree = C_buildHuffmanTree(stats);
+    PQ_PriorityQueue queue = PQ_fromStatistics(stats);
+
+    HT_HuffmanTree huffmanTree = PQ_intoHuffmanTree(queue);
 
     CT_CodingTable table = C_buildCodingTable(huffmanTree);
 

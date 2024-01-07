@@ -4,7 +4,7 @@
 #define bool int
 
 typedef struct{
-    BC_Bit array[8];
+    unsigned char value;
 } B_Byte;
 
 /**
@@ -60,5 +60,4 @@ B_Byte B_fromNatural(unsigned int natural);
 */
 bool B_equals(B_Byte byte1, B_Byte byte2);
 
-B_Byte B_charToByte(char inputChar);
 #endif
