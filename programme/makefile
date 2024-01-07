@@ -25,7 +25,7 @@ OBJS = $(patsubst $(SRCDIR)/%.c, $(BINDIR)/%.o, $(SRCS))
 EXEC=huffman
 TESTEXEC=testHuffman
 
-all: $(BINDIR)/$(EXEC)
+all: program tests
 
 create_directories:
 	mkdir -p $(BINDIR) $(LIBDIR) $(TESTBINDIR)
@@ -46,6 +46,11 @@ $(LIBDIR)/$(LIB_NAME): $(OBJS)
 	$(AR) rcs $@ $^
 
 $(TESTBINDIR)/$(TESTEXEC): runner.o $(LIBDIR)/$(LIB_NAME)
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+program: create_directories $(BINDIR)/$(EXEC)
+
+$(BINDIR)/$(EXEC): $(OBJS)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 pdf: ../$(LATEXDIR)/rapport.tex

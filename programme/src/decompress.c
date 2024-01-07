@@ -1,6 +1,7 @@
 #include "statistics.h"
 #include "huffmanTree.h"
 #include "binaryCode.h"
+#include "priorityQueue.h"
 #include <string.h>
 #include <stddef.h>
 #include <assert.h>
@@ -40,7 +41,7 @@ DecompressResult readHeader(FILE *input, S_Statistics *statistics, FileSize *siz
     unsigned char buffer[sizeof(statistics)];
     if (fread(buffer, sizeof(unsigned char), sizeof(buffer), input) != sizeof(buffer))
         return DECOMPRESS_RESULT_ERROR_INVALID_HEADER;
-    statistics_deserialize(statistics, buffer); // on a pas cette fonction (go voir ça en call Discord)
+    *statistics = S_deserialize(buffer);
 
     return DECOMPRESS_RESULT_OK;
 } 
@@ -106,16 +107,17 @@ DecompressResult decompress(FILE *input, FILE *output)
     if (result != DECOMPRESS_RESULT_OK)
         return result;
 
-    HT_HuffmanTree *tree = huffman_tree_from_statistic(&statistics); // il me faut cette fonction aussi
+    PQ_PriorityQueue queue = PQ_fromStatistics(statistics);
+    HT_HuffmanTree tree = PQ_intoHuffmanTree(queue);
 
     assert(tree != NULL);
 
     if (feof(input) != 0)
         return DECOMPRESS_RESULT_ERROR_PREMATURE_END_OF_FILE;
 
-    result = decompressData(input, output, *tree, &size);
+    result = decompressData(input, output, tree, &size);
 
-    HT_destroy(*tree);
+    HT_destroy(tree);
 
     return result;
 }

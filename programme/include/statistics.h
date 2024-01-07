@@ -12,10 +12,20 @@ typedef struct {
 } S_Statistics;
 
 /**
- * @brief S_Statistics constructor
+ * @brief Creates an empty S_Statistics
  * @return an empty S_Statistics
  */
 S_Statistics S_statistics();
+
+/**
+ * @brief Serializes a S_Statistics into a buffer. Stored as a list of VarInt
+*/
+void S_serialize(S_Statistics stats, unsigned char* buffer);
+
+/**
+ * @brief Deserializes a S_Statistics from a buffer. Stored as a list of VarInt
+*/
+S_Statistics S_deserialize(unsigned char* buffer);
 
 /**
  * @brief Checks if all bytes have a count of 0

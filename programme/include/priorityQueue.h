@@ -2,6 +2,7 @@
 #define PRIORITY_QUEUE_H
 
 #include "huffmanTree.h"
+#include "statistics.h"
 
 /// @brief Maximum number of huffman trees in the priority queue
 #define MAX 256
@@ -17,6 +18,13 @@ typedef struct {
  * @return A new priority queue.
  */
 PQ_PriorityQueue PQ_new();
+
+/** 
+ * @brief Creates a priority queue from statistics.
+ * @param stats The statistics of the document.
+ * @return A priority queue containing all the bytes of the document.
+ */
+PQ_PriorityQueue PQ_fromStatistics(S_Statistics stats);
 
 /** 
  * @brief Gets the length of the given priority queue.
@@ -56,5 +64,10 @@ void PQ_insertTree(PQ_PriorityQueue *queue, HT_HuffmanTree ht);
  * @exception EOVERFLOW If the priority queue is empty.
  */
 HT_HuffmanTree PQ_popTree(PQ_PriorityQueue *queue);
+
+/// @brief Builds a Huffman tree from priority queue
+/// @param priority_queue The priority queue
+/// @return The Huffman tree
+HT_HuffmanTree PQ_intoHuffmanTree(PQ_PriorityQueue priority_queue);
 
 #endif
