@@ -49,9 +49,9 @@ unsigned int S_getCount(S_Statistics stats, B_Byte byte);
 void S_incCount(S_Statistics *stats, B_Byte byte);
 
 /**
- * @brief Gets the number of different elements in a document
+ * @brief Gets the total number of bytes
  * @param stats The statistics for the document
- * @return the number of present elements in stats
+ * @return the number of bytes
  */
 unsigned int S_length(S_Statistics stats);
 

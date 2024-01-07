@@ -192,10 +192,15 @@ DecompressResult decompressErrorToString(DecompressResult error, char *buffer, F
     return error;
 }
 
-void D_writeData(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable) {
+void D_writeData(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable, unsigned int expectedSize) {
     B_Byte byte;
     unsigned int byteNat;
     unsigned char inputChar;
+    unsigned int currentSize = 0;
+
+    if (expectedSize == 0) {
+        return;
+    }
 
     BC_BinaryCode unsavedBits = BC_binaryCode();
     while (fread(&inputChar, 1, 1, sourceFile) == 1) {
@@ -221,11 +226,15 @@ void D_writeData(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable
                 fprintf(stderr, "Erreur lors de l'écriture des données decompressées\n");
                 return;
             }
+            currentSize++;
+            if (currentSize == expectedSize) {
+                return;
+            }
 
             length = 1;
         }
     }
-    // TODO last bits
+    
     printf("\n");
 }
 
@@ -279,5 +288,5 @@ void D_decompressFile(char* nameSourceFile) {
     CT_debug(codingTable);
 
     printf("\nWriting data...\n");
-    D_writeData(sourceFile, outputFile, &codingTable);
+    D_writeData(sourceFile, outputFile, &codingTable, S_length(stats));
 }

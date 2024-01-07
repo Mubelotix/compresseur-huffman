@@ -48,10 +48,7 @@ unsigned int S_length(S_Statistics stats)
     unsigned int length = 0;
     for (int i = 0; i < S_MAX; i++)
     {
-        if (stats.element[i] > 0)
-        {
-            length++;
-        }
+        length += stats.element[i];
     }
     return length;
 }

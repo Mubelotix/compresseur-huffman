@@ -82,7 +82,21 @@ void C_writeData(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable
             }
         }
     }
-    // TODO last bits
+    
+    // Add padding for last byte and save it
+    if (BC_getLength(unsavedBits) > 0) {
+        while (BC_getLength(unsavedBits) < 8) {
+            BC_addBit(&unsavedBits, 0);
+        }
+        B_Byte code = BC_removeFirstByte(&unsavedBits);
+        unsigned int codeNat = B_byteToNatural(code);
+        size_t result = fwrite(&codeNat, sizeof(char), 1, outputFile);
+        if (result != 1) {
+            fprintf(stderr, "Erreur lors de l'écriture des données compressées\n");
+            return;
+        }
+    }
+
     printf("\n");
 }
 
