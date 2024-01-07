@@ -24,7 +24,7 @@ void B_testEquals() {
 
 CU_ErrorCode B_createByteTestSuite() {
     // Create the suite
-    CU_pSuite pSuite = CU_add_suite("Tests boite noire : statistics", NULL, NULL);
+    CU_pSuite pSuite = CU_add_suite("Tests boite noire : byte", NULL, NULL);
     if (NULL == pSuite) {
         CU_cleanup_registry();
         return CU_get_error();
