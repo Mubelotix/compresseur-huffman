@@ -1,9 +1,9 @@
 #ifndef CODING_TABLE_H
 #define CODING_TABLE_H
 
-#include "binarycode.h"
+#include "binaryCode.h"
 #include "byte.h"
-#include "huffmantree.h"
+#include "huffmanTree.h"
 #include <stdio.h>
 
 /**

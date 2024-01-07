@@ -1,7 +1,7 @@
 #ifndef PRIORITY_QUEUE_H
 #define PRIORITY_QUEUE_H
 
-#include "huffmantree.h"
+#include "huffmanTree.h"
 #include "statistics.h"
 
 /**

@@ -3,6 +3,10 @@
 
 #include "byte.h"
 
+#define BC_MAX 8
+#define ZERO 0
+#define ONE 1
+
 /**
  * @brief Represents a binary bit.
  */
