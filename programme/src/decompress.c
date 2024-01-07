@@ -150,3 +150,7 @@ DecompressResult decompressErrorToString(DecompressResult error, char *buffer, F
     }
     return error;
 }
+
+void D_decompressFile(char* nameSourceFile) {
+
+}

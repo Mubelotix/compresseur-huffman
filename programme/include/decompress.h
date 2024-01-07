@@ -3,4 +3,6 @@
 
 void D_decompress(FILE* f);
 
+void D_decompressFile(char* nameSourceFile);
+
 #endif
