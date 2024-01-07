@@ -14,7 +14,7 @@ S_Statistics C_computeStatistics(FILE* file) {
     B_Byte byte;
     unsigned int byteNat;
     char inputChar;
-    
+
     while (fread(&inputChar, 1, 1, file) == 1) {
         byte = B_fromNatural((unsigned int)inputChar);
         S_incCount(&stats, byte);
@@ -53,7 +53,7 @@ CT_CodingTable C_buildCodingTable(HT_HuffmanTree tree) {
     return codingTable;
 }
 
-void writeData(FILE* sourceFile, FILE* destFile, CT_CodingTable* table) {
+void writeData(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable) {
     B_Byte byte;
     unsigned int byteNat;
     char inputChar;
@@ -62,7 +62,7 @@ void writeData(FILE* sourceFile, FILE* destFile, CT_CodingTable* table) {
     fseek(sourceFile, 0, SEEK_SET);
     while (fread(&inputChar, 1, 1, sourceFile) == 1) {
         byte = B_fromNatural(inputChar);
-        BC_BinaryCode newBits = CT_getBinaryCode(*table, byte);
+        BC_BinaryCode newBits = CT_getBinaryCode(*codingTable, byte);
         BC_debug(newBits);
         printf(" ");
 
@@ -72,7 +72,7 @@ void writeData(FILE* sourceFile, FILE* destFile, CT_CodingTable* table) {
             B_Byte code = BC_removeFirstByte(&unsavedBits);
             unsigned int codeNat = B_byteToNatural(code);
             // print binary
-            size_t result = fwrite(&codeNat, sizeof(char), 1, destFile);
+            size_t result = fwrite(&codeNat, sizeof(char), 1, outputFile);
 
             if (result != 1) {
                 fprintf(stderr, "Erreur lors de l'écriture des données compressées\n");
@@ -117,22 +117,20 @@ void C_compressFile(char* nameSourceFile) {
 
     // Build coding table
     printf("\nBuilding coding table...\n");
-    CT_CodingTable table = C_buildCodingTable(huffmanTree);
-    CT_debug(table);
+    CT_CodingTable codingTable = C_buildCodingTable(huffmanTree);
+    CT_debug(codingTable);
 
     // Write magic number
     char* id = "HUFFMAN";
     fwrite(id, sizeof(char), strlen(id), outputFile);
 
     // Save statistics
-    S_save(stats, outputFile);
-
     printf("\nWriting data...\n");
-    writeData(sourceFile, outputFile, &table); //ecrire donnees compress
+    S_save(stats, outputFile);
+    writeData(sourceFile, outputFile, &codingTable);
 
-    // Fermer les fichiers et libérer la mémoire
+    // Close files and free memory
     fclose(sourceFile);
     fclose(outputFile);
-    
     HT_destroy(huffmanTree);
 }
