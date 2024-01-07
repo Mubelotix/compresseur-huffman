@@ -4,6 +4,7 @@
 #include "priorityQueue.h"
 #include <string.h>
 #include <stddef.h>
+#include <stdlib.h>
 #include <assert.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -191,5 +192,38 @@ DecompressResult decompressErrorToString(DecompressResult error, char *buffer, F
 }
 
 void D_decompressFile(char* nameSourceFile) {
+    printf("Démpression du fichier %s...\n", nameSourceFile);
+
+    // Open files
+    FILE* sourceFile = fopen(nameSourceFile, "rb");
+    if (sourceFile == NULL) {
+        fprintf(stderr, "Erreur lors de l'ouverture du fichier source.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    FILE* outputFile = fopen("uncompressed.txt", "wb"); // fichier destination "temp.huff" (a modifier)
+    if (outputFile == NULL) {
+        fclose(sourceFile);
+        fprintf(stderr, "Erreur lors de la création du fichier temporaire.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // Read first 6 bytes
+    char header[7];
+    size_t read = fread(header, sizeof(char), 7, sourceFile);
+    if (read != 7) {
+        fprintf(stderr, "Erreur lors de la lecture de l'entête.\n");
+        exit(EXIT_FAILURE);
+    }
+    if (strncmp(header, "HUFFMAN", 7) != 0) {
+        fprintf(stderr, "L'entête du fichier n'est pas valide.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // Read statistics
+    printf("\nReading statistics...\n");
+    S_Statistics stats = D_restoreStatistics(sourceFile);
+    S_debug(stats);
+
 
 }

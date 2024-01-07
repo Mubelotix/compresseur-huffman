@@ -114,13 +114,14 @@ void writeData(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable) 
             }
         }
     }
+    // TODO last bits
     printf("\n");
 }
 
 void C_compressFile(char* nameSourceFile) {
     printf("Compression du fichier %s...\n", nameSourceFile);
 
-    //Charger fichier source et destination
+    // Open files
     FILE* sourceFile = fopen(nameSourceFile, "rb");
     if (sourceFile == NULL) {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier source.\n");
