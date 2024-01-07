@@ -21,7 +21,7 @@
 //    struct HT_HuffmanTreeNode* leftChild;
 //    struct HT_HuffmanTreeNode* rightChild;
 //};
-// Et du coup rajouter un getOctet dans HT (FAIT ✅)
+// Et du coup rajouter un getByte dans HT (FAIT ✅)
 
 // 3. Modifier HT_createLeaf de sorte qu'il initialise l'occurence de l'octet (FAIT ✅)
 
@@ -57,7 +57,7 @@ HT_HuffmanTree C_buildHuffmanTree(S_Statistics stats) {
     HT_HuffmanTree nodes[256];
     for (unsigned int i = 0; i < 256; ++i) {
         if (S_contains(stats,i)) {
-            nodes[i] = HT_createLeaf(S_getCount(stats,i),i);     
+            nodes[i] = HT_createLeaf(S_getCount(stats,i), B_fromNatural(i));     
         } else {
             nodes[i] = NULL;
         }
@@ -95,12 +95,13 @@ void browseTree(HT_HuffmanTree noeud, BC_BinaryCode code, CT_CodingTable* coding
     
     if (noeud != NULL) {
         // Si le nœud est une feuille, enregistrez le code binaire dans la table
-        if (HT_bytePresent(noeud)) {
-            int byte = HT_getOctet(noeud);
-            printf("----%d\n",byte);
+        if (HT_isALeaf(noeud)) {
+            B_Byte byte = HT_getByte(noeud);
+            unsigned int byte2 = B_byteToNatural(byte);
+            printf("----%d\n",byte2);
             //CT_add(codingTable,byte,code);
-            codingTable->tab[byte].binary_code=code;
-            codingTable->tab[byte].present=1;
+            codingTable->tab[byte2].binary_code=code;
+            codingTable->tab[byte2].present=1;
 
         }
 

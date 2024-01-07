@@ -31,7 +31,7 @@ bool isFileCompressed(FILE *input)
     return true;
 }
 
-DecompressResult readHeader(FILE *input, Statistics *statistics, FileSize *size)
+DecompressResult readHeader(FILE *input, S_Statistics *statistics, FileSize *size)
 {
     if (!isFileCompressed(input))
         return DECOMPRESS_RESULT_ERROR_INVALID_HEADER;
@@ -45,11 +45,11 @@ DecompressResult readHeader(FILE *input, Statistics *statistics, FileSize *size)
     return DECOMPRESS_RESULT_OK;
 } 
 
-DecompressResult decompressData(FILE *input, FILE *output, const HuffmanTree tree, FileSize *decompressedSize)
+DecompressResult decompressData(FILE *input, FILE *output, const HT_HuffmanTree tree, FileSize *decompressedSize)
 {
     unsigned char bitReadPosition = 0;
-    HuffmanTree currentTree = tree;
-    Byte sourceByte = B_byte(0);
+    HT_HuffmanTree currentTree = tree;
+    B_Byte sourceByte = B_byte(0,0,0,0,0,0,0,0);
     decompressedSize = 0;
 
     while (feof(input) == 0)
@@ -59,13 +59,13 @@ DecompressResult decompressData(FILE *input, FILE *output, const HuffmanTree tre
             unsigned char bitsRead;
             if (fread(&bitsRead, sizeof(bitsRead), 1, input) != 1)
                 return DECOMPRESS_RESULT_ERROR_PREMATURE_END_OF_FILE; 
-            sourceByte = B_byte(bitsRead);                    
+            sourceByte = B_fromNatural(bitsRead);
             bitReadPosition = 0;
         }
 
         if (HT_isALeaf(currentTree))
         {                                                      
-            Bit bit = B_getBit(sourceByte, bitReadPosition); 
+            BC_Bit bit = B_getBit(sourceByte, bitReadPosition); 
             if (bit == 0)
                 currentTree = currentTree->leftChild;
             else
@@ -74,7 +74,7 @@ DecompressResult decompressData(FILE *input, FILE *output, const HuffmanTree tre
         }
         else
         {
-            Byte destinationByte = HT_getByte(currentTree);          
+            B_Byte destinationByte = HT_getByte(currentTree);          
             unsigned char naturalToWrite = B_byteToNatural(destinationByte);      
             if (fwrite(&naturalToWrite, sizeof(naturalToWrite), 1, output) != 1) 
                 return DECOMPRESS_RESULT_ERROR_FAILED_TO_WRITE_OUTPUT_FILE;
@@ -99,14 +99,14 @@ DecompressResult decompress(FILE *input, FILE *output)
 
     DecompressResult result = DECOMPRESS_RESULT_OK;
     FileSize size;
-    Statistics statistics;
+    S_Statistics statistics;
     statistics = S_statistics();
     result = readHeader(input, &statistics, &size);
 
     if (result != DECOMPRESS_RESULT_OK)
         return result;
 
-    HuffmanTree *tree = huffman_tree_from_statistic(&statistics); // il me faut cette fonction aussi
+    HT_HuffmanTree *tree = huffman_tree_from_statistic(&statistics); // il me faut cette fonction aussi
 
     assert(tree != NULL);
 

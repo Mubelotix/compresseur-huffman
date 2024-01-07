@@ -4,18 +4,18 @@
 
 
 HT_HuffmanTree HT_getRightChild(HT_HuffmanTree ht) {
-    // Précondition: ht n'est pas une feuille
     if (!HT_isALeaf(ht)) {
         return ht->rightChild;
     }
+    errno = ENOENT;
     return NULL;
 }
 
 HT_HuffmanTree HT_getLeftChild(HT_HuffmanTree ht) {
-    // Précondition: ht n'est pas une feuille
     if (!HT_isALeaf(ht)) {
         return ht->leftChild;
     }
+    errno = ENOENT;
     return NULL;
 }
 
@@ -23,39 +23,35 @@ int HT_getOccurence(HT_HuffmanTree ht) {
     return ht->occurence;
 }
 
-int HT_getOctet(HT_HuffmanTree ht){
-    // Précondition: ht est une feuille
-        return ht->octet;
+B_Byte HT_getByte(HT_HuffmanTree ht){
+    if (HT_isALeaf(ht)) {
+        return ht->byte;
+    }
+    errno = ENOENT;
+    return B_byte(0, 0, 0, 0, 0, 0, 0, 0);
 }
 
 int HT_isALeaf(HT_HuffmanTree ht) {
     return ((ht->leftChild == NULL) && (ht->rightChild == NULL));
 }
 
-int HT_bytePresent(HT_HuffmanTree ht) {
-    return (ht->octet != 1);
-}
-
-HT_HuffmanTree HT_createLeaf(int occurence, int octet) {
-    HT_HuffmanTree node = (HT_HuffmanTree)malloc(sizeof(struct HT_HuffmanTreeNode));
-    node->octet = octet;
+HT_HuffmanTree HT_createLeaf(int occurence, B_Byte byte) {
+    HT_HuffmanTreeNode* node = (HT_HuffmanTreeNode*)malloc(sizeof(HT_HuffmanTreeNode));
     node->occurence = occurence;
+    node->byte = byte;
     node->leftChild = NULL;
     node->rightChild = NULL;
     return node;
 }
 
 HT_HuffmanTree HT_createNode(HT_HuffmanTree leftChild, HT_HuffmanTree rightChild) {
-    // Précondition: leftChild et rightChild ne sont pas nuls
     if ((leftChild != NULL) && (rightChild != NULL)) {
-        HT_HuffmanTree node = (HT_HuffmanTree)malloc(sizeof(struct HT_HuffmanTreeNode));
-        node->octet = -1;
+        HT_HuffmanTreeNode* node = (HT_HuffmanTreeNode*)malloc(sizeof(HT_HuffmanTreeNode));
         node->occurence = leftChild->occurence + rightChild->occurence;
         node->leftChild = leftChild;
         node->rightChild = rightChild;
         return node;
-    }
-    else{
+    } else {
         errno = ENOENT;
         return NULL;
     }
@@ -69,12 +65,6 @@ void HT_destroy(HT_HuffmanTree ht) {
     }
 }
 
-HT_HuffmanTree HT_createTree(HT_HuffmanTree root) {
-    // Précondition: root n'est pas nul
-    if (root != NULL) {
-        return root;
-    }
-    else{
-        return NULL;
-    }
+HT_HuffmanTree HT_createTree(HT_HuffmanTreeNode* root) {
+    return root;
 }

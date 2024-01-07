@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "byte.h"
+#include <errno.h>
 
 // Fonction B_byte
 B_Byte B_byte(BC_Bit b1, BC_Bit b2, BC_Bit b3, BC_Bit b4, BC_Bit b5, BC_Bit b6, BC_Bit b7, BC_Bit b8) {
@@ -33,6 +34,14 @@ unsigned int B_byteToNatural(B_Byte byte) {
         res += byte.array[i] * (1 << (7 - i));
     }
     return res;
+}
+
+B_Byte B_fromNatural(unsigned int natural) {
+    if (natural > 255) {
+        errno = ERANGE;
+        return B_byte(0, 0, 0, 0, 0, 0, 0, 0);
+    }
+    return B_byte(natural & 0x80, natural & 0x40, natural & 0x20, natural & 0x10, natural & 0x08, natural & 0x04, natural & 0x02, natural & 0x01);
 }
 
 // Fonction B_equals

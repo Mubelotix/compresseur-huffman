@@ -45,6 +45,14 @@ void B_setBit(B_Byte* byte, int i, BC_Bit bit);
 unsigned int B_byteToNatural(B_Byte byte);
 
 /**
+ * @brief Converts a natural number to a byte
+ * @param natural The natural number you want to convert
+ * @return The byte corresponding to the natural number
+ * @exception ERANGE if the natural number is greater than 255
+*/
+B_Byte B_fromNatural(unsigned int natural);
+
+/**
  * @brief Checks for equality between two bytes
  * @param byte1 The first byte
  * @param byte2 The second byte
