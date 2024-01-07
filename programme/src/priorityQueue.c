@@ -28,7 +28,7 @@ unsigned int PQ_lenght(PQ_PriorityQueue queue) {
 int PQ_getInsertionIndex(PQ_PriorityQueue *queue, HT_HuffmanTree ht) {
     // TODO: having binary search here would be nice
     int i = 0;
-    while (i < queue->length && HT_getOccurence(ht) > HT_getOccurence(queue->elements[i])) {
+    while (i < queue->length && HT_getOccurence(queue->elements[i]) > HT_getOccurence(ht)) {
         i++;
     }
     return i;
@@ -76,7 +76,7 @@ HT_HuffmanTree PQ_intoHuffmanTree(PQ_PriorityQueue priority_queue) {
 }
 
 void PQ_debug(PQ_PriorityQueue queue) {
-    printf("Priority queue:");
+    printf("Priority queue:\n");
     for (int i = 0; i < queue.length; i++) {
         if (HT_isALeaf(queue.elements[i])) {
             printf("\t%d: %d\n", B_byteToNatural(HT_getByte(queue.elements[i])), HT_getOccurence(queue.elements[i]));
