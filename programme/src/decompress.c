@@ -53,7 +53,7 @@ S_Statistics D_restoreStatistics(FILE* file) {
 }
 
 /// @brief Decompress the file on the fly
-void D_streamDecompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable, unsigned int expectedSize) {
+void D_streamDecompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable, unsigned int expectedSize, int verbosity) {
     if (expectedSize == 0) {
         return;
     }
@@ -80,8 +80,8 @@ void D_streamDecompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codi
             buffer = BC_suffix(buffer, length);
 
             // Log the code
-            BC_debug(codeCandidate);
-            printf(" ");
+            if (verbosity >= 3) BC_debug(codeCandidate);
+            if (verbosity >= 3) printf(" ");
 
             // Write the byte to the output file
             char c = B_byteToNatural(byte);
@@ -103,8 +103,8 @@ void D_streamDecompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codi
     }
 }
 
-void D_decompressFile(char* nameSourceFile) {
-    printf("Démpression du fichier %s...\n", nameSourceFile);
+void D_decompressFile(char* nameSourceFile, int verbosity) {
+    if (verbosity >= 1) printf("Décompression du fichier %s...\n", nameSourceFile);
 
     // Open files
     FILE* sourceFile = fopen(nameSourceFile, "rb");
@@ -133,28 +133,28 @@ void D_decompressFile(char* nameSourceFile) {
     }
 
     // Read statistics
-    printf("\nReading statistics...\n");
+    if (verbosity >= 2) printf("\nReading statistics...\n");
     S_Statistics stats = D_restoreStatistics(sourceFile);
-    S_debug(stats);
+    if (verbosity >= 2) S_debug(stats);
 
     // Order characters by frequency
-    printf("\nBuilding priority queue...\n");
+    if (verbosity >= 2) printf("\nBuilding priority queue...\n");
     PQ_PriorityQueue queue = PQ_fromStatistics(stats);
-    PQ_debug(queue);
+    if (verbosity >= 2) PQ_debug(queue);
 
     // Build Huffman tree
-    printf("\nBuilding Huffman tree...\n");
+    if (verbosity >= 2) printf("\nBuilding Huffman tree...\n");
     HT_HuffmanTree huffmanTree = PQ_intoHuffmanTree(queue);
-    HT_debug(huffmanTree);
+    if (verbosity >= 2) HT_debug(huffmanTree);
 
     // Build coding table
-    printf("\nBuilding coding table...\n");
+    if (verbosity >= 2) printf("\nBuilding coding table...\n");
     CT_CodingTable codingTable = CT_fromHuffmanTree(huffmanTree);
-    CT_debug(codingTable);
+    if (verbosity >= 2) CT_debug(codingTable);
 
-    printf("\nWriting data...\n");
-    D_streamDecompress(sourceFile, outputFile, &codingTable, S_length(stats));
-    printf("\n%sDone! ✅%s\n", CLI_GREEN, CLI_NORMAL);
+    if (verbosity >= 2) printf("\nWriting data...\n");
+    D_streamDecompress(sourceFile, outputFile, &codingTable, S_length(stats), verbosity);
+    if (verbosity >= 1) printf("\n%sDone! ✅%s\n", CLI_GREEN, CLI_NORMAL);
 
     // Close files and free memory
     fclose(sourceFile);

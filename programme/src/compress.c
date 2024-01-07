@@ -60,7 +60,7 @@ void C_saveStatistics(S_Statistics stats, FILE* file) {
 }
 
 /// @brief Compress the file on the fly
-void C_streamCompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable) {
+void C_streamCompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable, int verbosity) {
     B_Byte byte;
     unsigned int byteNat;
     unsigned char inputChar;
@@ -70,8 +70,8 @@ void C_streamCompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* coding
     while (fread(&inputChar, 1, 1, sourceFile) == 1) {
         byte = B_fromNatural(inputChar);
         BC_BinaryCode newBits = CT_getBinaryCode(*codingTable, byte);
-        BC_debug(newBits);
-        printf(" ");
+        if (verbosity >= 3) BC_debug(newBits);
+        if (verbosity >= 3) printf(" ");
 
         BC_concatenate(&unsavedBits, &newBits);
         
@@ -103,8 +103,8 @@ void C_streamCompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* coding
     }
 }
 
-void C_compressFile(char* nameSourceFile) {
-    printf("Compression du fichier %s...\n", nameSourceFile);
+void C_compressFile(char* nameSourceFile, int verbosity) {
+    if (verbosity >= 1) printf("Compression du fichier %s...\n", nameSourceFile);
 
     // Open files
     FILE* sourceFile = fopen(nameSourceFile, "rb");
@@ -121,34 +121,34 @@ void C_compressFile(char* nameSourceFile) {
     }
     
     // Count characters
-    printf("\nCounting characters...\n");
+    if (verbosity >= 2) printf("\nCounting characters...\n");
     S_Statistics stats = C_computeStatistics(sourceFile);
-    S_debug(stats);
+    if (verbosity >= 2) S_debug(stats);
 
     // Order characters by frequency
-    printf("\nBuilding priority queue...\n");
+    if (verbosity >= 2) printf("\nBuilding priority queue...\n");
     PQ_PriorityQueue queue = PQ_fromStatistics(stats);
-    PQ_debug(queue);
+    if (verbosity >= 2) PQ_debug(queue);
 
     // Build Huffman tree
-    printf("\nBuilding Huffman tree...\n");
+    if (verbosity >= 2) printf("\nBuilding Huffman tree...\n");
     HT_HuffmanTree huffmanTree = PQ_intoHuffmanTree(queue);
-    HT_debug(huffmanTree);
+    if (verbosity >= 2) HT_debug(huffmanTree);
 
     // Build coding table
-    printf("\nBuilding coding table...\n");
+    if (verbosity >= 2) printf("\nBuilding coding table...\n");
     CT_CodingTable codingTable = CT_fromHuffmanTree(huffmanTree);
-    CT_debug(codingTable);
+    if (verbosity >= 2) CT_debug(codingTable);
 
     // Write magic number
     char* id = "HUFFMAN";
     fwrite(id, sizeof(char), strlen(id), outputFile);
 
     // Save statistics
-    printf("\nWriting data...\n");
+    if (verbosity >= 2) printf("\nWriting data...\n");
     C_saveStatistics(stats, outputFile);
-    C_streamCompress(sourceFile, outputFile, &codingTable);
-    printf("\n%sDone! ✅%s\n", CLI_GREEN, CLI_NORMAL);
+    C_streamCompress(sourceFile, outputFile, &codingTable, verbosity);
+    if (verbosity >= 1) printf("\n%sDone! ✅%s\n", CLI_GREEN, CLI_NORMAL);
 
     // Close files and free memory
     fclose(sourceFile);
