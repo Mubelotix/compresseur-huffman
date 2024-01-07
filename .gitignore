@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/latex,c,vs,linux,macos,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=latex,c,vs,linux,macos,windows
 
+## doc folder ##
+programme/doc/*
+
 ### C ###
 # Prerequisites
 *.d
