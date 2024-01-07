@@ -47,3 +47,10 @@ bool BC_equals(BC_BinaryCode bc1, BC_BinaryCode bc2) {
         return 1;
     }
 }
+
+void BC_debug(BC_BinaryCode bc) {
+    printf("0b");
+    for (unsigned int i=0; i < bc.length; i++){
+        printf("%d", bc.bits[i]);
+    }
+}

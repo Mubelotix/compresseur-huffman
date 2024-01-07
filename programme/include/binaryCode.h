@@ -22,4 +22,6 @@ BC_Bit BC_getBit(BC_BinaryCode bc, unsigned int pos);
 void BC_concatenate(BC_BinaryCode* pbc1, BC_BinaryCode* pbc2);
 bool BC_equals(BC_BinaryCode bc1, BC_BinaryCode bc2);
 
+void BC_debug(BC_BinaryCode bc);
+
 #endif
