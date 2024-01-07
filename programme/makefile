@@ -58,10 +58,16 @@ pdf: ../$(LATEXDIR)/rapport.tex
 	rm -f ../$(LATEXDIR)/*.fls ../$(LATEXDIR)/*.fdb_latexmk ../$(LATEXDIR)/*.aux ../$(LATEXDIR)/*.log ../$(LATEXDIR)/*.lof ../$(LATEXDIR)/*.out ../$(LATEXDIR)/*.synctex.gz ../$(LATEXDIR)/*.toc
 	rm -rf ../$(LATEXDIR)/_minted-rapport
 
+doc:
+	cd doc && doxygen Doxyfile
+	cd doc/latex && make
+	mv doc/latex/refman.pdf doc/documentation.pdf
+
 clean :
 	rm -rf ./$(BINDIR)/*
 	rm -rf ./$(LIBDIR)/*
 	rm -rf ./$(SRCDIR)/*.o
+	rm -rf doc/html doc/latex
 
 # gcc -o tests/testStatistics src/tests/testStatistics.c -Iinclude -lcunit -Wall -pedantic
 
