@@ -1,11 +1,10 @@
 SRCDIR=src
 TESTDIR=$(SRCDIR)/tests
 INCLUDEDIR=include
-
 LIBDIR=lib
 BINDIR=bin
 TESTBINDIR=tests
-
+DOCDIR=doc
 LATEXDIR=rapport
 
 LIB_NAME = libhuffman.a
@@ -25,10 +24,10 @@ OBJS = $(patsubst $(SRCDIR)/%.c, $(BINDIR)/%.o, $(SRCS))
 EXEC=huffman
 TESTEXEC=testHuffman
 
-all: program tests
+all: program tests doc
 
 create_directories:
-	mkdir -p $(BINDIR) $(LIBDIR) $(TESTBINDIR)
+	mkdir -p $(BINDIR) $(LIBDIR) $(TESTBINDIR) $(DOCDIR)
 
 tests: create_directories $(TESTBINDIR)/$(TESTEXEC)
 	./$(TESTBINDIR)/$(TESTEXEC)
@@ -58,10 +57,10 @@ pdf: ../$(LATEXDIR)/rapport.tex
 	rm -f ../$(LATEXDIR)/*.fls ../$(LATEXDIR)/*.fdb_latexmk ../$(LATEXDIR)/*.aux ../$(LATEXDIR)/*.log ../$(LATEXDIR)/*.lof ../$(LATEXDIR)/*.out ../$(LATEXDIR)/*.synctex.gz ../$(LATEXDIR)/*.toc
 	rm -rf ../$(LATEXDIR)/_minted-rapport
 
-doc:
-	cd doc && doxygen Doxyfile
-	cd doc/latex && make
-	mv doc/latex/refman.pdf doc/documentation.pdf
+#generates the documentation if something in the include folder changes
+doc: create_directories $(SRCDIR)/*.c $(INCLUDEDIR)/*.h
+	doxygen Doxyfile
+	cd $(DOCDIR)/latex && make
 
 clean :
 	rm -rf ./$(BINDIR)/*
