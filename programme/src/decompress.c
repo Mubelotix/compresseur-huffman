@@ -66,7 +66,7 @@ DecompressResult decompressData(FILE *input, FILE *output, const HT_HuffmanTree 
 
         if (HT_isALeaf(currentTree))
         {                                                      
-            BC_Bit bit = B_getBit(sourceByte, bitReadPosition); 
+            BC_Bit bit = 0;// B_getBit(sourceByte, bitReadPosition); 
             if (bit == 0)
                 currentTree = currentTree->leftChild;
             else

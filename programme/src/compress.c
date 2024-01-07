@@ -89,20 +89,30 @@ void writeData(FILE* soureFile, FILE* destFile, CT_CodingTable* table) {
     B_Byte byte;
     unsigned int byteNat;
     char inputChar;
-    while (fread(&inputChar, 1, 1, soureFile) == 1){ 
-        byte = B_fromNatural(inputChar);
-        BC_BinaryCode code = CT_getBinaryCode(*table, byte);
-        
-        size_t writtenByte = fwrite(&code, sizeof(BC_BinaryCode), 1, destFile);
 
-        // Vérifier si l'écriture a réussi
-        if (writtenByte != 1) {
-            fprintf(stderr, "Erreur lors de l'écriture des données compressées\n");
-            return;
+    BC_BinaryCode unsavedBits = BC_binaryCode();
+    while (fread(&inputChar, 1, 1, soureFile) == 1) {
+        byte = B_fromNatural(inputChar);
+        BC_BinaryCode newBits = CT_getBinaryCode(*table, byte);
+        BC_debug(newBits);
+        printf(" ");
+
+        BC_concatenate(&unsavedBits, &newBits);
+        
+        while (BC_getLength(unsavedBits) >= 8) {
+            B_Byte code = BC_removeFirstByte(&unsavedBits);
+            unsigned int codeNat = B_byteToNatural(code);
+            // print binary
+            size_t result = fwrite(&codeNat, sizeof(char), 1, destFile);
+
+            if (result != 1) {
+                fprintf(stderr, "Erreur lors de l'écriture des données compressées\n");
+                return;
+            }
         }
     }
+    printf("\n");
 }
-
 
 void C_compressFile(char* nameSourceFile) {
     printf("Compression du fichier %s...\n", nameSourceFile);
@@ -150,6 +160,7 @@ void C_compressFile(char* nameSourceFile) {
 
     fseek(sourceFile, 0, SEEK_SET);
 
+    printf("\nWriting data...\n");
     writeData(sourceFile, tempFile, &table); //ecrire donnees compress
 
     // Fermer les fichiers et libérer la mémoire

@@ -1,7 +1,12 @@
 #ifndef BYTE_H
 #define BYTE_H
-#include "binaryCode.h"
 #define bool int
+
+// TODO 
+typedef enum {
+    B_ZERO = 0,
+    B_ONE = 1
+} B_Bit;
 
 typedef struct{
     unsigned char value;
@@ -19,23 +24,7 @@ typedef struct{
  * @param b8 height bit
  * @return The constructed byte composed of the 8 bits
 */
-B_Byte B_byte(BC_Bit b1, BC_Bit b2, BC_Bit b3, BC_Bit b4, BC_Bit b5, BC_Bit b6, BC_Bit b7, BC_Bit b8);
-
-/**
- * @brief Returns the bit at position i
- * @param byte The byte you want to extract the bit from
- * @param i The position of the bit you want to extract
- * @return the bit at position i in the byte
-*/
-BC_Bit B_getBit(B_Byte byte, int i);
-
-/**
- * @brief Sets the bit at position i to bit
- * @param byte The byte you want to set the bit in
- * @param i The position of the bit you want to set
- * @param bit The value of the bit you want to set
-*/
-void B_setBit(B_Byte* byte, int i, BC_Bit bit);
+B_Byte B_byte(B_Bit b1, B_Bit b2, B_Bit b3, B_Bit b4, B_Bit b5, B_Bit b6, B_Bit b7, B_Bit b8);
 
 /**
  * @brief Converts a byte to a natural number

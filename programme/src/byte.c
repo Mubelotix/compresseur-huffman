@@ -3,33 +3,17 @@
 #include <errno.h>
 
 // Fonction B_byte
-B_Byte B_byte(BC_Bit b1, BC_Bit b2, BC_Bit b3, BC_Bit b4, BC_Bit b5, BC_Bit b6, BC_Bit b7, BC_Bit b8) {
+B_Byte B_byte(B_Bit b1, B_Bit b2, B_Bit b3, B_Bit b4, B_Bit b5, B_Bit b6, B_Bit b7, B_Bit b8) {
     if (b1 > 1 || b2 > 1 || b3 > 1 || b4 > 1 || b5 > 1 || b6 > 1 || b7 > 1 || b8 > 1) {
         errno = ERANGE;
         printf("B_byte: Error: bit value must be 0 or 1\n");
         return B_byte(0, 0, 0, 0, 0, 0, 0, 0);
     }
     B_Byte res;
-    res.value = b1 << 8 | b2 << 7 | b3 << 6 | b4 << 5 | b5 << 4 | b6 << 3 | b7 << 2 | b8 << 1;
+    res.value = (b1 << 7) | (b2 << 6) | (b3 << 5) | (b4 << 4) | (b5 << 3) | (b6 << 2) | (b7 << 1) | b8;
     return res;
 }
 
-// Fonction B_getBit
-BC_Bit B_getBit(B_Byte byte, int i) {
-    // Précondition : i < 8
-    return byte.value >> i & 1;
-}
-
-// Procédure setBit
-void B_setBit(B_Byte* byte, int i, BC_Bit bit) {
-    if (bit > 1) {
-        errno = ERANGE;
-        printf("B_setBit: Error: bit value must be 0 or 1\n");
-        return;
-    }
-    // Précondition : i < 8
-    byte->value = byte->value & ~(1 << i) | bit << i;
-}
 
 // Fonction B_byteToNatural
 unsigned int B_byteToNatural(B_Byte byte) {

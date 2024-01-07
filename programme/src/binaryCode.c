@@ -35,6 +35,22 @@ void BC_concatenate(BC_BinaryCode* pbc1, BC_BinaryCode* pbc2) {
     }
 }
 
+B_Byte BC_removeFirstByte(BC_BinaryCode* pbc) {
+    if (BC_getLength(*pbc) < 8) {
+        printf("Error : BinaryCode length is less than 8. \n");
+        return B_byte(0, 0, 0, 0, 0, 0, 0, 0);
+    }
+    
+    B_Byte res = B_byte(pbc->bits[0], pbc->bits[1], pbc->bits[2], pbc->bits[3], pbc->bits[4], pbc->bits[5], pbc->bits[6], pbc->bits[7]);
+
+    for (unsigned int i=0; i < BC_getLength(*pbc)-8; i++) {
+        pbc->bits[i] = pbc->bits[i+8];
+    }
+    pbc->length -= 8;
+
+    return res;
+}
+
 bool BC_equals(BC_BinaryCode bc1, BC_BinaryCode bc2) {
     if (bc1.length != bc2.length) {
         return 0;
@@ -49,7 +65,6 @@ bool BC_equals(BC_BinaryCode bc1, BC_BinaryCode bc2) {
 }
 
 void BC_debug(BC_BinaryCode bc) {
-    printf("0b");
     for (unsigned int i=0; i < bc.length; i++){
         printf("%d", bc.bits[i]);
     }
