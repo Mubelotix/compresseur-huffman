@@ -2,7 +2,6 @@
 #define BYTE_H
 #define bool int
 
-// TODO 
 typedef enum {
     B_ZERO = 0,
     B_ONE = 1
