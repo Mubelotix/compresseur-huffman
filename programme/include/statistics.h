@@ -19,16 +19,6 @@ typedef struct {
 S_Statistics S_statistics();
 
 /**
- * @brief Saves the statistics to a file.
-*/
-void S_save(S_Statistics stats, FILE* file);
-
-/**
- * @brief Restores the statistics from a file.
-*/
-S_Statistics S_restore(FILE* file);
-
-/**
  * @brief Checks if all bytes have a count of 0
  * @param stats The statistics to check
  * @return true if stats is empty

@@ -23,6 +23,40 @@ S_Statistics C_computeStatistics(FILE* file) {
     return stats;
 }
 
+/// Write a single byte to a file
+void writeByte(FILE* file, char byte) {
+    size_t written = fwrite(&byte, sizeof(char), 1, file);
+
+    // Vérifier si l'écriture a réussi
+    if (written != 1) {
+        errno = ENOENT; // Erreur d'écriture
+    }
+}
+
+void C_saveStatistics(S_Statistics stats, FILE* file) {
+    for (int i = 0; i < S_MAX; i++)
+    {
+        // Write a VarInt
+        unsigned int count = stats.element[i];
+        unsigned int fist_byte = count & (0x7F << 14); // 0b01111111
+        unsigned int second_byte = count & (0x7F << 7); // 0b01111111
+        unsigned int third_byte = count & 0x7F; // 0b01111111
+        if (fist_byte != 0) {
+            fist_byte += 0x80; // 0b10000000
+            second_byte += 0x80; // 0b10000000
+            writeByte(file, fist_byte);
+            writeByte(file, second_byte);
+            writeByte(file, third_byte);
+        } else if (second_byte != 0) {
+            second_byte += 0x80; // 0b10000000
+            writeByte(file, second_byte);
+            writeByte(file, third_byte);
+        } else {
+            writeByte(file, third_byte);
+        }
+    }
+}
+
 void browseTree(HT_HuffmanTree noeud, BC_BinaryCode code, CT_CodingTable* codingTable) {
     if (noeud == NULL) {
         return;
@@ -126,7 +160,7 @@ void C_compressFile(char* nameSourceFile) {
 
     // Save statistics
     printf("\nWriting data...\n");
-    S_save(stats, outputFile);
+    C_saveStatistics(stats, outputFile);
     writeData(sourceFile, outputFile, &codingTable);
 
     // Close files and free memory
