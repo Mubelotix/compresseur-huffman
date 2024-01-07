@@ -3,6 +3,12 @@
 #include "binaryCode.h"
 #include "byte.h"
 
+
+void CT_testIsEmpty() {
+    CT_CodingTable table = CT_new();
+    CU_ASSERT_TRUE(CT_isEmpty(table));
+}
+
 void CT_testContainsAndAdd() {
     CT_CodingTable table = CT_new();
     BC_Bit b0 = BC_ZERO;
@@ -62,7 +68,8 @@ CU_ErrorCode CT_createCodingTableTestSuite() {
         return CU_get_error();
     }
 
-    if ((CU_add_test(pSuite, "Test containsAndAdd", CT_testContainsAndAdd) == NULL) ||
+    if ((CU_add_test(pSuite, "Test isEmpty", CT_testIsEmpty) == NULL) ||
+        (CU_add_test(pSuite, "Test containsAndAdd", CT_testContainsAndAdd) == NULL) ||
         (CU_add_test(pSuite, "Test getBinaryCode", CT_testGetBinaryCode) == NULL) ||
         (CU_add_test(pSuite, "Test getByte", CT_testGetByte) == NULL)
         )
