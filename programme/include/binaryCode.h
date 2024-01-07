@@ -3,7 +3,7 @@
 
 #include "byte.h"
 
-#define BC_MAX 128
+#define BC_MAX 256
 #define ZERO 0
 #define ONE 1
 

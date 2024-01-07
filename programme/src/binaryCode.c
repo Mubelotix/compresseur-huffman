@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include "binaryCode.h"
+#include "errno.h"
 
 BC_BinaryCode BC_binaryCode() {
     BC_BinaryCode bc;
@@ -15,7 +16,7 @@ void BC_addBit(BC_BinaryCode* pbc, BC_Bit b) {
         pbc->length++;
     }
     else{
-        printf("Error : BinaryCode length exceeds maximum allowed length. \n");
+        errno = EOVERFLOW;
     }
 }
 
@@ -24,8 +25,13 @@ unsigned int BC_getLength(BC_BinaryCode bc) {
 }
 
 BC_Bit BC_getBit(BC_BinaryCode bc, unsigned int pos) {
-    assert(pos < bc.length);
-    return bc.bits[pos];
+    if(pos < bc.length) {
+        return bc.bits[pos];
+    }
+    else {
+        errno = EDOM;
+        return;
+    }
 }
 
 void BC_concatenate(BC_BinaryCode* pbc1, BC_BinaryCode* pbc2) {
