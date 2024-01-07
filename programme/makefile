@@ -66,6 +66,7 @@ clean :
 	rm -rf ./$(BINDIR)/*
 	rm -rf ./$(LIBDIR)/*
 	rm -rf ./$(SRCDIR)/*.o
+	rm -rf ./*.o
 	rm -rf doc/html doc/latex
 
 # gcc -o tests/testStatistics src/tests/testStatistics.c -Iinclude -lcunit -Wall -pedantic
