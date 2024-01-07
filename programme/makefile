@@ -53,8 +53,8 @@ $(BINDIR)/$(EXEC): $(OBJS)
 	$(CC) -o $@ $^
 
 pdf: ../$(LATEXDIR)/rapport.tex
-	cd ../$(LATEXDIR) && pdflatex --shell-escape rapport.tex
-	rm -f ../$(LATEXDIR)/*.fls ../$(LATEXDIR)/*.fdb_latexmk ../$(LATEXDIR)/*.aux ../$(LATEXDIR)/*.log ../$(LATEXDIR)/*.lof ../$(LATEXDIR)/*.out ../$(LATEXDIR)/*.synctex.gz ../$(LATEXDIR)/*.toc
+	cd ../$(LATEXDIR) && pdflatex rapport.tex && pdflatex rapport.tex
+	rm -f ../$(LATEXDIR)/*.fls ../$(LATEXDIR)/*.fdb_latexmk ../$(LATEXDIR)/*.aux ../$(LATEXDIR)/*.log ../$(LATEXDIR)/*.lof ../$(LATEXDIR)/*.out ../$(LATEXDIR)/*.synctex.gz ../$(LATEXDIR)/*.toc 
 	rm -rf ../$(LATEXDIR)/_minted-rapport
 
 #generates the documentation if something in the include folder changes
