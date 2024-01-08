@@ -8,7 +8,7 @@
  * @struct HT_HuffmanTreeNode
  * @brief Represents a node in the Huffman tree.
  */
-typedef struct {
+typedef struct HT_HuffmanTreeNode {
     int occurence; ///< The occurrence of the byte in the document.
     B_Byte byte;   ///< The value of the byte for leaf nodes.
     struct HT_HuffmanTreeNode* leftChild;  ///< The left child of the node.
