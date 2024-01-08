@@ -29,7 +29,7 @@ void PQ_testPopTree() {
     B_Byte byte = B_fromNatural(5);
     HT_HuffmanTree ht = HT_createLeaf(occurence,byte);
     PQ_insertTree(&queue, ht);
-    HT_HuffmanTree pop_ht = PQ_popTree(&queue);
+    PQ_popTree(&queue);
 
     CU_ASSERT_EQUAL(PQ_length(queue) , 0);
 }
