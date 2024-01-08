@@ -28,7 +28,9 @@ BC_Bit BC_getBit(BC_BinaryCode bc, unsigned int pos) {
         return bc.bits[pos];
     } else {
         errno = EDOM;
-        return -1;
+
+        //TODO: mettre quelque chose en return car warning
+        return;
     }
 }
 
