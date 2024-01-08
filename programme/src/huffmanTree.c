@@ -1,7 +1,7 @@
 #include "huffmanTree.h"
 #include <stdlib.h>
 #include <errno.h>
-
+#include <stdio.h>
 
 HT_HuffmanTree HT_getRightChild(HT_HuffmanTree ht) {
     if (!HT_isALeaf(ht)) {
@@ -23,7 +23,7 @@ int HT_getOccurence(HT_HuffmanTree ht) {
     return ht->occurence;
 }
 
-B_Byte HT_getByte(HT_HuffmanTree ht){
+B_Byte HT_getByte(HT_HuffmanTree ht) {
     if (HT_isALeaf(ht)) {
         return ht->byte;
     }
@@ -36,7 +36,7 @@ int HT_isALeaf(HT_HuffmanTree ht) {
 }
 
 HT_HuffmanTree HT_createLeaf(int occurence, B_Byte byte) {
-    HT_HuffmanTreeNode* node = (HT_HuffmanTreeNode*)malloc(sizeof(HT_HuffmanTreeNode));
+    HT_HuffmanTreeNode *node = (HT_HuffmanTreeNode *) malloc(sizeof(HT_HuffmanTreeNode));
     node->occurence = occurence;
     node->byte = byte;
     node->leftChild = NULL;
@@ -46,7 +46,7 @@ HT_HuffmanTree HT_createLeaf(int occurence, B_Byte byte) {
 
 HT_HuffmanTree HT_createNode(HT_HuffmanTree leftChild, HT_HuffmanTree rightChild) {
     if ((leftChild != NULL) && (rightChild != NULL)) {
-        HT_HuffmanTreeNode* node = (HT_HuffmanTreeNode*)malloc(sizeof(HT_HuffmanTreeNode));
+        HT_HuffmanTreeNode *node = (HT_HuffmanTreeNode *) malloc(sizeof(HT_HuffmanTreeNode));
         node->occurence = leftChild->occurence + rightChild->occurence;
         node->leftChild = leftChild;
         node->rightChild = rightChild;
@@ -65,7 +65,7 @@ void HT_destroy(HT_HuffmanTree ht) {
     }
 }
 
-HT_HuffmanTree HT_createTree(HT_HuffmanTreeNode* root) {
+HT_HuffmanTree HT_createTree(HT_HuffmanTreeNode *root) {
     return root;
 }
 
@@ -75,7 +75,7 @@ void HT_debug(HT_HuffmanTree ht) {
 
 void HT_debug_inner(HT_HuffmanTree ht, unsigned int depth, bool last) {
     if (depth > 0) {
-        for (unsigned int i = 0; i < depth-1; i++) {
+        for (unsigned int i = 0; i < depth - 1; i++) {
             printf("│  ");
         }
         if (last) {
