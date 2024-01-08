@@ -39,5 +39,17 @@
       \affecter{natural}{{natural / 2}}
     }
     \retourner{res}}
-    \end{algorithme}
-    
+\end{algorithme}
+
+\begin{algorithme}
+    \fonction{byteEquals}{byte1, byte2: Byte}{\booleen}{}
+    {res : \booleen}
+    {\affecter{res}{1}
+    \affecter{i}{0}
+    \tantque{(res and i<8)}{
+        \sialorssinon{byte1[i] != byte2[i]}
+        {\affecter{res}{0}}{}
+        \affecter{i}{i+1}
+    }
+    \retourner{res}}
+\end{algorithme}
