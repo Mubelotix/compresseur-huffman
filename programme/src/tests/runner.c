@@ -4,6 +4,7 @@
 #include "testBinaryCode.c"
 #include "testHuffmanTree.c"
 #include "testCodingTable.c"
+#include "testPriorityQueue.c"
 
 int main(int argc, char** argv) {
     /* initialisation du registre de tests */
@@ -18,6 +19,7 @@ int main(int argc, char** argv) {
     BC_createBinaryCodeTestSuite();
     HT_createHuffmanTreeTestSuite();
     CT_createCodingTableTestSuite();
+    PQ_createPriorityQueueTestSuite();
 
     /* Lancement des tests */
     CU_basic_set_mode(CU_BRM_VERBOSE);
