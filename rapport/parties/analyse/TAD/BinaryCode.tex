@@ -9,6 +9,11 @@
         \tadOperation{getLength}{BinaryCode}{\naturel}
         \tadOperationAvecPreconditions{getBit}{BinaryCode × \naturel}{Bit}
         \tadOperation{concatenate}{BinaryCode × BinaryCode}{BinaryCode}
+        \tadOperationAvecPreconditions{removeFirstByte}{BinaryCode}{Byte}
+        \tadOperation{appendByte}{BinaryCode × Byte}{BinaryCode}
+        \tadOperation{prefix}{BinaryCode × \naturel}{BinaryCode}
+        \tadOperation{suffix}{BinaryCode × \naturel}{BinaryCode}
+        \tadOperation{equals}{BinaryCode × BinaryCode}{\booleen}
     \end{tadOperations}
     \begin{tadSemantiques}{BinaryCode}
         \tadSemantique{binaryCode}{Crée un code binaire.}
