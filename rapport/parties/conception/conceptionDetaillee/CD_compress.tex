@@ -13,6 +13,7 @@
         }
         \retourner{stats}
     }
+    \vspace*{0.5cm}
 
     \procedure{saveStatistics}{stats: Statistics, file: FichierBinaire}{}{
             {i: \naturel;}
@@ -23,6 +24,7 @@
             \instruction{writeVarInt(file, count)}
         }
     }
+    \vspace*{0.5cm}
 
     \procedure{streamCompress}{sourceFile: FichierBinaire, outputFile: FichierBinaire, codingTable: CodingTable}{}{
             {inputChar: unsigned char;}
@@ -46,6 +48,7 @@
             \instruction{fwrite(inputChar, sizeof(char), 1, outputFile)}
         }{}
     }
+    \vspace*{0.5cm}
 
     \procedure{compress}{sourceFile: FichierBinaire, outputFile: FichierBinaire}{}{
             {statistics: Statistics;}
