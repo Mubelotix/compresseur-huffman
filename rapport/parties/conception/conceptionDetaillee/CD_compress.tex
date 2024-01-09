@@ -1,14 +1,68 @@
 \subsubsection{compress}
 
 \begin{algorithme}
-    \fonction{compress}{f: FichierBinaire}{FichierBinaire}{}{
+    \fonction{computeStatistics}{file: FichierBinaire}{Statistics}{}{
+            {stats: Statistics;}
+            {byte: Byte;}
+            {inputChar: unsigned char;}
+    }{
+        \affecter{stats}{statistics()}
+        \tantque{fread(inputChar, 1, 1, file) == 1}{
+            \affecter{byte}{fromNatural((unsigned int) inputChar)}
+            \instruction{incCount(stats, byte)}
+        }
+        \retourner{stats}
+    }
+
+    \procedure{saveStatistics}{stats: Statistics, file: FichierBinaire}{}{
+            {i: \naturel;}
+            {count: \naturel;}
+    }{
+        \pour{i}{0}{MAX-1}{}{
+            \affecter{count}{getCount(stats, fromNatural(i))}
+            \instruction{writeVarInt(file, count)}
+        }
+    }
+
+    \procedure{streamCompress}{sourceFile: FichierBinaire, outputFile: FichierBinaire, codingTable: CodingTable}{}{
+            {inputChar: unsigned char;}
+            {buffer: BinaryCode;}
+            {newBits: BinaryCode;}
+    }{
+        \affecter{buffer}{binaryCode()}
+        \tantque{fread(inputChar, 1, 1, sourceFile) == 1}{
+            \affecter{newBits}{getBinaryCode(codingTable, fromNatural((unsigned int) inputChar))}
+            \instruction{concatenate(buffer, newBits)}
+            \tantque{getLength(buffer) >= 8}{
+                \affecter{inputChar}{byteToNatural(removeFirstByte(buffer))}
+                \instruction{fwrite(inputChar, sizeof(char), 1, outputFile)}
+            }
+        }
+        \sialorssinon{getLength(buffer) > 0}{
+            \tantque{getLength(buffer) < 8}{
+                \instruction{addBit(buffer, 0)}
+            }
+            \affecter{inputChar}{byteToNatural(removeFirstByte(buffer))}
+            \instruction{fwrite(inputChar, sizeof(char), 1, outputFile)}
+        }{}
+    }
+
+    \procedure{compress}{sourceFile: FichierBinaire, outputFile: FichierBinaire}{}{
             {statistics: Statistics;}
+            {pq: PriorityQueue;}
             {ht: HuffmanTree;}
             {ct: CodingTable;}
     }{
-        \affecter{statistics}{computeStatistics(f)}
-        \affecter{ht}{buildHuffmanTree(statistics)}
-        \affecter{ct}{codingTable(ht)}
-        \retourner{encode(f,ct)}
+        \affecter{statistics}{computeStatistics(sourceFile)}
+        \affecter{pq}{fromStatistics(statistics)}
+        \affecter{ht}{intoHuffmanTree(pq)}
+        \affecter{ct}{fromHuffmanTree(ht)}
+        \instruction{writeString(outputFile, "HUFFMAN")}
+        \instruction{saveStatistics(statistics, outputFile)}
+        \instruction{streamCompress(sourceFile, outputFile, ct)}
+
+        \instruction{close(sourceFile)}
+        \instruction{close(outputFile)}
+        \instruction{destroy(ht)}
     }
 \end{algorithme}
