@@ -32,5 +32,6 @@
     \begin{tadPreconditions}{getBit}
         \tadPrecondition{getBit(BinaryCode, position)}{0<=position<getLength(BinaryCode)}
         \tadPrecondition{removeFirstByte(BinaryCode)}{getLength(BinaryCode) >= 8}
+        \tadPrecondition{prefix(BinaryCode,n)}{getLength(BinaryCode) >= n}
         \end{tadPreconditions}
 \end{tad}
