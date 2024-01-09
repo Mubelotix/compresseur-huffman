@@ -14,6 +14,7 @@ CFLAGS=-Wall -pedantic -g -std=gnu99 -I $(INCLUDEDIR)
 LDFLAGS=-L. -L$(LIBDIR) -lhuffman -lcunit
 
 SRCS = $(wildcard $(SRCDIR)/*.c)
+
 OBJS = $(patsubst $(SRCDIR)/%.c, $(BINDIR)/%.o, $(SRCS))
 
 
@@ -28,7 +29,7 @@ create_directories:
 tests: create_directories $(TESTBINDIR)/$(TESTEXEC)
 	./$(TESTBINDIR)/$(TESTEXEC)
 
-$(BINDIR)/%.o: $(SRCDIR)/%.c
+$(SRCDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
 $(BINDIR)/%.o: $(TESTDIR)/%.c
@@ -37,7 +38,7 @@ $(BINDIR)/%.o: $(TESTDIR)/%.c
 runner.o: src/tests/runner.c
 	$(CC) -c src/tests/runner.c $(CFLAGS)
 
-$(LIBDIR)/$(LIB_NAME): $(OBJS)
+$(LIBDIR)/$(LIB_NAME): $(patsubst $(SRCDIR)/%.c, $(SRCDIR)/%.o, $(SRCS))
 	$(AR) rcs $@ $^
 
 $(TESTBINDIR)/$(TESTEXEC): runner.o $(LIBDIR)/$(LIB_NAME)
@@ -45,7 +46,7 @@ $(TESTBINDIR)/$(TESTEXEC): runner.o $(LIBDIR)/$(LIB_NAME)
 
 program: create_directories $(BINDIR)/$(EXEC)
 
-$(BINDIR)/$(EXEC): $(OBJS)
+$(BINDIR)/$(EXEC): $(patsubst $(SRCDIR)/%.c, $(SRCDIR)/%.o, $(SRCS))
 	$(CC) -o $@ $^
 
 pdf: ../$(LATEXDIR)/rapport.tex
