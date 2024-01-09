@@ -15,7 +15,7 @@
     }
     \vspace*{0.5cm}
 
-    \fonction{getInsertionIndex}{\paramEntree{queue: PriorityQueue}, \paramEntree{ht: HuffmanTree}}{\naturel}{}{i : \naturelNonNul}{
+    \fonction{getInsertionIndex}{queue: PriorityQueue, ht: HuffmanTree}{\naturel}{}{i : \naturelNonNul}{
         \affecter{i}{1}
         \tantque{getOccurrence(ht) > getOccurrence(\champ{queue}{elements}[i])}{
             \affecter{i}{i+1}
