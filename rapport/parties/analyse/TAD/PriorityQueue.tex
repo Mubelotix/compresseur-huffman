@@ -1,45 +1,44 @@
-
 \subsubsection{PriorityQueue}
 
 \begin{tad}
-  \tadNom{PriorityQueue}
-  \tadDependances{HuffmanTree, \naturel}
- 
-  \begin{tadOperations}{newPriorityQueue}
-    \tadOperation{newPriorityQueue}{}{PriorityQueue}
-    \tadOperation{length}{PriorityQueue}{\naturel}
-    \tadOperation{isEmpty}{PriorityQueue}{\booleen}
-    \tadOperation{popTree}{PriorityQueue}{\tadDeuxParams{{PriorityQueue}{HuffmanTree}}}
-    \tadOperation{insertTree}{\tadDeuxParams{PriorityQueue}{HuffmanTree}}{PriorityQueue}
-    \tadOperation{destroy}{PriorityQueue}{}
+    \tadNom{PriorityQueue}
+    \tadDependances{HuffmanTree, \naturel}
 
-    
-    \tadOperation{getInsertionIndex}{\tadDeuxParams{PriorityQueue}{HuffmanTree}}{\naturel}
-    \tadOperation{shiftRight}{\tadDeuxParams{PriorityQueue}{\naturel}}{PriorityQueue}
-  \end{tadOperations}
+    \begin{tadOperations}{newPriorityQueue}
+        \tadOperation{newPriorityQueue}{}{PriorityQueue}
+        \tadOperation{length}{PriorityQueue}{\naturel}
+        \tadOperation{isEmpty}{PriorityQueue}{\booleen}
+        \tadOperation{popTree}{PriorityQueue}{\tadDeuxParams{{PriorityQueue}{HuffmanTree}}}
+        \tadOperation{insertTree}{\tadDeuxParams{PriorityQueue}{HuffmanTree}}{PriorityQueue}
+        \tadOperation{destroy}{PriorityQueue}{}
 
-  \begin{tadSemantiques}{newPriorityQueue}
-    \tadSemantique{newPriorityQueue}{Crée une file de priorité vide.}
-    \tadSemantique{length}{Renvoie le nombre d'arbres de Huffman présents dans une file de priorité.}
-    \tadSemantique{isEmpty}{Renvoie vrai si la file de priorité est vide, faux sinon.}
-    \tadSemantique{popTree}{Renvoie l'arbre de Huffman ayant la plus petite occurence et le retire de la file de priorité.}
-    \tadSemantique{insertTree}{Insère un arbre de Huffman dans la file de priorité.}
-    \tadSemantique{destroy}{Détruit une file de priorité.}
-    \tadSemantique{getInsertionIndex}{Renvoie l'index où un arbre de Huffman serait inséré.}
-    \tadSemantique{shiftRight}{Décale tous les éléments d'une file de priorité vers la droite à partir d'un index donné.}
-  \end{tadSemantiques}
 
-  \begin{tadAxiomes}
-    \tadAxiome{length(newPriorityQueue()) = 0}
-    \tadAxiome{isEmpty(newPriorityQueue())}
-    \tadAxiome{isEmpty(q) <=> length(q) = 0}
-    \tadAxiome{popTree(insertTree(q,ht)) = ht}
-    \tadAxiome{length(insertTree(q, ht)) = length(q) + 1}
-    \tadAxiome{length(popTree(q)) = length(q) - 1}
-  \end{tadAxiomes}
+        \tadOperation{getInsertionIndex}{\tadDeuxParams{PriorityQueue}{HuffmanTree}}{\naturel}
+        \tadOperation{shiftRight}{\tadDeuxParams{PriorityQueue}{\naturel}}{PriorityQueue}
+    \end{tadOperations}
 
-  \begin{tadPreconditions}{popTree(q)}
-    \tadPrecondition{popTree(q)}{length(q) > 0}
-  \end{tadPreconditions}
+    \begin{tadSemantiques}{newPriorityQueue}
+        \tadSemantique{newPriorityQueue}{Crée une file de priorité vide.}
+        \tadSemantique{length}{Renvoie le nombre d'arbres de Huffman présents dans une file de priorité.}
+        \tadSemantique{isEmpty}{Renvoie vrai si la file de priorité est vide, faux sinon.}
+        \tadSemantique{popTree}{Renvoie l'arbre de Huffman ayant la plus petite occurence et le retire de la file de priorité.}
+        \tadSemantique{insertTree}{Insère un arbre de Huffman dans la file de priorité.}
+        \tadSemantique{destroy}{Détruit une file de priorité.}
+        \tadSemantique{getInsertionIndex}{Renvoie l'index où un arbre de Huffman serait inséré.}
+        \tadSemantique{shiftRight}{Décale tous les éléments d'une file de priorité vers la droite à partir d'un index donné.}
+    \end{tadSemantiques}
+
+    \begin{tadAxiomes}
+        \tadAxiome{length(newPriorityQueue()) = 0}
+        \tadAxiome{isEmpty(newPriorityQueue())}
+        \tadAxiome{isEmpty(q) <=> length(q) = 0}
+        \tadAxiome{popTree(insertTree(q,ht)) = ht}
+        \tadAxiome{length(insertTree(q, ht)) = length(q) + 1}
+        \tadAxiome{length(popTree(q)) = length(q) - 1}
+    \end{tadAxiomes}
+
+    \begin{tadPreconditions}{popTree(q)}
+        \tadPrecondition{popTree(q)}{length(q) > 0}
+    \end{tadPreconditions}
 \end{tad}
 

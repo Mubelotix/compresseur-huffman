@@ -14,8 +14,8 @@
  * @brief Represents a priority queue of Huffman trees.
  */
 typedef struct {
-    HT_HuffmanTree elements[MAX];  ///< Array of Huffman trees.
-    unsigned int length;           ///< Length of the priority queue.
+ HT_HuffmanTree elements[MAX]; ///< Array of Huffman trees.
+ unsigned int length; ///< Length of the priority queue.
 } PQ_PriorityQueue;
 
 /**

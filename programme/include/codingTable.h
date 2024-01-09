@@ -23,8 +23,8 @@
  * @brief An association between a byte and its binary code.
  */
 typedef struct {
-    bool present;              ///< Indicates if the binary code is present.
-    BC_BinaryCode binary_code; ///< The binary code associated with the byte.
+ bool present; ///< Indicates if the binary code is present.
+ BC_BinaryCode binary_code; ///< The binary code associated with the byte.
 } CT_OptionalBinaryCode;
 
 /**
@@ -32,7 +32,7 @@ typedef struct {
  * @brief A table associating bytes and their binary codes.
  */
 typedef struct {
-    CT_OptionalBinaryCode tab[MAX]; ///< Array of optional binary codes.
+ CT_OptionalBinaryCode tab[MAX]; ///< Array of optional binary codes.
 } CT_CodingTable;
 
 /**
@@ -63,7 +63,7 @@ bool CT_contains(CT_CodingTable table, B_Byte byte);
  * @param code The binary code to add.
  * @exception EEXIST The byte is already in the coding table.
 */
-void CT_add(CT_CodingTable* table, B_Byte byte, BC_BinaryCode code);
+void CT_add(CT_CodingTable *table, B_Byte byte, BC_BinaryCode code);
 
 /**
  * @brief Gets the binary code of a byte in a coding table.

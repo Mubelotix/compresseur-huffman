@@ -1,38 +1,38 @@
 \begin{figure}[!h]
-	\small
-	\centering
-	\begin{analyseDescendante}
-		\boite{compress}{FichierBinaire}{FichierBinaire}{0}{0}
-		\boite{computeStatistics}{FichierBinaire}{Statistics}{-5}{-1}
-		\boite{buildHuffmanTree}{Statistics}{HuffmanTree}{-2}{-3}
-		\boite{createPriorityQueue}{Statistics}{PriorityQueue}{-2}{-5}
-		\boite{codingTable}{HuffmanTree}{CodingTable}{4}{-4}
-		\boite{encode}{FichierBinaire,CodingTable}{FichierBinaire}{4}{-1}
+    \small
+    \centering
+    \begin{analyseDescendante}
+        \boite{compress}{FichierBinaire}{FichierBinaire}{0}{0}
+        \boite{computeStatistics}{FichierBinaire}{Statistics}{-5}{-1}
+        \boite{buildHuffmanTree}{Statistics}{HuffmanTree}{-2}{-3}
+        \boite{createPriorityQueue}{Statistics}{PriorityQueue}{-2}{-5}
+        \boite{codingTable}{HuffmanTree}{CodingTable}{4}{-4}
+        \boite{encode}{FichierBinaire,CodingTable}{FichierBinaire}{4}{-1}
 
-		\utilise{compress}{computeStatistics}
-		\utilise{compress}{buildHuffmanTree}
-		\utilise{buildHuffmanTree}{createPriorityQueue}
-		\utilise{compress}{codingTable}
-		\utilise{compress}{encode}
-	\end{analyseDescendante}
-	\caption{Analyse descendante de compress}
+        \utilise{compress}{computeStatistics}
+        \utilise{compress}{buildHuffmanTree}
+        \utilise{buildHuffmanTree}{createPriorityQueue}
+        \utilise{compress}{codingTable}
+        \utilise{compress}{encode}
+    \end{analyseDescendante}
+    \caption{Analyse descendante de compress}
 \end{figure}
 
 
 \begin{figure}[!h]
-	\small
-	\centering
-	\begin{analyseDescendante}
-		\boite{decompress}{FichierBinaire}{FichierBinaire}{0}{0}
-		\boite{readStatistics}{FichierBinaire}{Statistics}{-5}{-2}
-		\boite{buildHuffmanTree}{Statistics}{HuffmanTree}{0}{-3}
-		\boite{createPriorityQueue}{Statistics}{PriorityQueue}{0}{-5}
-		\boite{decode}{HuffmanTree}{FichierBinaire}{4}{-2}
+    \small
+    \centering
+    \begin{analyseDescendante}
+        \boite{decompress}{FichierBinaire}{FichierBinaire}{0}{0}
+        \boite{readStatistics}{FichierBinaire}{Statistics}{-5}{-2}
+        \boite{buildHuffmanTree}{Statistics}{HuffmanTree}{0}{-3}
+        \boite{createPriorityQueue}{Statistics}{PriorityQueue}{0}{-5}
+        \boite{decode}{HuffmanTree}{FichierBinaire}{4}{-2}
 
-		\utilise{decompress}{readStatistics}
-		\utilise{decompress}{buildHuffmanTree}
-		\utilise{buildHuffmanTree}{createPriorityQueue}
-		\utilise{decompress}{decode}
-	\end{analyseDescendante}
-	\caption{Analyse descendante de decompress}
+        \utilise{decompress}{readStatistics}
+        \utilise{decompress}{buildHuffmanTree}
+        \utilise{buildHuffmanTree}{createPriorityQueue}
+        \utilise{decompress}{decode}
+    \end{analyseDescendante}
+    \caption{Analyse descendante de decompress}
 \end{figure}

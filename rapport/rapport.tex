@@ -8,116 +8,124 @@
 \begin{document}
 
 %page de garde
-\include{parties/titlepage}
-\newpage
+    \include{parties/titlepage}
+    \newpage
 
-\section{Introduction}
-Confrontés au défi de créer un outil de compression performant basé sur l'algorithme de Huffman, nous avons adopté une approche stratégique où chaque membre s'est vu confier des responsabilités spécifiques à chaque étape du cycle en V. Au cœur de notre méthodologie, une règle fondamentale prévalait : à l'étape n du cycle en V, aucun étudiant pouvait être responsable de la partie qu'il lui a été attribuée à l'étape n-1. Au travers de ce rapport, nous détaillerons chaque étape du cycle en V, mettant en lumière les contributions individuelles de chaque membre. \par
-L'analyse a marqué le point de départ de notre aventure. Durant cette phase, nous nous sommes penchés sur la spécification des Types Abstraits de Données (TAD) et sur l'élaboration d'une analyse descendante pour saisir les exigences fondamentales de notre compresseur Huffman.\par
-La conception préliminaire, suivant naturellement l'analyse, a constitué le premier pas concret vers la réalisation de notre compresseur. Chaque membre a été chargé de définir les signatures des fonctions et procédures utilisées dans le projet. \par
-La conception détaillée, point central de notre démarche, s'est avérée être le lieu où les idées abstraites ont pris forme. Chaque membre, en se basant sur les spécifications de conception préliminaire, a élaboré les algorithmes détaillés des fonctions et procédures nécessaires à la réalisation du compresseur.
-\newpage
+
+    \section{Introduction}
+    Confrontés au défi de créer un outil de compression performant basé sur l'algorithme de Huffman, nous avons adopté une approche stratégique où chaque membre s'est vu confier des responsabilités spécifiques à chaque étape du cycle en V. Au cœur de notre méthodologie, une règle fondamentale prévalait : à l'étape n du cycle en V, aucun étudiant pouvait être responsable de la partie qu'il lui a été attribuée à l'étape n-1. Au travers de ce rapport, nous détaillerons chaque étape du cycle en V, mettant en lumière les contributions individuelles de chaque membre. \par
+    L'analyse a marqué le point de départ de notre aventure. Durant cette phase, nous nous sommes penchés sur la spécification des Types Abstraits de Données (TAD) et sur l'élaboration d'une analyse descendante pour saisir les exigences fondamentales de notre compresseur Huffman.\par
+    La conception préliminaire, suivant naturellement l'analyse, a constitué le premier pas concret vers la réalisation de notre compresseur. Chaque membre a été chargé de définir les signatures des fonctions et procédures utilisées dans le projet. \par
+    La conception détaillée, point central de notre démarche, s'est avérée être le lieu où les idées abstraites ont pris forme. Chaque membre, en se basant sur les spécifications de conception préliminaire, a élaboré les algorithmes détaillés des fonctions et procédures nécessaires à la réalisation du compresseur.
+    \newpage
 
 %sommaire
-\tableofcontents
+    \tableofcontents
 
-\listoffigures
+    \listoffigures
 
 %parties
 
-\newpage
-\section{Analyse}
-Au début du projet, notre équipe s'est attelée à définir les Types Abstraits de Données (TAD) nécessaires et à élaborer une analyse descendante. Cependant, chaque membre était dédié à une composante particulière de cette analyse. Vous trouverez la matrice de répartition des tâches en dernière page de ce rapport.\newline
-\subsection{TADs}
-\input{parties/analyse/TAD/BinaryCode}
-\include{parties/analyse/TAD/Byte}
-\include{parties/analyse/TAD/CodingTable}
-\include{parties/analyse/TAD/HuffmanTree}
-\include{parties/analyse/TAD/PriorityQueue}
-\include{parties/analyse/TAD/Statistics}
+    \newpage
 
-\subsection{Analyse Descendante}
 
-\input{parties/analyse/analyseDescendante/analyseDescendante}
+    \section{Analyse}
+    Au début du projet, notre équipe s'est attelée à définir les Types Abstraits de Données (TAD) nécessaires et à élaborer une analyse descendante. Cependant, chaque membre était dédié à une composante particulière de cette analyse. Vous trouverez la matrice de répartition des tâches en dernière page de ce rapport.\newline
 
-\newpage
-\section{Conception}
+    \subsection{TADs}
+    \input{parties/analyse/TAD/BinaryCode}
+    \include{parties/analyse/TAD/Byte}
+    \include{parties/analyse/TAD/CodingTable}
+    \include{parties/analyse/TAD/HuffmanTree}
+    \include{parties/analyse/TAD/PriorityQueue}
+    \include{parties/analyse/TAD/Statistics}
 
-\subsection{Conception Préliminaire}
-La phase de conception préliminaire dans le cadre de notre projet représente le point de départ de la transformation de nos idées initiales en un plan d'action concret. Chaque membre de notre équipe s'est vu attribuer une responsabilité spécifique lors de cette étape cruciale du cycle en V. L'objectif était clair : définir les grandes lignes de notre compresseur en écrivant les signatures des fonctions et procédures en pseudo-code. Cette approche méthodique visait à jeter les bases solides nécessaires pour une implémentation réussie ultérieure en langage C.\newline
-\input{parties/conception/conceptionPreliminaire/CP_BinaryCode}
-\include{parties/conception/conceptionPreliminaire/CP_Byte}
-\include{parties/conception/conceptionPreliminaire/CP_CodingTable}
-\include{parties/conception/conceptionPreliminaire/CP_HuffmanTree}
-\include{parties/conception/conceptionPreliminaire/CP_PriorityQueue}
-\include{parties/conception/conceptionPreliminaire/CP_Statistics}
-\include{parties/conception/conceptionPreliminaire/CP_compress}
+    \subsection{Analyse Descendante}
 
-\subsection{Conception Détaillée}
-La phase de conception détaillée marque une étape cruciale dans notre projet. Il s'agit de définir, en pseudo-code, de manière exhaustive les étapes algorithmiques, fournissant ainsi une feuille de route claire pour la mise en œuvre pratique. Cette étape de notre projet de compresseur Huffman représente une transition cruciale vers la matérialisation des idées abstraites en un ensemble d'instructions détaillées, 
-\input{parties/conception/conceptionDetaillee/CD_BinaryCode}
-\include{parties/conception/conceptionDetaillee/CD_Byte}
-\include{parties/conception/conceptionDetaillee/CD_CodingTable}
-\include{parties/conception/conceptionDetaillee/CD_HuffmanTree}
-\include{parties/conception/conceptionDetaillee/CD_PriorityQueue}
-\include{parties/conception/conceptionDetaillee/CD_Statistics}
-\include{parties/conception/conceptionDetaillee/CD_compress}
-\include{parties/conception/conceptionDetaillee/CD_decompress}
+    \input{parties/analyse/analyseDescendante/analyseDescendante}
 
-\section{Implémentation}
-Lors de la phase de développement, les membres ont mis en œuvre la partie du projet qui leur avait été attribuée. Ce passage fluide entre la conception et la programmation a permis d'exploiter pleinement les compétences de chaque étudiant du groupe.
-\input{parties/developpement/developpement}
+    \newpage
 
-\section{Conclusion}
-La conclusion de notre rapport met en lumière l'impact positif de notre approche structurée dans le contexte du cycle en V. En attribuant à chaque membre une partie spécifique à chaque étape, nous avons créé une dynamique d'équipe.Cette combinaison a abouti à une expertise approfondie dans chaque aspect du compresseur Huffman tout en favorisant l'entraide et la compréhension globale du projet.LA répartition des tâches  a non seulement optimisé la réalisation du compresseur, mais a également renforcé les compétences individuelles de chaque membre, contribuant ainsi à une expérience d'apprentissage enrichissante pour l'ensemble de l'équipe.
 
-\subsection{Matrice de répartition des tâches}
+    \section{Conception}
 
-\begin{table}[]
-\centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{|l|l|l|l|l|l|l|}
-\hline
- &  & B. Quentin & B. Angelo & G. Simon & L. Houssam & T. Florent \\ \hline
-\multirow{6}{*}{TADs} & HuffmanTree & X &  &  &  &  \\ \cline{2-7}
- & Byte &  & X &  &  &  \\ \cline{2-7} 
- & Statistics &  &  & X &  &  \\ \cline{2-7} 
- & BinaryCode &  &  &  & X &  \\ \cline{2-7} 
- & PriorityQueue &  &  &  &  & X \\ \cline{2-7} 
- & CodingTable &  &  &  &  & X \\ \hline
-\multirow{8}{*}{Conception préliminaire} & HuffmanTree &  & X &  &  &  \\ \cline{2-7} 
- & Byte &  &  & X &  &  \\ \cline{2-7} 
- & Statistics &  &  &  & X &  \\ \cline{2-7} 
- & BinaryCode &  &  &  &  & X \\ \cline{2-7} 
- & PriorityQueue & X &  &  &  &  \\ \cline{2-7} 
- & CodingTable & X &  &  &  &  \\ \cline{2-7} 
- & Compress &  & X &  &  &  \\ \cline{2-7} 
- & Decompress &  &  & X &  &  \\ \hline
-\multirow{8}{*}{Conception détaillée} & HuffmanTree &  &  & X &  &  \\ \cline{2-7} 
- & Byte &  &  &  & X &  \\ \cline{2-7} 
- & Statistics &  &  &  &  & X \\ \cline{2-7} 
- & BinaryCode & X &  &  &  &  \\ \cline{2-7} 
- & PriorityQueue &  & X &  &  &  \\ \cline{2-7} 
- & CodingTable &  & X &  &  &  \\ \cline{2-7} 
- & Compress &  &  & X &  &  \\ \cline{2-7} 
- & Decompress &  &  &  & X &  \\ \hline
-\multirow{8}{*}{Developpement} & HuffmanTree &  &  &  & X &  \\ \cline{2-7} 
- & Byte &  &  &  &  & X \\ \cline{2-7} 
- & Statistics & X &  &  &  &  \\ \cline{2-7} 
- & BinaryCode &  & X &  &  &  \\ \cline{2-7} 
- & PriorityQueue &  &  & X &  &  \\ \cline{2-7} 
- & CodingTable &  &  & X &  &  \\ \cline{2-7} 
- & Compress &  &  &  & X &  \\ \cline{2-7} 
- & Decompress &  &  &  &  & X \\ \hline
-\multirow{8}{*}{Tests Unitaires} & HuffmanTree &  &  &  &  & X \\ \cline{2-7} 
- & Byte & X &  &  &  &  \\ \cline{2-7} 
- & Statistics &  & X &  &  &  \\ \cline{2-7} 
- & BinaryCode &  &  & X &  &  \\ \cline{2-7} 
- & PriorityQueue &  &  &  & X &  \\ \cline{2-7} 
- & CodingTable &  &  &  & X &  \\ \hline
-\end{tabular}%
-}
-\caption{Tableau de répartiton des tâches}
-\label{tab:my-table}
-\end{table}
+    \subsection{Conception Préliminaire}
+    La phase de conception préliminaire dans le cadre de notre projet représente le point de départ de la transformation de nos idées initiales en un plan d'action concret. Chaque membre de notre équipe s'est vu attribuer une responsabilité spécifique lors de cette étape cruciale du cycle en V. L'objectif était clair : définir les grandes lignes de notre compresseur en écrivant les signatures des fonctions et procédures en pseudo-code. Cette approche méthodique visait à jeter les bases solides nécessaires pour une implémentation réussie ultérieure en langage C.\newline
+    \input{parties/conception/conceptionPreliminaire/CP_BinaryCode}
+    \include{parties/conception/conceptionPreliminaire/CP_Byte}
+    \include{parties/conception/conceptionPreliminaire/CP_CodingTable}
+    \include{parties/conception/conceptionPreliminaire/CP_HuffmanTree}
+    \include{parties/conception/conceptionPreliminaire/CP_PriorityQueue}
+    \include{parties/conception/conceptionPreliminaire/CP_Statistics}
+    \include{parties/conception/conceptionPreliminaire/CP_compress}
+
+    \subsection{Conception Détaillée}
+    La phase de conception détaillée marque une étape cruciale dans notre projet. Il s'agit de définir, en pseudo-code, de manière exhaustive les étapes algorithmiques, fournissant ainsi une feuille de route claire pour la mise en œuvre pratique. Cette étape de notre projet de compresseur Huffman représente une transition cruciale vers la matérialisation des idées abstraites en un ensemble d'instructions détaillées,
+    \input{parties/conception/conceptionDetaillee/CD_BinaryCode}
+    \include{parties/conception/conceptionDetaillee/CD_Byte}
+    \include{parties/conception/conceptionDetaillee/CD_CodingTable}
+    \include{parties/conception/conceptionDetaillee/CD_HuffmanTree}
+    \include{parties/conception/conceptionDetaillee/CD_PriorityQueue}
+    \include{parties/conception/conceptionDetaillee/CD_Statistics}
+    \include{parties/conception/conceptionDetaillee/CD_compress}
+    \include{parties/conception/conceptionDetaillee/CD_decompress}
+
+
+    \section{Implémentation}
+    Lors de la phase de développement, les membres ont mis en œuvre la partie du projet qui leur avait été attribuée. Ce passage fluide entre la conception et la programmation a permis d'exploiter pleinement les compétences de chaque étudiant du groupe.
+    \input{parties/developpement/developpement}
+
+
+    \section{Conclusion}
+    La conclusion de notre rapport met en lumière l'impact positif de notre approche structurée dans le contexte du cycle en V. En attribuant à chaque membre une partie spécifique à chaque étape, nous avons créé une dynamique d'équipe.Cette combinaison a abouti à une expertise approfondie dans chaque aspect du compresseur Huffman tout en favorisant l'entraide et la compréhension globale du projet.LA répartition des tâches a non seulement optimisé la réalisation du compresseur, mais a également renforcé les compétences individuelles de chaque membre, contribuant ainsi à une expérience d'apprentissage enrichissante pour l'ensemble de l'équipe.
+
+    \subsection{Matrice de répartition des tâches}
+
+    \begin{table}[]
+        \centering
+        \resizebox{\textwidth}{!}{%
+            \begin{tabular}{|l|l|l|l|l|l|l|}
+                \hline
+                &               & B. Quentin & B. Angelo & G. Simon & L. Houssam & T. Florent \\ \hline
+                \multirow{6}{*}{TADs}                    & HuffmanTree   & X          &           &          &            &            \\ \cline{2-7}
+                & Byte          &            & X         &          &            &            \\ \cline{2-7}
+                & Statistics    &            &           & X        &            &            \\ \cline{2-7}
+                & BinaryCode    &            &           &          & X          &            \\ \cline{2-7}
+                & PriorityQueue &            &           &          &            & X          \\ \cline{2-7}
+                & CodingTable   &            &           &          &            & X          \\ \hline
+                \multirow{8}{*}{Conception préliminaire} & HuffmanTree   &            & X         &          &            &            \\ \cline{2-7}
+                & Byte          &            &           & X        &            &            \\ \cline{2-7}
+                & Statistics    &            &           &          & X          &            \\ \cline{2-7}
+                & BinaryCode    &            &           &          &            & X          \\ \cline{2-7}
+                & PriorityQueue & X          &           &          &            &            \\ \cline{2-7}
+                & CodingTable   & X          &           &          &            &            \\ \cline{2-7}
+                & Compress      &            & X         &          &            &            \\ \cline{2-7}
+                & Decompress    &            &           & X        &            &            \\ \hline
+                \multirow{8}{*}{Conception détaillée}    & HuffmanTree   &            &           & X        &            &            \\ \cline{2-7}
+                & Byte          &            &           &          & X          &            \\ \cline{2-7}
+                & Statistics    &            &           &          &            & X          \\ \cline{2-7}
+                & BinaryCode    & X          &           &          &            &            \\ \cline{2-7}
+                & PriorityQueue &            & X         &          &            &            \\ \cline{2-7}
+                & CodingTable   &            & X         &          &            &            \\ \cline{2-7}
+                & Compress      &            &           & X        &            &            \\ \cline{2-7}
+                & Decompress    &            &           &          & X          &            \\ \hline
+                \multirow{8}{*}{Developpement}           & HuffmanTree   &            &           &          & X          &            \\ \cline{2-7}
+                & Byte          &            &           &          &            & X          \\ \cline{2-7}
+                & Statistics    & X          &           &          &            &            \\ \cline{2-7}
+                & BinaryCode    &            & X         &          &            &            \\ \cline{2-7}
+                & PriorityQueue &            &           & X        &            &            \\ \cline{2-7}
+                & CodingTable   &            &           & X        &            &            \\ \cline{2-7}
+                & Compress      &            &           &          & X          &            \\ \cline{2-7}
+                & Decompress    &            &           &          &            & X          \\ \hline
+                \multirow{8}{*}{Tests Unitaires}         & HuffmanTree   &            &           &          &            & X          \\ \cline{2-7}
+                & Byte          & X          &           &          &            &            \\ \cline{2-7}
+                & Statistics    &            & X         &          &            &            \\ \cline{2-7}
+                & BinaryCode    &            &           & X        &            &            \\ \cline{2-7}
+                & PriorityQueue &            &           &          & X          &            \\ \cline{2-7}
+                & CodingTable   &            &           &          & X          &            \\ \hline
+            \end{tabular}%
+        }
+        \caption{Tableau de répartiton des tâches}
+        \label{tab:my-table}
+    \end{table}
 \end{document}

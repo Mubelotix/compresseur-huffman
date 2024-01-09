@@ -16,7 +16,7 @@
 #define CLI_NORMAL "\033[0m"
 
 /// @brief Read a single byte from a file
-unsigned char readByte(FILE* file) {
+unsigned char readByte(FILE *file) {
     unsigned char byte;
     size_t read = fread(&byte, sizeof(char), 1, file);
 
@@ -29,7 +29,7 @@ unsigned char readByte(FILE* file) {
 }
 
 /// @brief Reads statistics from a file. Those are stored as a sequence of VarInts.
-S_Statistics D_restoreStatistics(FILE* file) {
+S_Statistics D_restoreStatistics(FILE *file) {
     S_Statistics stats;
     for (int i = 0; i < S_MAX; i++) {
         // Read a VarInt
@@ -53,7 +53,8 @@ S_Statistics D_restoreStatistics(FILE* file) {
 }
 
 /// @brief Decompress the file on the fly
-void D_streamDecompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codingTable, unsigned int expectedSize, int verbosity) {
+void D_streamDecompress(FILE *sourceFile, FILE *outputFile, CT_CodingTable *codingTable, unsigned int expectedSize,
+                        int verbosity) {
     if (expectedSize == 0) {
         return;
     }
@@ -63,7 +64,7 @@ void D_streamDecompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codi
     BC_BinaryCode buffer = BC_binaryCode();
     while (fread(&inputChar, 1, 1, sourceFile) == 1) {
         BC_appendByte(&buffer, B_fromNatural(inputChar));
-        
+
         // Split the binary code into multiple candidates and test them
         for (unsigned int length = 1; length <= BC_getLength(buffer); length++) {
             BC_BinaryCode codeCandidate = BC_prefix(buffer, length);
@@ -103,17 +104,17 @@ void D_streamDecompress(FILE* sourceFile, FILE* outputFile, CT_CodingTable* codi
     }
 }
 
-void D_decompressFile(char* nameSourceFile, int verbosity) {
+void D_decompressFile(char *nameSourceFile, int verbosity) {
     if (verbosity >= 1) printf("Décompression du fichier %s...\n", nameSourceFile);
 
     // Open files
-    FILE* sourceFile = fopen(nameSourceFile, "rb");
+    FILE *sourceFile = fopen(nameSourceFile, "rb");
     if (sourceFile == NULL) {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier source.\n");
         exit(EXIT_FAILURE);
     }
 
-    FILE* outputFile = fopen("uncompressed.txt", "wb"); // fichier destination "temp.huff" (a modifier)
+    FILE *outputFile = fopen("uncompressed.txt", "wb"); // fichier destination "temp.huff" (a modifier)
     if (outputFile == NULL) {
         fclose(sourceFile);
         fprintf(stderr, "Erreur lors de la création du fichier temporaire.\n");

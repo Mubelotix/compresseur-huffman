@@ -25,7 +25,7 @@
         \tadSemantique{prefix}{Renvoie les n premiers bit du code binaire.}
         \tadSemantique{suffix}{Renvoie les n derniers bit du code binaire.}
         \tadSemantique{equals}{Renvoie VRAI si les deux code binaires sont egaux.}
-      \end{tadSemantiques}    
+    \end{tadSemantiques}
     \begin{tadAxiomes}
         \tadAxiome{getLength(concatenate(cb1,cb2))=getLength(cb1)+getLength(cb2)}
     \end{tadAxiomes}
@@ -34,5 +34,5 @@
         \tadPrecondition{removeFirstByte(BinaryCode)}{getLength(BinaryCode) >= 8}
         \tadPrecondition{prefix(BinaryCode,n)}{getLength(BinaryCode) >= n}
         \tadPrecondition{suffix(BinaryCode,n)}{getLength(BinaryCode) >= n}
-        \end{tadPreconditions}
+    \end{tadPreconditions}
 \end{tad}

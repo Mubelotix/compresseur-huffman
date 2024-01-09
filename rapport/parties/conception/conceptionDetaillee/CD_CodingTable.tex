@@ -1,23 +1,23 @@
 \subsubsection{CodingTable}
-    
+
 \constante{MAX}{256}
 
-\begin{algorithme} 
-\begin{enregistrement}{optionalBinaryCode}
-    \champEnregistrement{present}{\booleen}
-    \champEnregistrement{binaryCode}{BinaryCode}
-\end{enregistrement}
+\begin{algorithme}
+    \begin{enregistrement}{optionalBinaryCode}
+        \champEnregistrement{present}{\booleen}
+        \champEnregistrement{binaryCode}{BinaryCode}
+    \end{enregistrement}
 \end{algorithme}
 \vspace*{0.5cm}
 
-\begin{algorithme} 
-\begin{enregistrement}{CodingTable}
-    \champEnregistrement{tab}{\tableau{1..MAX}{de}{optionalBinaryCode}}
-\end{enregistrement}
+\begin{algorithme}
+    \begin{enregistrement}{CodingTable}
+        \champEnregistrement{tab}{\tableau{1..MAX}{de}{optionalBinaryCode}}
+    \end{enregistrement}
 \end{algorithme}
 \vspace*{0.5cm}
 
-\begin{algorithme} 
+\begin{algorithme}
     \fonction{codingTable}{}{CodingTable}{}{table : CodingTable,i : \naturelNonNul}
     {\pour{i}{1}{MAX}{}{
         \instruction{\affecter{\champ{table}{tab[i].present}}{0}}
@@ -26,7 +26,7 @@
 \end{algorithme}
 \vspace*{0.5cm}
 
-\begin{algorithme} 
+\begin{algorithme}
     \fonction{isEmpty}{table : CodingTable}{\booleen}{}{i : \naturelNonNul}
     {\pour{i}{1}{MAX}{}{
         \sialorssinon{\champ{table}{tab[i].present}}
@@ -36,15 +36,15 @@
 \end{algorithme}
 \vspace*{0.5cm}
 
-\begin{algorithme} 
+\begin{algorithme}
     \fonction{contains}{table : CodingTable, byte : \naturel}{\booleen}{}{}
     {\retourner{\champ{table}{tab[byte].present}}}
 \end{algorithme}
 \vspace*{0.5cm}
 
-\begin{algorithme} 
+\begin{algorithme}
     \fonction{getBinaryCode}{table : CodingTable, byte : \naturel}{BinaryCode}{contains(table,byte)}{}
-    {\retourner{\champ{table}{tab[byte]}{.binaryCode}}}   
+    {\retourner{\champ{table}{tab[byte]}{.binaryCode}}}
 \end{algorithme}
 \vspace*{0.5cm}
 
@@ -55,10 +55,10 @@
 \end{algorithme}
 \vspace*{0.5cm}
 
-\begin{algorithme} 
+\begin{algorithme}
     \fonction{getByte}{table : CodingTable, code : BinaryCode}{Byte}{}{i : \naturelNonNul}
     {\pour{i}{1}{MAX}{}{
-        \sialorssinon{\champ{table}{tab[i].present} et \champ{table}{tab[i].binaryCode}=code} 
+        \sialorssinon{\champ{table}{tab[i].present} et \champ{table}{tab[i].binaryCode}=code}
         {\retourner{byte(i et 0b80, i et 0b40, i et 0b20,i et 0b10,i et 0b08,i et 0b04,i et 0b02,i et 0b01)}}{}
     }
     {\retourner{byte(0,0,0,0,0,0,0,0)}}}

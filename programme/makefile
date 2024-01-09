@@ -14,10 +14,6 @@ CFLAGS=-Wall -pedantic -g -std=gnu99 -I $(INCLUDEDIR)
 LDFLAGS=-L. -L$(LIBDIR) -lhuffman -lcunit
 
 SRCS = $(wildcard $(SRCDIR)/*.c)
-# Ajoutez les fichiers pétés dans la liste pour qu'ils soient ignorés
-# C'est temporaire!
-#EXCLUDE_SRCS = compress.c main.c # Temporary
-#SRCS = $(filter-out $(addprefix $(SRCDIR)/, $(EXCLUDE_SRCS)), $(wildcard $(SRCDIR)/*.c)) # Temporary
 OBJS = $(patsubst $(SRCDIR)/%.c, $(BINDIR)/%.o, $(SRCS))
 
 

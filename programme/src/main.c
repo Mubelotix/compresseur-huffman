@@ -28,7 +28,7 @@ void printHelp() {
     printf("\t3: Verbose output\n");
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     int option;
     int verbosity = 2;
     while ((option = getopt(argc, argv, "v:")) != -1) {
@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
     }
 
     char mode = argv[optind][0];
-    char* filename = argv[optind + 1];
+    char *filename = argv[optind + 1];
     switch (mode) {
         case 'c':
             C_compressFile(filename, verbosity);
@@ -70,6 +70,6 @@ int main(int argc, char* argv[]) {
             printHelp();
             return EXIT_FAILURE;
     }
-    
+
     return EXIT_SUCCESS;
 }

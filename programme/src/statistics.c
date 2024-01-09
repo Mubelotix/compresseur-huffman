@@ -3,46 +3,37 @@
 
 S_Statistics S_statistics() {
     S_Statistics stats;
-    for (int i = 0; i < S_MAX; i++)
-    {
+    for (int i = 0; i < S_MAX; i++) {
         stats.element[i] = 0;
     }
 
     return stats;
 }
 
-bool S_contains(S_Statistics stats, B_Byte byte)
-{
-    if (B_byteToNatural(byte) >= S_MAX)
-    {
+bool S_contains(S_Statistics stats, B_Byte byte) {
+    if (B_byteToNatural(byte) >= S_MAX) {
         printf("Error: byte %d is out of range\n", B_byteToNatural(byte));
     }
     return S_getCount(stats, byte) > 0;
 }
 
-unsigned int S_getCount(S_Statistics stats, B_Byte byte)
-{
-    if (B_byteToNatural(byte) >= S_MAX)
-    {
+unsigned int S_getCount(S_Statistics stats, B_Byte byte) {
+    if (B_byteToNatural(byte) >= S_MAX) {
         printf("Error: byte %d is out of range\n", B_byteToNatural(byte));
     }
     return stats.element[B_byteToNatural(byte)];
 }
 
-void S_incCount(S_Statistics *stats, B_Byte byte)
-{
-    if (B_byteToNatural(byte) >= S_MAX)
-    {
+void S_incCount(S_Statistics *stats, B_Byte byte) {
+    if (B_byteToNatural(byte) >= S_MAX) {
         printf("Error: byte %d is out of range\n", B_byteToNatural(byte));
     }
     stats->element[B_byteToNatural(byte)]++;
 }
 
-unsigned int S_length(S_Statistics stats)
-{
+unsigned int S_length(S_Statistics stats) {
     unsigned int length = 0;
-    for (int i = 0; i < S_MAX; i++)
-    {
+    for (int i = 0; i < S_MAX; i++) {
         length += stats.element[i];
     }
     return length;

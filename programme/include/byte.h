@@ -12,8 +12,9 @@
  * @brief Represents the two possible values of a bit: 0 or 1.
  */
 typedef enum {
-    B_ZERO = 0, ///< Represents the value 0.
-    B_ONE = 1   ///< Represents the value 1.
+    B_ZERO = 0,
+    ///< Represents the value 0.
+    B_ONE = 1 ///< Represents the value 1.
 } B_Bit;
 
 /**

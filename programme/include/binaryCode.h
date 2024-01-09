@@ -11,8 +11,9 @@
  * @brief Represents a binary bit.
  */
 typedef enum {
-    BC_ZERO = ZERO, ///< Represents the value 0
-    BC_ONE = ONE    ///< Represents the value 1
+    BC_ZERO = ZERO,
+    ///< Represents the value 0
+    BC_ONE = ONE ///< Represents the value 1
 } BC_Bit;
 
 /**
@@ -20,7 +21,7 @@ typedef enum {
  */
 typedef struct {
     BC_Bit bits[BC_MAX]; ///< Array of binary bits
-    unsigned int length;  ///< Length of the binary code
+    unsigned int length; ///< Length of the binary code
 } BC_BinaryCode;
 
 /**
@@ -34,7 +35,7 @@ BC_BinaryCode BC_binaryCode();
  * @param pbc Pointer to the binary code.
  * @param b The bit to add.
  */
-void BC_addBit(BC_BinaryCode* pbc, BC_Bit b);
+void BC_addBit(BC_BinaryCode *pbc, BC_Bit b);
 
 /**
  * @brief Gets the length of the binary code.
@@ -56,7 +57,7 @@ BC_Bit BC_getBit(BC_BinaryCode bc, unsigned int pos);
  * @param pbc1 Pointer to the first binary code.
  * @param pbc2 Pointer to the second binary code.
  */
-void BC_concatenate(BC_BinaryCode* pbc1, BC_BinaryCode* pbc2);
+void BC_concatenate(BC_BinaryCode *pbc1, BC_BinaryCode *pbc2);
 
 /**
  * @brief Checks for equality between two binary codes.
@@ -71,14 +72,14 @@ bool BC_equals(BC_BinaryCode bc1, BC_BinaryCode bc2);
  * @param pbc Pointer to the binary code.
  * @return The first byte removed from the binary code.
  */
-B_Byte BC_removeFirstByte(BC_BinaryCode* pbc);
+B_Byte BC_removeFirstByte(BC_BinaryCode *pbc);
 
 /**
  * @brief Appends a byte to the end of the binary code.
  * @param pbc Pointer to the binary code.
  * @param byte The byte to append.
  */
-void BC_appendByte(BC_BinaryCode* pbc, B_Byte byte);
+void BC_appendByte(BC_BinaryCode *pbc, B_Byte byte);
 
 /**
  * @brief Creates a binary code consisting of the prefix of the given length.

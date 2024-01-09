@@ -10,16 +10,16 @@
  */
 typedef struct HT_HuffmanTreeNode {
     int occurence; ///< The occurrence of the byte in the document.
-    B_Byte byte;   ///< The value of the byte for leaf nodes.
-    struct HT_HuffmanTreeNode* leftChild;  ///< The left child of the node.
-    struct HT_HuffmanTreeNode* rightChild; ///< The right child of the node.
+    B_Byte byte; ///< The value of the byte for leaf nodes.
+    struct HT_HuffmanTreeNode *leftChild; ///< The left child of the node.
+    struct HT_HuffmanTreeNode *rightChild; ///< The right child of the node.
 } HT_HuffmanTreeNode;
 
 /**
  * @typedef HT_HuffmanTree
  * @brief Represents a pointer to a Huffman tree node.
  */
-typedef HT_HuffmanTreeNode* HT_HuffmanTree;
+typedef HT_HuffmanTreeNode *HT_HuffmanTree;
 
 /**
  * @brief Returns the right child of the Huffman tree.
@@ -87,7 +87,7 @@ void HT_destroy(HT_HuffmanTree ht);
  * @param root The root node of the Huffman tree.
  * @return The created Huffman tree.
  */
-HT_HuffmanTree HT_createTree(HT_HuffmanTreeNode* root);
+HT_HuffmanTree HT_createTree(HT_HuffmanTreeNode *root);
 
 /**
  * @brief Outputs debugging information for the Huffman tree.

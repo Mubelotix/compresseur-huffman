@@ -67,4 +67,3 @@ unsigned int S_length(S_Statistics stats);
 void S_debug(S_Statistics stats);
 
 #endif
-

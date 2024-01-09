@@ -1,32 +1,31 @@
-
 \subsubsection{CodingTable}
 
 \begin{tad}
-  \tadNom{CodingTable}
-  \tadDependances{HuffmanTree, \naturelNonNul, \caractere, Binary}
-  
-  \begin{tadOperations}{getBinaryCode}
-    \tadOperation{codingTable}{}{CodingTable}
-    \tadOperation{isEmpty}{CodingTable}{\booleen}
-    \tadOperation{length}{CodingTable}{\naturel}
-    \tadOperation{contains}{\tadDeuxParams{CodingTable}{Byte}}{\booleen}
-    \tadOperationAvecPreconditions{getBinaryCode}{\tadDeuxParams{CodingTable}{Byte}}{BinaryCode}
-    \tadOperationAvecPreconditions{add}{\tadTroisParams{CodingTable}{Byte}{BinaryCode}}{CodingTable}
-    \tadOperation{getByte}{\tadDeuxParams{CodingTable}{BinaryCode}}{Byte}
-  \end{tadOperations}
+    \tadNom{CodingTable}
+    \tadDependances{HuffmanTree, \naturelNonNul, \caractere, Binary}
 
-  \begin{tadSemantiques}{getBinaryCode}
-    \tadSemantique{codingTable}{Crée une table de codage vide.}
-    \tadSemantique{isEmpty}{Renvoie VRAI si une table de codage est vide.}
-    \tadSemantique{length}{Renvoie le nombre d'octets présents dans une table de codage.}
-    \tadSemantique{contains}{Renvoie VRAI si l'octet est présent dans une table de code.}
-    \tadSemantique{getBinaryCode}{Renvoie le code binaire associé à un octet dans une table de codage.}
-    \tadSemantique{add}{Ajouter un code binaire associé à un octet dans une table de codage}
-    \tadSemantique{getByte}{Renvoie l'octet associé à un code binaire dans une table de codage.}
-  \end{tadSemantiques}
+    \begin{tadOperations}{getBinaryCode}
+        \tadOperation{codingTable}{}{CodingTable}
+        \tadOperation{isEmpty}{CodingTable}{\booleen}
+        \tadOperation{length}{CodingTable}{\naturel}
+        \tadOperation{contains}{\tadDeuxParams{CodingTable}{Byte}}{\booleen}
+        \tadOperationAvecPreconditions{getBinaryCode}{\tadDeuxParams{CodingTable}{Byte}}{BinaryCode}
+        \tadOperationAvecPreconditions{add}{\tadTroisParams{CodingTable}{Byte}{BinaryCode}}{CodingTable}
+        \tadOperation{getByte}{\tadDeuxParams{CodingTable}{BinaryCode}}{Byte}
+    \end{tadOperations}
 
-  \begin{tadPreconditions}{getBinaryCode(c, t)}
-    \tadPrecondition{getBinaryCode(table, byte)}{contains(table,byte)}
-    \tadPrecondition{add(table, byte, code)}{non contains(table,byte)}
-  \end{tadPreconditions}
+    \begin{tadSemantiques}{getBinaryCode}
+        \tadSemantique{codingTable}{Crée une table de codage vide.}
+        \tadSemantique{isEmpty}{Renvoie VRAI si une table de codage est vide.}
+        \tadSemantique{length}{Renvoie le nombre d'octets présents dans une table de codage.}
+        \tadSemantique{contains}{Renvoie VRAI si l'octet est présent dans une table de code.}
+        \tadSemantique{getBinaryCode}{Renvoie le code binaire associé à un octet dans une table de codage.}
+        \tadSemantique{add}{Ajouter un code binaire associé à un octet dans une table de codage}
+        \tadSemantique{getByte}{Renvoie l'octet associé à un code binaire dans une table de codage.}
+    \end{tadSemantiques}
+
+    \begin{tadPreconditions}{getBinaryCode(c, t)}
+        \tadPrecondition{getBinaryCode(table, byte)}{contains(table,byte)}
+        \tadPrecondition{add(table, byte, code)}{non contains(table,byte)}
+    \end{tadPreconditions}
 \end{tad}

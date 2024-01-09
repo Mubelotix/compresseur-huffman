@@ -22,7 +22,7 @@ bool CT_contains(CT_CodingTable table, B_Byte byte) {
     return table.tab[B_byteToNatural(byte)].present;
 }
 
-void CT_add(CT_CodingTable* table, B_Byte byte, BC_BinaryCode code) {
+void CT_add(CT_CodingTable *table, B_Byte byte, BC_BinaryCode code) {
     if (table->tab[B_byteToNatural(byte)].present) {
         errno = EEXIST;
         return;
@@ -49,7 +49,7 @@ B_Byte CT_getByte(CT_CodingTable table, BC_BinaryCode code) {
     return B_byte(0, 0, 0, 0, 0, 0, 0, 0);
 }
 
-void browseTree(HT_HuffmanTree noeud, BC_BinaryCode code, CT_CodingTable* codingTable) {
+void browseTree(HT_HuffmanTree noeud, BC_BinaryCode code, CT_CodingTable *codingTable) {
     if (noeud == NULL) {
         return;
     }
@@ -62,13 +62,13 @@ void browseTree(HT_HuffmanTree noeud, BC_BinaryCode code, CT_CodingTable* coding
 
     // Parcourir récursivement le sous-arbre gauche avec l'ajout de BC_ZERO au code binaire
     BC_BinaryCode leftCode = code;
-    BC_addBit(&leftCode,BC_ZERO);
+    BC_addBit(&leftCode, BC_ZERO);
     HT_HuffmanTree leftChild = HT_getLeftChild(noeud);
     browseTree(leftChild, leftCode, codingTable);
 
     // Parcourir récursivement le sous-arbre droit avec l'ajout de BC_ONE au code binaire
     BC_BinaryCode rightCode = code;
-    BC_addBit(&rightCode,BC_ONE);
+    BC_addBit(&rightCode, BC_ONE);
     HT_HuffmanTree rightChild = HT_getRightChild(noeud);
     browseTree(rightChild, rightCode, codingTable);
 }
