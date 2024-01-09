@@ -2,23 +2,14 @@
 
 \begin{algorithme}
     \signatureFonction{codingTable}{tree: HuffmanTree}{table: CodingTable}{}
+
+    \signatureFonction{isEmpty}{table: CodingTable}{\booleen}{}
+
+    \signatureFonction{contains}{table: CodingTable, byte: Byte}{\booleen}{}
+    
+    \signatureProcedure{add}{\paramEntreeSortie{table: CodingTable} \paramEntree{byte: Byte, code: BinaryCode}}{}
+    
+    \signatureFonction{getBinaryCode}{table: CodingTable, b: Byte}{BinaryCode}{char $\in$ table}
+    
+    \signatureFonction{getByte}{table: CodingTable, code: Binary}{Byte}{code $\in$ table}
 \end{algorithme}
-
-\begin{algorithme}
-    \signatureFonction{getBinaryCode}{table: CodingTable, char: \caractere}{Binary}{char $\in$ table}
-\end{algorithme}
-
-\begin{algorithme}
-    \signatureFonction{getChar}{table: CodingTable, code: Binary}{\caractere}{code $\in$ table}
-\end{algorithme}
-
-\begin{algorithme}
-    \signatureFonction{tableSize}{table: CodingTable}{\naturelNonNul}{}
-\end{algorithme}
-
-
-%\begin{algorithme}
-%    \signatureProcedure{addTree}{\paramEntree{ht: HuffmanTree} \paramEntreeSortie{pq: PriorityQueue}}{}
-%\end{algorithme}
-
-%symbole appartient à en LaTeX : \in 

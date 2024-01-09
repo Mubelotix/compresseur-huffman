@@ -44,3 +44,42 @@
         }
     }
 \end{algorithme}
+
+\begin{algorithme}
+    \fonction{removeFirstByte}{bc: BinaryCode}{Byte}{getLength(bc) < 8}{res: Byte}{
+        \affecter{res}{byte(getBit(bc, 1),getBit(bc, 2),getBit(bc, 3),getBit(bc, 4),getBit(bc, 5),getBit(bc, 6),getBit(bc, 7),getBit(bc, 8))}
+        \affecter{bc.length}{bc.length-8}
+        \retourner{res}
+    }
+\end{algorithme}
+
+
+\begin{algorithme}
+    \procedure{appendByte}{\paramEntreeSortie{bc : BinaryCode}, \paramEntree{byte : Byte}}{}{byteNat, i : \naturel}{
+        \affecter{byteNat}{byteToNatural(byte)}
+        \pour{i}{0}{7}{}{
+            \instruction{addBit(bc, (byteNat >> (7 - i)) \& 1)}
+        }
+    }
+\end{algorithme}
+
+\begin{algorithme}
+    \fonction{prefix}{bc : BinaryCode, length : \naturel}{BinaryCode}{}{res: BinaryCode, i : \naturel}{
+        \affecter{res}{binaryCode()}
+        \pour{i}{0}{length}{}{
+            \instruction{addBit(res, getBit(bc, i))}
+        }
+        \retourner{res}
+    }
+\end{algorithme}
+
+\begin{algorithme}
+    \fonction{suffix}{bc : BinaryCode, start : \naturel}{BinaryCode}{}{res: BinaryCode, i : \naturel}{
+        \affecter{res}{binaryCode()}
+        \pour{i}{start}{getLength(bc)}{}{
+            \instruction{addBit(res, getBit(bc, i))}
+        }
+        \retourner{res}
+    }
+\end{algorithme}
+
