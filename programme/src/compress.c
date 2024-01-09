@@ -99,7 +99,7 @@ void C_streamCompress(FILE *sourceFile, FILE *outputFile, CT_CodingTable *coding
 int isFileEmpty(FILE *file) {
     if (file == NULL) {
         perror("Le pointeur vers le fichier est NULL");
-        return -1; // Code d'erreur pour indiquer un pointeur NULL
+        return -1;
     }
 
     long currentPosition = ftell(file);
