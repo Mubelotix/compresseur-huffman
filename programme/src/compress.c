@@ -96,24 +96,6 @@ void C_streamCompress(FILE *sourceFile, FILE *outputFile, CT_CodingTable *coding
     }
 }
 
-int isFileEmpty(FILE *file) {
-    if (file == NULL) {
-        perror("Le pointeur vers le fichier est NULL");
-        return -1;
-    }
-
-    long currentPosition = ftell(file);
-    fseek(file, 0, SEEK_END);
-    long size = ftell(file);
-    fseek(file, currentPosition, SEEK_SET);
-
-    if (size == 0) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
-
 void C_compressFile(char *nameSourceFile, int verbosity) {
     if (verbosity >= 1)
         printf("Compression du fichier %s...\n", nameSourceFile);
