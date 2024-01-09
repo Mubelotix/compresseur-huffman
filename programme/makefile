@@ -21,7 +21,7 @@ LIBOBJS = $(patsubst $(SRCDIR)/lib/%.c, $(SRCDIR)/lib/%.o, $(LIBSRCS))
 EXEC=huffman
 TESTEXEC=testHuffman
 
-all: lib tests program doc
+all: lib tests program doc pdf
 
 create_directories:
 	mkdir -p $(BINDIR) $(LIBDIR) $(TESTBINDIR) $(DOCDIR)
