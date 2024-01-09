@@ -1,13 +1,46 @@
 \subsubsection{decompress}
 
 \begin{algorithme}
-    \procedure{decompress}{\paramEntreeSortie{f: FichierBinaire}}{}{
+    \fonction{readByte}{file: FichierBinaire}{unsigned char}{}{
+      {byte: unsigned char;}
+      {read: size\_t;}
+    }{
+      \affecter{read}{fread(byte, 1, 1, file)}
+      \retourner{byte}
+    }
+\end{algorithme}
+\vspace*{0.5cm}
+
+\begin{algorithme}
+    \fonction{restoreStatistics}{file: FichierBinaire}{Statistics}{}{
+        {i: \naturel;}
+        {count: \naturel;}
+    }{
+        \pour{i}{0}{MAX-1}{}{
+            \instruction{readVarInt(file, count)}
+            \pour{i}{0}{MAX-1}{}{
+                \instruction(incCount(stats, fromNatural(i)))
+            }
+        }
+        \retourner{stats}
+    }
+\end{algorithme}
+\vspace*{0.5cm}
+
+\begin{algorithme}
+    \procedure{decompress}{\paramEntreeSortie{sourceFile,outputFile: FichierBinaire}}{}{
             {stats: Statistics;}
             {ht: HuffmanTree;}
     }
-    {\affecter{stats}{readStatistics}
-    \affecter{ht}{buildHuffmanTree(stats)}
-    \affecter{f}{decode(ht)}
+    {\affecter{stats}{restoreStatistics(sourceFile)}
+    \affecter{queue}{fromStatistics(stats)}
+    \affecter{ht}{intoHuffmanTree(queue)}
+    \affecter{codingTable}{fromHuffmanTree(ht)}
+    \instruction{streamDeompress(sourceFile, outputFile, ct)}
+
+    \instruction{close(sourceFile)}
+    \instruction{close(outputFile)}
+    \instruction{destroy(ht)}
     }
 \end{algorithme}
 \vspace*{0.5cm}
