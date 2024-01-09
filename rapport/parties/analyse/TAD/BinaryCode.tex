@@ -20,12 +20,17 @@
         \tadSemantique{addBit}{Ajoute un bit au code binaire.}
         \tadSemantique{getLength}{Renvoie la longueur du code binaire (le nombre de bits).}
         \tadSemantique{getBit}{Renvoie le bit à la position donnée dans le code binaire.}
-        \tadSemantique{concatenate}{Concatène deux codes binaires.}
+        \tadSemantique{removeFirstByte}{Renvoie le premier octet du code binaire.}
+        \tadSemantique{appendByte}{Rajoute un octet à un code binaire.}
+        \tadSemantique{prefix}{Renvoie les n premiers bit du code binaire.}
+        \tadSemantique{suffix}{Renvoie les n derniers bit du code binaire.}
+        \tadSemantique{equals}{Renvoie VRAI si les deux code binaires sont egaux.}
       \end{tadSemantiques}    
     \begin{tadAxiomes}
         \tadAxiome{getLength(concatenate(cb1,cb2))=getLength(cb1)+getLength(cb2)}
     \end{tadAxiomes}
     \begin{tadPreconditions}{getBit}
         \tadPrecondition{getBit(BinaryCode, position)}{0<=position<getLength(BinaryCode)}
+        \tadPrecondition{removeFirstByte(BinaryCode)}{getLength(BinaryCode) >= 8}
         \end{tadPreconditions}
 \end{tad}
