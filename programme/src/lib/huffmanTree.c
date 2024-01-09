@@ -74,6 +74,9 @@ void HT_debug(HT_HuffmanTree ht) {
 }
 
 void HT_debug_inner(HT_HuffmanTree ht, unsigned int depth, bool last) {
+    if (ht == NULL) {
+        return;
+    }
     if (depth > 0) {
         for (unsigned int i = 0; i < depth - 1; i++) {
             printf("│  ");

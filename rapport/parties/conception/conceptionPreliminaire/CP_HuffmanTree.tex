@@ -9,13 +9,30 @@
 \end{algorithme}
 
 \begin{algorithme}
-    \signatureFonction{getByte}{ht : HuffmanTree}{Byte}{isALeaf(ht)}
+    \signatureFonction{getByte}{ht : \typePointeur{HuffmanTreeNode}}{Byte}{isALeaf(ht)}
 \end{algorithme}
 
 \begin{algorithme}
-    \signatureFonction{getOccurence}{ht : HuffmanTree}{\entier}{}
+    \signatureFonction{getOccurence}{ht : \typePointeur{HuffmanTreeNode}}{\entier}{}
 \end{algorithme}
 
 \begin{algorithme}
-    \signatureFonction{isALeaf}{ht : HuffmanTree}{\booleen}{}
+    \signatureFonction{isALeaf}{ht : \typePointeur{HuffmanTreeNode}}{\booleen}{}
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureFonction{createTree}{root : \typePointeur{HuffmanTreeNode}}{\typePointeur{HuffmanTreeNode}}{}
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureProcedure{destroy}{\paramEntree{ht : \typePointeur{HuffmanTreeNode}}}{}
+\end{algorithme}
+
+\begin{algorithme}
+    \signatureFonction{createLeaf}{occurence : \entier}{\typePointeur{HuffmanTreeNode}}{}
+\end{algorithme}
+
+
+\begin{algorithme}
+    \signatureFonction{node}{leftChild, rightChild: \typePointeur{HuffmanTreeNode}}{\typePointeur{HuffmanTreeNode}}{(leftChild $\neq$ NIL) ET (rightChild $\neq$ NIL)}
 \end{algorithme}
