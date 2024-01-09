@@ -28,6 +28,31 @@
 \vspace*{0.5cm}
 
 \begin{algorithme}
+    \procedure{streamDeompress}{sourceFile: FichierBinaire, outputFile: FichierBinaire, codingTable: CodingTable}{}{
+            {inputChar,c: unsigned char;}
+            {buffer: BinaryCode;}
+            {codeCandidate: BinaryCode;}
+    }{
+        \affecter{buffer}{binaryCode()}
+        \tantque{fread(inputChar, 1, 1, sourceFile) == 1}{
+            \instruction{appendByte(buffer, fromNatural(inputChar))}
+            \pour{i}{1}{getLength(buffer)}{}{
+                \affecter{codeCandidate}{prefix(buffer, length)}
+                \affecter{byte}{getByte(codingTable, codeCandidate)}
+                \affecter{buffer}{suffix(buffer, length)}
+                \affecter{c}{byteToNatural(byte)}
+                \instruction{fwrite(c,1,1,outputFile)}
+            }
+            \tantque{getLength(buffer) >= 8}{
+                \affecter{inputChar}{byteToNatural(removeFirstByte(buffer))}
+                \instruction{fwrite(inputChar, sizeof(char), 1, outputFile)}
+            }
+        }
+    }
+\end{algorithme}
+\vspace*{0.5cm}
+
+\begin{algorithme}
     \procedure{decompress}{\paramEntreeSortie{sourceFile,outputFile: FichierBinaire}}{}{
             {stats: Statistics;}
             {ht: HuffmanTree;}
