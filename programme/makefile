@@ -62,7 +62,7 @@ doc: create_directories $(SRCDIR)/*.c $(INCLUDEDIR)/*.h
 
 clean :
 	rm -rf ./$(BINDIR)/*
-	rm -rf ./$(LIBDIR)/*
+	rm -rf ./$(LIBDIR)/*.o
 	rm -rf ./$(SRCDIR)/*.o
 	rm -rf ./*.o
 	rm -rf doc/html doc/latex
