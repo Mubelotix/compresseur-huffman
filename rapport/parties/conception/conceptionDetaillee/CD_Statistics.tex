@@ -18,19 +18,6 @@
 \end{algorithme}
 
 \begin{algorithme}
-    \fonction{isEmpty}{stats : Statistics}{\booleen}{}{i : \naturel, flag : \booleen}{
-        \affecter{i}{0}
-        \affecter{flag}{False}
-        \tantque {\instruction{(i < MAX) and not(flag)}}
-        {\affecter{i}{i+1}
-        \instruction{\sialorssinon{s[i] > 0}
-        {\instruction{\affecter{flag}{True}}}
-        {}}
-        }
-        \retourner{flag}}
-\end{algorithme}
-
-\begin{algorithme}
     \fonction{contains}{stats : Statistics, b : Byte}{\booleen}{}{}{
         \retourner{getCount{stats, i} > 0}}
 \end{algorithme}
@@ -44,23 +31,5 @@
 \begin{algorithme}
     \procedure{incCount}{\paramEntree{i : \naturel} , \paramEntreeSortie{stats : Statistics}}{}{}{
         \affecter{stats[i]}{stats[i] + 1}
-    }
-\end{algorithme}
-
-\begin{algorithme}
-    \signatureFonction{getElementCount}{stats : Statistics}{\entier}{}{i, compteur : \naturel}{
-        \affecter{compteur}{0}
-        \pour{i}{1}{MAX}{}{
-            \instruction{\sialorssinon{s[i] > 0}
-            {\instruction{\affecter{compteur}{compteur + 1}}}
-            {}}
-        }
-        \retourner{compteur}
-    }
-\end{algorithme}
-
-\begin{algorithme}
-    \signatureFonction{getElement}{stats : Statistics, i : \entier}{\naturel}{i < getElementCount(statistics)}{}{}{
-        \retourner{naturalToByte(i)}
     }
 \end{algorithme}
