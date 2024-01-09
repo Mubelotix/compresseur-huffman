@@ -1,5 +1,5 @@
 SRCDIR=src
-TESTDIR=$(SRCDIR)/tests
+TESTDIR=tests
 INCLUDEDIR=include
 LIBDIR=lib
 BINDIR=bin
@@ -14,9 +14,9 @@ CFLAGS=-Wall -pedantic -g -std=gnu99 -I $(INCLUDEDIR)
 LDFLAGS=-L. -L$(LIBDIR) -lhuffman -lcunit
 
 SRCS = $(wildcard $(SRCDIR)/*.c)
-
-OBJS = $(patsubst $(SRCDIR)/%.c, $(BINDIR)/%.o, $(SRCS))
-
+LIBSRCS = $(wildcard $(LIBDIR)/*.c)
+OBJS = $(patsubst $(SRCDIR)/%.c, $(SRCDIR)/%.o, $(SRCS))
+LIBOBJS = $(patsubst $(LIBDIR)/%.c, $(LIBDIR)/%.o, $(LIBSRCS))
 
 EXEC=huffman
 TESTEXEC=testHuffman
@@ -26,28 +26,29 @@ all: program tests doc
 create_directories:
 	mkdir -p $(BINDIR) $(LIBDIR) $(TESTBINDIR) $(DOCDIR)
 
-tests: create_directories $(TESTBINDIR)/$(TESTEXEC)
-	./$(TESTBINDIR)/$(TESTEXEC)
+lib: create_directories $(LIBDIR)/$(LIB_NAME)
 
-$(SRCDIR)/%.o: $(SRCDIR)/%.c
-	$(CC) -c $(CFLAGS) $< -o $@
-
-$(BINDIR)/%.o: $(TESTDIR)/%.c
-	$(CC) -c $(CFLAGS) $< -o $@
-
-runner.o: src/tests/runner.c
-	$(CC) -c src/tests/runner.c $(CFLAGS)
-
-$(LIBDIR)/$(LIB_NAME): $(patsubst $(SRCDIR)/%.c, $(SRCDIR)/%.o, $(SRCS))
+$(LIBDIR)/$(LIB_NAME): $(LIBOBJS)
 	$(AR) rcs $@ $^
+
+$(LIBDIR)/%.o: $(LIBDIR)/%.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
+tests: create_directories $(TESTBINDIR)/$(TESTEXEC)
+
+$(TESTDIR)/%.o: $(TESTDIR)/%.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
+runner.o: $(TESTDIR)/runner.c
+	$(CC) -c $(TESTDIR)/runner.c $(CFLAGS)
 
 $(TESTBINDIR)/$(TESTEXEC): runner.o $(LIBDIR)/$(LIB_NAME)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
-program: create_directories $(BINDIR)/$(EXEC)
+program: create_directories lib $(BINDIR)/$(EXEC)
 
 $(BINDIR)/$(EXEC): $(patsubst $(SRCDIR)/%.c, $(SRCDIR)/%.o, $(SRCS))
-	$(CC) -o $@ $^
+	$(CC) -o $@ $^ $(LDFLAGS)
 
 pdf: ../$(LATEXDIR)/rapport.tex
 	cd ../$(LATEXDIR) && pdflatex rapport.tex && pdflatex rapport.tex
